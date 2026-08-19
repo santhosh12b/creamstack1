@@ -10,19 +10,19 @@ const products = [
     isActive: true
   },
   {
+    id: 'omnichannel-outreach',
+    name: 'Omnichannel Outreach',
+    badge: 'New',
+    desc: 'Reach prospects across LinkedIn & Email from one visual workflow.',
+    icon: '⚡',
+    isActive: true
+  },
+  {
     id: 'ai-personalization',
     name: 'AI Personalization',
     badge: 'Coming Soon',
     desc: 'Generate 1:1 icebreakers & personalized message copies.',
-    icon: '⚡',
-    isActive: false
-  },
-  {
-    id: 'outreach-automation',
-    name: 'Multi-Channel Outreach',
-    badge: 'Coming Soon',
-    desc: 'Automate LinkedIn & cold email sequences on autopilot.',
-    icon: '📬',
+    icon: '🤖',
     isActive: false
   },
   {
