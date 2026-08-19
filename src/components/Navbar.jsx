@@ -5,8 +5,15 @@ const products = [
     id: 'lead-enrichment',
     name: 'Lead Enrichment',
     badge: 'Popular',
-    desc: 'Find & verify prospects from LinkedIn, websites & signals.',
-    icon: '🔍',
+    desc: 'Find & verify prospects from LinkedIn, websites & buying signals.',
+    badgeStyle: 'bg-blue-50 text-blue-700 border-blue-200/80',
+    iconBg: 'bg-blue-50/80 text-blue-600 border-blue-100 group-hover:bg-blue-600 group-hover:text-white',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    ),
     isActive: true
   },
   {
@@ -14,7 +21,13 @@ const products = [
     name: 'Omnichannel Outreach',
     badge: 'New',
     desc: 'Reach prospects across LinkedIn & Email from one visual workflow.',
-    icon: '⚡',
+    badgeStyle: 'bg-emerald-50 text-emerald-700 border-emerald-200/80',
+    iconBg: 'bg-purple-50/80 text-purple-600 border-purple-100 group-hover:bg-purple-600 group-hover:text-white',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+      </svg>
+    ),
     isActive: true
   },
   {
@@ -22,23 +35,30 @@ const products = [
     name: 'Lead Management',
     badge: 'New',
     desc: 'Manage, organize, filter, and update every lead from one unified table.',
-    icon: '📊',
+    badgeStyle: 'bg-emerald-50 text-emerald-700 border-emerald-200/80',
+    iconBg: 'bg-indigo-50/80 text-indigo-600 border-indigo-100 group-hover:bg-indigo-600 group-hover:text-white',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="3" y1="9" x2="21" y2="9"></line>
+        <line x1="9" y1="21" x2="9" y2="9"></line>
+      </svg>
+    ),
     isActive: true
-  },
-  {
-    id: 'ai-personalization',
-    name: 'AI Personalization',
-    badge: 'Coming Soon',
-    desc: 'Generate 1:1 icebreakers & personalized message copies.',
-    icon: '🤖',
-    isActive: false
   },
   {
     id: 'unified-inbox',
     name: 'Unified Inbox',
     badge: 'New',
     desc: 'Manage all prospect conversations in one smart inbox.',
-    icon: '📥',
+    badgeStyle: 'bg-emerald-50 text-emerald-700 border-emerald-200/80',
+    iconBg: 'bg-blue-50/80 text-blue-600 border-blue-100 group-hover:bg-blue-600 group-hover:text-white',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
+        <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path>
+      </svg>
+    ),
     isActive: true
   }
 ];
@@ -87,7 +107,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
           >
             <button 
               onClick={() => setProductOpen(!productOpen)}
-              className={`flex items-center gap-1 text-[0.95rem] font-medium transition-colors py-2 outline-none cursor-pointer ${
+              className={`flex items-center gap-1.5 text-[0.95rem] font-medium transition-colors py-2 outline-none cursor-pointer ${
                 currentPage === 'lead-enrichment' || currentPage === 'omnichannel-outreach' || currentPage === 'lead-management' || currentPage === 'unified-inbox' ? 'text-primary font-bold' : 'text-text-main hover:text-primary'
               }`}
             >
@@ -109,10 +129,15 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
 
             {/* Dropdown Menu */}
             {productOpen && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-80 bg-white rounded-2xl shadow-2xl border border-slate-200/90 p-2.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-3 py-1.5 mb-1">
-                  Products & Features
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 w-92 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200/90 p-2.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="flex items-center justify-between px-3 py-1.5 mb-1 border-b border-slate-100 pb-2">
+                  <div className="flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                    <span>Core Platform</span>
+                  </div>
+                  <span className="text-[10px] font-bold text-primary">4 Products</span>
                 </div>
+
                 <div className="flex flex-col gap-1">
                   {products.map((item) => (
                     <div
@@ -122,36 +147,51 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
                           handleNavClick(e, item.id);
                         }
                       }}
-                      className={`p-3 rounded-xl flex items-start gap-3 transition-all ${
-                        item.isActive
-                          ? 'hover:bg-primary/5 cursor-pointer group border border-transparent hover:border-primary/20'
-                          : 'opacity-70 cursor-not-allowed bg-slate-50/50'
-                      } ${currentPage === item.id ? 'bg-primary/10 border-primary/30' : ''}`}
+                      className={`p-2.5 rounded-xl flex items-start gap-3 transition-all cursor-pointer group border ${
+                        currentPage === item.id 
+                          ? 'bg-blue-50/70 border-blue-200/90 shadow-2xs' 
+                          : 'border-transparent hover:bg-slate-50 hover:border-slate-200/80'
+                      }`}
                     >
-                      <div className="w-8 h-8 rounded-lg bg-slate-100 group-hover:bg-primary/10 flex items-center justify-center text-base shrink-0 transition-colors">
+                      <div className={`w-9 h-9 rounded-xl border flex items-center justify-center shrink-0 transition-all duration-200 shadow-2xs ${item.iconBg}`}>
                         {item.icon}
                       </div>
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between">
-                          <span className="font-bold text-xs text-secondary group-hover:text-primary transition-colors">
+
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between gap-2">
+                          <span className={`font-bold text-xs transition-colors ${
+                            currentPage === item.id ? 'text-primary' : 'text-slate-800 group-hover:text-primary'
+                          }`}>
                             {item.name}
                           </span>
                           {item.badge && (
-                            <span className={`text-[9px] font-extrabold px-1.5 py-0.5 rounded-full ${
-                              item.isActive 
-                                ? 'bg-emerald-100 text-emerald-800' 
-                                : 'bg-slate-100 text-slate-500'
-                            }`}>
+                            <span className={`text-[9px] font-extrabold px-2 py-0.5 rounded-full border ${item.badgeStyle}`}>
                               {item.badge}
                             </span>
                           )}
                         </div>
-                        <p className="text-[11px] text-text-light m-0 mt-0.5 leading-snug line-clamp-2">
+                        <p className="text-[11px] text-slate-500 m-0 mt-0.5 leading-snug font-normal line-clamp-2">
                           {item.desc}
                         </p>
                       </div>
                     </div>
                   ))}
+                </div>
+
+                {/* Footer link to demo */}
+                <div className="mt-2 pt-2 border-t border-slate-100 px-2">
+                  <a
+                    href="https://demo.creamstack.io/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-2 rounded-xl bg-slate-50 hover:bg-blue-50/80 text-[11px] font-bold text-slate-700 hover:text-primary transition-all group"
+                  >
+                    <span className="flex items-center gap-1.5">
+                      <span>✨</span>
+                      <span>Watch Live Interactive Demo</span>
+                    </span>
+                    <span className="group-hover:translate-x-0.5 transition-transform">➔</span>
+                  </a>
                 </div>
               </div>
             )}
