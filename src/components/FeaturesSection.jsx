@@ -25,28 +25,16 @@ const FeaturesSection = () => {
       desc: 'Turn company domain URLs into verified executive decision-makers' 
     },
     { 
-      label: 'CSV Bulk Import', 
-      icon: <FileTextIcon />, 
-      inactiveIcon: <FileTextIcon className="text-purple-500" />,
-      desc: 'Upload existing lead spreadsheets and enrich data in bulk' 
-    },
-    { 
       label: 'Past Engagers', 
       icon: <HeartIcon />, 
       inactiveIcon: <HeartIcon className="text-pink-500" />,
       desc: 'Extract and enrich prospects who liked or commented on target posts' 
     },
     { 
-      label: 'Company Websites', 
-      icon: <BuildingIcon />, 
-      inactiveIcon: <BuildingIcon className="text-cyan-600" />,
-      desc: 'Identify key contacts and leadership directly from web domains' 
-    },
-    { 
-      label: 'AI Buying Signals', 
-      icon: <ZapIcon />, 
-      inactiveIcon: <ZapIcon className="text-amber-500" />,
-      desc: 'Trigger automatic enrichment on funding rounds and hiring surges' 
+      label: 'People Prompt Search', 
+      icon: <SparklesIcon />, 
+      inactiveIcon: <SparklesIcon className="text-purple-500" />,
+      desc: 'Describe target personas in plain English and generate verified leads' 
     }
   ];
 
@@ -90,7 +78,7 @@ const FeaturesSection = () => {
                   </div>
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-600 border border-blue-200/80">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-                    6 Ingest Methods
+                    4 Ingest Methods
                   </span>
                 </div>
 
@@ -109,8 +97,8 @@ const FeaturesSection = () => {
                   <span className="text-primary font-extrabold lowercase text-xs">95%+ verified accuracy</span>
                 </div>
 
-                {/* 6 Source Pills (3x2 Grid) */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-3.5">
+                {/* 4 Source Pills (2x2 Grid) */}
+                <div className="grid grid-cols-2 sm:grid-cols-2 gap-2.5 mb-3.5">
                   {channels.map((ch, idx) => (
                     <button
                       key={idx}
@@ -482,6 +470,14 @@ function ZapIcon({ className = "w-3.5 h-3.5" }) {
   return (
     <svg className={className} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
       <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+    </svg>
+  );
+}
+
+function SparklesIcon({ className = "w-3.5 h-3.5" }) {
+  return (
+    <svg className={className} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
     </svg>
   );
 }
