@@ -5,7 +5,6 @@ import LogoCloud from './components/LogoCloud';
 import WorkflowSection from './components/WorkflowSection';
 import FeaturesSection from './components/FeaturesSection';
 import BenefitsSection from './components/BenefitsSection';
-import ProblemSection from './components/ProblemSection';
 import TestimonialSection from './components/TestimonialSection';
 import CTASection from './components/CTASection';
 import PricingSection from './components/PricingSection';
@@ -118,7 +117,6 @@ function App() {
             <WorkflowSection />
             <FeaturesSection />
             <BenefitsSection />
-            <ProblemSection />
             <TestimonialSection />
             <CTASection onNavigate={navigateTo} />
           </>
