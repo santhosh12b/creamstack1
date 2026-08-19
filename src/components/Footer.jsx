@@ -61,7 +61,7 @@ const Footer = ({ currentPage = 'home', onNavigate }) => {
             <p className="text-sm text-text-light mb-4">Get product updates, launches & more.</p>
             <form className="flex gap-2 mb-6" onSubmit={(e) => e.preventDefault()}>
               <input type="email" placeholder="Enter your email" className="flex-1 px-4 py-2 border border-border rounded-lg text-sm outline-none focus:border-primary transition-colors" />
-              <button type="submit" className="bg-primary hover:bg-[#4f20e6] text-white w-10 h-10 rounded-lg flex items-center justify-center transition-colors shrink-0">
+              <button type="submit" className="bg-primary hover:bg-primary-hover text-white w-10 h-10 rounded-lg flex items-center justify-center transition-colors shrink-0">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
               </button>
             </form>

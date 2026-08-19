@@ -28,7 +28,7 @@ const testimonials = [
 ];
 
 const stats = [
-  { value: "500+", label: "Active Teams and growing", icon: <TeamIcon />, color: "#5E2BFF" },
+  { value: "500+", label: "Active Teams and growing", icon: <TeamIcon />, color: "#3b82f6" },
   { value: "2.5M+", label: "Prospects Found every month", icon: <UserSearchIcon />, color: "#3b82f6" },
   { value: "95%+", label: "Verified Emails guaranteed", icon: <ShieldIcon />, color: "#10b981" },
   { value: "30M+", label: "Emails Sent monthly", icon: <MailIcon />, color: "#8b5cf6" },
