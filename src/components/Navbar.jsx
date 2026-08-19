@@ -129,7 +129,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
 
             {/* Dropdown Menu */}
             {productOpen && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 w-92 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200/90 p-2.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-96 bg-white rounded-2xl shadow-2xl shadow-slate-900/15 border border-slate-200 p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                 <div className="flex items-center justify-between px-3 py-1.5 mb-1 border-b border-slate-100 pb-2">
                   <div className="flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
