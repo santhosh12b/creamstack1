@@ -39,25 +39,25 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <section id="features" className="py-24 bg-gradient-to-b from-white via-[#fcfaff] to-white relative overflow-hidden">
+    <section id="features" className="py-14 sm:py-20 md:py-24 bg-gradient-to-b from-white via-[#fcfaff] to-white relative overflow-hidden">
       {/* Decorative ambient background curves */}
       <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-gradient-to-r from-purple-200/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10"></div>
       <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-gradient-to-l from-pink-200/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10"></div>
 
       <div className="container mx-auto px-4 sm:px-6">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
           <div className="inline-flex items-center gap-2 bg-purple-50 border border-purple-200/70 px-4 py-1.5 rounded-full text-xs font-bold tracking-wider text-primary uppercase mb-4 shadow-xs">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
             POWERFUL FEATURES
           </div>
           
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-secondary tracking-tight mb-4 leading-tight">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-secondary tracking-tight mb-3 sm:mb-4 leading-tight">
             Built for serious, <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-[#f472b6]">high-conversion</span><br />
             outreach.
           </h2>
 
-          <p className="text-base sm:text-lg text-text-light max-w-2xl mx-auto m-0 leading-relaxed font-medium">
+          <p className="text-sm sm:text-base md:text-lg text-text-light max-w-2xl mx-auto m-0 leading-relaxed font-medium">
             Everything you need to discover high-intent prospects,<br className="hidden sm:inline" />
             automate multi-touch outreach, and close deals effortlessly.
           </p>
@@ -69,11 +69,11 @@ const FeaturesSection = () => {
           {/* ================= TOP ROW: 2 EQUAL LARGE CARDS ================= */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             
-            {/* TOP CARD 1: 6 Ways to Find & Enrich Prospects */}
-            <div className="bg-white rounded-[32px] p-7 sm:p-9 border border-slate-200/80 shadow-xl shadow-slate-100/70 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 flex flex-col justify-between group">
+            {/* TOP CARD 1: 4 Ways to Find & Enrich Prospects */}
+            <div className="bg-white rounded-2xl sm:rounded-[32px] p-5 sm:p-7 md:p-9 border border-slate-200/80 shadow-xl shadow-slate-100/70 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 flex flex-col justify-between group">
               <div>
-                <div className="flex items-center justify-between gap-4 mb-6">
-                  <div className="w-13 h-13 rounded-2xl bg-indigo-50/90 text-primary flex items-center justify-center shadow-xs border border-indigo-100/80 group-hover:scale-105 transition-transform">
+                <div className="flex items-center justify-between gap-4 mb-5 sm:mb-6">
+                  <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-2xl bg-indigo-50/90 text-primary flex items-center justify-center shadow-xs border border-indigo-100/80 group-hover:scale-105 transition-transform">
                     <UsersIcon />
                   </div>
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-600 border border-blue-200/80">
@@ -130,10 +130,10 @@ const FeaturesSection = () => {
             </div>
 
             {/* TOP CARD 2: LinkedIn + Email Automation */}
-            <div className="bg-white rounded-[32px] p-7 sm:p-9 border border-slate-200/80 shadow-xl shadow-slate-100/70 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 flex flex-col justify-between group">
+            <div className="bg-white rounded-2xl sm:rounded-[32px] p-5 sm:p-7 md:p-9 border border-slate-200/80 shadow-xl shadow-slate-100/70 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 flex flex-col justify-between group">
               <div>
-                <div className="flex items-center justify-between gap-4 mb-6">
-                  <div className="w-13 h-13 rounded-2xl bg-purple-50/90 text-primary flex items-center justify-center shadow-xs border border-purple-100/80 group-hover:scale-105 transition-transform">
+                <div className="flex items-center justify-between gap-4 mb-4 sm:mb-6">
+                  <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-2xl bg-purple-50/90 text-primary flex items-center justify-center shadow-xs border border-purple-100/80 group-hover:scale-105 transition-transform">
                     <PaperPlaneIcon />
                   </div>
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-pink-50 text-purple-700 border border-purple-200/80">
@@ -141,43 +141,43 @@ const FeaturesSection = () => {
                   </span>
                 </div>
 
-                <h3 className="text-2xl font-bold text-secondary mb-2.5">
+                <h3 className="text-xl sm:text-2xl font-bold text-secondary mb-2.5">
                   LinkedIn + Email Automation
                 </h3>
-                <p className="text-sm text-text-light leading-relaxed mb-6 font-medium">
+                <p className="text-xs sm:text-sm text-text-light leading-relaxed mb-4 sm:mb-6 font-medium">
                   Build seamless multi-channel drip sequences with intelligent fallback conditions and sender safety warmup.
                 </p>
               </div>
 
               {/* Sequence Flow Micro-Canvas Box */}
-              <div className="bg-[#fcfaff] rounded-2xl p-5 border border-purple-100/90 flex flex-col justify-center">
+              <div className="bg-[#fcfaff] rounded-2xl p-3.5 sm:p-5 border border-purple-100/90 flex flex-col justify-center">
                 {/* Step 1 Node */}
-                <div className="bg-white rounded-xl p-3.5 shadow-xs border border-slate-200/80 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-7 h-7 rounded-lg bg-[#0077B5] text-white flex items-center justify-center text-xs font-bold">
+                <div className="bg-white rounded-xl p-3 sm:p-3.5 shadow-xs border border-slate-200/80 flex items-center justify-between">
+                  <div className="flex items-center gap-2.5 sm:gap-3">
+                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#0077B5] text-white flex items-center justify-center text-xs font-bold">
                       in
                     </div>
                     <span className="text-xs font-bold text-secondary">Step 1: LinkedIn Connect</span>
                   </div>
-                  <span className="text-[11px] font-bold text-emerald-600 bg-emerald-50 border border-emerald-200/80 px-2.5 py-0.5 rounded-md">
+                  <span className="text-[10px] sm:text-[11px] font-bold text-emerald-600 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-md">
                     Sent
                   </span>
                 </div>
 
                 {/* Connector Branch Line */}
-                <div className="my-2.5 flex items-center justify-center gap-2 text-[10px] font-extrabold text-slate-400 uppercase tracking-wider">
+                <div className="my-2 sm:my-2.5 flex items-center justify-center gap-2 text-[9px] sm:text-[10px] font-extrabold text-slate-400 uppercase tracking-wider">
                   <span>◆ WAIT 2 DAYS — IF ACCEPTED</span>
                 </div>
 
                 {/* Step 2 Node */}
-                <div className="bg-white rounded-xl p-3.5 shadow-xs border border-purple-200/80 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-7 h-7 rounded-lg bg-purple-100 text-primary flex items-center justify-center text-xs">
+                <div className="bg-white rounded-xl p-3 sm:p-3.5 shadow-xs border border-purple-200/80 flex items-center justify-between">
+                  <div className="flex items-center gap-2.5 sm:gap-3">
+                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-purple-100 text-primary flex items-center justify-center text-xs">
                       ✉
                     </div>
                     <span className="text-xs font-bold text-secondary">Step 2: 1:1 Personalized Email</span>
                   </div>
-                  <span className="text-[11px] font-bold text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-md">
+                  <span className="text-[10px] sm:text-[11px] font-bold text-primary bg-primary/10 border border-primary/20 px-2 py-0.5 rounded-md">
                     AI Tailored
                   </span>
                 </div>
@@ -187,13 +187,13 @@ const FeaturesSection = () => {
           </div>
 
           {/* ================= BOTTOM ROW: 4 EQUAL CARDS ================= */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             
             {/* BOTTOM CARD 1: AI Personalization */}
-            <div className="bg-white rounded-[28px] p-6 border border-slate-200/80 shadow-lg shadow-slate-100/70 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+            <div className="bg-white rounded-2xl sm:rounded-[28px] p-5 sm:p-6 border border-slate-200/80 shadow-lg shadow-slate-100/70 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
               <div>
-                <div className="flex items-center justify-between gap-3 mb-5">
-                  <div className="w-11 h-11 rounded-2xl bg-pink-50 text-pink-600 flex items-center justify-center shadow-xs border border-pink-100 group-hover:scale-105 transition-transform">
+                <div className="flex items-center justify-between gap-3 mb-4 sm:mb-5">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-pink-50 text-pink-600 flex items-center justify-center shadow-xs border border-pink-100 group-hover:scale-105 transition-transform">
                     <RobotIcon />
                   </div>
                   <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-pink-50 text-pink-600 border border-pink-200">
@@ -201,16 +201,16 @@ const FeaturesSection = () => {
                   </span>
                 </div>
 
-                <h4 className="text-lg font-bold text-secondary mb-1.5">
+                <h4 className="text-base sm:text-lg font-bold text-secondary mb-1.5">
                   AI Personalization
                 </h4>
-                <p className="text-xs text-text-light leading-relaxed mb-5 font-medium">
+                <p className="text-xs text-text-light leading-relaxed mb-4 sm:mb-5 font-medium">
                   Generate 1:1 icebreakers tailored to prospect recent posts, company funding, and tech stack.
                 </p>
               </div>
 
               {/* Micro AI Icebreaker Box */}
-              <div className="bg-[#f8fafc] rounded-2xl p-3.5 border border-slate-200/70">
+              <div className="bg-[#f8fafc] rounded-2xl p-3 sm:p-3.5 border border-slate-200/70">
                 <div className="text-[9px] font-extrabold uppercase tracking-wider text-pink-600 mb-1.5">
                   AI-GENERATED ICEBREAKER
                 </div>
@@ -226,7 +226,7 @@ const FeaturesSection = () => {
             </div>
 
             {/* BOTTOM CARD 2: Unified Smart Inbox */}
-            <div className="bg-white rounded-[28px] p-6 border border-slate-200/80 shadow-lg shadow-slate-100/70 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+            <div className="bg-white rounded-2xl sm:rounded-[28px] p-5 sm:p-6 border border-slate-200/80 shadow-lg shadow-slate-100/70 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
               <div>
                 <div className="flex items-center justify-between gap-3 mb-5">
                   <div className="w-11 h-11 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shadow-xs border border-emerald-100 group-hover:scale-105 transition-transform">

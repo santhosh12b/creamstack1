@@ -45,25 +45,31 @@ const steps = [
 
 const WorkflowSection = () => {
   const scrollRef = useRef(null);
+  const [activeStep, setActiveStep] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (scrollRef.current && window.innerWidth <= 768) {
-        const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-        
-        if (scrollLeft + clientWidth >= scrollWidth - 10) {
-          scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          scrollRef.current.scrollBy({ left: 300, behavior: 'smooth' });
-        }
-      }
-    }, 15000);
+  const scrollToStep = (idx) => {
+    setActiveStep(idx);
+    if (scrollRef.current) {
+      const cardWidth = scrollRef.current.offsetWidth * 0.85 + 16;
+      scrollRef.current.scrollTo({
+        left: idx * cardWidth,
+        behavior: 'smooth'
+      });
+    }
+  };
 
-    return () => clearInterval(interval);
-  }, []);
+  const handleScroll = () => {
+    if (scrollRef.current && window.innerWidth < 1024) {
+      const cardWidth = scrollRef.current.offsetWidth * 0.85 + 16;
+      const currentIdx = Math.round(scrollRef.current.scrollLeft / cardWidth);
+      if (currentIdx >= 0 && currentIdx < steps.length && currentIdx !== activeStep) {
+        setActiveStep(currentIdx);
+      }
+    }
+  };
 
   const handleMouseDown = (e) => {
     if (window.innerWidth > 1024) return;
@@ -89,11 +95,45 @@ const WorkflowSection = () => {
   };
 
   return (
-    <section id="product" className="py-20 bg-bg-light">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <p className="text-sm font-bold tracking-widest uppercase text-primary mb-4">COMPLETE OUTREACH WORKFLOW</p>
-          <h2 className="text-4xl font-bold text-secondary mb-4">Everything you need, in the right order.</h2>
+    <section id="product" className="py-12 sm:py-16 md:py-20 bg-bg-light">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 sm:mb-16">
+          <p className="text-xs sm:text-sm font-bold tracking-widest uppercase text-primary mb-2 sm:mb-4">
+            COMPLETE OUTREACH WORKFLOW
+          </p>
+          <h2 className="text-2xl sm:text-4xl font-bold text-secondary mb-2 sm:mb-4">
+            Everything you need, in the right order.
+          </h2>
+          <p className="text-xs sm:text-sm text-text-light max-w-xl mx-auto m-0 font-medium">
+            From discovering unlisted prospects to automated follow-ups and AI-powered inbox closures.
+          </p>
+        </div>
+
+        {/* Mobile Step Counter & Indicator Pills (<lg) */}
+        <div className="lg:hidden flex items-center justify-between mb-4 px-1">
+          <div className="flex items-center gap-1.5">
+            <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">
+              Workflow Step:
+            </span>
+            <span className="text-xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+              {activeStep + 1} of {steps.length}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-1">
+            {steps.map((s, idx) => (
+              <button
+                key={s.id}
+                onClick={() => scrollToStep(idx)}
+                aria-label={`Go to step ${idx + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  activeStep === idx
+                    ? 'w-6 bg-primary'
+                    : 'w-2 bg-slate-200 hover:bg-slate-300'
+                }`}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="relative">
@@ -102,29 +142,60 @@ const WorkflowSection = () => {
           <div className="hidden lg:block absolute top-[59px] right-[5%] w-[12px] h-[12px] border-t-2 border-r-2 border-slate-300 rotate-45 z-0"></div>
 
           <div 
-            className={`flex flex-nowrap lg:grid lg:grid-cols-5 items-stretch justify-start gap-4 lg:gap-5 relative overflow-x-auto lg:overflow-visible pb-8 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${isDragging ? 'scroll-auto snap-none cursor-grabbing [&>div]:pointer-events-none [&>div]:select-none' : 'scroll-smooth snap-x snap-mandatory cursor-grab lg:cursor-auto'}`} 
+            className={`flex flex-nowrap lg:grid lg:grid-cols-5 items-stretch justify-start gap-3 sm:gap-4 lg:gap-5 relative overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${isDragging ? 'scroll-auto snap-none cursor-grabbing [&>div]:pointer-events-none [&>div]:select-none' : 'scroll-smooth snap-x snap-mandatory cursor-grab lg:cursor-auto'}`} 
             ref={scrollRef}
+            onScroll={handleScroll}
             onMouseDown={handleMouseDown}
             onMouseLeave={handleMouseLeave}
             onMouseUp={handleMouseUp}
             onMouseMove={handleMouseMove}
           >
-            {steps.map((step) => (
+            {steps.map((step, idx) => (
               <div 
                 key={step.id} 
-                className="flex-1 min-w-[85vw] md:min-w-[240px] lg:min-w-0 w-full h-full min-h-[280px] flex flex-col items-center text-center p-7 bg-white border border-slate-100 rounded-3xl relative z-10 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-[0_25px_30px_-12px_rgba(0,0,0,0.08),0_18px_16px_-10px_rgba(0,0,0,0.04)] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.02),0_2px_4px_-1px_rgba(0,0,0,0.02)] snap-center justify-start"
+                className={`flex-1 min-w-[82vw] sm:min-w-[280px] lg:min-w-0 w-full h-full min-h-[260px] sm:min-h-[280px] flex flex-col items-center text-center p-6 sm:p-7 bg-white border rounded-3xl relative z-10 transition-all duration-300 snap-center justify-start ${
+                  activeStep === idx ? 'border-primary/40 shadow-lg shadow-primary/5' : 'border-slate-100 shadow-sm'
+                }`}
               >
-                <div 
-                  className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shrink-0 shadow-2xs" 
-                  style={{ backgroundColor: step.color, color: step.iconColor }}
-                >
-                  {step.icon}
+                <div className="w-full flex items-center justify-between lg:justify-center mb-4 sm:mb-6">
+                  <span className="lg:hidden text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
+                    Step {idx + 1}
+                  </span>
+                  <div 
+                    className="w-13 h-13 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center shrink-0 shadow-2xs" 
+                    style={{ backgroundColor: step.color, color: step.iconColor }}
+                  >
+                    {step.icon}
+                  </div>
+                  <span className="lg:hidden w-10"></span>
                 </div>
-                <h3 className="text-base font-bold text-secondary mb-2.5">{step.title}</h3>
+                <h3 className="text-base font-bold text-secondary mb-2">{step.title}</h3>
                 <p className="text-xs sm:text-sm text-text-light leading-relaxed m-0 font-medium">{step.desc}</p>
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Mobile Swipe Navigation Controls (<lg) */}
+        <div className="lg:hidden flex items-center justify-center gap-3 mt-3">
+          <button
+            onClick={() => scrollToStep(Math.max(0, activeStep - 1))}
+            disabled={activeStep === 0}
+            className={`px-3.5 py-1.5 rounded-xl border text-xs font-bold transition-all flex items-center gap-1 ${
+              activeStep === 0 ? 'opacity-40 border-slate-200 text-slate-400 cursor-not-allowed' : 'bg-white border-slate-200 text-secondary hover:bg-slate-50'
+            }`}
+          >
+            <span>← Previous</span>
+          </button>
+          <button
+            onClick={() => scrollToStep(Math.min(steps.length - 1, activeStep + 1))}
+            disabled={activeStep === steps.length - 1}
+            className={`px-3.5 py-1.5 rounded-xl border text-xs font-bold transition-all flex items-center gap-1 ${
+              activeStep === steps.length - 1 ? 'opacity-40 border-slate-200 text-slate-400 cursor-not-allowed' : 'bg-primary text-white border-primary shadow-xs'
+            }`}
+          >
+            <span>Next Step →</span>
+          </button>
         </div>
       </div>
     </section>

@@ -65,10 +65,13 @@ const products = [
 
 const Navbar = ({ currentPage = 'home', onNavigate }) => {
   const [productOpen, setProductOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(true);
 
   const handleNavClick = (e, page, sectionId) => {
     e.preventDefault();
     setProductOpen(false);
+    setMobileMenuOpen(false);
     if (onNavigate) {
       onNavigate(page, sectionId);
     } else {
@@ -77,17 +80,21 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
   };
 
   return (
-    <header className="py-4 bg-bg-light/95 backdrop-blur-md border-b border-border sticky top-0 z-[100]">
-      <div className="container flex items-center justify-between">
+    <header className="py-3 sm:py-3.5 bg-white/95 backdrop-blur-md border-b border-border sticky top-0 z-[100]">
+      <div className="container flex items-center justify-between px-4 sm:px-6">
         {/* Logo */}
         <div 
           onClick={(e) => handleNavClick(e, 'home', 'home')} 
-          className="flex items-center gap-2 font-bold text-xl text-secondary cursor-pointer"
+          className="flex items-center gap-2 font-bold text-secondary cursor-pointer select-none"
         >
-          <img src="/12.png" alt="CreamStack Logo" style={{ height: '32px', objectFit: 'contain' }} />
+          <img 
+            src="/12.png" 
+            alt="CreamStack Logo" 
+            className="h-6 sm:h-7 md:h-8 w-auto object-contain" 
+          />
         </div>
 
-        {/* Navigation Links */}
+        {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-8">
           <a 
             href="#home" 
@@ -99,7 +106,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
             Home
           </a>
 
-          {/* Product Dropdown (Downscroll) */}
+          {/* Product Dropdown (Desktop) */}
           <div 
             className="relative"
             onMouseEnter={() => setProductOpen(true)}
@@ -215,7 +222,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
           </a>
           <a 
             href="https://demo.creamstack.io/" 
-            target="_blank"
+            target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center gap-1 text-[0.95rem] font-medium text-text-main hover:text-primary transition-colors"
           >
@@ -223,17 +230,161 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
           </a>
         </nav>
 
-        {/* Right CTA */}
+        {/* Right Desktop CTA */}
         <div className="hidden md:flex items-center gap-3">
-          <button className="bg-transparent text-secondary border border-gray-300 px-5 py-2 rounded-lg hover:bg-gray-100 transition-colors font-semibold text-sm">Login</button>
+          <button className="bg-transparent text-secondary hover:text-primary border border-gray-300 px-5 py-2 rounded-lg hover:bg-gray-50 transition-colors font-semibold text-sm">
+            Log In
+          </button>
           <button 
             onClick={(e) => handleNavClick(e, 'pricing')}
             className="bg-primary hover:bg-primary-hover text-white px-5 py-2 rounded-lg transition-colors font-semibold text-sm shadow-sm"
           >
-            Get Started
+            Sign Up
+          </button>
+        </div>
+
+        {/* Mobile Hamburger Toggle Button */}
+        <div className="flex md:hidden items-center">
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle navigation menu"
+            className="w-9 h-9 rounded-xl border border-slate-200 bg-white flex items-center justify-center text-secondary hover:bg-slate-50 transition-colors cursor-pointer shadow-2xs"
+          >
+            {mobileMenuOpen ? (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+            )}
           </button>
         </div>
       </div>
+
+      {/* Mobile Drawer Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white border-b border-slate-200 px-4 py-5 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200 max-h-[85vh] overflow-y-auto">
+          <div className="flex flex-col gap-4">
+            
+            {/* Top Navigation Links */}
+            <div className="flex flex-col gap-1 border-b border-slate-100 pb-3">
+              <a 
+                href="#home"
+                onClick={(e) => handleNavClick(e, 'home', 'home')}
+                className={`px-3 py-2 rounded-xl text-sm font-bold transition-colors ${
+                  currentPage === 'home' ? 'bg-primary/10 text-primary' : 'text-secondary hover:bg-slate-50'
+                }`}
+              >
+                Home
+              </a>
+
+              {/* Mobile Products Accordion */}
+              <div>
+                <button
+                  onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+                  className="w-full px-3 py-2 rounded-xl text-sm font-bold text-secondary flex items-center justify-between hover:bg-slate-50 transition-colors"
+                >
+                  <span className="flex items-center gap-2">
+                    <span>Products</span>
+                    <span className="text-[10px] bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full font-extrabold">4 Core</span>
+                  </span>
+                  <svg 
+                    width="14" 
+                    height="14" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2.5" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                    className={`transition-transform duration-200 ${mobileProductsOpen ? 'rotate-180 text-primary' : 'text-slate-400'}`}
+                  >
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+
+                {mobileProductsOpen && (
+                  <div className="pl-2 pr-1 pt-1.5 pb-2 flex flex-col gap-1.5">
+                    {products.map((item) => (
+                      <div
+                        key={item.id}
+                        onClick={(e) => handleNavClick(e, item.id)}
+                        className={`p-2.5 rounded-xl flex items-start gap-3 border transition-all cursor-pointer ${
+                          currentPage === item.id 
+                            ? 'bg-blue-50/80 border-blue-200 text-primary' 
+                            : 'bg-slate-50/60 border-slate-100 text-secondary hover:bg-slate-100'
+                        }`}
+                      >
+                        <div className={`w-8 h-8 rounded-lg border flex items-center justify-center shrink-0 ${item.iconBg}`}>
+                          {item.icon}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between">
+                            <span className="font-bold text-xs">{item.name}</span>
+                            {item.badge && (
+                              <span className={`text-[9px] font-extrabold px-1.5 py-0.2 rounded-full border ${item.badgeStyle}`}>
+                                {item.badge}
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-[10px] text-slate-500 m-0 mt-0.5 line-clamp-1">{item.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <a 
+                href="#company"
+                onClick={(e) => handleNavClick(e, 'home', 'company')}
+                className="px-3 py-2 rounded-xl text-sm font-bold text-secondary hover:bg-slate-50 transition-colors"
+              >
+                Company
+              </a>
+
+              <a 
+                href="#pricing"
+                onClick={(e) => handleNavClick(e, 'pricing')}
+                className={`px-3 py-2 rounded-xl text-sm font-bold transition-colors ${
+                  currentPage === 'pricing' ? 'bg-primary/10 text-primary' : 'text-secondary hover:bg-slate-50'
+                }`}
+              >
+                Pricing
+              </a>
+
+              <a 
+                href="https://demo.creamstack.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-2 rounded-xl text-sm font-bold text-secondary hover:bg-slate-50 transition-colors flex items-center justify-between"
+              >
+                <span>Interactive Demo</span>
+                <span className="text-xs text-primary font-bold">Live ➔</span>
+              </a>
+            </div>
+
+            {/* Bottom Mobile Action Buttons: Sign Up & Log In */}
+            <div className="flex flex-col gap-2 pt-1">
+              <button 
+                onClick={(e) => handleNavClick(e, 'pricing')}
+                className="w-full py-3 rounded-2xl bg-primary hover:bg-primary-hover text-white font-extrabold text-sm shadow-md shadow-primary/20 transition-all text-center active:scale-98"
+              >
+                Get Invite Code
+              </button>
+              <button className="w-full py-2.5 rounded-2xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-xs transition-all text-center">
+                Sign In to Platform
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
     </header>
   );
 };

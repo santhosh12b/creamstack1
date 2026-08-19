@@ -262,33 +262,61 @@ const LeadManagementPage = ({ onNavigate }) => {
                   ))}
                 </div>
 
-                {/* Mini Interactive Table */}
-                <div className="overflow-x-auto rounded-2xl border border-slate-200/80 bg-slate-50/40">
-                  <table className="w-full text-left text-xs min-w-[500px]">
-                    <thead>
-                      <tr className="border-b border-slate-200/80 bg-slate-100/70 text-slate-500 font-bold uppercase tracking-wider text-[10px]">
-                        <th className="p-3 font-semibold">Name</th>
-                        <th className="p-3 font-semibold">Company</th>
-                        <th className="p-3 font-semibold">Email</th>
-                        <th className="p-3 font-semibold">Designation</th>
-                        <th className="p-3 font-semibold">Location</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100 bg-white">
-                      {sampleLeads.slice(0, 4).map((lead, idx) => (
-                        <tr key={idx} className="hover:bg-slate-50/80 transition-colors">
-                          <td className="p-3 font-bold text-secondary flex items-center gap-2">
-                            <img src={lead.avatar} alt={lead.name} className="w-6 h-6 rounded-full object-cover" />
-                            <span className="truncate">{lead.name}</span>
-                          </td>
-                          <td className="p-3 font-medium text-slate-600">{lead.company}</td>
-                          <td className="p-3 text-slate-500 font-mono text-[11px] truncate">{lead.email}</td>
-                          <td className="p-3 text-slate-600 truncate">{lead.designation}</td>
-                          <td className="p-3 text-slate-500 text-[11px] truncate">{lead.location}</td>
+                {/* Mini Interactive Table (Mobile Card List on <sm, Table on sm+) */}
+                <div className="rounded-2xl border border-slate-200/80 bg-slate-50/40 overflow-hidden">
+                  
+                  {/* MOBILE VIEW (<sm): Native Lead Cards */}
+                  <div className="block sm:hidden divide-y divide-slate-100 bg-white p-2">
+                    {sampleLeads.slice(0, 3).map((lead, idx) => (
+                      <div key={idx} className="p-3 flex flex-col gap-1.5">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <img src={lead.avatar} alt={lead.name} className="w-8 h-8 rounded-full object-cover border border-slate-200" />
+                            <div>
+                              <h5 className="text-xs font-extrabold text-secondary m-0">{lead.name}</h5>
+                              <span className="text-[10px] text-slate-500 font-medium">{lead.designation}</span>
+                            </div>
+                          </div>
+                          <span className="text-[10px] font-bold bg-blue-50 text-blue-700 px-2 py-0.5 rounded-md border border-blue-100">
+                            {lead.company}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between text-[11px] text-slate-500 font-mono pt-1">
+                          <span className="truncate max-w-[180px]">{lead.email}</span>
+                          <span className="text-slate-400 text-[10px]">{lead.location}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* DESKTOP VIEW (sm+): Full Lead Table */}
+                  <div className="hidden sm:block overflow-x-auto">
+                    <table className="w-full text-left text-xs min-w-[500px]">
+                      <thead>
+                        <tr className="border-b border-slate-200/80 bg-slate-100/70 text-slate-500 font-bold uppercase tracking-wider text-[10px]">
+                          <th className="p-3 font-semibold">Name</th>
+                          <th className="p-3 font-semibold">Company</th>
+                          <th className="p-3 font-semibold">Email</th>
+                          <th className="p-3 font-semibold">Designation</th>
+                          <th className="p-3 font-semibold">Location</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100 bg-white">
+                        {sampleLeads.slice(0, 4).map((lead, idx) => (
+                          <tr key={idx} className="hover:bg-slate-50/80 transition-colors">
+                            <td className="p-3 font-bold text-secondary flex items-center gap-2">
+                              <img src={lead.avatar} alt={lead.name} className="w-6 h-6 rounded-full object-cover" />
+                              <span className="truncate">{lead.name}</span>
+                            </td>
+                            <td className="p-3 font-medium text-slate-600">{lead.company}</td>
+                            <td className="p-3 text-slate-500 font-mono text-[11px] truncate">{lead.email}</td>
+                            <td className="p-3 text-slate-600 truncate">{lead.designation}</td>
+                            <td className="p-3 text-slate-500 text-[11px] truncate">{lead.location}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
 

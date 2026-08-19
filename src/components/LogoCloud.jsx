@@ -11,19 +11,19 @@ const logos = [
 
 const LogoCloud = () => {
   return (
-    <section className="py-14 border-y border-slate-100 bg-white/50 backdrop-blur-xs">
-      <div className="container mx-auto px-6">
-        <p className="text-center text-xs font-bold tracking-widest text-slate-400 mb-9 uppercase">
+    <section className="py-10 sm:py-14 border-y border-slate-100 bg-white/50 backdrop-blur-xs">
+      <div className="container mx-auto px-4 sm:px-6">
+        <p className="text-center text-[10px] sm:text-xs font-bold tracking-widest text-slate-400 mb-6 sm:mb-9 uppercase">
           TRUSTED BY OUTREACH PROFESSIONALS AT HIGH-GROWTH COMPANIES
         </p>
-        <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10">
+        <div className="flex flex-wrap justify-center items-center gap-2.5 sm:gap-6 md:gap-8 lg:gap-10">
           {logos.map((logo, idx) => (
             <div 
               key={idx} 
-              className={`group flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-slate-50/70 border border-slate-200/60 shadow-xs hover:shadow-md hover:bg-white transition-all duration-300 cursor-pointer ${logo.badgeColor}`}
+              className={`group flex items-center gap-2 sm:gap-3 px-3 py-1.5 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl bg-slate-50/70 border border-slate-200/60 shadow-2xs hover:shadow-md hover:bg-white transition-all duration-300 cursor-pointer ${logo.badgeColor}`}
             >
               {logo.icon}
-              <span className="text-base sm:text-lg font-bold tracking-tight text-slate-700 group-hover:text-slate-950 transition-colors">
+              <span className="text-xs sm:text-base lg:text-lg font-bold tracking-tight text-slate-700 group-hover:text-slate-950 transition-colors">
                 {logo.name}
               </span>
             </div>

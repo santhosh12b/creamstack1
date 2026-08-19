@@ -273,18 +273,143 @@ const PricingSection = () => {
   const [activeTab, setActiveTab] = useState('monthly'); // 'monthly' | 'trial'
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeCategoryFilter, setActiveCategoryFilter] = useState('all'); // 'all' | category id
+  const [selectedMobilePlan, setSelectedMobilePlan] = useState('growth'); // 'starter' | 'growth' | 'trial5' | 'trial10'
+  const [mobileExpandedCat, setMobileExpandedCat] = useState(null);
 
   // Calculate total feature count
   const totalFeatures = featureCategories.reduce((acc, cat) => acc + cat.features.length, 0);
 
+  // Sync mobile selected plan when activeTab switches
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    if (tab === 'monthly') {
+      if (selectedMobilePlan === 'trial5' || selectedMobilePlan === 'trial10') {
+        setSelectedMobilePlan('growth');
+      }
+    } else {
+      if (selectedMobilePlan === 'starter' || selectedMobilePlan === 'growth') {
+        setSelectedMobilePlan('trial5');
+      }
+    }
+  };
+
+  const mobilePlans = {
+    starter: {
+      id: 'starter',
+      name: 'Starter',
+      tab: 'monthly',
+      subtitle: 'For solopreneurs & founders',
+      price: '₹8,000',
+      period: '+ GST / month',
+      badge: 'Solopreneur',
+      badgeStyle: 'bg-slate-100 text-slate-700 border-slate-200',
+      btnText: 'Choose Starter',
+      btnStyle: 'bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white',
+      ctaType: 'outline',
+      limits: [
+        { label: 'Email Inboxes', val: '5 Inboxes', note: 'Rotation & warmup' },
+        { label: 'LinkedIn Account', val: '1 Account', note: 'Dedicated profile' },
+        { label: 'Credits Included', val: '2,000 / mo', note: 'Lead enrichment' },
+        { label: 'Plan Duration', val: 'Monthly', note: 'Billed monthly' }
+      ],
+      highlights: [
+        'Visual multi-channel campaign builder',
+        'AI message personalization & rewriting',
+        'Unified multi-channel CRM inbox',
+        'Human-like sending cadence & safety',
+        'Analytics & live conversion reports'
+      ]
+    },
+    growth: {
+      id: 'growth',
+      name: 'Growth',
+      tab: 'monthly',
+      subtitle: 'For scaling teams & agencies',
+      price: '₹10,000',
+      period: '+ GST / month',
+      badge: '★ Most Popular',
+      badgeStyle: 'bg-gradient-to-r from-[#f472b6] to-primary text-white shadow-xs',
+      btnText: 'Choose Growth',
+      btnStyle: 'bg-primary text-white shadow-lg shadow-primary/25 hover:bg-primary-hover',
+      ctaType: 'primary',
+      limits: [
+        { label: 'Email Inboxes', val: '10 Inboxes', note: 'Double inbox rotation' },
+        { label: 'LinkedIn Account', val: '1 Account', note: 'Dedicated profile' },
+        { label: 'Credits Included', val: '2,000 / mo', note: 'Lead enrichment' },
+        { label: 'Plan Duration', val: 'Monthly', note: 'Billed monthly' }
+      ],
+      highlights: [
+        'Everything in Starter with 10 inboxes',
+        'Double daily email sending throughput',
+        'AI hyper-personalized hooks & icebreakers',
+        'Conditional workflow branching logic',
+        'Priority 24/7 support & onboarding'
+      ]
+    },
+    trial5: {
+      id: 'trial5',
+      name: 'Trial 5',
+      tab: 'trial',
+      subtitle: '5 inboxes for 5 days',
+      price: '₹500',
+      period: 'One-time payment',
+      badge: 'Risk-Free',
+      badgeStyle: 'bg-purple-100 text-purple-700 border-purple-200',
+      btnText: 'Start Trial 5',
+      btnStyle: 'bg-purple-600 text-white shadow-lg shadow-purple-500/25 hover:bg-purple-700',
+      ctaType: 'trial',
+      limits: [
+        { label: 'Email Inboxes', val: '5 Inboxes', note: '5 days access' },
+        { label: 'LinkedIn Account', val: '1 Account', note: 'Full automation' },
+        { label: 'Credits Included', val: '150 Credits', note: 'Enrichment test' },
+        { label: 'Plan Duration', val: '5 Days', note: 'One-time payment' }
+      ],
+      highlights: [
+        'Full platform access for 5 days',
+        'Launch multi-channel test campaign',
+        'Unified inbox & AI personalization',
+        'Test email warmup & deliverability',
+        'Zero recurring commitment'
+      ]
+    },
+    trial10: {
+      id: 'trial10',
+      name: 'Trial 10',
+      tab: 'trial',
+      subtitle: '10 inboxes for 5 days',
+      price: '₹750',
+      period: 'One-time payment',
+      badge: 'Max Power Trial',
+      badgeStyle: 'bg-pink-100 text-pink-700 border-pink-200',
+      btnText: 'Start Trial 10',
+      btnStyle: 'bg-purple-600 text-white shadow-lg shadow-purple-500/25 hover:bg-purple-700',
+      ctaType: 'trial',
+      limits: [
+        { label: 'Email Inboxes', val: '10 Inboxes', note: '5 days high volume' },
+        { label: 'LinkedIn Account', val: '1 Account', note: 'Full automation' },
+        { label: 'Credits Included', val: '150 Credits', note: 'Enrichment test' },
+        { label: 'Plan Duration', val: '5 Days', note: 'One-time payment' }
+      ],
+      highlights: [
+        'Full 10-inbox capacity for 5 days',
+        'Test high-volume multi-channel outreach',
+        'Unified inbox & AI personalization',
+        'Deliverability & spam-shield check',
+        'Zero recurring commitment'
+      ]
+    }
+  };
+
+  const currentMobilePlan = mobilePlans[selectedMobilePlan];
+
   return (
-    <section id="pricing" className="py-24 bg-gradient-to-b from-white via-slate-50/50 to-white relative overflow-hidden">
+    <section id="pricing" className="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-white via-slate-50/50 to-white relative overflow-hidden">
       {/* Decorative ambient background glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-gradient-to-tr from-primary/10 via-[#f472b6]/10 to-transparent rounded-full blur-3xl pointer-events-none -z-10"></div>
 
       <div className="container mx-auto px-4 sm:px-6">
         {/* Header with Floating Decorative Chips */}
-        <div className="relative text-center max-w-3xl mx-auto mb-12">
+        <div className="relative text-center max-w-3xl mx-auto mb-8 sm:mb-12">
           {/* Floating chips (Desktop) */}
           <div className="hidden lg:flex absolute -left-20 top-0 items-center justify-center w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 shadow-lg shadow-blue-500/10 -rotate-12">
             <SendIcon />
@@ -300,48 +425,308 @@ const PricingSection = () => {
           </div>
 
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-1.5 rounded-full text-xs font-bold tracking-wider text-primary uppercase mb-4">
+          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider text-primary uppercase mb-3 sm:mb-4">
             PRICING THAT SCALES WITH YOU
           </div>
 
           {/* Title */}
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-secondary tracking-tight mb-4 leading-tight">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-secondary tracking-tight mb-2.5 sm:mb-4 leading-tight">
             Everything you need.<br />
             Simple, <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-[#f472b6]">transparent</span> pricing.
           </h2>
 
           {/* Subtitle */}
-          <p className="text-base sm:text-lg text-text-light max-w-3xl mx-auto mb-8 whitespace-normal md:whitespace-nowrap">
+          <p className="text-xs sm:text-base md:text-lg text-text-light max-w-3xl mx-auto mb-6 sm:mb-8 font-medium leading-relaxed">
             All plans include full access to Creamstack. Pay monthly or try risk-free.
           </p>
 
-          {/* Tab Filter Pills */}
-          <div className="inline-flex items-center p-1 rounded-full bg-slate-100/90 border border-slate-200 shadow-inner">
+          {/* Top Plan Category Selector (Monthly vs 5-Day Trials) */}
+          <div className="inline-flex items-center p-1 rounded-2xl bg-slate-100/90 border border-slate-200 shadow-inner w-full max-w-xs sm:w-auto">
             <button
-              onClick={() => setActiveTab('monthly')}
-              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 ${
+              onClick={() => handleTabChange('monthly')}
+              className={`flex-1 sm:flex-none px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer ${
                 activeTab === 'monthly'
-                  ? 'bg-primary text-white shadow-md'
-                  : 'text-slate-600 hover:text-secondary'
+                  ? 'bg-white text-secondary shadow-sm'
+                  : 'text-slate-500 hover:text-secondary'
               }`}
             >
-              Monthly Plans
+              <span>⚡ Monthly Plans</span>
             </button>
             <button
-              onClick={() => setActiveTab('trial')}
-              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 ${
+              onClick={() => handleTabChange('trial')}
+              className={`flex-1 sm:flex-none px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer ${
                 activeTab === 'trial'
-                  ? 'bg-primary text-white shadow-md'
-                  : 'text-slate-600 hover:text-secondary'
+                  ? 'bg-white text-secondary shadow-sm'
+                  : 'text-slate-500 hover:text-secondary'
               }`}
             >
-              5-Day Trials
+              <span>🎯 5-Day Trials</span>
             </button>
           </div>
         </div>
 
-        {/* Comparison Table Container */}
-        <div className="max-w-[1140px] mx-auto overflow-x-auto pb-4 [scrollbar-width:thin]">
+        {/* ========================================================================= */}
+        {/* ================= MOBILE EXPERIENCE (<md): NATIVE PRODUCT CARDS ========== */}
+        {/* ========================================================================= */}
+        <div className="block md:hidden max-w-md mx-auto">
+          
+          {/* Mobile Plan Quick-Switch Tabs */}
+          <div className="flex rounded-2xl bg-slate-100 p-1 mb-4 border border-slate-200/90 shadow-2xs">
+            {activeTab === 'monthly' ? (
+              <>
+                <button
+                  onClick={() => setSelectedMobilePlan('starter')}
+                  className={`flex-1 py-2.5 px-3 rounded-xl text-xs font-bold transition-all flex flex-col items-center gap-0.5 ${
+                    selectedMobilePlan === 'starter'
+                      ? 'bg-white text-secondary shadow-sm border border-slate-200/80'
+                      : 'text-slate-600 hover:text-secondary'
+                  }`}
+                >
+                  <span className="font-extrabold text-xs">Starter</span>
+                  <span className="text-[10px] text-slate-500 font-semibold">₹8,000 / mo</span>
+                </button>
+                <button
+                  onClick={() => setSelectedMobilePlan('growth')}
+                  className={`flex-1 py-2.5 px-3 rounded-xl text-xs font-bold transition-all relative flex flex-col items-center gap-0.5 ${
+                    selectedMobilePlan === 'growth'
+                      ? 'bg-white text-primary shadow-sm border border-primary/30'
+                      : 'text-slate-600 hover:text-secondary'
+                  }`}
+                >
+                  <span className="absolute -top-2.5 right-2 bg-gradient-to-r from-pink-500 to-primary text-white text-[8px] font-extrabold px-1.5 py-0.2 rounded-full uppercase shadow-xs">
+                    Popular
+                  </span>
+                  <span className="font-extrabold text-xs">Growth ★</span>
+                  <span className="text-[10px] text-primary/80 font-semibold">₹10,000 / mo</span>
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={() => setSelectedMobilePlan('trial5')}
+                  className={`flex-1 py-2.5 px-3 rounded-xl text-xs font-bold transition-all flex flex-col items-center gap-0.5 ${
+                    selectedMobilePlan === 'trial5'
+                      ? 'bg-white text-secondary shadow-sm border border-slate-200/80'
+                      : 'text-slate-600 hover:text-secondary'
+                  }`}
+                >
+                  <span className="font-extrabold text-xs">Trial 5</span>
+                  <span className="text-[10px] text-slate-500 font-semibold">₹500 (5 days)</span>
+                </button>
+                <button
+                  onClick={() => setSelectedMobilePlan('trial10')}
+                  className={`flex-1 py-2.5 px-3 rounded-xl text-xs font-bold transition-all flex flex-col items-center gap-0.5 ${
+                    selectedMobilePlan === 'trial10'
+                      ? 'bg-white text-purple-700 shadow-sm border border-purple-200'
+                      : 'text-slate-600 hover:text-secondary'
+                  }`}
+                >
+                  <span className="font-extrabold text-xs">Trial 10</span>
+                  <span className="text-[10px] text-purple-600 font-semibold">₹750 (5 days)</span>
+                </button>
+              </>
+            )}
+          </div>
+
+          {/* Active Plan Mobile Spotlight Card */}
+          <div className="bg-white rounded-3xl border-2 border-slate-200/90 shadow-xl overflow-hidden p-5 transition-all duration-300 relative">
+            
+            {/* Top Accent bar */}
+            {selectedMobilePlan === 'growth' && (
+              <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#f472b6] via-primary to-[#8b5cf6]"></div>
+            )}
+
+            {/* Plan Header */}
+            <div className="flex items-start justify-between gap-2 mb-4">
+              <div>
+                <div className="flex items-center gap-2">
+                  <h3 className="text-2xl font-extrabold text-secondary tracking-tight m-0">
+                    {currentMobilePlan.name}
+                  </h3>
+                  <span className={`text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full border ${currentMobilePlan.badgeStyle}`}>
+                    {currentMobilePlan.badge}
+                  </span>
+                </div>
+                <p className="text-xs text-text-light font-medium mt-1 m-0">
+                  {currentMobilePlan.subtitle}
+                </p>
+              </div>
+
+              {/* Price Tag */}
+              <div className="text-right">
+                <div className="text-2xl font-black text-secondary tracking-tight leading-none">
+                  {currentMobilePlan.price}
+                </div>
+                <div className="text-[10px] text-text-light font-medium mt-0.5">
+                  {currentMobilePlan.period}
+                </div>
+              </div>
+            </div>
+
+            {/* Quota Chips Matrix */}
+            <div className="grid grid-cols-2 gap-2 my-4">
+              {currentMobilePlan.limits.map((l, idx) => (
+                <div key={idx} className="bg-slate-50 border border-slate-100 rounded-2xl p-2.5 flex flex-col justify-center">
+                  <span className="text-[10px] uppercase tracking-wider font-bold text-slate-400">
+                    {l.label}
+                  </span>
+                  <span className="font-extrabold text-xs sm:text-sm text-secondary mt-0.5">
+                    {l.val}
+                  </span>
+                  <span className="text-[9px] text-primary font-medium mt-0.5">
+                    {l.note}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Button */}
+            <button className={`w-full py-3.5 px-5 rounded-2xl font-extrabold text-sm transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-98 ${currentMobilePlan.btnStyle}`}>
+              <span>{currentMobilePlan.btnText}</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+
+            {/* What's included checklist */}
+            <div className="mt-5 pt-4 border-t border-slate-100">
+              <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 block mb-2.5">
+                Included in this plan:
+              </span>
+              <div className="space-y-2">
+                {currentMobilePlan.highlights.map((h, idx) => (
+                  <div key={idx} className="flex items-start gap-2 text-xs text-slate-700">
+                    <div className="shrink-0 mt-0.5">
+                      <CheckCircle />
+                    </div>
+                    <span className="font-medium leading-snug">{h}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Interactive Mobile Feature Accordion Toggle */}
+            <div className="mt-5 pt-4 border-t border-slate-100">
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="w-full py-2.5 px-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200/80 text-xs font-bold text-slate-700 flex items-center justify-between transition-colors"
+              >
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                  <span>{isExpanded ? 'Hide Detailed Feature Specs' : 'View Full Feature Specs (16+)'}</span>
+                </span>
+                <svg 
+                  width="14" 
+                  height="14" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2.5" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  className={`transition-transform duration-200 ${isExpanded ? 'rotate-180 text-primary' : 'text-slate-400'}`}
+                >
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+
+              {/* Mobile Collapsible Category Breakdown */}
+              {isExpanded && (
+                <div className="mt-3 space-y-2 animate-in fade-in duration-200">
+                  {featureCategories.map((cat) => {
+                    const isCatOpen = mobileExpandedCat === cat.id;
+                    return (
+                      <div key={cat.id} className="border border-slate-200/80 rounded-2xl overflow-hidden bg-white">
+                        <button
+                          onClick={() => setMobileExpandedCat(isCatOpen ? null : cat.id)}
+                          className="w-full p-3 bg-slate-50/70 hover:bg-slate-50 flex items-center justify-between text-left text-xs font-bold text-secondary transition-colors"
+                        >
+                          <div className="flex items-center gap-2">
+                            <span className="w-5 h-5 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-primary text-[10px] shrink-0">
+                              {cat.icon}
+                            </span>
+                            <span className="truncate">{cat.category}</span>
+                          </div>
+                          <div className="flex items-center gap-1.5 shrink-0 ml-2">
+                            <span className={`text-[9px] font-extrabold px-1.5 py-0.2 rounded-full border ${cat.badgeColor}`}>
+                              {cat.badge}
+                            </span>
+                            <svg 
+                              width="12" 
+                              height="12" 
+                              viewBox="0 0 24 24" 
+                              fill="none" 
+                              stroke="currentColor" 
+                              strokeWidth="2" 
+                              className={`transition-transform ${isCatOpen ? 'rotate-180 text-primary' : 'text-slate-400'}`}
+                            >
+                              <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                          </div>
+                        </button>
+
+                        {/* Category Feature Rows */}
+                        {(isCatOpen || true) && (
+                          <div className="p-3 divide-y divide-slate-100 bg-white">
+                            {cat.features.map((feat, fIdx) => {
+                              const planVal = feat[selectedMobilePlan];
+                              const isText = typeof planVal === 'string';
+
+                              return (
+                                <div key={fIdx} className="py-2 flex items-start justify-between gap-2">
+                                  <div className="flex-1 pr-2">
+                                    <div className="flex items-center gap-1.5 flex-wrap">
+                                      <span className="font-bold text-xs text-slate-800">{feat.name}</span>
+                                      {feat.tag && (
+                                        <span className="text-[8px] font-extrabold uppercase px-1 py-0.2 rounded bg-purple-50 text-purple-700 border border-purple-100">
+                                          {feat.tag}
+                                        </span>
+                                      )}
+                                    </div>
+                                    <p className="text-[10px] text-slate-500 m-0 mt-0.5 line-clamp-2">{feat.desc}</p>
+                                  </div>
+                                  <div className="shrink-0 text-right font-bold text-xs text-primary">
+                                    {isText ? (
+                                      <span className="px-2 py-0.5 rounded-lg bg-blue-50 text-blue-700 text-[11px] font-extrabold">
+                                        {planVal}
+                                      </span>
+                                    ) : planVal ? (
+                                      <CheckCircle />
+                                    ) : (
+                                      <span className="text-slate-300">—</span>
+                                    )}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+          </div>
+
+          {/* Quick Support / Need Help pill */}
+          <div className="mt-4 p-4 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 flex items-center justify-between text-xs">
+            <div>
+              <span className="font-bold text-secondary block">Need a custom volume?</span>
+              <span className="text-slate-500 text-[11px]">Talk to our team for enterprise tier.</span>
+            </div>
+            <button className="px-3 py-1.5 rounded-xl bg-white border border-blue-200 text-primary font-bold text-xs shadow-2xs hover:bg-primary hover:text-white transition-all">
+              Contact Us
+            </button>
+          </div>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* ================= DESKTOP EXPERIENCE (md+): COMPLETE GRID TABLE ========= */}
+        {/* ========================================================================= */}
+        <div className="hidden md:block max-w-[1140px] mx-auto overflow-x-auto pb-4 [scrollbar-width:thin]">
           <div className="min-w-[880px] bg-white rounded-3xl border border-slate-200/90 shadow-2xl overflow-hidden transition-all duration-300">
             
             {/* Master Grid Table Header */}
@@ -472,10 +857,10 @@ const PricingSection = () => {
               </div>
             )}
 
-            {/* Feature List Rendering */}
+            {/* Feature List Rendering (Desktop) */}
             <div className="divide-y divide-slate-100">
               {!isExpanded ? (
-                // COLLAPSED VIEW: Streamlined Key Highlights (Senior Designer Layout)
+                // COLLAPSED VIEW: Streamlined Key Highlights
                 <div>
                   {/* Category 1: Core Specs & Limits */}
                   <div className="bg-gradient-to-r from-slate-100/90 via-slate-50 to-white px-6 py-3 border-y border-slate-200/80 flex items-center justify-between">

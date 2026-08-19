@@ -21,14 +21,14 @@ const benefits = [
 
 const BenefitsSection = () => {
   return (
-    <section id="company" className="py-16 border-b border-border">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <p className="text-sm font-bold tracking-widest uppercase text-primary mb-4">WHY CREAMSTACK?</p>
-          <h2 className="text-4xl font-bold text-secondary mb-4">One platform. Zero chaos.</h2>
+    <section id="company" className="py-10 sm:py-16 border-b border-border">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 sm:mb-12">
+          <p className="text-xs sm:text-sm font-bold tracking-widest uppercase text-primary mb-2 sm:mb-4">WHY CREAMSTACK?</p>
+          <h2 className="text-2xl sm:text-4xl font-bold text-secondary mb-2 sm:mb-4">One platform. Zero chaos.</h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-8 mt-6 sm:mt-10">
           {benefits.map((benefit, idx) => (
             <div key={idx} className="flex items-start gap-4">
               <div className="text-primary shrink-0 mt-1">

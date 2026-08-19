@@ -109,34 +109,33 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
 
   return (
     <div className="bg-bg-light text-text-main">
-      {/* SECTION 1: HERO */}
-      <section className="pt-20 pb-24 bg-gradient-to-b from-[#f472b6]/10 via-[#3b82f6]/5 to-transparent relative overflow-hidden">
-        {/* Subtle Ambient Glow */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-gradient-to-tr from-primary/10 via-[#f472b6]/10 to-transparent rounded-full blur-3xl pointer-events-none -z-10"></div>
+      {/* HERO SECTION */}
+      <section className="pt-10 sm:pt-16 md:pt-20 pb-12 sm:pb-16 md:pb-24 bg-gradient-to-b from-[#f472b6]/10 via-[#3b82f6]/5 to-transparent relative overflow-hidden">
+        {/* Ambient Glows */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gradient-to-tr from-primary/15 via-[#f472b6]/10 to-transparent rounded-full blur-3xl pointer-events-none -z-10"></div>
 
-        <div className="container mx-auto px-6 text-center">
-          {/* Centered Hero Content */}
-          <div className="flex flex-col items-center gap-6 max-w-4xl mx-auto">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="flex flex-col items-center gap-5 sm:gap-6 max-w-4xl mx-auto text-center">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-1.5 rounded-full text-xs font-bold tracking-wider text-primary uppercase">
+            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider text-primary uppercase shadow-2xs">
               1. Lead Enrichment
             </div>
 
             {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-secondary tracking-tight leading-[1.15] m-0">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-secondary tracking-tight leading-[1.15] m-0">
               Find your next customer from <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-[#f472b6]">anywhere.</span>
             </h1>
 
             {/* Description */}
-            <p className="text-base sm:text-lg text-text-light leading-relaxed max-w-3xl mx-auto m-0 font-medium">
+            <p className="text-sm sm:text-base md:text-lg text-text-light leading-relaxed max-w-3xl mx-auto m-0 font-medium">
               Enrich high-quality prospects from LinkedIn, company websites, search filters, or even people engaging with posts. Every lead comes enriched with verified contact data, AI-generated outreach ideas, and buying signals.
             </p>
 
             {/* Buttons */}
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2 w-full sm:w-auto">
               <button 
                 onClick={() => onNavigate && onNavigate('pricing')}
-                className="btn btn-primary shadow-lg shadow-primary/25 text-sm"
+                className="btn btn-primary shadow-lg shadow-primary/25 text-sm w-full sm:w-auto"
               >
                 <span>Start Enriching Leads</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -145,10 +144,10 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
                 </svg>
               </button>
               <a 
-                href="https://demo.creamstack.io/"
-                target="_blank"
+                href="https://demo.creamstack.io/" 
+                target="_blank" 
                 rel="noopener noreferrer"
-                className="btn btn-outline bg-white hover:bg-slate-50 text-sm"
+                className="btn btn-outline bg-white hover:bg-slate-50 text-sm w-full sm:w-auto"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                   <polygon points="5 3 19 12 5 21 5 3"></polygon>

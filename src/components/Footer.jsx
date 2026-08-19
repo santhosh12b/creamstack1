@@ -11,28 +11,30 @@ const Footer = ({ currentPage = 'home', onNavigate }) => {
   };
 
   return (
-    <footer className="pt-16 pb-8 bg-bg-light border-t border-border">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr_2fr] gap-8">
-          <div className="flex flex-col gap-4 md:col-span-2 lg:col-span-1">
+    <footer className="pt-10 sm:pt-16 pb-8 bg-bg-light border-t border-border">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr_2fr] gap-6 sm:gap-8">
+          <div className="flex flex-col gap-3 sm:gap-4 sm:col-span-2 lg:col-span-1">
             <div 
               onClick={(e) => handleNavClick(e, 'home', 'home')}
-              className="flex items-center gap-2 font-bold text-xl text-secondary cursor-pointer"
+              className="flex items-center gap-2 font-bold text-xl text-secondary cursor-pointer select-none"
             >
-              <img src="/12.png" alt="CreamStack Logo" className="h-6 object-contain" />
+              <img src="/12.png" alt="CreamStack Logo" className="h-6 w-auto object-contain" />
             </div>
-            <p className="text-sm text-text-main m-0 max-w-[250px]">
+            <p className="text-sm text-text-main m-0 max-w-[250px] font-medium">
               All-in-one outreach platform for agencies, founders & growth teams.
             </p>
             <p className="text-xs text-text-light mt-auto">&copy; 2026 Creamstack. All rights reserved.</p>
           </div>
 
           <div>
-            <h5 className="text-[0.95rem] m-0 mb-4 text-secondary font-bold">Product</h5>
-            <ul className="flex flex-col gap-3 list-none p-0 m-0">
+            <h5 className="text-[0.95rem] m-0 mb-3 sm:mb-4 text-secondary font-bold">Product</h5>
+            <ul className="flex flex-col gap-2.5 sm:gap-3 list-none p-0 m-0">
               <li><a href="#lead-enrichment" onClick={(e) => handleNavClick(e, 'lead-enrichment')} className="text-sm text-text-light hover:text-primary transition-colors">Lead Enrichment</a></li>
+              <li><a href="#omnichannel-outreach" onClick={(e) => handleNavClick(e, 'omnichannel-outreach')} className="text-sm text-text-light hover:text-primary transition-colors">Omnichannel Outreach</a></li>
+              <li><a href="#lead-management" onClick={(e) => handleNavClick(e, 'lead-management')} className="text-sm text-text-light hover:text-primary transition-colors">Lead Management</a></li>
+              <li><a href="#unified-inbox" onClick={(e) => handleNavClick(e, 'unified-inbox')} className="text-sm text-text-light hover:text-primary transition-colors">Unified Inbox</a></li>
               <li><a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className="text-sm text-text-light hover:text-primary transition-colors">Pricing</a></li>
-              <li><a href="https://demo.creamstack.io/" target="_blank" rel="noopener noreferrer" className="text-sm text-text-light hover:text-primary transition-colors">Demo</a></li>
             </ul>
           </div>
 

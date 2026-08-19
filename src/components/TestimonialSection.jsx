@@ -37,26 +37,32 @@ const stats = [
 
 const TestimonialSection = () => {
   return (
-    <section className="py-24 section-dark">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <p className="text-xs font-bold tracking-widest uppercase mb-4 text-white/60 border border-white/10 px-4 py-1 rounded-full inline-block">TRUSTED BY OUTBOUND PROFESSIONALS</p>
-          <h2 className="text-4xl font-bold text-white mb-4">Loved by teams that <span className="text-primary">live and breathe</span> outbound.</h2>
-          <p className="text-white/80 text-lg mt-4 mb-12">Join 500+ teams who are scaling their outreach with Creamstack.</p>
+    <section className="py-14 sm:py-20 md:py-24 section-dark">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-10 sm:mb-16">
+          <p className="text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-3 sm:mb-4 text-white/60 border border-white/10 px-3.5 py-1 rounded-full inline-block">
+            TRUSTED BY OUTBOUND PROFESSIONALS
+          </p>
+          <h2 className="text-2xl sm:text-4xl font-bold text-white mb-2 sm:mb-4">
+            Loved by teams that <span className="text-primary">live and breathe</span> outbound.
+          </h2>
+          <p className="text-white/80 text-sm sm:text-lg mt-2 sm:mt-4 mb-8 sm:mb-12 font-medium">
+            Join 500+ teams who are scaling their outreach with Creamstack.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 sm:gap-6 mb-10 sm:mb-16">
           {testimonials.map((t, idx) => (
-            <div key={idx} className="bg-white/5 border border-white/5 rounded-2xl p-8 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:border-primary/50">
-              <div className="text-5xl text-primary leading-none font-serif opacity-50 -mb-4">"</div>
-              <p className="text-base leading-relaxed mb-8 flex-grow">{t.text}</p>
-              <div className="flex items-center gap-4">
+            <div key={idx} className="bg-white/5 border border-white/5 rounded-2xl p-5 sm:p-7 md:p-8 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:border-primary/50">
+              <div className="text-4xl sm:text-5xl text-primary leading-none font-serif opacity-50 -mb-2 sm:-mb-4">"</div>
+              <p className="text-sm sm:text-base leading-relaxed mb-6 sm:mb-8 flex-grow">{t.text}</p>
+              <div className="flex items-center gap-3 sm:gap-4">
                 <div 
-                  className="w-12 h-12 rounded-full bg-slate-800 bg-cover" 
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-800 bg-cover shrink-0" 
                   style={{ backgroundImage: `url('${t.avatar}')` }}
                 ></div>
                 <div className="flex flex-col">
-                  <h5 className="text-[0.95rem] m-0 text-white font-bold">{t.name}</h5>
+                  <h5 className="text-sm sm:text-[0.95rem] m-0 text-white font-bold">{t.name}</h5>
                   <p className="text-xs text-white/50 m-0 mb-1">{t.role}</p>
                   <div className="flex gap-0.5">
                     {[1,2,3,4,5].map(i => <StarIcon key={i} />)}
@@ -67,7 +73,7 @@ const TestimonialSection = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-6 bg-white/5 border border-white/5 rounded-2xl p-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 bg-white/5 border border-white/5 rounded-2xl p-5 sm:p-7 md:p-8">
           {stats.map((stat, idx) => (
             <div key={idx} className="flex items-center gap-4">
               <div 
