@@ -11,6 +11,7 @@ import CTASection from './components/CTASection';
 import PricingSection from './components/PricingSection';
 import LeadEnrichmentPage from './components/LeadEnrichmentPage';
 import OmnichannelOutreachPage from './components/OmnichannelOutreachPage';
+import LeadManagementPage from './components/LeadManagementPage';
 import Footer from './components/Footer';
 
 function App() {
@@ -37,6 +38,9 @@ function App() {
       ) {
         setCurrentPage('omnichannel-outreach');
         window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (hash === '#lead-management' || hash === '#/lead-management') {
+        setCurrentPage('lead-management');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         setCurrentPage('home');
       }
@@ -61,6 +65,9 @@ function App() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (page === 'omnichannel-outreach' || page === 'outreach-automation') {
       window.location.hash = 'omnichannel-outreach';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (page === 'lead-management') {
+      window.location.hash = 'lead-management';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       window.location.hash = sectionId || 'home';
@@ -90,6 +97,9 @@ function App() {
         ) : currentPage === 'omnichannel-outreach' ? (
           /* PRODUCT 2: OMNICHANNEL OUTREACH SINGLE PAGE */
           <OmnichannelOutreachPage onNavigate={navigateTo} />
+        ) : currentPage === 'lead-management' ? (
+          /* PRODUCT 3: LEAD MANAGEMENT SINGLE PAGE */
+          <LeadManagementPage onNavigate={navigateTo} />
         ) : (
           /* HOME PAGE: Shows full Landing Page */
           <>

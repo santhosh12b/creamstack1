@@ -18,6 +18,14 @@ const products = [
     isActive: true
   },
   {
+    id: 'lead-management',
+    name: 'Lead Management',
+    badge: 'New',
+    desc: 'Manage, organize, filter, and update every lead from one unified table.',
+    icon: '📊',
+    isActive: true
+  },
+  {
     id: 'ai-personalization',
     name: 'AI Personalization',
     badge: 'Coming Soon',
@@ -80,7 +88,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
             <button 
               onClick={() => setProductOpen(!productOpen)}
               className={`flex items-center gap-1 text-[0.95rem] font-medium transition-colors py-2 outline-none cursor-pointer ${
-                currentPage === 'lead-enrichment' || currentPage === 'omnichannel-outreach' ? 'text-primary font-bold' : 'text-text-main hover:text-primary'
+                currentPage === 'lead-enrichment' || currentPage === 'omnichannel-outreach' || currentPage === 'lead-management' ? 'text-primary font-bold' : 'text-text-main hover:text-primary'
               }`}
             >
               <span>Product</span>
