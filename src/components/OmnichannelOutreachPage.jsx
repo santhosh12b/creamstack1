@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CTASection from './CTASection';
 
 const OmnichannelOutreachPage = ({ onNavigate }) => {
   const [activeTabAI, setActiveTabAI] = useState('write'); // 'write' | 'preview'
@@ -791,44 +792,8 @@ const OmnichannelOutreachPage = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* ================= SECTION 6: BOTTOM CALL TO ACTION BANNER ================= */}
-      <section className="py-20 bg-white border-t border-slate-100">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto rounded-3xl bg-gradient-to-r from-primary via-[#7c3aed] to-[#3b82f6] p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
-            {/* Background Glow */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
-
-            <div className="relative z-10 text-center md:text-left">
-              <span className="text-xs font-bold uppercase tracking-wider text-white/80 bg-white/20 px-3 py-1 rounded-full inline-block mb-3">
-                READY TO SCALE OUTREACH?
-              </span>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight mb-2">
-                Launch your first omnichannel campaign today.
-              </h3>
-              <p className="text-white/80 text-sm sm:text-base m-0 max-w-xl">
-                Combine LinkedIn & Email with intelligent AI personalization and automated warmup.
-              </p>
-            </div>
-
-            <div className="relative z-10 flex flex-wrap items-center gap-4 shrink-0">
-              <button 
-                onClick={() => onNavigate && onNavigate('pricing')}
-                className="px-6 py-3.5 rounded-xl bg-white text-secondary font-bold text-sm shadow-xl hover:bg-slate-50 transition-all cursor-pointer"
-              >
-                Get Started
-              </button>
-              <a 
-                href="https://demo.creamstack.io/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="px-6 py-3.5 rounded-xl border border-white/40 text-white font-bold text-sm hover:bg-white/10 transition-all"
-              >
-                Watch Demo
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ================= Master Common CTA Banner ================= */}
+      <CTASection onNavigate={onNavigate} />
 
     </div>
   );

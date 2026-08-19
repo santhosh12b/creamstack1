@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import leadMockup13 from '../assets/13.png';
+import CTASection from './CTASection';
 
 const findMethods = [
   {
@@ -465,46 +466,8 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* SECTION 6: BOTTOM CALL TO ACTION BANNER */}
-      <section className="py-16 bg-white border-t border-slate-100">
-        <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto rounded-3xl bg-gradient-to-r from-primary via-[#7c3aed] to-[#3b82f6] p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
-            {/* Ambient Graphic */}
-            <div className="absolute -right-16 -bottom-16 w-64 h-64 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
-
-            <div className="flex items-center gap-6 text-center md:text-left">
-              <div className="w-16 h-16 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center shrink-0 shadow-lg text-3xl hidden sm:flex">
-                🚀
-              </div>
-              <div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight m-0 mb-2">
-                  Turn data into conversations.
-                </h3>
-                <p className="text-sm sm:text-base text-white/80 m-0">
-                  Start finding, enriching, and reaching out to your ideal customers today.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
-              <button 
-                onClick={() => onNavigate && onNavigate('pricing')}
-                className="px-6 py-3 rounded-xl bg-white text-primary font-bold text-sm hover:bg-slate-50 shadow-lg transition-all"
-              >
-                Start Free Trial →
-              </button>
-              <a 
-                href="https://demo.creamstack.io/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-3 rounded-xl border border-white/40 text-white font-semibold text-sm hover:bg-white/10 transition-all inline-flex items-center justify-center"
-              >
-                Book a Demo
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Master Common CTA Banner */}
+      <CTASection onNavigate={onNavigate} />
     </div>
   );
 };
