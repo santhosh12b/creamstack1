@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import campaignMockup from '../assets/cam.png';
 import CTASection from './CTASection';
 
 const OmnichannelOutreachPage = ({ onNavigate }) => {
@@ -139,198 +140,18 @@ const OmnichannelOutreachPage = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Centered Campaign Visual Builder Canvas Frame */}
-          <div className="relative mt-12 sm:mt-16 max-w-5xl mx-auto">
+          {/* Centered Campaign Visual Builder Image Mockup */}
+          <div className="relative mt-12 sm:mt-16 max-w-5xl mx-auto text-left">
             {/* Soft Ambient Glow */}
             <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-2xl -z-10 opacity-70"></div>
 
-            {/* Visual Builder App Window */}
-            <div className="rounded-3xl shadow-2xl bg-white border border-slate-200/90 overflow-hidden">
-              {/* App Topbar */}
-              <div className="bg-[#f8fafc] border-b border-slate-200 px-6 py-3.5 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-3 h-3 rounded-full bg-red-400"></span>
-                    <span className="w-3 h-3 rounded-full bg-amber-400"></span>
-                    <span className="w-3 h-3 rounded-full bg-emerald-400"></span>
-                  </div>
-                  <div className="h-4 w-px bg-slate-200 mx-1"></div>
-                  <div className="flex items-center gap-2">
-                    <span className="font-extrabold text-sm text-secondary">New Campaign</span>
-                    <span className="text-slate-400 text-xs cursor-pointer hover:text-secondary">✎</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-600 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full">
-                    ✓ Saved
-                  </span>
-                  <button 
-                    onClick={() => onNavigate && onNavigate('pricing')}
-                    className="px-4 py-1.5 rounded-xl bg-primary text-white text-xs font-bold shadow-md shadow-primary/25 hover:bg-primary-hover transition-all"
-                  >
-                    Launch Campaign
-                  </button>
-                  <span className="text-slate-400 font-bold px-1 cursor-pointer">•••</span>
-                </div>
-              </div>
-
-              {/* Canvas Work Area */}
-              <div className="p-6 sm:p-10 bg-[#fafbfe] relative overflow-x-auto [scrollbar-width:thin]">
-                
-                {/* Node Grid Sequence Flow */}
-                <div className="min-w-[760px] flex flex-col gap-6 items-center">
-                  
-                  {/* Row 1: Profile ➔ Connect ➔ Wait */}
-                  <div className="flex items-center justify-center gap-4 w-full">
-                    {/* Node 1 */}
-                    <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex items-center gap-3 w-56 hover:shadow-md transition-shadow">
-                      <div className="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs">
-                        in
-                      </div>
-                      <div>
-                        <div className="text-[10px] font-bold text-slate-400 uppercase">Step 1</div>
-                        <div className="text-xs font-bold text-secondary">View Profile</div>
-                        <div className="text-[10px] text-text-light">LinkedIn Action</div>
-                      </div>
-                    </div>
-
-                    {/* Arrow */}
-                    <div className="text-slate-300 font-bold">➔</div>
-
-                    {/* Node 2 */}
-                    <div className="bg-white rounded-2xl p-4 border border-blue-200/80 shadow-sm flex items-center gap-3 w-56 hover:shadow-md transition-shadow">
-                      <div className="w-8 h-8 rounded-xl bg-[#0077B5] text-white flex items-center justify-center font-bold text-xs">
-                        in
-                      </div>
-                      <div>
-                        <div className="text-[10px] font-bold text-blue-600 uppercase">Step 2</div>
-                        <div className="text-xs font-bold text-secondary">Send Connection</div>
-                        <div className="text-[10px] text-text-light">LinkedIn Invite</div>
-                      </div>
-                    </div>
-
-                    {/* Arrow */}
-                    <div className="text-slate-300 font-bold">➔</div>
-
-                    {/* Node 3 */}
-                    <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex items-center gap-3 w-56 hover:shadow-md transition-shadow">
-                      <div className="w-8 h-8 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold text-sm">
-                        ⏱️
-                      </div>
-                      <div>
-                        <div className="text-[10px] font-bold text-slate-400 uppercase">Step 3</div>
-                        <div className="text-xs font-bold text-secondary">Wait 1 Day</div>
-                        <div className="text-[10px] text-text-light">Intelligent Delay</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Vertical Connector */}
-                  <div className="w-full flex justify-end pr-32">
-                    <div className="w-px h-6 bg-slate-300"></div>
-                  </div>
-
-                  {/* Row 2: Message ➔ Email ➔ Wait */}
-                  <div className="flex items-center justify-center gap-4 w-full">
-                    {/* Node 4 */}
-                    <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex items-center gap-3 w-56 hover:shadow-md transition-shadow">
-                      <div className="w-8 h-8 rounded-xl bg-[#0077B5] text-white flex items-center justify-center font-bold text-xs">
-                        in
-                      </div>
-                      <div>
-                        <div className="text-[10px] font-bold text-slate-400 uppercase">Step 4</div>
-                        <div className="text-xs font-bold text-secondary">Send Message</div>
-                        <div className="text-[10px] text-text-light">LinkedIn Direct</div>
-                      </div>
-                    </div>
-
-                    {/* Arrow */}
-                    <div className="text-slate-300 font-bold">➔</div>
-
-                    {/* Node 5 */}
-                    <div className="bg-white rounded-2xl p-4 border border-purple-200/80 shadow-sm flex items-center gap-3 w-56 hover:shadow-md transition-shadow">
-                      <div className="w-8 h-8 rounded-xl bg-purple-100 text-primary flex items-center justify-center font-bold text-sm">
-                        ✉️
-                      </div>
-                      <div>
-                        <div className="text-[10px] font-bold text-primary uppercase">Step 5</div>
-                        <div className="text-xs font-bold text-secondary">Send Email</div>
-                        <div className="text-[10px] text-text-light">Multi-Inbox Rotation</div>
-                      </div>
-                    </div>
-
-                    {/* Arrow */}
-                    <div className="text-slate-300 font-bold">➔</div>
-
-                    {/* Node 6 */}
-                    <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex items-center gap-3 w-56 hover:shadow-md transition-shadow">
-                      <div className="w-8 h-8 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold text-sm">
-                        ⏱️
-                      </div>
-                      <div>
-                        <div className="text-[10px] font-bold text-slate-400 uppercase">Step 6</div>
-                        <div className="text-xs font-bold text-secondary">Wait 2 Days</div>
-                        <div className="text-[10px] text-text-light">Smart Cadence</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Vertical Connector */}
-                  <div className="w-full flex justify-start pl-32">
-                    <div className="w-px h-6 bg-slate-300"></div>
-                  </div>
-
-                  {/* Row 3: Conditional Branching Node */}
-                  <div className="flex items-center justify-center gap-6 w-full">
-                    {/* Decision Branch Node */}
-                    <div className="bg-gradient-to-br from-emerald-50 to-white rounded-2xl p-4 border-2 border-emerald-300 shadow-sm flex items-center gap-3 w-64">
-                      <div className="w-8 h-8 rounded-xl bg-emerald-500 text-white flex items-center justify-center font-bold text-sm">
-                        🔀
-                      </div>
-                      <div>
-                        <div className="text-[10px] font-extrabold text-emerald-700 uppercase tracking-wider">Replied?</div>
-                        <div className="text-xs font-bold text-secondary">Has prospect replied?</div>
-                      </div>
-                    </div>
-
-                    {/* Yes / No Branches */}
-                    <div className="flex flex-col gap-3">
-                      {/* Yes Path */}
-                      <div className="flex items-center gap-3">
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-700 border border-emerald-200">
-                          Yes
-                        </span>
-                        <div className="bg-white rounded-xl p-3 border border-slate-200 shadow-xs flex items-center gap-2.5 w-60">
-                          <div className="w-6 h-6 rounded-lg bg-[#0077B5] text-white flex items-center justify-center text-[10px] font-bold">in</div>
-                          <span className="text-xs font-bold text-secondary truncate">Stop Sequence & Alert Inbox</span>
-                        </div>
-                      </div>
-
-                      {/* No Path */}
-                      <div className="flex items-center gap-3">
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-rose-100 text-rose-700 border border-rose-200">
-                          No
-                        </span>
-                        <div className="bg-white rounded-xl p-3 border border-slate-200 shadow-xs flex items-center gap-2.5 w-60">
-                          <div className="w-6 h-6 rounded-lg bg-purple-100 text-primary flex items-center justify-center text-xs">✉️</div>
-                          <span className="text-xs font-bold text-secondary truncate">Send Follow-up Email (Step 7)</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-
-                {/* Canvas Bottom Zoom & Navigation Tool */}
-                <div className="absolute bottom-4 left-6 bg-white/90 backdrop-blur-md rounded-xl p-1.5 border border-slate-200 shadow-md flex items-center gap-1.5 text-xs font-bold text-slate-600">
-                  <button className="w-6 h-6 rounded hover:bg-slate-100 flex items-center justify-center">−</button>
-                  <span className="px-1 text-[11px]">100%</span>
-                  <button className="w-6 h-6 rounded hover:bg-slate-100 flex items-center justify-center">+</button>
-                  <div className="w-px h-3.5 bg-slate-200 mx-1"></div>
-                  <button className="w-6 h-6 rounded hover:bg-slate-100 flex items-center justify-center text-[10px]">⛶</button>
-                </div>
-              </div>
+            {/* Visual Builder App Window / Image */}
+            <div className="rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl bg-white border border-slate-200/90 overflow-hidden relative transition-transform duration-500 hover:scale-[1.01]">
+              <img 
+                src={campaignMockup} 
+                alt="CreamStack Omnichannel Campaign Builder" 
+                className="w-full h-auto object-contain block"
+              />
             </div>
           </div>
         </div>
