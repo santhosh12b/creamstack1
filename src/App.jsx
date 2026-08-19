@@ -18,6 +18,10 @@ function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.toLowerCase();
+      if (hash === '#demo' || hash === '#/demo') {
+        window.location.href = 'https://demo.creamstack.io/';
+        return;
+      }
       if (hash === '#pricing' || hash === '#/pricing') {
         setCurrentPage('pricing');
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -35,6 +39,10 @@ function App() {
   }, []);
 
   const navigateTo = (page, sectionId = null) => {
+    if (page === 'demo' || sectionId === 'demo') {
+      window.location.href = 'https://demo.creamstack.io/';
+      return;
+    }
     setCurrentPage(page);
     if (page === 'pricing') {
       window.location.hash = 'pricing';
@@ -70,14 +78,14 @@ function App() {
         ) : (
           /* HOME PAGE: Shows full Landing Page */
           <>
-            <HeroSection />
+            <HeroSection onNavigate={navigateTo} />
             <LogoCloud />
             <WorkflowSection />
             <FeaturesSection />
             <BenefitsSection />
             <ProblemSection />
             <TestimonialSection />
-            <CTASection />
+            <CTASection onNavigate={navigateTo} />
           </>
         )}
       </main>

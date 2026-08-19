@@ -166,8 +166,9 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
             Pricing
           </a>
           <a 
-            href="#demo" 
-            onClick={(e) => handleNavClick(e, 'home', 'demo')}
+            href="https://demo.creamstack.io/" 
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-1 text-[0.95rem] font-medium text-text-main hover:text-primary transition-colors"
           >
             Demo

@@ -32,7 +32,7 @@ const Footer = ({ currentPage = 'home', onNavigate }) => {
             <ul className="flex flex-col gap-3 list-none p-0 m-0">
               <li><a href="#lead-enrichment" onClick={(e) => handleNavClick(e, 'lead-enrichment')} className="text-sm text-text-light hover:text-primary transition-colors">Lead Enrichment</a></li>
               <li><a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className="text-sm text-text-light hover:text-primary transition-colors">Pricing</a></li>
-              <li><a href="#demo" onClick={(e) => handleNavClick(e, 'home', 'demo')} className="text-sm text-text-light hover:text-primary transition-colors">Demo</a></li>
+              <li><a href="https://demo.creamstack.io/" target="_blank" rel="noopener noreferrer" className="text-sm text-text-light hover:text-primary transition-colors">Demo</a></li>
             </ul>
           </div>
 

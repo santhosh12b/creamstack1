@@ -1,44 +1,48 @@
 import React from 'react';
 import dashboardImg from '../assets/12.png';
 
-const HeroSection = () => {
+const HeroSection = ({ onNavigate }) => {
   return (
     <section id="home" className="pt-20 pb-20 bg-gradient-to-b from-[#f472b6]/10 via-[#3b82f6]/5 to-transparent overflow-hidden">
       <div className="container mx-auto px-6 text-center">
         {/* Centered Hero Content */}
-        <div className="flex flex-col items-center gap-6 max-w-4xl mx-auto">
+        <div className="flex flex-col items-center gap-6 max-w-5xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-2 rounded-full text-sm font-semibold w-fit">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-              <line x1="16" y1="13" x2="8" y2="13"></line>
-              <line x1="16" y1="17" x2="8" y2="17"></line>
-              <polyline points="10 9 9 9 8 9"></polyline>
-            </svg>
-            <span className="text-primary">All-in-one Outreach Platform</span>
+          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-1.5 rounded-full text-xs font-bold tracking-wider text-primary uppercase">
+            100% DONE-FOR-YOU OUTBOUND
           </div>
 
           {/* Heading */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-secondary leading-tight mb-0">
-            Find. Personalize. Automate. Close.<br />
+          <h1 className="font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.6rem] text-secondary tracking-tight leading-[1.12] m-0">
+            <span className="inline md:whitespace-nowrap">Find. Personalize. Automate. Close.</span>
+            <br />
             <span className="text-gradient">All in One Place.</span>
           </h1>
 
           {/* Description */}
-          <p className="text-lg md:text-xl text-text-light max-w-2xl mx-auto mb-0 leading-relaxed">
+          <p className="text-lg md:text-xl text-text-light max-w-3xl mx-auto mb-0 leading-relaxed">
             Creamstack helps you find high-intent leads, personalize at scale, automate outreach, and manage every conversation from one unified inbox.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-wrap items-center justify-center gap-4 mt-2">
-            <button className="btn btn-primary shadow-lg shadow-primary/25">
+            <a 
+              href="https://demo.creamstack.io/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="btn btn-primary shadow-lg shadow-primary/25"
+            >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
               </svg>
               Watch 2 Min Demo
+            </a>
+            <button 
+              onClick={() => onNavigate ? onNavigate('pricing') : window.location.hash = 'pricing'}
+              className="btn btn-outline bg-white hover:bg-slate-50 cursor-pointer"
+            >
+              Get Invite Code
             </button>
-            <button className="btn btn-outline bg-white hover:bg-slate-50">Get Invite Code</button>
           </div>
 
           {/* Social Proof & Rating */}

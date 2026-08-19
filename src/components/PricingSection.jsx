@@ -1,65 +1,281 @@
 import React, { useState } from 'react';
 
-const specs = [
+const featureCategories = [
   {
-    name: 'LinkedIn Accounts',
-    icon: <LinkedInIcon />,
-    starter: '1',
-    growth: '1',
-    trial5: '1',
-    trial10: '1',
-    isHighlight: false
+    id: 'core-limits',
+    category: 'Core Channels & Volume Limits',
+    badge: 'Limits',
+    badgeColor: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+    icon: (
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+      </svg>
+    ),
+    features: [
+      {
+        name: 'LinkedIn Accounts',
+        desc: 'Dedicated sender profile per seat',
+        starter: '1 Account',
+        growth: '1 Account',
+        trial5: '1 Account',
+        trial10: '1 Account',
+        isKey: true,
+        isHighlight: false,
+        icon: <LinkedInIcon />
+      },
+      {
+        name: 'Email Accounts',
+        desc: 'Multi-inbox rotation & automated warmup',
+        starter: '5 Inboxes',
+        growth: '10 Inboxes',
+        trial5: '5 Inboxes',
+        trial10: '10 Inboxes',
+        isKey: true,
+        isHighlight: true,
+        tag: 'Differentiator',
+        icon: <EmailIcon />
+      },
+      {
+        name: 'Credits Included',
+        desc: 'Lead enrichment & phone/email verification',
+        starter: '2,000 / month',
+        growth: '2,000 / month',
+        trial5: '150 Credits',
+        trial10: '150 Credits',
+        isKey: true,
+        isHighlight: true,
+        tag: 'Top Value',
+        icon: <CreditIcon />
+      },
+      {
+        name: 'Plan Duration',
+        desc: 'Billing cycle & validity window',
+        starter: 'Billed monthly',
+        growth: 'Billed monthly',
+        trial5: '5 Days',
+        trial10: '5 Days',
+        isKey: true,
+        isHighlight: false,
+        icon: <ClockIcon />
+      }
+    ]
   },
   {
-    name: 'Email Accounts',
-    icon: <EmailIcon />,
-    starter: '5',
-    growth: '10',
-    trial5: '5',
-    trial10: '10',
-    isHighlight: false
+    id: 'ai-features',
+    category: 'AI & Smart Personalization',
+    badge: 'AI Engine',
+    badgeColor: 'bg-purple-100 text-purple-700 border-purple-200',
+    icon: (
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+      </svg>
+    ),
+    features: [
+      {
+        name: 'AI Message Personalization',
+        desc: '1:1 tailored icebreakers and hyper-personalized message hooks',
+        starter: true,
+        growth: true,
+        trial5: true,
+        trial10: true,
+        isKey: true,
+        tag: 'Popular'
+      },
+      {
+        name: 'AI Rewrite & Improve',
+        desc: 'Instant tone adjustment, spam-word sanitizer & hook optimizer',
+        starter: true,
+        growth: true,
+        trial5: true,
+        trial10: true,
+        isKey: false
+      },
+      {
+        name: 'Human-like Delays & Smart Cadence',
+        desc: 'Protects sender domain reputation and mimics natural human behavior',
+        starter: true,
+        growth: true,
+        trial5: true,
+        trial10: true,
+        isKey: true,
+        tag: 'Safety'
+      }
+    ]
   },
   {
-    name: 'Credits Included',
-    icon: <CreditIcon />,
-    starter: '2,000 / month',
-    growth: '2,000 / month',
-    trial5: '150',
-    trial10: '150',
-    isHighlight: true
+    id: 'automation-workflows',
+    category: 'Multi-Channel Automation & Sequences',
+    badge: 'Workflows',
+    badgeColor: 'bg-blue-100 text-blue-700 border-blue-200',
+    icon: (
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+        <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+        <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+        <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+      </svg>
+    ),
+    features: [
+      {
+        name: 'Visual Campaign Builder',
+        desc: 'Intuitive node-based drag-and-drop canvas for complex outreach paths',
+        starter: true,
+        growth: true,
+        trial5: true,
+        trial10: true,
+        isKey: true,
+        tag: 'Core'
+      },
+      {
+        name: 'LinkedIn Automation',
+        desc: 'Auto connection requests, profile visits, endorsement & follow-ups',
+        starter: true,
+        growth: true,
+        trial5: true,
+        trial10: true,
+        isKey: false
+      },
+      {
+        name: 'Email Automation & Drip Sequences',
+        desc: 'Dynamic multi-touch cold email sequences with fallback triggers',
+        starter: true,
+        growth: true,
+        trial5: true,
+        trial10: true,
+        isKey: false
+      },
+      {
+        name: 'Conditional Workflow Builder',
+        desc: 'Branch logic based on opens, clicks, replies or silence',
+        starter: true,
+        growth: true,
+        trial5: true,
+        trial10: true,
+        isKey: false
+      },
+      {
+        name: 'Pre-built Templates Library',
+        desc: 'Battle-tested high reply rate sequences ready to clone',
+        starter: true,
+        growth: true,
+        trial5: true,
+        trial10: true,
+        isKey: false
+      }
+    ]
   },
   {
-    name: 'Plan Duration',
-    icon: <ClockIcon />,
-    starter: 'Billed monthly',
-    growth: 'Billed monthly',
-    trial5: '5 Days',
-    trial10: '5 Days',
-    isHighlight: false
+    id: 'crm-inbox',
+    category: 'CRM & Lead Management',
+    badge: 'Inbox & CRM',
+    badgeColor: 'bg-emerald-100 text-emerald-700 border-emerald-200',
+    icon: (
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+      </svg>
+    ),
+    features: [
+      {
+        name: 'Unified Multi-Channel Inbox',
+        desc: 'Centralize replies across LinkedIn and all email inboxes with 1-click reply',
+        starter: true,
+        growth: true,
+        trial5: true,
+        trial10: true,
+        isKey: true,
+        tag: 'Crucial'
+      },
+      {
+        name: 'Lead Management & Tags',
+        desc: 'Status pipelines, custom variables, prospect notes & qualification stages',
+        starter: true,
+        growth: true,
+        trial5: true,
+        trial10: true,
+        isKey: false
+      },
+      {
+        name: 'Export & Import (CSV / CRM)',
+        desc: 'Fast bulk import and instant CSV / webhook sync with your CRM',
+        starter: true,
+        growth: true,
+        trial5: true,
+        trial10: true,
+        isKey: false
+      }
+    ]
+  },
+  {
+    id: 'analytics-support',
+    category: 'Analytics, Health & Enterprise Support',
+    badge: 'Insights',
+    badgeColor: 'bg-amber-100 text-amber-700 border-amber-200',
+    icon: (
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <line x1="18" y1="20" x2="18" y2="10"></line>
+        <line x1="12" y1="20" x2="12" y2="4"></line>
+        <line x1="6" y1="20" x2="6" y2="14"></line>
+      </svg>
+    ),
+    features: [
+      {
+        name: 'Analytics & Live Conversion Reports',
+        desc: 'Granular open, click, reply and lead booking conversion metrics',
+        starter: true,
+        growth: true,
+        trial5: true,
+        trial10: true,
+        isKey: true
+      },
+      {
+        name: 'Email Tracking & Pixel Health',
+        desc: 'Spam trigger detection, domain health scores and bounce shield',
+        starter: true,
+        growth: true,
+        trial5: true,
+        trial10: true,
+        isKey: false
+      },
+      {
+        name: 'Campaign Reports Export',
+        desc: 'Shareable executive summary reports for clients & team leads',
+        starter: true,
+        growth: true,
+        trial5: true,
+        trial10: true,
+        isKey: false
+      },
+      {
+        name: 'Future Feature Updates',
+        desc: 'Immediate access to all newly released v3 features & tools',
+        starter: true,
+        growth: true,
+        trial5: true,
+        trial10: true,
+        isKey: false
+      },
+      {
+        name: 'Priority Support',
+        desc: 'Dedicated fast-response assistance & live onboarding guidance',
+        starter: true,
+        growth: true,
+        trial5: true,
+        trial10: true,
+        isKey: true,
+        tag: '24/7'
+      }
+    ]
   }
-];
-
-const featuresList = [
-  'AI Message Personalization',
-  'Visual Campaign Builder',
-  'LinkedIn Automation',
-  'Email Automation',
-  'Unified Inbox',
-  'CRM & Lead Management',
-  'Analytics & Reports',
-  'Email Tracking',
-  'Templates',
-  'Workflow Builder',
-  'Human-like Delays',
-  'AI Rewrite & Improve',
-  'Campaign Reports',
-  'Export & Import',
-  'Future Feature Updates',
-  'Priority Support'
 ];
 
 const PricingSection = () => {
   const [activeTab, setActiveTab] = useState('monthly'); // 'monthly' | 'trial'
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [activeCategoryFilter, setActiveCategoryFilter] = useState('all'); // 'all' | category id
+
+  // Calculate total feature count
+  const totalFeatures = featureCategories.reduce((acc, cat) => acc + cat.features.length, 0);
 
   return (
     <section id="pricing" className="py-24 bg-gradient-to-b from-white via-slate-50/50 to-white relative overflow-hidden">
@@ -95,7 +311,7 @@ const PricingSection = () => {
           </h2>
 
           {/* Subtitle */}
-          <p className="text-base sm:text-lg text-text-light max-w-xl mx-auto mb-8">
+          <p className="text-base sm:text-lg text-text-light max-w-3xl mx-auto mb-8 whitespace-normal md:whitespace-nowrap">
             All plans include full access to Creamstack. Pay monthly or try risk-free.
           </p>
 
@@ -119,39 +335,50 @@ const PricingSection = () => {
                   : 'text-slate-600 hover:text-secondary'
               }`}
             >
-              5-Day Trials <span className="text-xs opacity-80">(One-time)</span>
+              5-Day Trials
             </button>
           </div>
         </div>
 
         {/* Comparison Table Container */}
         <div className="max-w-[1140px] mx-auto overflow-x-auto pb-4 [scrollbar-width:thin]">
-          <div className="min-w-[860px] bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
+          <div className="min-w-[880px] bg-white rounded-3xl border border-slate-200/90 shadow-2xl overflow-hidden transition-all duration-300">
+            
             {/* Master Grid Table Header */}
-            <div className="grid grid-cols-5 border-b border-slate-200">
+            <div className="grid grid-cols-5 border-b border-slate-200 bg-white sticky top-0 z-20">
               {/* Top Left Header Card */}
-              <div className="p-6 flex flex-col justify-center border-r border-slate-200 bg-slate-50/50">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-8 h-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-                    <StarIcon />
+              <div className="p-6 flex flex-col justify-between border-r border-slate-200 bg-slate-50/70">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-8 h-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                      <StarIcon />
+                    </div>
+                    <span className="text-xs font-bold uppercase tracking-wider text-primary">PLAN COMPARISON</span>
                   </div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-primary">CHOOSE YOUR PLAN</span>
+                  <p className="text-xs text-text-light m-0 leading-relaxed font-medium">
+                    Transparent features with no hidden limits.
+                  </p>
                 </div>
-                <p className="text-xs text-text-light m-0 leading-relaxed">
-                  Pick the plan that fits your outreach volume.
-                </p>
+
+                <div className="mt-4 flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    {totalFeatures} Capabilities
+                  </span>
+                </div>
               </div>
 
               {/* Monthly Header (Col 2 & 3) */}
-              <div className={`col-span-2 grid grid-cols-2 border-r border-slate-200 ${activeTab === 'trial' ? 'opacity-40 grayscale-[40%]' : ''}`}>
-                <div className="col-span-2 bg-gradient-to-r from-primary/10 via-indigo-50 to-primary/10 text-primary py-2 text-center text-xs font-bold tracking-wider uppercase border-b border-primary/20">
-                  MONTHLY PLANS (Recurring)
+              <div className={`col-span-2 grid grid-cols-2 border-r border-slate-200 ${activeTab === 'trial' ? 'opacity-50 grayscale-[30%]' : ''}`}>
+                <div className="col-span-2 bg-gradient-to-r from-primary/10 via-indigo-50/80 to-primary/10 text-primary py-2 text-center text-xs font-extrabold tracking-wider uppercase border-b border-primary/20 flex items-center justify-center gap-1.5">
+                  <span>MONTHLY RECURRING PLANS</span>
                 </div>
 
                 {/* Starter Plan Header */}
-                <div className="p-6 text-center border-r border-slate-200 flex flex-col justify-between">
+                <div className="p-6 text-center border-r border-slate-200 flex flex-col justify-between hover:bg-slate-50/50 transition-colors">
                   <div>
-                    <h3 className="text-xl font-bold text-secondary mb-2">Starter</h3>
+                    <h3 className="text-xl font-bold text-secondary mb-1">Starter</h3>
+                    <p className="text-[11px] text-text-light font-medium m-0 mb-3">For solopreneurs & founders</p>
                     <div className="text-3xl font-extrabold text-secondary tracking-tight">₹8,000</div>
                     <div className="text-xs text-text-light font-medium mt-1">+ GST / month</div>
                   </div>
@@ -160,15 +387,14 @@ const PricingSection = () => {
                   </button>
                 </div>
 
-                {/* Growth Plan Header (Most Popular) */}
-                <div className="p-6 text-center relative bg-primary/[0.02] flex flex-col justify-between">
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="bg-gradient-to-r from-[#f472b6] to-primary text-white text-[10px] font-extrabold tracking-wider uppercase px-3 py-1 rounded-full shadow-md">
-                      Most Popular
+                {/* Growth Plan Header (Most Popular with designer spotlight) */}
+                <div className="p-6 text-center relative bg-gradient-to-b from-primary/[0.04] to-transparent flex flex-col justify-between border-x-2 border-t-0 border-primary/40 shadow-inner">
+                  <div>
+                    <span className="inline-block bg-gradient-to-r from-[#f472b6] to-primary text-white text-[10px] font-extrabold tracking-wider uppercase px-3 py-0.5 rounded-full shadow-xs mb-2">
+                      ★ Most Popular
                     </span>
-                  </div>
-                  <div className="pt-2">
-                    <h3 className="text-xl font-bold text-secondary mb-2">Growth</h3>
+                    <h3 className="text-xl font-bold text-secondary mb-1">Growth</h3>
+                    <p className="text-[11px] text-primary/80 font-semibold m-0 mb-3">For scaling teams & agencies</p>
                     <div className="text-3xl font-extrabold text-secondary tracking-tight">₹10,000</div>
                     <div className="text-xs text-text-light font-medium mt-1">+ GST / month</div>
                   </div>
@@ -179,15 +405,16 @@ const PricingSection = () => {
               </div>
 
               {/* 5-Day Trials Header (Col 4 & 5) */}
-              <div className={`col-span-2 grid grid-cols-2 ${activeTab === 'monthly' ? 'opacity-40 grayscale-[40%]' : ''}`}>
-                <div className="col-span-2 bg-gradient-to-r from-purple-50 via-pink-50 to-purple-50 text-purple-700 py-2 text-center text-xs font-bold tracking-wider uppercase border-b border-purple-100">
-                  5-DAY TRIALS (One-time)
+              <div className={`col-span-2 grid grid-cols-2 ${activeTab === 'monthly' ? 'opacity-50 grayscale-[30%]' : ''}`}>
+                <div className="col-span-2 bg-gradient-to-r from-purple-50 via-pink-50/80 to-purple-50 text-purple-700 py-2 text-center text-xs font-extrabold tracking-wider uppercase border-b border-purple-100 flex items-center justify-center gap-1.5">
+                  <span>5-DAY RISK-FREE TRIALS</span>
                 </div>
 
                 {/* Trial 5 Header */}
-                <div className="p-6 text-center border-r border-slate-200 flex flex-col justify-between">
+                <div className="p-6 text-center border-r border-slate-200 flex flex-col justify-between hover:bg-slate-50/50 transition-colors">
                   <div>
-                    <h3 className="text-xl font-bold text-secondary mb-2">Trial 5</h3>
+                    <h3 className="text-xl font-bold text-secondary mb-1">Trial 5</h3>
+                    <p className="text-[11px] text-text-light font-medium m-0 mb-3">5 inboxes for 5 days</p>
                     <div className="text-3xl font-extrabold text-secondary tracking-tight">₹500</div>
                     <div className="text-xs text-text-light font-medium mt-1">One-time payment</div>
                   </div>
@@ -197,9 +424,10 @@ const PricingSection = () => {
                 </div>
 
                 {/* Trial 10 Header */}
-                <div className="p-6 text-center flex flex-col justify-between">
+                <div className="p-6 text-center flex flex-col justify-between hover:bg-slate-50/50 transition-colors">
                   <div>
-                    <h3 className="text-xl font-bold text-secondary mb-2">Trial 10</h3>
+                    <h3 className="text-xl font-bold text-secondary mb-1">Trial 10</h3>
+                    <p className="text-[11px] text-text-light font-medium m-0 mb-3">10 inboxes for 5 days</p>
                     <div className="text-3xl font-extrabold text-secondary tracking-tight">₹750</div>
                     <div className="text-xs text-text-light font-medium mt-1">One-time payment</div>
                   </div>
@@ -210,64 +438,333 @@ const PricingSection = () => {
               </div>
             </div>
 
-            {/* Spec Rows */}
-            <div className="divide-y divide-slate-100">
-              {specs.map((item, idx) => (
-                <div key={idx} className="grid grid-cols-5 items-center hover:bg-slate-50/70 transition-colors py-3.5 px-6">
-                  <div className="flex items-center gap-3 font-semibold text-sm text-secondary">
-                    <span className="text-primary">{item.icon}</span>
-                    <span>{item.name}</span>
-                  </div>
-                  <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-primary' : 'text-slate-700'}`}>
-                    {item.starter}
-                  </div>
-                  <div className={`text-center text-sm bg-primary/[0.02] py-1 ${item.isHighlight ? 'font-bold text-primary' : 'text-slate-700 font-medium'}`}>
-                    {item.growth}
-                  </div>
-                  <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-purple-700' : 'text-slate-700'}`}>
-                    {item.trial5}
-                  </div>
-                  <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-purple-700' : 'text-slate-700'}`}>
-                    {item.trial10}
-                  </div>
+            {/* Quick Category Filter Bar when in expanded view */}
+            {isExpanded && (
+              <div className="bg-slate-50 border-b border-slate-200 px-6 py-3 flex flex-wrap items-center justify-between gap-3 animate-in fade-in duration-200">
+                <div className="flex items-center gap-2 text-xs font-bold text-secondary">
+                  <span className="text-slate-400">Filter by category:</span>
                 </div>
-              ))}
+                <div className="flex flex-wrap gap-1.5">
+                  <button
+                    onClick={() => setActiveCategoryFilter('all')}
+                    className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
+                      activeCategoryFilter === 'all'
+                        ? 'bg-secondary text-white shadow-xs'
+                        : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
+                    }`}
+                  >
+                    All Categories ({featureCategories.length})
+                  </button>
+                  {featureCategories.map((cat) => (
+                    <button
+                      key={cat.id}
+                      onClick={() => setActiveCategoryFilter(cat.id)}
+                      className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+                        activeCategoryFilter === cat.id
+                          ? 'bg-primary text-white shadow-xs'
+                          : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
+                      }`}
+                    >
+                      <span>{cat.badge}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Feature List Rendering */}
+            <div className="divide-y divide-slate-100">
+              {!isExpanded ? (
+                // COLLAPSED VIEW: Streamlined Key Highlights (Senior Designer Layout)
+                <div>
+                  {/* Category 1: Core Specs & Limits */}
+                  <div className="bg-gradient-to-r from-slate-100/90 via-slate-50 to-white px-6 py-3 border-y border-slate-200/80 flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-6 h-6 rounded-lg bg-white shadow-xs border border-slate-200 flex items-center justify-center text-primary text-xs">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        </svg>
+                      </span>
+                      <span className="text-xs font-extrabold text-secondary uppercase tracking-wider">
+                        Core Limits & Channels
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border bg-indigo-50 text-indigo-700 border-indigo-200">
+                      Limits
+                    </span>
+                  </div>
+
+                  {featureCategories[0].features.map((item, itemIdx) => (
+                    <div 
+                      key={itemIdx} 
+                      className="grid grid-cols-5 items-center hover:bg-slate-50/90 transition-all duration-150 py-3.5 px-6 group"
+                    >
+                      <div className="pr-4">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          {item.icon && <span className="shrink-0">{item.icon}</span>}
+                          <span className="font-bold text-sm text-secondary group-hover:text-primary transition-colors">
+                            {item.name}
+                          </span>
+                          {item.tag && (
+                            <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-md bg-purple-100 text-primary border border-purple-200">
+                              {item.tag}
+                            </span>
+                          )}
+                        </div>
+                        {item.desc && (
+                          <p className="text-[11px] text-text-light m-0 mt-0.5 font-medium leading-snug line-clamp-1 group-hover:text-slate-600">
+                            {item.desc}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-primary' : 'text-slate-700'}`}>
+                        <span className="font-semibold">{item.starter}</span>
+                      </div>
+
+                      <div className={`text-center text-sm bg-primary/[0.03] border-x border-primary/10 py-2 ${item.isHighlight ? 'font-bold text-primary' : 'text-slate-800 font-semibold'}`}>
+                        <span className="font-bold text-primary">{item.growth}</span>
+                      </div>
+
+                      <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-purple-700' : 'text-slate-700'}`}>
+                        <span className="font-semibold">{item.trial5}</span>
+                      </div>
+
+                      <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-purple-700' : 'text-slate-700'}`}>
+                        <span className="font-semibold">{item.trial10}</span>
+                      </div>
+                    </div>
+                  ))}
+
+                  {/* Category 2: Key Platform Capabilities */}
+                  <div className="bg-gradient-to-r from-slate-100/90 via-slate-50 to-white px-6 py-3 border-y border-slate-200/80 flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-6 h-6 rounded-lg bg-white shadow-xs border border-slate-200 flex items-center justify-center text-amber-500 text-xs">
+                        <StarIcon />
+                      </span>
+                      <span className="text-xs font-extrabold text-secondary uppercase tracking-wider">
+                        Key Capabilities & Differentiators
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border bg-amber-50 text-amber-700 border-amber-200">
+                      Spotlight
+                    </span>
+                  </div>
+
+                  {featureCategories
+                    .slice(1)
+                    .flatMap(c => c.features)
+                    .filter(f => f.isKey)
+                    .map((item, itemIdx) => (
+                      <div 
+                        key={itemIdx} 
+                        className="grid grid-cols-5 items-center hover:bg-slate-50/90 transition-all duration-150 py-3.5 px-6 group"
+                      >
+                        <div className="pr-4">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="font-bold text-sm text-secondary group-hover:text-primary transition-colors">
+                              {item.name}
+                            </span>
+                            {item.tag && (
+                              <span className={`text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-md ${
+                                item.tag === 'Popular' 
+                                  ? 'bg-amber-100 text-amber-800 border border-amber-200' 
+                                  : item.tag === 'Top Value' || item.tag === 'Crucial'
+                                  ? 'bg-purple-100 text-primary border border-purple-200'
+                                  : 'bg-emerald-100 text-emerald-800 border border-emerald-200'
+                              }`}>
+                                {item.tag}
+                              </span>
+                            )}
+                          </div>
+                          {item.desc && (
+                            <p className="text-[11px] text-text-light m-0 mt-0.5 font-medium leading-snug line-clamp-1 group-hover:text-slate-600">
+                              {item.desc}
+                            </p>
+                          )}
+                        </div>
+
+                        <div className="flex justify-center"><CheckCircle /></div>
+                        <div className="flex justify-center bg-primary/[0.03] border-x border-primary/10 py-2"><GrowthCheckCircle /></div>
+                        <div className="flex justify-center"><CheckCircle /></div>
+                        <div className="flex justify-center"><CheckCircle /></div>
+                      </div>
+                    ))}
+                </div>
+              ) : (
+                // EXPANDED VIEW: Full Categorized Deep-Dive
+                featureCategories
+                  .filter(cat => activeCategoryFilter === 'all' || activeCategoryFilter === cat.id)
+                  .map((cat) => (
+                    <div key={cat.id} className="relative">
+                      {/* Section Category Header */}
+                      <div className="bg-gradient-to-r from-slate-100/90 via-slate-50 to-white px-6 py-3 border-y border-slate-200/80 flex items-center justify-between sticky z-10">
+                        <div className="flex items-center gap-2.5">
+                          <span className="w-6 h-6 rounded-lg bg-white shadow-xs border border-slate-200 flex items-center justify-center text-primary text-xs">
+                            {cat.icon}
+                          </span>
+                          <span className="text-xs font-extrabold text-secondary uppercase tracking-wider">
+                            {cat.category}
+                          </span>
+                        </div>
+                        <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${cat.badgeColor || 'bg-slate-100 text-slate-600 border-slate-200'}`}>
+                          {cat.badge}
+                        </span>
+                      </div>
+
+                      {/* Feature Rows */}
+                      <div className="divide-y divide-slate-100">
+                        {cat.features.map((item, itemIdx) => {
+                          const isTextValue = typeof item.starter === 'string';
+
+                          return (
+                            <div 
+                              key={itemIdx} 
+                              className="grid grid-cols-5 items-center hover:bg-slate-50/90 transition-all duration-150 py-3.5 px-6 group"
+                            >
+                              {/* Feature Title + Description + Tag */}
+                              <div className="pr-4">
+                                <div className="flex items-center gap-2 flex-wrap">
+                                  {item.icon && <span className="shrink-0">{item.icon}</span>}
+                                  <span className="font-bold text-sm text-secondary group-hover:text-primary transition-colors">
+                                    {item.name}
+                                  </span>
+                                  {item.tag && (
+                                    <span className={`text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-md ${
+                                      item.tag === 'Popular' 
+                                        ? 'bg-amber-100 text-amber-800 border border-amber-200' 
+                                        : item.tag === 'Top Value' || item.tag === 'Crucial'
+                                        ? 'bg-purple-100 text-primary border border-purple-200'
+                                        : 'bg-emerald-100 text-emerald-800 border border-emerald-200'
+                                    }`}>
+                                      {item.tag}
+                                    </span>
+                                  )}
+                                </div>
+                                {item.desc && (
+                                  <p className="text-[11px] text-text-light m-0 mt-0.5 font-medium leading-snug line-clamp-1 group-hover:text-slate-600">
+                                    {item.desc}
+                                  </p>
+                                )}
+                              </div>
+
+                              {/* Starter Column */}
+                              <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-primary' : 'text-slate-700'}`}>
+                                {isTextValue ? (
+                                  <span className="font-semibold">{item.starter}</span>
+                                ) : item.starter ? (
+                                  <div className="flex justify-center"><CheckCircle /></div>
+                                ) : (
+                                  <span className="text-slate-300 font-bold">—</span>
+                                )}
+                              </div>
+
+                              {/* Growth Column (Spotlight highlighted) */}
+                              <div className={`text-center text-sm bg-primary/[0.03] border-x border-primary/10 py-2 ${item.isHighlight ? 'font-bold text-primary' : 'text-slate-800 font-semibold'}`}>
+                                {isTextValue ? (
+                                  <span className="font-bold text-primary">{item.growth}</span>
+                                ) : item.growth ? (
+                                  <div className="flex justify-center"><GrowthCheckCircle /></div>
+                                ) : (
+                                  <span className="text-slate-300 font-bold">—</span>
+                                )}
+                              </div>
+
+                              {/* Trial 5 Column */}
+                              <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-purple-700' : 'text-slate-700'}`}>
+                                {isTextValue ? (
+                                  <span className="font-semibold">{item.trial5}</span>
+                                ) : item.trial5 ? (
+                                  <div className="flex justify-center"><CheckCircle /></div>
+                                ) : (
+                                  <span className="text-slate-300 font-bold">—</span>
+                                )}
+                              </div>
+
+                              {/* Trial 10 Column */}
+                              <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-purple-700' : 'text-slate-700'}`}>
+                                {isTextValue ? (
+                                  <span className="font-semibold">{item.trial10}</span>
+                                ) : item.trial10 ? (
+                                  <div className="flex justify-center"><CheckCircle /></div>
+                                ) : (
+                                  <span className="text-slate-300 font-bold">—</span>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ))
+              )}
             </div>
 
-            {/* Feature Checklist Header Divider */}
-            <div className="bg-slate-100/60 px-6 py-2.5 text-xs font-bold text-slate-500 uppercase tracking-wider border-y border-slate-200">
-              Included Features & Capabilities
-            </div>
+            {/* Ultra-Modern "View More / View All Features" Interactive Expander */}
+            <div className="relative border-t border-slate-200 bg-gradient-to-b from-slate-50/40 via-slate-50 to-slate-100/80 p-6 text-center">
+              {!isExpanded ? (
+                <div className="flex flex-col items-center justify-center gap-3">
+                  <div className="flex items-center gap-2 text-xs text-text-light font-medium">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <span>Showing top important features. Compare all 16+ granular capabilities below.</span>
+                  </div>
 
-            {/* Checklist Feature Rows */}
-            <div className="divide-y divide-slate-100">
-              {featuresList.map((feature, idx) => (
-                <div key={idx} className="grid grid-cols-5 items-center hover:bg-slate-50/70 transition-colors py-3 px-6">
-                  <div className="flex items-center gap-2.5 text-sm text-slate-700">
-                    <CheckIcon />
-                    <span>{feature}</span>
-                  </div>
-                  <div className="flex justify-center">
-                    <CheckCircle />
-                  </div>
-                  <div className="flex justify-center bg-primary/[0.02] py-1">
-                    <CheckCircle />
-                  </div>
-                  <div className="flex justify-center">
-                    <CheckCircle />
-                  </div>
-                  <div className="flex justify-center">
-                    <CheckCircle />
-                  </div>
+                  <button
+                    onClick={() => setIsExpanded(true)}
+                    className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-2xl bg-white border-2 border-primary/30 text-secondary hover:text-primary hover:border-primary font-bold text-sm shadow-md shadow-slate-200/60 hover:shadow-lg hover:shadow-primary/15 transition-all duration-200 group transform hover:-translate-y-0.5 cursor-pointer"
+                  >
+                    <span className="w-6 h-6 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors text-xs font-extrabold">
+                      +
+                    </span>
+                    <span>View All 16+ Features & Specifications</span>
+                    <svg 
+                      width="16" 
+                      height="16" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="2.5" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round"
+                      className="text-primary group-hover:translate-y-0.5 transition-transform"
+                    >
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </button>
                 </div>
-              ))}
+              ) : (
+                <div className="flex flex-col items-center justify-center gap-3">
+                  <button
+                    onClick={() => {
+                      setIsExpanded(false);
+                      setActiveCategoryFilter('all');
+                    }}
+                    className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-2xl bg-white border border-slate-300 text-slate-700 hover:text-secondary font-bold text-xs shadow-xs hover:shadow-sm transition-all group cursor-pointer"
+                  >
+                    <svg 
+                      width="14" 
+                      height="14" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="2.5" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round"
+                      className="group-hover:-translate-y-0.5 transition-transform"
+                    >
+                      <polyline points="18 15 12 9 6 15"></polyline>
+                    </svg>
+                    <span>Show Key Highlights Only</span>
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* Bottom Sticky Action Bar */}
             <div className="grid grid-cols-5 items-center bg-slate-50 p-6 border-t border-slate-200">
               <div className="text-xs text-text-light">
                 <span className="font-bold text-secondary block mb-0.5">Need a custom plan?</span>
-                Talk to our sales team for enterprise tiers.
+                Talk to our team for high-volume enterprise limits.
               </div>
               <div className="px-2">
                 <button className="w-full py-2 px-3 rounded-lg border border-primary/40 text-primary hover:bg-primary hover:text-white font-semibold text-xs transition-colors">
@@ -409,19 +906,21 @@ export default PricingSection;
 // SVGs
 function CheckCircle() {
   return (
-    <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+    <div className="w-5 h-5 rounded-full bg-emerald-100/90 text-emerald-600 flex items-center justify-center border border-emerald-200/60 shadow-xs">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="20 6 9 17 4 12"></polyline>
       </svg>
     </div>
   );
 }
 
-function CheckIcon() {
+function GrowthCheckCircle() {
   return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="20 6 9 17 4 12"></polyline>
-    </svg>
+    <div className="w-5 h-5 rounded-full bg-primary/15 text-primary flex items-center justify-center border border-primary/30 shadow-xs">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
   );
 }
 

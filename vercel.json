@@ -1,5 +1,9 @@
 {
+  "redirects": [
+    { "source": "/demo", "destination": "https://demo.creamstack.io/", "permanent": false }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
+

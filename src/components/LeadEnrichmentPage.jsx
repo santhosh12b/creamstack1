@@ -127,7 +127,7 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
             </h1>
 
             {/* Description */}
-            <p className="text-base sm:text-lg text-text-light leading-relaxed max-w-2xl mx-auto m-0 font-medium">
+            <p className="text-base sm:text-lg text-text-light leading-relaxed max-w-3xl mx-auto m-0 font-medium">
               Enrich high-quality prospects from LinkedIn, company websites, search filters, or even people engaging with posts. Every lead comes enriched with verified contact data, AI-generated outreach ideas, and buying signals.
             </p>
 
@@ -143,12 +143,17 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
               </button>
-              <button className="btn btn-outline bg-white hover:bg-slate-50 text-sm">
+              <a 
+                href="https://demo.creamstack.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline bg-white hover:bg-slate-50 text-sm"
+              >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                   <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>
                 <span>Watch Demo</span>
-              </button>
+              </a>
             </div>
 
             {/* Social Proof */}
@@ -488,9 +493,14 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
               >
                 Start Free Trial →
               </button>
-              <button className="px-5 py-3 rounded-xl border border-white/40 text-white font-semibold text-sm hover:bg-white/10 transition-all">
+              <a 
+                href="https://demo.creamstack.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-3 rounded-xl border border-white/40 text-white font-semibold text-sm hover:bg-white/10 transition-all inline-flex items-center justify-center"
+              >
                 Book a Demo
-              </button>
+              </a>
             </div>
           </div>
         </div>
