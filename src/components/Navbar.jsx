@@ -36,10 +36,10 @@ const products = [
   {
     id: 'unified-inbox',
     name: 'Unified Inbox',
-    badge: 'Coming Soon',
+    badge: 'New',
     desc: 'Manage all prospect conversations in one smart inbox.',
     icon: '📥',
-    isActive: false
+    isActive: true
   }
 ];
 
@@ -88,7 +88,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
             <button 
               onClick={() => setProductOpen(!productOpen)}
               className={`flex items-center gap-1 text-[0.95rem] font-medium transition-colors py-2 outline-none cursor-pointer ${
-                currentPage === 'lead-enrichment' || currentPage === 'omnichannel-outreach' || currentPage === 'lead-management' ? 'text-primary font-bold' : 'text-text-main hover:text-primary'
+                currentPage === 'lead-enrichment' || currentPage === 'omnichannel-outreach' || currentPage === 'lead-management' || currentPage === 'unified-inbox' ? 'text-primary font-bold' : 'text-text-main hover:text-primary'
               }`}
             >
               <span>Product</span>

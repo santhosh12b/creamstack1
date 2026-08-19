@@ -12,6 +12,7 @@ import PricingSection from './components/PricingSection';
 import LeadEnrichmentPage from './components/LeadEnrichmentPage';
 import OmnichannelOutreachPage from './components/OmnichannelOutreachPage';
 import LeadManagementPage from './components/LeadManagementPage';
+import UnifiedInboxPage from './components/UnifiedInboxPage';
 import Footer from './components/Footer';
 
 function App() {
@@ -41,6 +42,9 @@ function App() {
       } else if (hash === '#lead-management' || hash === '#/lead-management') {
         setCurrentPage('lead-management');
         window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (hash === '#unified-inbox' || hash === '#/unified-inbox') {
+        setCurrentPage('unified-inbox');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         setCurrentPage('home');
       }
@@ -68,6 +72,9 @@ function App() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (page === 'lead-management') {
       window.location.hash = 'lead-management';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (page === 'unified-inbox') {
+      window.location.hash = 'unified-inbox';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       window.location.hash = sectionId || 'home';
@@ -100,6 +107,9 @@ function App() {
         ) : currentPage === 'lead-management' ? (
           /* PRODUCT 3: LEAD MANAGEMENT SINGLE PAGE */
           <LeadManagementPage onNavigate={navigateTo} />
+        ) : currentPage === 'unified-inbox' ? (
+          /* PRODUCT 4: UNIFIED INBOX SINGLE PAGE */
+          <UnifiedInboxPage onNavigate={navigateTo} />
         ) : (
           /* HOME PAGE: Shows full Landing Page */
           <>
