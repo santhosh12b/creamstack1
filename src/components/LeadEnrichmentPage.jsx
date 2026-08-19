@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import leadMockup13 from '../assets/13.png';
+import leadMockup from '../assets/lead.jpg';
 import CTASection from './CTASection';
 
 const findMethods = [
@@ -178,7 +178,7 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
 
             <div className="rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl bg-white border border-slate-200/90 overflow-hidden relative transition-transform duration-500 hover:scale-[1.01]">
               <img 
-                src={leadMockup13} 
+                src={leadMockup} 
                 alt="CreamStack Leads Dashboard" 
                 className="w-full h-auto object-contain block"
               />
