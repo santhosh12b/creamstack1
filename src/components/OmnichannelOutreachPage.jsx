@@ -78,17 +78,20 @@ const OmnichannelOutreachPage = ({ onNavigate }) => {
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-gradient-to-tr from-primary/15 via-[#f472b6]/10 to-transparent rounded-full blur-3xl pointer-events-none -z-10"></div>
 
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="flex flex-col items-center gap-6 max-w-4xl mx-auto text-center">
+          <div className="flex flex-col items-center gap-6 max-w-5xl mx-auto text-center">
             
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-1.5 rounded-full text-xs font-extrabold tracking-wider text-primary uppercase shadow-xs">
               2. Omnichannel Outreach
             </div>
 
-            {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-secondary tracking-tight leading-[1.12] m-0">
-              Reach prospects across LinkedIn and<br />
-              Email from <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-[#f472b6]">one workflow.</span>
+            {/* Headline in strictly 2 lines */}
+            <h1 className="font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.5rem] text-secondary tracking-tight leading-[1.15] m-0">
+              <span className="inline md:whitespace-nowrap">Reach prospects across LinkedIn and</span>
+              <br />
+              <span className="inline md:whitespace-nowrap">
+                Email from <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-[#f472b6]">one workflow.</span>
+              </span>
             </h1>
 
             {/* Subtitle */}

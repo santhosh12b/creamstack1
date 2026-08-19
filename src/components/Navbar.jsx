@@ -79,8 +79,8 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
           >
             <button 
               onClick={() => setProductOpen(!productOpen)}
-              className={`flex items-center gap-1 text-[0.95rem] font-medium transition-colors py-2 ${
-                currentPage === 'lead-enrichment' ? 'text-primary font-bold' : 'text-text-main hover:text-primary'
+              className={`flex items-center gap-1 text-[0.95rem] font-medium transition-colors py-2 outline-none cursor-pointer ${
+                currentPage === 'lead-enrichment' || currentPage === 'omnichannel-outreach' ? 'text-primary font-bold' : 'text-text-main hover:text-primary'
               }`}
             >
               <span>Product</span>
