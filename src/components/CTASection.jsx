@@ -78,7 +78,7 @@ const CTASection = ({ onNavigate }) => {
                       <polygon points="5 3 19 12 5 21 5 3"></polygon>
                     </svg>
                   </div>
-                  <span>Watch 2 Min Demo</span>
+                  <span>Watch 20 Min Demo</span>
                 </a>
               </div>
 

@@ -95,7 +95,7 @@ const FeaturesSection = () => {
                 </div>
 
                 <h3 className="text-2xl font-bold text-secondary mb-2.5">
-                  6 Ways to Find & Enrich Prospects
+                  4 Ways to Find & Enrich Prospects
                 </h3>
                 <p className="text-sm text-text-light leading-relaxed mb-6 font-medium">
                   Never run out of high-converting leads. Ingest, verify, and enrich decision-makers from multiple sources simultaneously.

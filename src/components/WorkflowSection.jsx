@@ -102,23 +102,26 @@ const WorkflowSection = () => {
           <div className="hidden lg:block absolute top-[59px] right-[5%] w-[12px] h-[12px] border-t-2 border-r-2 border-slate-300 rotate-45 z-0"></div>
 
           <div 
-            className={`flex flex-nowrap lg:flex-wrap items-start justify-start lg:justify-between gap-4 lg:gap-6 relative overflow-x-auto lg:overflow-visible pb-8 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${isDragging ? 'scroll-auto snap-none cursor-grabbing [&>div]:pointer-events-none [&>div]:select-none' : 'scroll-smooth snap-x snap-mandatory cursor-grab lg:cursor-auto'}`} 
+            className={`flex flex-nowrap lg:grid lg:grid-cols-5 items-stretch justify-start gap-4 lg:gap-5 relative overflow-x-auto lg:overflow-visible pb-8 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${isDragging ? 'scroll-auto snap-none cursor-grabbing [&>div]:pointer-events-none [&>div]:select-none' : 'scroll-smooth snap-x snap-mandatory cursor-grab lg:cursor-auto'}`} 
             ref={scrollRef}
             onMouseDown={handleMouseDown}
             onMouseLeave={handleMouseLeave}
             onMouseUp={handleMouseUp}
             onMouseMove={handleMouseMove}
           >
-            {steps.map((step, idx) => (
-              <div key={step.id} className="flex-1 min-w-[85vw] md:min-w-[250px] lg:min-w-0 flex flex-col items-center text-center p-8 bg-white border border-slate-100 rounded-3xl relative z-10 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-[0_25px_30px_-12px_rgba(0,0,0,0.08),0_18px_16px_-10px_rgba(0,0,0,0.04)] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.02),0_2px_4px_-1px_rgba(0,0,0,0.02)] snap-center">
+            {steps.map((step) => (
+              <div 
+                key={step.id} 
+                className="flex-1 min-w-[85vw] md:min-w-[240px] lg:min-w-0 w-full h-full min-h-[280px] flex flex-col items-center text-center p-7 bg-white border border-slate-100 rounded-3xl relative z-10 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-[0_25px_30px_-12px_rgba(0,0,0,0.08),0_18px_16px_-10px_rgba(0,0,0,0.04)] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.02),0_2px_4px_-1px_rgba(0,0,0,0.02)] snap-center justify-start"
+              >
                 <div 
-                  className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6" 
+                  className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shrink-0 shadow-2xs" 
                   style={{ backgroundColor: step.color, color: step.iconColor }}
                 >
                   {step.icon}
                 </div>
-                <h3 className="text-lg font-bold text-secondary mb-2">{step.title}</h3>
-                <p className="text-sm text-text-light leading-relaxed m-0">{step.desc}</p>
+                <h3 className="text-base font-bold text-secondary mb-2.5">{step.title}</h3>
+                <p className="text-xs sm:text-sm text-text-light leading-relaxed m-0 font-medium">{step.desc}</p>
               </div>
             ))}
           </div>
