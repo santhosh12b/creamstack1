@@ -152,7 +152,7 @@ const LeadManagementPage = ({ onNavigate }) => {
             
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-1.5 rounded-full text-xs font-extrabold tracking-wider text-primary uppercase shadow-xs">
-              3. Lead Management
+              Lead Management
             </div>
 
             {/* Headline in strictly 2 lines */}

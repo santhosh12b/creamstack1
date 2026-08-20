@@ -12,6 +12,12 @@ import LeadEnrichmentPage from './components/LeadEnrichmentPage';
 import OmnichannelOutreachPage from './components/OmnichannelOutreachPage';
 import LeadManagementPage from './components/LeadManagementPage';
 import UnifiedInboxPage from './components/UnifiedInboxPage';
+import AboutPage from './components/AboutPage';
+import ContactPage from './components/ContactPage';
+import PrivacyPolicyPage from './components/PrivacyPolicyPage';
+import TermsOfServicePage from './components/TermsOfServicePage';
+import CookiePolicyPage from './components/CookiePolicyPage';
+import SecurityPage from './components/SecurityPage';
 import Footer from './components/Footer';
 
 function App() {
@@ -26,6 +32,24 @@ function App() {
       }
       if (hash === '#pricing' || hash === '#/pricing') {
         setCurrentPage('pricing');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (hash === '#about' || hash === '#/about') {
+        setCurrentPage('about');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (hash === '#contact' || hash === '#/contact') {
+        setCurrentPage('contact');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (hash === '#privacy' || hash === '#/privacy' || hash === '#privacy-policy' || hash === '#/privacy-policy') {
+        setCurrentPage('privacy');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (hash === '#terms' || hash === '#/terms' || hash === '#terms-of-service' || hash === '#/terms-of-service') {
+        setCurrentPage('terms');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (hash === '#cookie' || hash === '#/cookie' || hash === '#cookie-policy' || hash === '#/cookie-policy') {
+        setCurrentPage('cookie');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (hash === '#security' || hash === '#/security' || hash === '#security-policy' || hash === '#/security-policy') {
+        setCurrentPage('security');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else if (hash === '#lead-enrichment' || hash === '#/lead-enrichment') {
         setCurrentPage('lead-enrichment');
@@ -63,6 +87,24 @@ function App() {
     if (page === 'pricing') {
       window.location.hash = 'pricing';
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (page === 'about') {
+      window.location.hash = 'about';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (page === 'contact') {
+      window.location.hash = 'contact';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (page === 'privacy' || page === 'privacy-policy') {
+      window.location.hash = 'privacy';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (page === 'terms' || page === 'terms-of-service') {
+      window.location.hash = 'terms';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (page === 'cookie' || page === 'cookie-policy') {
+      window.location.hash = 'cookie';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (page === 'security' || page === 'security-policy') {
+      window.location.hash = 'security';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (page === 'lead-enrichment') {
       window.location.hash = 'lead-enrichment';
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -97,6 +139,24 @@ function App() {
         {currentPage === 'pricing' ? (
           /* PRICING PAGE ONLY: Shows PricingSection */
           <PricingSection onNavigate={navigateTo} />
+        ) : currentPage === 'about' ? (
+          /* ABOUT PAGE */
+          <AboutPage onNavigate={navigateTo} />
+        ) : currentPage === 'contact' ? (
+          /* CONTACT PAGE */
+          <ContactPage onNavigate={navigateTo} />
+        ) : currentPage === 'privacy' ? (
+          /* PRIVACY POLICY PAGE */
+          <PrivacyPolicyPage onNavigate={navigateTo} />
+        ) : currentPage === 'terms' ? (
+          /* TERMS OF SERVICE PAGE */
+          <TermsOfServicePage onNavigate={navigateTo} />
+        ) : currentPage === 'cookie' ? (
+          /* COOKIE POLICY PAGE */
+          <CookiePolicyPage onNavigate={navigateTo} />
+        ) : currentPage === 'security' ? (
+          /* SECURITY PAGE */
+          <SecurityPage onNavigate={navigateTo} />
         ) : currentPage === 'lead-enrichment' ? (
           /* PRODUCT 1: LEAD ENRICHMENT SINGLE PAGE */
           <LeadEnrichmentPage onNavigate={navigateTo} />

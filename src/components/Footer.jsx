@@ -51,10 +51,12 @@ const Footer = ({ currentPage = 'home', onNavigate }) => {
           <div>
             <h5 className="text-[0.95rem] m-0 mb-4 text-secondary font-bold">Company</h5>
             <ul className="flex flex-col gap-3 list-none p-0 m-0">
-              <li><a href="#" className="text-sm text-text-light hover:text-primary transition-colors">About Us</a></li>
-              <li><a href="#" className="text-sm text-text-light hover:text-primary transition-colors">Contact</a></li>
-              <li><a href="#" className="text-sm text-text-light hover:text-primary transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="text-sm text-text-light hover:text-primary transition-colors">Terms of Service</a></li>
+              <li><a href="#about" onClick={(e) => handleNavClick(e, 'about')} className="text-sm text-text-light hover:text-primary transition-colors">About Us</a></li>
+              <li><a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="text-sm text-text-light hover:text-primary transition-colors">Contact</a></li>
+              <li><a href="#privacy" onClick={(e) => handleNavClick(e, 'privacy')} className="text-sm text-text-light hover:text-primary transition-colors">Privacy Policy</a></li>
+              <li><a href="#terms" onClick={(e) => handleNavClick(e, 'terms')} className="text-sm text-text-light hover:text-primary transition-colors">Terms of Service</a></li>
+              <li><a href="#cookie" onClick={(e) => handleNavClick(e, 'cookie')} className="text-sm text-text-light hover:text-primary transition-colors">Cookie Policy</a></li>
+              <li><a href="#security" onClick={(e) => handleNavClick(e, 'security')} className="text-sm text-text-light hover:text-primary transition-colors">Security</a></li>
             </ul>
           </div>
 

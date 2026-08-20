@@ -118,7 +118,7 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
           <div className="flex flex-col items-center gap-5 sm:gap-6 max-w-4xl mx-auto text-center">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider text-primary uppercase shadow-2xs">
-              1. Lead Enrichment
+              Lead Enrichment
             </div>
 
             {/* Headline */}

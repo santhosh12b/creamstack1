@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CTASection from './CTASection';
 
 const featureCategories = [
   {
@@ -269,7 +270,7 @@ const featureCategories = [
   }
 ];
 
-const PricingSection = () => {
+const PricingSection = ({ onNavigate }) => {
   const [activeTab, setActiveTab] = useState('monthly'); // 'monthly' | 'trial'
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeCategoryFilter, setActiveCategoryFilter] = useState('all'); // 'all' | category id
@@ -1282,6 +1283,9 @@ const PricingSection = () => {
           </div>
         </div>
       </div>
+
+      {/* CTA Section on all pages */}
+      <CTASection onNavigate={onNavigate} />
     </section>
   );
 };

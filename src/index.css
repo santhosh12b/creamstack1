@@ -30,13 +30,13 @@
 }
 
 @layer base {
-  html, body {
-    overflow-x: hidden;
-    max-width: 100vw;
+  html {
+    overflow-x: clip;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
   }
   body {
+    overflow-x: clip;
     font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     @apply bg-bg-light text-text-main leading-relaxed antialiased;
     padding-bottom: env(safe-area-inset-bottom);
