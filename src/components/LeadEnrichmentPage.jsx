@@ -7,6 +7,7 @@ const findMethods = [
     id: 'linkedin-profile',
     name: 'LinkedIn Profile',
     desc: 'Turn any LinkedIn profile into a complete lead with verified contact information and company details.',
+    example: 'https://linkedin.com/in/alex-rivera-sales',
     icon: <LinkedInIcon />,
     badgeColor: 'border-blue-200 bg-blue-50/50 text-blue-600'
   },
@@ -14,6 +15,7 @@ const findMethods = [
     id: 'website-job',
     name: 'Website + Job Title',
     desc: 'Already know the company? Just enter a website and designation to instantly discover matching decision makers.',
+    example: 'stripe.com + Head of Sales',
     icon: <GlobeIcon />,
     badgeColor: 'border-indigo-200 bg-indigo-50/50 text-indigo-600'
   },
@@ -28,8 +30,8 @@ const findMethods = [
   {
     id: 'post-enrichment',
     name: 'LinkedIn Post Enrichment',
-    subheading: 'Find people already interested in your niche.',
     desc: 'Paste a LinkedIn post URL and Creamstack enriches everyone engaging with the post, helping you discover warm prospects already discussing topics related to your service.',
+    example: 'https://linkedin.com/posts/saas-growth-tips-12345',
     icon: <MegaphoneIcon />,
     badgeColor: 'border-pink-200 bg-pink-50/50 text-pink-600'
   }
