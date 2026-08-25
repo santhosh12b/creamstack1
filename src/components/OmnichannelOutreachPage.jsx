@@ -101,43 +101,7 @@ const OmnichannelOutreachPage = ({ onNavigate }) => {
               Create outreach sequences that combine LinkedIn actions, emails, delays, AI writing, and follow-ups—all from a visual builder.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-              <button 
-                onClick={() => onNavigate && onNavigate('pricing')}
-                className="btn btn-primary shadow-lg shadow-primary/25 text-sm font-bold"
-              >
-                <span>Start Building for Free</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </button>
-              <a 
-                href="https://demo.creamstack.io/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="btn btn-outline bg-white hover:bg-slate-50 text-sm font-semibold"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-                <span>Watch Demo</span>
-              </a>
-            </div>
 
-            {/* Social Proof */}
-            <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-              <div className="flex -space-x-2">
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-[url('https://i.pravatar.cc/100?img=11')] bg-cover"></div>
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-[url('https://i.pravatar.cc/100?img=12')] bg-cover"></div>
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-[url('https://i.pravatar.cc/100?img=13')] bg-cover"></div>
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-[url('https://i.pravatar.cc/100?img=14')] bg-cover"></div>
-              </div>
-              <span className="text-xs sm:text-sm text-text-light font-medium">
-                Loved by <strong className="text-secondary font-bold">1,000+</strong> growth teams and agencies worldwide
-              </span>
-            </div>
           </div>
 
           {/* Centered Campaign Visual Builder Image Mockup */}

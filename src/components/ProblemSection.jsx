@@ -5,7 +5,7 @@ const tools = [
   { name: "Clay", desc: "Enrich Data", cost: "$149/mo", icon: <img src="/Clay.png" alt="Clay" style={{ transform: 'scale(2)' }} /> },
   { name: "Instantly", desc: "Email Outreach", cost: "$37/mo", icon: <img src="/Instantly.png" alt="Instantly" /> },
   { name: "HeyReach", desc: "LinkedIn Outreach", cost: "$49/mo", icon: <img src="/HeyReach.png" alt="HeyReach" /> },
-  { name: "HubSpot", desc: "CRM", cost: "$15/mo+", icon: <img src="/HubSpot.png" alt="HubSpot" /> },
+  { name: "HubSpot", desc: "Lead Platform", cost: "$15/mo+", icon: <img src="/HubSpot.png" alt="HubSpot" /> },
   { name: "And more...", desc: "Forms, Warmup, Analytics...", cost: "$$$", icon: <MoreIcon /> },
 ];
 

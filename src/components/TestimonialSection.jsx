@@ -29,9 +29,8 @@ const testimonials = [
 
 const stats = [
   { value: "500+", label: "Active Teams and growing", icon: <TeamIcon />, color: "#3b82f6" },
-  { value: "2.5M+", label: "Prospects Found every month", icon: <UserSearchIcon />, color: "#3b82f6" },
+  { value: "3X+", label: "Faster Lead Research", icon: <UserSearchIcon />, color: "#8b5cf6" },
   { value: "95%+", label: "Verified Emails guaranteed", icon: <ShieldIcon />, color: "#10b981" },
-  { value: "30M+", label: "Emails Sent monthly", icon: <MailIcon />, color: "#8b5cf6" },
   { value: "4-8X", label: "Average Reply Rate Increase", icon: <TrendingUpIcon />, color: "#f97316" }
 ];
 
@@ -73,7 +72,7 @@ const TestimonialSection = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 bg-white/5 border border-white/5 rounded-2xl p-5 sm:p-7 md:p-8">
+        <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-8 sm:gap-12 md:gap-16 lg:gap-24 bg-white/5 border border-white/5 rounded-2xl p-5 sm:p-7 md:p-8">
           {stats.map((stat, idx) => (
             <div key={idx} className="flex items-center gap-4">
               <div 

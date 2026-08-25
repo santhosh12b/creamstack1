@@ -155,59 +155,18 @@ const LeadManagementPage = ({ onNavigate }) => {
               Lead Management
             </div>
 
-            {/* Headline in strictly 2 lines */}
-            <h1 className="font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-[3.8rem] text-secondary tracking-tight leading-[1.12] m-0">
-              <span className="inline md:whitespace-nowrap">Every prospect.</span>
-              <br />
-              <span className="inline md:whitespace-nowrap">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-[#f472b6]">One workspace.</span>
-              </span>
+            {/* Headline */}
+            <h1 className="font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-secondary tracking-tight leading-[1.12] m-0">
+              Manage All Enriched Leads <br className="hidden sm:block" />
+              From <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-[#f472b6]">One Workspace</span>
             </h1>
 
             {/* Subtitle */}
             <p className="text-base sm:text-lg text-text-light leading-relaxed max-w-2xl mx-auto m-0 font-medium">
-              Manage, organize, filter, and update every lead from one unified table.
+              Manage, organize, filter, and update every enriched lead from one unified workspace. Keep your data structured, accessible, and ready for outreach—all in one place.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-              <button 
-                onClick={() => onNavigate && onNavigate('pricing')}
-                className="btn btn-primary shadow-lg shadow-primary/25 text-sm font-bold"
-              >
-                <span>Start Managing Leads</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </button>
-              <a 
-                href="https://demo.creamstack.io/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="btn btn-outline bg-white hover:bg-slate-50 text-sm font-semibold"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-                <span>Watch Demo</span>
-              </a>
-            </div>
 
-            {/* Social Proof */}
-            <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-              <div className="flex -space-x-2">
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-[url('https://i.pravatar.cc/100?img=11')] bg-cover"></div>
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-[url('https://i.pravatar.cc/100?img=12')] bg-cover"></div>
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-[url('https://i.pravatar.cc/100?img=13')] bg-cover"></div>
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-[url('https://i.pravatar.cc/100?img=14')] bg-cover"></div>
-              </div>
-              <div className="flex items-center gap-1.5 text-xs sm:text-sm text-text-light font-medium">
-                <span className="text-amber-500 font-bold">★★★★★</span>
-                <span className="font-bold text-secondary">4.9/5</span>
-                <span>Loved by <strong className="text-secondary font-bold">1,000+</strong> growth teams</span>
-              </div>
-            </div>
           </div>
 
           {/* Hero Image Mockup (13.png) */}
@@ -340,60 +299,60 @@ const LeadManagementPage = ({ onNavigate }) => {
                 </div>
 
                 {/* Filter Dropdowns Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
-                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200/80">
-                    <div className="text-[10px] font-bold text-slate-400 uppercase mb-1">Workflow</div>
-                    <div className="text-xs font-bold text-secondary flex items-center justify-between">
-                      <span>All Workflows</span>
-                      <span className="text-slate-400 text-[10px]">▼</span>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-5">
+                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200/80 flex flex-col justify-center">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase mb-1 truncate">Workflow</div>
+                    <div className="text-xs font-bold text-secondary flex items-center justify-between gap-1">
+                      <span className="truncate">All Workflows</span>
+                      <span className="text-slate-400 text-[10px] shrink-0">▼</span>
                     </div>
                   </div>
 
-                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200/80">
-                    <div className="text-[10px] font-bold text-slate-400 uppercase mb-1">Campaign</div>
-                    <div className="text-xs font-bold text-secondary flex items-center justify-between">
-                      <span>All Campaigns</span>
-                      <span className="text-slate-400 text-[10px]">▼</span>
+                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200/80 flex flex-col justify-center">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase mb-1 truncate">Campaign</div>
+                    <div className="text-xs font-bold text-secondary flex items-center justify-between gap-1">
+                      <span className="truncate">All Campaigns</span>
+                      <span className="text-slate-400 text-[10px] shrink-0">▼</span>
                     </div>
                   </div>
 
-                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200/80">
-                    <div className="text-[10px] font-bold text-slate-400 uppercase mb-1">Status</div>
-                    <div className="text-xs font-bold text-secondary flex items-center justify-between">
-                      <span>All Statuses</span>
-                      <span className="text-slate-400 text-[10px]">▼</span>
+                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200/80 flex flex-col justify-center">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase mb-1 truncate">Status</div>
+                    <div className="text-xs font-bold text-secondary flex items-center justify-between gap-1">
+                      <span className="truncate">All Statuses</span>
+                      <span className="text-slate-400 text-[10px] shrink-0">▼</span>
                     </div>
                   </div>
 
-                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200/80">
-                    <div className="text-[10px] font-bold text-slate-400 uppercase mb-1">Tags</div>
-                    <div className="text-xs font-bold text-secondary flex items-center justify-between">
-                      <span>All Tags</span>
-                      <span className="text-slate-400 text-[10px]">▼</span>
+                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200/80 flex flex-col justify-center">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase mb-1 truncate">Tags</div>
+                    <div className="text-xs font-bold text-secondary flex items-center justify-between gap-1">
+                      <span className="truncate">All Tags</span>
+                      <span className="text-slate-400 text-[10px] shrink-0">▼</span>
                     </div>
                   </div>
 
-                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200/80">
-                    <div className="text-[10px] font-bold text-slate-400 uppercase mb-1">Date Added</div>
-                    <div className="text-xs font-bold text-secondary flex items-center justify-between">
-                      <span>All Time</span>
-                      <span className="text-slate-400 text-[10px]">▼</span>
+                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200/80 flex flex-col justify-center">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase mb-1 truncate">Date Added</div>
+                    <div className="text-xs font-bold text-secondary flex items-center justify-between gap-1">
+                      <span className="truncate">All Time</span>
+                      <span className="text-slate-400 text-[10px] shrink-0">▼</span>
                     </div>
                   </div>
 
-                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200/80">
-                    <div className="text-[10px] font-bold text-slate-400 uppercase mb-1">Industry</div>
-                    <div className="text-xs font-bold text-secondary flex items-center justify-between">
-                      <span>All Industries</span>
-                      <span className="text-slate-400 text-[10px]">▼</span>
+                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200/80 flex flex-col justify-center">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase mb-1 truncate">Industry</div>
+                    <div className="text-xs font-bold text-secondary flex items-center justify-between gap-1">
+                      <span className="truncate">All Industries</span>
+                      <span className="text-slate-400 text-[10px] shrink-0">▼</span>
                     </div>
                   </div>
 
-                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200/80 col-span-2 sm:col-span-2">
-                    <div className="text-[10px] font-bold text-slate-400 uppercase mb-1">Company Size</div>
-                    <div className="text-xs font-bold text-secondary flex items-center justify-between">
-                      <span>All Sizes</span>
-                      <span className="text-slate-400 text-[10px]">▼</span>
+                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200/80 col-span-2 sm:col-span-3 flex flex-col justify-center">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase mb-1 truncate">Company Size</div>
+                    <div className="text-xs font-bold text-secondary flex items-center justify-between gap-1">
+                      <span className="truncate">All Sizes</span>
+                      <span className="text-slate-400 text-[10px] shrink-0">▼</span>
                     </div>
                   </div>
                 </div>
@@ -563,9 +522,9 @@ const LeadManagementPage = ({ onNavigate }) => {
 
             {/* Card 4: Automatic Status Tracking (5 cols) */}
             <div className="lg:col-span-5 bg-white rounded-[32px] p-7 sm:p-9 border border-slate-200/80 shadow-lg shadow-slate-100/80 flex flex-col justify-between">
-              <div>
+              <div className="flex-1 flex flex-col">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-extrabold text-sm shadow-xs">
+                  <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-extrabold text-sm shadow-xs shrink-0">
                     4
                   </div>
                   <div>
@@ -574,30 +533,16 @@ const LeadManagementPage = ({ onNavigate }) => {
                   </div>
                 </div>
 
-                {/* 2-Column Status Progression Grid */}
-                <div className="grid grid-cols-2 gap-3 mb-6">
-                  {/* Left Column */}
-                  <div className="space-y-2.5">
-                    {statusListLeft.map((st, idx) => (
-                      <div key={idx} className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-slate-300"></div>
-                        <div className={`flex-1 px-3 py-1.5 rounded-xl border text-xs font-medium flex items-center gap-2 shadow-2xs ${st.color}`}>
-                          <span>{st.icon}</span>
-                          <span className="truncate">{st.label}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Right Column */}
-                  <div className="space-y-2.5">
-                    {statusListRight.map((st, idx) => (
-                      <div key={idx} className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-slate-300"></div>
-                        <div className={`flex-1 px-3 py-1.5 rounded-xl border text-xs font-medium flex items-center gap-2 shadow-2xs ${st.color}`}>
-                          <span>{st.icon}</span>
-                          <span className="truncate">{st.label}</span>
-                        </div>
+                {/* Dynamic Status Cloud */}
+                <div className="flex-1 flex items-center justify-center min-h-[250px] mb-6">
+                  <div className="flex flex-wrap items-center justify-center gap-3">
+                    {[...statusListLeft, ...statusListRight].map((st, idx) => (
+                      <div 
+                        key={idx} 
+                        className={`px-3.5 py-2 rounded-xl border text-xs font-bold flex items-center gap-2 shadow-sm transition-transform duration-300 hover:scale-105 cursor-default ${st.color}`}
+                      >
+                        <span className="text-sm">{st.icon}</span>
+                        <span>{st.label}</span>
                       </div>
                     ))}
                   </div>

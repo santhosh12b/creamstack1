@@ -210,7 +210,7 @@ const FeaturesSection = () => {
               </div>
 
               {/* Micro AI Icebreaker Box */}
-              <div className="bg-[#f8fafc] rounded-2xl p-3 sm:p-3.5 border border-slate-200/70">
+              <div className="bg-[#f8fafc] rounded-2xl p-3 sm:p-3.5 border border-slate-200/70 h-[120px] flex flex-col justify-center">
                 <div className="text-[9px] font-extrabold uppercase tracking-wider text-pink-600 mb-1.5">
                   AI-GENERATED ICEBREAKER
                 </div>
@@ -246,7 +246,7 @@ const FeaturesSection = () => {
               </div>
 
               {/* Micro Inbox Stream Box */}
-              <div className="bg-[#f8fafc] rounded-2xl p-3 border border-slate-200/70 space-y-2">
+              <div className="bg-[#f8fafc] rounded-2xl p-3 border border-slate-200/70 space-y-2 h-[120px] flex flex-col justify-center">
                 <div className="bg-white p-2 rounded-xl border border-slate-200/60 shadow-xs flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="w-5 h-5 rounded-full bg-[#0077B5] text-white flex items-center justify-center font-bold text-[9px]">
@@ -286,7 +286,7 @@ const FeaturesSection = () => {
                 </div>
 
                 <h4 className="text-lg font-bold text-secondary mb-1.5">
-                  CRM & Live Analytics
+                  Lead Management & Live Analytics
                 </h4>
                 <p className="text-xs text-text-light leading-relaxed mb-5 font-medium">
                   Score buyer intent automatically, organize prospect pipelines, and monitor open, reply, and booking rates.
@@ -294,7 +294,7 @@ const FeaturesSection = () => {
               </div>
 
               {/* Micro Metric Stat Cards */}
-              <div className="grid grid-cols-2 gap-2 text-center bg-[#f8fafc] p-3 rounded-2xl border border-slate-200/70">
+              <div className="grid grid-cols-2 gap-2 text-center bg-[#f8fafc] p-3 rounded-2xl border border-slate-200/70 h-[120px] items-center">
                 <div className="bg-white p-2.5 rounded-xl border border-slate-200/60 shadow-xs">
                   <div className="text-lg font-extrabold text-secondary">42.8%</div>
                   <div className="text-[10px] text-text-light font-semibold">Avg Reply Rate</div>
@@ -324,7 +324,7 @@ const FeaturesSection = () => {
               </div>
 
               {/* Checklist Box */}
-              <div className="bg-[#f8fafc] rounded-2xl p-3.5 border border-slate-200/70 space-y-2">
+              <div className="bg-[#f8fafc] rounded-2xl p-3.5 border border-slate-200/70 space-y-2 h-[120px] flex flex-col justify-center">
                 <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
                   <CheckCircleBlue />
                   <span>Sender Safety Warmup</span>

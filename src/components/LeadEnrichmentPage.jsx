@@ -67,7 +67,7 @@ const signalContent = {
   'pain-points': {
     title: 'Buying signal detected',
     tag: 'Pain Points',
-    desc: 'Sarah posted about struggling with duplicate leads and bounced emails in their CRM.',
+    desc: 'Sarah posted about struggling with duplicate leads and bounced emails in their database.',
     suggestion: 'Saw your post about email bounce rates in HubSpot. Creamstack cleans and verifies emails pre-send to guarantee <2% bounce rates.'
   },
   'general-activity': {
@@ -92,7 +92,7 @@ const builtFeatures = [
     color: 'from-blue-500/10 to-indigo-500/10 text-blue-600'
   },
   {
-    title: 'Buying Intent',
+    title: 'Social Signal',
     desc: 'Understand what matters to them right now.',
     icon: <RadarIcon />,
     color: 'from-amber-500/10 to-orange-500/10 text-amber-600'
@@ -125,7 +125,8 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
 
             {/* Headline */}
             <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-secondary tracking-tight leading-[1.15] m-0">
-              Find your next customer from <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-[#f472b6]">anywhere.</span>
+              Find your next customer from <br className="hidden sm:block" />
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-[#f472b6]">4 discovery points.</span>
             </h1>
 
             {/* Description */}
@@ -133,43 +134,9 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
               Enrich high-quality prospects from LinkedIn, company websites, search filters, or even people engaging with posts. Every lead comes enriched with verified contact data, AI-generated outreach ideas, and buying signals.
             </p>
 
-            {/* Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2 w-full sm:w-auto">
-              <button 
-                onClick={() => onNavigate && onNavigate('pricing')}
-                className="btn btn-primary shadow-lg shadow-primary/25 text-sm w-full sm:w-auto"
-              >
-                <span>Start Enriching Leads</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </button>
-              <a 
-                href="https://demo.creamstack.io/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="btn btn-outline bg-white hover:bg-slate-50 text-sm w-full sm:w-auto"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-                <span>Watch Demo</span>
-              </a>
-            </div>
 
-            {/* Social Proof */}
-            <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-              <div className="flex -space-x-2">
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-[url('https://i.pravatar.cc/100?img=11')] bg-cover"></div>
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-[url('https://i.pravatar.cc/100?img=12')] bg-cover"></div>
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-[url('https://i.pravatar.cc/100?img=13')] bg-cover"></div>
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-[url('https://i.pravatar.cc/100?img=14')] bg-cover"></div>
-              </div>
-              <span className="text-xs sm:text-sm text-text-light font-medium">
-                Loved by <strong className="text-secondary font-bold">1,000+</strong> growth teams and agencies worldwide
-              </span>
-            </div>
+
+
           </div>
 
           {/* Centered Leads Table UI Mockup (Underneath) */}
@@ -225,7 +192,7 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
                   </div>
 
                   {method.example && (
-                    <div className="mt-6 p-3.5 rounded-xl bg-purple-50/80 border border-purple-100 text-xs text-purple-900 leading-relaxed">
+                    <div className="mt-6 p-3.5 rounded-xl bg-purple-50/80 border border-purple-100 text-xs text-purple-900 leading-relaxed h-[100px]">
                       <span className="font-bold block mb-1 text-primary">Example:</span>
                       {method.example}
                     </div>
@@ -258,7 +225,7 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
                   <span className="text-primary">✉️</span> Verified Email
                 </div>
                 <div className="flex items-center gap-2.5 p-3 rounded-xl bg-white border border-slate-200/80 shadow-xs text-xs font-bold text-slate-700">
-                  <span className="text-primary">👥</span> Team Size
+                  <span className="text-primary">👥</span> Phone Number
                 </div>
                 <div className="flex items-center gap-2.5 p-3 rounded-xl bg-white border border-slate-200/80 shadow-xs text-xs font-bold text-slate-700">
                   <span className="text-primary">🏢</span> Company
@@ -301,7 +268,7 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
                     </div>
                   </div>
                   <div className="bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1 rounded-full text-xs font-extrabold">
-                    98% Match
+                    Valid
                   </div>
                 </div>
 
@@ -336,11 +303,11 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
                   <div className="bg-slate-50 rounded-2xl p-4 flex flex-col justify-between text-xs">
                     <div className="flex items-center justify-between pb-2 border-b border-slate-200/60">
                       <span className="text-slate-500 font-medium">Email Accuracy</span>
-                      <span className="font-extrabold text-emerald-600">98%</span>
+                      <span className="font-extrabold text-emerald-600">Valid</span>
                     </div>
                     <div className="flex items-center justify-between py-2 border-b border-slate-200/60">
-                      <span className="text-slate-500 font-medium">Data Points</span>
-                      <span className="font-extrabold text-secondary">30+</span>
+                      <span className="text-slate-500 font-medium">Intent Hiring</span>
+                      <span className="font-extrabold text-secondary">Data Point</span>
                     </div>
                     <div className="flex items-center justify-between py-2 border-b border-slate-200/60">
                       <span className="text-slate-500 font-medium">Enriched On</span>
@@ -382,12 +349,12 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
               {/* Right Column: Interactive Buying Signal Showcase (7 cols) */}
               <div className="lg:col-span-7 flex flex-col gap-4">
                 {/* Signal Tabs */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex overflow-x-auto gap-2 pb-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                   {signalTabs.map((tab) => (
                     <button
                       key={tab.id}
                       onClick={() => setActiveSignal(tab.id)}
-                      className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 ${
+                      className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 whitespace-nowrap shrink-0 ${
                         activeSignal === tab.id
                           ? 'bg-primary text-white shadow-md shadow-primary/20 scale-102'
                           : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'

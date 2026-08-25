@@ -47,15 +47,6 @@ const UnifiedInboxPage = ({ onNavigate }) => {
     },
     {
       date: 'May 12',
-      channel: '👁️',
-      channelName: 'Email',
-      action: 'Email Opened',
-      desc: 'Opened 3 times (San Francisco, CA)',
-      badgeColor: 'bg-amber-500 text-white',
-      dotColor: 'bg-amber-500'
-    },
-    {
-      date: 'May 12',
       channel: '🟢',
       channelName: 'LinkedIn',
       action: 'Reply Received',
@@ -74,11 +65,11 @@ const UnifiedInboxPage = ({ onNavigate }) => {
     {
       icon: '🔄',
       title: 'Synced to lead profiles',
-      desc: 'Every message, stage update, and tag syncs to your master CRM.'
+      desc: 'Every message, stage update, and tag syncs to your master workspace.'
     },
     {
       icon: '👥',
-      title: 'Team visibility & collaboration',
+      title: 'Custom Notes & collaboration',
       desc: 'Assign conversations, leave internal notes, and prevent collision.'
     },
     {
@@ -106,55 +97,19 @@ const UnifiedInboxPage = ({ onNavigate }) => {
 
             {/* Headline strictly in 2 lines */}
             <h1 className="font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-[3.8rem] text-secondary tracking-tight leading-[1.12] m-0">
-              <span className="inline md:whitespace-nowrap">Manage every</span>
+              <span className="inline md:whitespace-nowrap">Manage All</span>
               <br />
               <span className="inline md:whitespace-nowrap">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-[#f472b6]">conversation</span> from one inbox.
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-[#f472b6]">Channel Conversations</span> From One Inbox
               </span>
             </h1>
 
             {/* Subtitle */}
             <p className="text-base sm:text-lg text-text-light leading-relaxed max-w-2xl mx-auto m-0 font-medium">
-              Stop switching between LinkedIn and multiple email inboxes. Everything appears in one place.
+              Manage, organize, and respond to every conversation across LinkedIn and multiple email inboxes from one unified workspace. Stay on top of replies, and eliminate the need to switch between different platforms.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-              <button 
-                onClick={() => onNavigate && onNavigate('pricing')}
-                className="btn btn-primary shadow-lg shadow-primary/25 text-sm font-bold"
-              >
-                <span>Start Using Inbox</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </button>
-              <a 
-                href="https://demo.creamstack.io/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="btn btn-outline bg-white hover:bg-slate-50 text-sm font-semibold"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-                <span>Watch Demo</span>
-              </a>
-            </div>
 
-            {/* Social Proof */}
-            <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-              <div className="flex -space-x-2">
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-[url('https://i.pravatar.cc/100?img=11')] bg-cover"></div>
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-[url('https://i.pravatar.cc/100?img=12')] bg-cover"></div>
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-[url('https://i.pravatar.cc/100?img=13')] bg-cover"></div>
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-[url('https://i.pravatar.cc/100?img=14')] bg-cover"></div>
-              </div>
-              <span className="text-xs sm:text-sm text-text-light font-medium">
-                Loved by <strong className="text-secondary font-bold">1,000+</strong> growth teams and agencies worldwide
-              </span>
-            </div>
           </div>
 
           {/* Hero Image Mockup (unibox.png) */}
@@ -281,7 +236,7 @@ const UnifiedInboxPage = ({ onNavigate }) => {
                 <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl mb-4 border border-purple-100 shadow-xs">
                   ✨
                 </div>
-                <h3 className="text-xl font-bold text-secondary m-0 mb-2">AI Reply Assistant</h3>
+                <h3 className="text-xl font-bold text-secondary m-0 mb-2">Autopilot Reply</h3>
                 <p className="text-xs sm:text-sm text-text-light m-0 mb-6 leading-relaxed font-medium">
                   Generate reply suggestions instantly. Refine, rewrite, shorten, or expand before sending.
                 </p>
@@ -482,39 +437,7 @@ const UnifiedInboxPage = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* ================= SECTION 5: KPI STATS STRIP ================= */}
-      <section className="py-12 bg-gradient-to-r from-[#0f172a] via-[#1e293b] to-[#0f172a] text-white border-t border-slate-800">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
-            
-            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-              <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-1">1,248</div>
-              <div className="text-xs text-slate-400 font-medium">Total Conversations</div>
-            </div>
 
-            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-              <div className="text-2xl sm:text-3xl font-extrabold text-amber-400 tracking-tight mb-1">312</div>
-              <div className="text-xs text-slate-400 font-medium">Needs Reply</div>
-            </div>
-
-            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-              <div className="text-2xl sm:text-3xl font-extrabold text-emerald-400 tracking-tight mb-1">68%</div>
-              <div className="text-xs text-slate-400 font-medium">Reply Rate</div>
-            </div>
-
-            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-              <div className="text-2xl sm:text-3xl font-extrabold text-blue-400 tracking-tight mb-1">24m</div>
-              <div className="text-xs text-slate-400 font-medium">Avg. Response Time</div>
-            </div>
-
-            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm col-span-2 sm:col-span-1">
-              <div className="text-2xl sm:text-3xl font-extrabold text-purple-400 tracking-tight mb-1">98%</div>
-              <div className="text-xs text-slate-400 font-medium">Inbox Sync Uptime</div>
-            </div>
-
-          </div>
-        </div>
-      </section>
 
       {/* ================= SECTION 6: MASTER COMMON CTA BANNER ================= */}
       <CTASection onNavigate={onNavigate} />

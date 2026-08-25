@@ -4,7 +4,6 @@ const products = [
   {
     id: 'lead-enrichment',
     name: 'Lead Enrichment',
-    badge: 'Popular',
     desc: 'Find & verify prospects from LinkedIn, websites & buying signals.',
     badgeStyle: 'bg-blue-50 text-blue-700 border-blue-200/80',
     iconBg: 'bg-blue-50/80 text-blue-600 border-blue-100 group-hover:bg-blue-600 group-hover:text-white',
@@ -19,7 +18,6 @@ const products = [
   {
     id: 'omnichannel-outreach',
     name: 'Omnichannel Outreach',
-    badge: 'New',
     desc: 'Reach prospects across LinkedIn & Email from one visual workflow.',
     badgeStyle: 'bg-emerald-50 text-emerald-700 border-emerald-200/80',
     iconBg: 'bg-purple-50/80 text-purple-600 border-purple-100 group-hover:bg-purple-600 group-hover:text-white',
@@ -33,7 +31,6 @@ const products = [
   {
     id: 'lead-management',
     name: 'Lead Management',
-    badge: 'New',
     desc: 'Manage, organize, filter, and update every lead from one unified table.',
     badgeStyle: 'bg-emerald-50 text-emerald-700 border-emerald-200/80',
     iconBg: 'bg-indigo-50/80 text-indigo-600 border-indigo-100 group-hover:bg-indigo-600 group-hover:text-white',
@@ -49,7 +46,6 @@ const products = [
   {
     id: 'unified-inbox',
     name: 'Unified Inbox',
-    badge: 'New',
     desc: 'Manage all prospect conversations in one smart inbox.',
     badgeStyle: 'bg-emerald-50 text-emerald-700 border-emerald-200/80',
     iconBg: 'bg-blue-50/80 text-blue-600 border-blue-100 group-hover:bg-blue-600 group-hover:text-white',
@@ -139,8 +135,9 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
 
             {/* Dropdown Menu */}
             {productOpen && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-96 bg-white rounded-2xl shadow-2xl shadow-slate-900/15 border border-slate-200 p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                <div className="flex items-center justify-between px-3 py-1.5 mb-1 border-b border-slate-100 pb-2">
+              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-96 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="bg-white rounded-2xl shadow-2xl shadow-slate-900/15 border border-slate-200 p-3">
+                  <div className="flex items-center justify-between px-3 py-1.5 mb-1 border-b border-slate-100 pb-2">
                   <div className="flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
                     <span>Core Platform</span>
@@ -203,6 +200,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
                     <span className="group-hover:translate-x-0.5 transition-transform">➔</span>
                   </a>
                 </div>
+                </div>
               </div>
             )}
           </div>
@@ -237,8 +235,9 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
 
             {/* Dropdown Menu */}
             {companyOpen && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-80 bg-white rounded-2xl shadow-2xl shadow-slate-900/15 border border-slate-200 p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                <div className="flex items-center justify-between px-3 py-1.5 mb-1 border-b border-slate-100 pb-2">
+              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-80 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="bg-white rounded-2xl shadow-2xl shadow-slate-900/15 border border-slate-200 p-3">
+                  <div className="flex items-center justify-between px-3 py-1.5 mb-1 border-b border-slate-100 pb-2">
                   <div className="flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
                     <span>Company & Support</span>
@@ -323,6 +322,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
                     </div>
                   </div>
 
+                </div>
                 </div>
               </div>
             )}

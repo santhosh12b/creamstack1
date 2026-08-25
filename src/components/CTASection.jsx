@@ -28,7 +28,7 @@ const CTASection = ({ onNavigate }) => {
               {/* Floating Badge */}
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-extrabold tracking-wider text-purple-200 uppercase mb-4 sm:mb-6 shadow-xs">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>LIMITED BETA ACCESS</span>
+                <span>PLATFORM ACCESS</span>
               </div>
 
               {/* Main Headline */}
@@ -41,7 +41,7 @@ const CTASection = ({ onNavigate }) => {
 
               {/* Subtitle in 1 clean line */}
               <p className="text-sm sm:text-base md:text-lg text-slate-300 max-w-xl mb-6 sm:mb-8 leading-relaxed font-medium whitespace-normal lg:whitespace-nowrap">
-                Creamstack is currently in beta. Get your invite code and start risk-free.
+                Get your invite code and start risk-free.
               </p>
 
               {/* Action Buttons */}
@@ -85,13 +85,13 @@ const CTASection = ({ onNavigate }) => {
               {/* Trust Indicators */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs font-semibold text-slate-400">
                 <div className="flex items-center gap-1.5">
-                  <span className="text-emerald-400">✓</span> No credit card required
+                  <span className="text-emerald-400">✓</span> Cancel anytime
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="text-emerald-400">✓</span> 5-minute setup
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-emerald-400">✓</span> 20+ verified data sources
+                  <span className="text-emerald-400">✓</span> 5+ verified data sources
                 </div>
               </div>
             </div>

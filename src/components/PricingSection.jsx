@@ -16,10 +16,10 @@ const featureCategories = [
       {
         name: 'LinkedIn Accounts',
         desc: 'Dedicated sender profile per seat',
+        trial: '1 Account',
         starter: '1 Account',
         growth: '1 Account',
-        trial5: '1 Account',
-        trial10: '1 Account',
+        scale: '1 Account',
         isKey: true,
         isHighlight: false,
         icon: <LinkedInIcon />
@@ -27,10 +27,10 @@ const featureCategories = [
       {
         name: 'Email Accounts',
         desc: 'Multi-inbox rotation & automated warmup',
+        trial: '5 Inboxes',
         starter: '5 Inboxes',
-        growth: '10 Inboxes',
-        trial5: '5 Inboxes',
-        trial10: '10 Inboxes',
+        growth: '5 Inboxes',
+        scale: '10 Inboxes',
         isKey: true,
         isHighlight: true,
         tag: 'Differentiator',
@@ -39,10 +39,10 @@ const featureCategories = [
       {
         name: 'Credits Included',
         desc: 'Lead enrichment & phone/email verification',
-        starter: '2,000 / month',
+        trial: '150 Credits',
+        starter: '1,000 / month',
         growth: '2,000 / month',
-        trial5: '150 Credits',
-        trial10: '150 Credits',
+        scale: '3,000 / month',
         isKey: true,
         isHighlight: true,
         tag: 'Top Value',
@@ -51,13 +51,34 @@ const featureCategories = [
       {
         name: 'Plan Duration',
         desc: 'Billing cycle & validity window',
+        trial: '5 Days',
         starter: 'Billed monthly',
         growth: 'Billed monthly',
-        trial5: '5 Days',
-        trial10: '5 Days',
+        scale: 'Billed monthly',
         isKey: true,
         isHighlight: false,
         icon: <ClockIcon />
+      },
+      {
+        name: 'Extra Mailboxes',
+        desc: 'Add more inboxes to scale sending',
+        trial: 'Not allowed',
+        starter: 'Not allowed',
+        growth: '₹1,000 / $12 each',
+        scale: '₹1,000 / $12 each',
+        isKey: true,
+        isHighlight: false,
+        icon: <EmailIcon />
+      },
+      {
+        name: 'Top-up Discount',
+        desc: 'Discount on credit top-ups',
+        trial: '-',
+        starter: '15%',
+        growth: '25%',
+        scale: '35%',
+        isKey: false,
+        isHighlight: false
       }
     ]
   },
@@ -77,8 +98,8 @@ const featureCategories = [
         desc: '1:1 tailored icebreakers and hyper-personalized message hooks',
         starter: true,
         growth: true,
-        trial5: true,
-        trial10: true,
+        trial: true,
+        scale: true,
         isKey: true,
         tag: 'Popular'
       },
@@ -87,8 +108,8 @@ const featureCategories = [
         desc: 'Instant tone adjustment, spam-word sanitizer & hook optimizer',
         starter: true,
         growth: true,
-        trial5: true,
-        trial10: true,
+        trial: true,
+        scale: true,
         isKey: false
       },
       {
@@ -96,8 +117,8 @@ const featureCategories = [
         desc: 'Protects sender domain reputation and mimics natural human behavior',
         starter: true,
         growth: true,
-        trial5: true,
-        trial10: true,
+        trial: true,
+        scale: true,
         isKey: true,
         tag: 'Safety'
       }
@@ -122,8 +143,8 @@ const featureCategories = [
         desc: 'Intuitive node-based drag-and-drop canvas for complex outreach paths',
         starter: true,
         growth: true,
-        trial5: true,
-        trial10: true,
+        trial: true,
+        scale: true,
         isKey: true,
         tag: 'Core'
       },
@@ -132,8 +153,8 @@ const featureCategories = [
         desc: 'Auto connection requests, profile visits, endorsement & follow-ups',
         starter: true,
         growth: true,
-        trial5: true,
-        trial10: true,
+        trial: true,
+        scale: true,
         isKey: false
       },
       {
@@ -141,8 +162,8 @@ const featureCategories = [
         desc: 'Dynamic multi-touch cold email sequences with fallback triggers',
         starter: true,
         growth: true,
-        trial5: true,
-        trial10: true,
+        trial: true,
+        scale: true,
         isKey: false
       },
       {
@@ -150,8 +171,8 @@ const featureCategories = [
         desc: 'Branch logic based on opens, clicks, replies or silence',
         starter: true,
         growth: true,
-        trial5: true,
-        trial10: true,
+        trial: true,
+        scale: true,
         isKey: false
       },
       {
@@ -159,16 +180,16 @@ const featureCategories = [
         desc: 'Battle-tested high reply rate sequences ready to clone',
         starter: true,
         growth: true,
-        trial5: true,
-        trial10: true,
+        trial: true,
+        scale: true,
         isKey: false
       }
     ]
   },
   {
-    id: 'crm-inbox',
-    category: 'CRM & Lead Management',
-    badge: 'Inbox & CRM',
+    id: 'unified-inbox-plan',
+    category: 'Lead Management',
+    badge: 'Inbox & Leads',
     badgeColor: 'bg-emerald-50 text-emerald-700 border-emerald-200',
     icon: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -182,8 +203,8 @@ const featureCategories = [
         desc: 'Centralize replies across LinkedIn and all email inboxes with 1-click reply',
         starter: true,
         growth: true,
-        trial5: true,
-        trial10: true,
+        trial: true,
+        scale: true,
         isKey: true,
         tag: 'Crucial'
       },
@@ -192,17 +213,17 @@ const featureCategories = [
         desc: 'Status pipelines, custom variables, prospect notes & qualification stages',
         starter: true,
         growth: true,
-        trial5: true,
-        trial10: true,
+        trial: true,
+        scale: true,
         isKey: false
       },
       {
-        name: 'Export & Import (CSV / CRM)',
-        desc: 'Fast bulk import and instant CSV / webhook sync with your CRM',
+        name: 'Export & Import (CSV / Webhooks)',
+        desc: 'Fast bulk import and instant CSV / webhook sync with your systems',
         starter: true,
         growth: true,
-        trial5: true,
-        trial10: true,
+        trial: true,
+        scale: true,
         isKey: false
       }
     ]
@@ -225,8 +246,8 @@ const featureCategories = [
         desc: 'Granular open, click, reply and lead booking conversion metrics',
         starter: true,
         growth: true,
-        trial5: true,
-        trial10: true,
+        trial: true,
+        scale: true,
         isKey: true
       },
       {
@@ -234,8 +255,8 @@ const featureCategories = [
         desc: 'Spam trigger detection, domain health scores and bounce shield',
         starter: true,
         growth: true,
-        trial5: true,
-        trial10: true,
+        trial: true,
+        scale: true,
         isKey: false
       },
       {
@@ -243,8 +264,8 @@ const featureCategories = [
         desc: 'Shareable executive summary reports for clients & team leads',
         starter: true,
         growth: true,
-        trial5: true,
-        trial10: true,
+        trial: true,
+        scale: true,
         isKey: false
       },
       {
@@ -252,8 +273,8 @@ const featureCategories = [
         desc: 'Immediate access to all newly released v3 features & tools',
         starter: true,
         growth: true,
-        trial5: true,
-        trial10: true,
+        trial: true,
+        scale: true,
         isKey: false
       },
       {
@@ -261,8 +282,8 @@ const featureCategories = [
         desc: 'Dedicated fast-response assistance & live onboarding guidance',
         starter: true,
         growth: true,
-        trial5: true,
-        trial10: true,
+        trial: true,
+        scale: true,
         isKey: true,
         tag: '24/7'
       }
@@ -271,10 +292,10 @@ const featureCategories = [
 ];
 
 const PricingSection = ({ onNavigate }) => {
-  const [activeTab, setActiveTab] = useState('trial'); // 'trial' | 'monthly' (Trials prioritized first)
+  const [currency, setCurrency] = useState('inr'); // 'inr' | 'usd'
   const [isExpanded, setIsExpanded] = useState(false);
-  const [activeCategoryFilter, setActiveCategoryFilter] = useState('all'); // 'all' | category id
-  const [selectedMobilePlan, setSelectedMobilePlan] = useState('trial5'); // 'trial5' | 'trial10' | 'starter' | 'growth'
+  const [activeCategoryFilter, setActiveCategoryFilter] = useState('all');
+  const [selectedMobilePlan, setSelectedMobilePlan] = useState('starter'); // 'trial' | 'starter' | 'growth' | 'scale'
   const [mobileExpandedCat, setMobileExpandedCat] = useState('core-limits');
   const [loadingPlan, setLoadingPlan] = useState(null);
   const [actionNotice, setActionNotice] = useState(null);
@@ -282,18 +303,8 @@ const PricingSection = ({ onNavigate }) => {
   // Calculate total feature count
   const totalFeatures = featureCategories.reduce((acc, cat) => acc + cat.features.length, 0);
 
-  // Sync mobile selected plan when activeTab switches
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-    if (tab === 'trial') {
-      if (selectedMobilePlan === 'starter' || selectedMobilePlan === 'growth') {
-        setSelectedMobilePlan('trial5');
-      }
-    } else {
-      if (selectedMobilePlan === 'trial5' || selectedMobilePlan === 'trial10') {
-        setSelectedMobilePlan('growth');
-      }
-    }
+  const handleCurrencyChange = (curr) => {
+    setCurrency(curr);
   };
 
   const handlePlanAction = (planId, planName) => {
@@ -311,16 +322,16 @@ const PricingSection = ({ onNavigate }) => {
   };
 
   const mobilePlans = {
-    trial5: {
-      id: 'trial5',
-      name: 'Trial 5',
+    trial: {
+      id: 'trial',
+      name: 'Trial',
       tab: 'trial',
       subtitle: '5 inboxes for 5 days',
-      price: '₹500',
+      price: currency === 'usd' ? '$5' : '₹500',
       period: 'One-time payment',
       badge: 'Risk-Free',
       badgeStyle: 'bg-purple-100 text-purple-700 border-purple-200',
-      btnText: 'Start Trial 5',
+      btnText: 'Start Trial',
       btnStyle: 'bg-purple-600 text-white shadow-lg shadow-purple-500/25 hover:bg-purple-700',
       limits: [
         { label: 'Email Inboxes', val: '5 Inboxes', note: '5 days access' },
@@ -336,37 +347,12 @@ const PricingSection = ({ onNavigate }) => {
         'Zero recurring commitment'
       ]
     },
-    trial10: {
-      id: 'trial10',
-      name: 'Trial 10',
-      tab: 'trial',
-      subtitle: '10 inboxes for 5 days',
-      price: '₹750',
-      period: 'One-time payment',
-      badge: 'Max Power Trial',
-      badgeStyle: 'bg-pink-100 text-pink-700 border-pink-200',
-      btnText: 'Start Trial 10',
-      btnStyle: 'bg-purple-600 text-white shadow-lg shadow-purple-500/25 hover:bg-purple-700',
-      limits: [
-        { label: 'Email Inboxes', val: '10 Inboxes', note: '5 days high volume' },
-        { label: 'LinkedIn Account', val: '1 Account', note: 'Full automation' },
-        { label: 'Credits Included', val: '150 Credits', note: 'Enrichment test' },
-        { label: 'Plan Duration', val: '5 Days', note: 'One-time payment' }
-      ],
-      highlights: [
-        'Full 10-inbox capacity for 5 days',
-        'Test high-volume multi-channel outreach',
-        'Unified inbox & AI personalization',
-        'Deliverability & spam-shield check',
-        'Zero recurring commitment'
-      ]
-    },
     starter: {
       id: 'starter',
       name: 'Starter',
       tab: 'monthly',
       subtitle: 'For solopreneurs & founders',
-      price: '₹8,000',
+      price: currency === 'usd' ? '$59' : '₹5,664',
       period: '+ GST / month',
       badge: 'Solopreneur',
       badgeStyle: 'bg-slate-100 text-slate-700 border-slate-200',
@@ -375,13 +361,13 @@ const PricingSection = ({ onNavigate }) => {
       limits: [
         { label: 'Email Inboxes', val: '5 Inboxes', note: 'Rotation & warmup' },
         { label: 'LinkedIn Account', val: '1 Account', note: 'Dedicated profile' },
-        { label: 'Credits Included', val: '2,000 / mo', note: 'Lead enrichment' },
+        { label: 'Credits Included', val: '1,000 / mo', note: 'Lead enrichment' },
         { label: 'Plan Duration', val: 'Monthly', note: 'Billed monthly' }
       ],
       highlights: [
         'Visual multi-channel campaign builder',
         'AI message personalization & rewriting',
-        'Unified multi-channel CRM inbox',
+        'Unified multi-channel inbox',
         'Human-like sending cadence & safety',
         'Analytics & live conversion reports'
       ]
@@ -391,24 +377,49 @@ const PricingSection = ({ onNavigate }) => {
       name: 'Growth',
       tab: 'monthly',
       subtitle: 'For scaling teams & agencies',
-      price: '₹10,000',
+      price: currency === 'usd' ? '$99' : '₹9,263',
       period: '+ GST / month',
       badge: '★ Most Popular',
       badgeStyle: 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-xs',
       btnText: 'Choose Growth',
       btnStyle: 'bg-primary text-white shadow-lg shadow-primary/25 hover:bg-primary-hover',
       limits: [
-        { label: 'Email Inboxes', val: '10 Inboxes', note: 'Double inbox rotation' },
+        { label: 'Email Inboxes', val: '5 Inboxes', note: 'Double inbox rotation' },
         { label: 'LinkedIn Account', val: '1 Account', note: 'Dedicated profile' },
         { label: 'Credits Included', val: '2,000 / mo', note: 'Lead enrichment' },
         { label: 'Plan Duration', val: 'Monthly', note: 'Billed monthly' }
       ],
       highlights: [
-        'Everything in Starter with 10 inboxes',
+        'Everything in Starter with more credits',
         'Double daily email sending throughput',
         'AI hyper-personalized hooks & icebreakers',
         'Conditional workflow branching logic',
         'Priority 24/7 support & onboarding'
+      ]
+    },
+    scale: {
+      id: 'scale',
+      name: 'Scale',
+      tab: 'monthly',
+      subtitle: 'For high-volume outreach',
+      price: currency === 'usd' ? '$139' : '₹12,980',
+      period: '+ GST / month',
+      badge: 'Maximum Power',
+      badgeStyle: 'bg-emerald-100 text-emerald-700 border-emerald-200',
+      btnText: 'Choose Scale',
+      btnStyle: 'bg-emerald-600 text-white shadow-lg shadow-emerald-500/25 hover:bg-emerald-700',
+      limits: [
+        { label: 'Email Inboxes', val: '10 Inboxes', note: 'Maximum throughput' },
+        { label: 'LinkedIn Account', val: '1 Account', note: 'Dedicated profile' },
+        { label: 'Credits Included', val: '3,000 / mo', note: 'Lead enrichment' },
+        { label: 'Plan Duration', val: 'Monthly', note: 'Billed monthly' }
+      ],
+      highlights: [
+        'Everything in Growth with 10 inboxes',
+        'Maximum daily email sending throughput',
+        'Dedicated onboarding specialist',
+        'Custom webhook integrations',
+        '35% Top-up discount on extra credits'
       ]
     }
   };
@@ -463,27 +474,27 @@ const PricingSection = ({ onNavigate }) => {
             Test Creamstack with a risk-free 5-day trial or upgrade to a full monthly recurring plan. Zero hidden limits.
           </p>
 
-          {/* Segmented Control Switcher (5-Day Trials FIRST, Monthly SECOND) */}
+          {/* Segmented Control Switcher (Currency Toggle) */}
           <div className="inline-flex items-center p-1.5 rounded-2xl bg-slate-100 border border-slate-200/90 shadow-inner w-full max-w-xs sm:w-auto">
             <button
-              onClick={() => handleTabChange('trial')}
+              onClick={() => handleCurrencyChange('inr')}
               className={`flex-1 sm:flex-none px-5 py-3 rounded-xl text-xs sm:text-sm font-extrabold transition-all duration-200 flex items-center justify-center gap-2 min-h-[44px] cursor-pointer ${
-                activeTab === 'trial'
+                currency === 'inr'
                   ? 'bg-white text-slate-900 shadow-sm border border-slate-200/60'
                   : 'text-slate-500 hover:text-slate-900'
               }`}
             >
-              <span>🎯 5-Day Trials</span>
+              <span>🇮🇳 INR</span>
             </button>
             <button
-              onClick={() => handleTabChange('monthly')}
+              onClick={() => handleCurrencyChange('usd')}
               className={`flex-1 sm:flex-none px-5 py-3 rounded-xl text-xs sm:text-sm font-extrabold transition-all duration-200 flex items-center justify-center gap-2 min-h-[44px] cursor-pointer ${
-                activeTab === 'monthly'
+                currency === 'usd'
                   ? 'bg-white text-slate-900 shadow-sm border border-slate-200/60'
                   : 'text-slate-500 hover:text-slate-900'
               }`}
             >
-              <span>⚡ Monthly Plans</span>
+              <span>🇺🇸 USD</span>
             </button>
           </div>
         </div>
@@ -494,72 +505,65 @@ const PricingSection = ({ onNavigate }) => {
         <div className="block md:hidden w-full max-w-md mx-auto">
           
           {/* Mobile Plan Selector Tabs */}
-          <div className="flex rounded-2xl bg-slate-100 p-1.5 mb-5 border border-slate-200/90 shadow-2xs gap-1">
-            {activeTab === 'trial' ? (
-              <>
-                <button
-                  onClick={() => setSelectedMobilePlan('trial5')}
-                  className={`flex-1 py-3 px-3 rounded-xl text-xs font-bold transition-all min-h-[44px] flex flex-col items-center justify-center cursor-pointer active:scale-98 ${
-                    selectedMobilePlan === 'trial5'
-                      ? 'bg-white text-purple-700 shadow-sm border border-purple-200 ring-2 ring-purple-500/10'
-                      : 'text-slate-600 hover:text-slate-900'
-                  }`}
-                >
-                  <span className="font-extrabold text-xs">Trial 5</span>
-                  <span className="text-[10px] text-purple-600 font-semibold mt-0.5">₹500 (5 days)</span>
-                </button>
-                <button
-                  onClick={() => setSelectedMobilePlan('trial10')}
-                  className={`flex-1 py-3 px-3 rounded-xl text-xs font-bold transition-all min-h-[44px] flex flex-col items-center justify-center cursor-pointer active:scale-98 ${
-                    selectedMobilePlan === 'trial10'
-                      ? 'bg-white text-purple-700 shadow-sm border border-purple-200 ring-2 ring-purple-500/10'
-                      : 'text-slate-600 hover:text-slate-900'
-                  }`}
-                >
-                  <span className="font-extrabold text-xs">Trial 10</span>
-                  <span className="text-[10px] text-purple-600 font-semibold mt-0.5">₹750 (5 days)</span>
-                </button>
-              </>
-            ) : (
-              <>
-                <button
-                  onClick={() => setSelectedMobilePlan('starter')}
-                  className={`flex-1 py-3 px-3 rounded-xl text-xs font-bold transition-all min-h-[44px] flex flex-col items-center justify-center cursor-pointer active:scale-98 ${
-                    selectedMobilePlan === 'starter'
-                      ? 'bg-white text-slate-900 shadow-sm border border-slate-200'
-                      : 'text-slate-600 hover:text-slate-900'
-                  }`}
-                >
-                  <span className="font-extrabold text-xs">Starter</span>
-                  <span className="text-[10px] text-slate-500 font-semibold mt-0.5">₹8,000 / mo</span>
-                </button>
-                <button
-                  onClick={() => setSelectedMobilePlan('growth')}
-                  className={`flex-1 py-3 px-3 rounded-xl text-xs font-bold transition-all min-h-[44px] relative flex flex-col items-center justify-center cursor-pointer active:scale-98 ${
-                    selectedMobilePlan === 'growth'
-                      ? 'bg-white text-primary shadow-sm border border-primary/30 ring-2 ring-primary/10'
-                      : 'text-slate-600 hover:text-slate-900'
-                  }`}
-                >
-                  <span className="absolute -top-2.5 right-2 bg-gradient-to-r from-pink-500 to-primary text-white text-[8px] font-extrabold px-2 py-0.5 rounded-full uppercase shadow-xs">
-                    Popular
-                  </span>
-                  <span className="font-extrabold text-xs">Growth ★</span>
-                  <span className="text-[10px] text-primary/90 font-semibold mt-0.5">₹10,000 / mo</span>
-                </button>
-              </>
-            )}
+          <div className="grid grid-cols-2 sm:grid-cols-4 rounded-2xl bg-slate-100 p-1.5 mb-5 border border-slate-200/90 shadow-2xs gap-1">
+            <button
+              onClick={() => setSelectedMobilePlan('trial')}
+              className={`py-3 px-2 rounded-xl text-[11px] font-bold transition-all min-h-[44px] flex flex-col items-center justify-center cursor-pointer active:scale-98 ${
+                selectedMobilePlan === 'trial'
+                  ? 'bg-white text-purple-700 shadow-sm border border-purple-200 ring-2 ring-purple-500/10'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <span className="font-extrabold">Trial</span>
+              <span className="text-[9px] text-purple-600 font-semibold mt-0.5">{mobilePlans.trial.price}</span>
+            </button>
+            <button
+              onClick={() => setSelectedMobilePlan('starter')}
+              className={`py-3 px-2 rounded-xl text-[11px] font-bold transition-all min-h-[44px] flex flex-col items-center justify-center cursor-pointer active:scale-98 ${
+                selectedMobilePlan === 'starter'
+                  ? 'bg-white text-slate-900 shadow-sm border border-slate-200'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <span className="font-extrabold">Starter</span>
+              <span className="text-[9px] text-slate-500 font-semibold mt-0.5">{mobilePlans.starter.price} / mo</span>
+            </button>
+            <button
+              onClick={() => setSelectedMobilePlan('growth')}
+              className={`py-3 px-2 rounded-xl text-[11px] font-bold transition-all min-h-[44px] relative flex flex-col items-center justify-center cursor-pointer active:scale-98 ${
+                selectedMobilePlan === 'growth'
+                  ? 'bg-white text-primary shadow-sm border border-primary/30 ring-2 ring-primary/10'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <span className="font-extrabold">Growth ★</span>
+              <span className="text-[9px] text-primary/90 font-semibold mt-0.5">{mobilePlans.growth.price} / mo</span>
+            </button>
+            <button
+              onClick={() => setSelectedMobilePlan('scale')}
+              className={`py-3 px-2 rounded-xl text-[11px] font-bold transition-all min-h-[44px] flex flex-col items-center justify-center cursor-pointer active:scale-98 ${
+                selectedMobilePlan === 'scale'
+                  ? 'bg-white text-emerald-700 shadow-sm border border-emerald-200 ring-2 ring-emerald-500/10'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <span className="font-extrabold">Scale</span>
+              <span className="text-[9px] text-emerald-600 font-semibold mt-0.5">{mobilePlans.scale.price} / mo</span>
+            </button>
           </div>
 
           {/* Active Plan Mobile Spotlight Card */}
           <div className="bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden p-5 sm:p-6 transition-all duration-300 relative">
             
             {/* Top Accent bar */}
-            {(selectedMobilePlan === 'trial5' || selectedMobilePlan === 'trial10') && (
+            {selectedMobilePlan === 'trial' && (
               <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-600"></div>
             )}
             {selectedMobilePlan === 'growth' && (
               <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-primary via-indigo-600 to-purple-600"></div>
+            )}
+            {selectedMobilePlan === 'scale' && (
+              <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600"></div>
             )}
 
             {/* Plan Card Header */}
@@ -777,59 +781,41 @@ const PricingSection = ({ onNavigate }) => {
                 </div>
               </div>
 
-              {/* 5-Day Trials Header FIRST (Col 2 & 3) */}
-              <div className={`col-span-2 grid grid-cols-2 border-r border-slate-200 ${activeTab === 'monthly' ? 'opacity-60 grayscale-[20%]' : ''}`}>
-                <div className="col-span-2 bg-gradient-to-r from-purple-50 via-pink-50/80 to-purple-50 text-purple-700 py-2 text-center text-xs font-extrabold tracking-wider uppercase border-b border-purple-100 flex items-center justify-center gap-1.5">
-                  <span>5-DAY RISK-FREE TRIALS</span>
+              {/* Trial Header FIRST (Col 2) */}
+              <div className="col-span-1 border-r border-slate-200 flex flex-col">
+                <div className="bg-gradient-to-r from-purple-50 via-pink-50/80 to-purple-50 text-purple-700 py-2 text-center text-xs font-extrabold tracking-wider uppercase border-b border-purple-100 flex items-center justify-center gap-1.5 shrink-0">
+                  <span>RISK-FREE TRIAL</span>
                 </div>
 
-                {/* Trial 5 Header */}
-                <div className="p-6 text-center border-r border-slate-200 flex flex-col justify-between hover:bg-slate-50/50 transition-colors">
+                <div className="p-6 text-center flex flex-col justify-between hover:bg-slate-50/50 transition-colors flex-1">
                   <div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-1">Trial 5</h3>
+                    <h3 className="text-xl font-bold text-slate-900 mb-1">Trial</h3>
                     <p className="text-[11px] text-slate-500 font-medium m-0 mb-3">5 inboxes for 5 days</p>
-                    <div className="text-3xl font-extrabold text-slate-900 tracking-tight">₹500</div>
+                    <div className="text-3xl font-extrabold text-slate-900 tracking-tight">{currency === 'usd' ? '$5' : '₹500'}</div>
                     <div className="text-xs text-slate-500 font-medium mt-1">One-time payment</div>
                   </div>
                   <button 
-                    onClick={() => handlePlanAction('trial5', 'Trial 5')}
-                    disabled={loadingPlan === 'trial5'}
+                    onClick={() => handlePlanAction('trial', 'Trial')}
+                    disabled={loadingPlan === 'trial'}
                     className="mt-6 w-full py-2.5 px-4 rounded-xl border-2 border-purple-200 text-purple-700 font-extrabold hover:bg-purple-600 hover:text-white hover:border-purple-600 transition-all duration-200 text-sm min-h-[44px] cursor-pointer"
                   >
-                    {loadingPlan === 'trial5' ? 'Processing...' : 'Start Trial 5'}
-                  </button>
-                </div>
-
-                {/* Trial 10 Header */}
-                <div className="p-6 text-center flex flex-col justify-between hover:bg-slate-50/50 transition-colors">
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-1">Trial 10</h3>
-                    <p className="text-[11px] text-slate-500 font-medium m-0 mb-3">10 inboxes for 5 days</p>
-                    <div className="text-3xl font-extrabold text-slate-900 tracking-tight">₹750</div>
-                    <div className="text-xs text-slate-500 font-medium mt-1">One-time payment</div>
-                  </div>
-                  <button 
-                    onClick={() => handlePlanAction('trial10', 'Trial 10')}
-                    disabled={loadingPlan === 'trial10'}
-                    className="mt-6 w-full py-2.5 px-4 rounded-xl border-2 border-purple-200 text-purple-700 font-extrabold hover:bg-purple-600 hover:text-white hover:border-purple-600 transition-all duration-200 text-sm min-h-[44px] cursor-pointer"
-                  >
-                    {loadingPlan === 'trial10' ? 'Processing...' : 'Start Trial 10'}
+                    {loadingPlan === 'trial' ? 'Processing...' : 'Start Trial'}
                   </button>
                 </div>
               </div>
 
-              {/* Monthly Header SECOND (Col 4 & 5) */}
-              <div className={`col-span-2 grid grid-cols-2 ${activeTab === 'trial' ? 'opacity-60 grayscale-[20%]' : ''}`}>
-                <div className="col-span-2 bg-gradient-to-r from-primary/10 via-indigo-50/80 to-primary/10 text-primary py-2 text-center text-xs font-extrabold tracking-wider uppercase border-b border-primary/20 flex items-center justify-center gap-1.5">
+              {/* Monthly Header SECOND (Col 3, 4, 5) */}
+              <div className="col-span-3 grid grid-cols-3 grid-rows-[auto_1fr]">
+                <div className="col-span-3 bg-gradient-to-r from-primary/10 via-indigo-50/80 to-primary/10 text-primary py-2 text-center text-xs font-extrabold tracking-wider uppercase border-b border-primary/20 flex items-center justify-center gap-1.5 shrink-0">
                   <span>MONTHLY RECURRING PLANS</span>
                 </div>
 
                 {/* Starter Plan Header */}
-                <div className="p-6 text-center border-r border-slate-200 flex flex-col justify-between hover:bg-slate-50/50 transition-colors">
+                <div className="p-6 text-center border-r border-slate-200 flex flex-col justify-between hover:bg-slate-50/50 transition-colors h-[100%]">
                   <div>
                     <h3 className="text-xl font-bold text-slate-900 mb-1">Starter</h3>
                     <p className="text-[11px] text-slate-500 font-medium m-0 mb-3">For solopreneurs & founders</p>
-                    <div className="text-3xl font-extrabold text-slate-900 tracking-tight">₹8,000</div>
+                    <div className="text-3xl font-extrabold text-slate-900 tracking-tight">{currency === 'usd' ? '$59' : '₹5,664'}</div>
                     <div className="text-xs text-slate-500 font-medium mt-1">+ GST / month</div>
                   </div>
                   <button 
@@ -842,14 +828,14 @@ const PricingSection = ({ onNavigate }) => {
                 </div>
 
                 {/* Growth Plan Header */}
-                <div className="p-6 text-center relative bg-gradient-to-b from-primary/[0.04] to-transparent flex flex-col justify-between border-l border-slate-200 shadow-inner">
+                <div className="p-6 text-center relative bg-gradient-to-b from-primary/[0.04] to-transparent flex flex-col justify-between border-r border-slate-200 shadow-inner h-[100%]">
                   <div>
                     <span className="inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-[10px] font-extrabold tracking-wider uppercase px-3 py-0.5 rounded-full shadow-xs mb-2">
                       ★ Most Popular
                     </span>
                     <h3 className="text-xl font-bold text-slate-900 mb-1">Growth</h3>
                     <p className="text-[11px] text-primary font-semibold m-0 mb-3">For scaling teams & agencies</p>
-                    <div className="text-3xl font-extrabold text-slate-900 tracking-tight">₹10,000</div>
+                    <div className="text-3xl font-extrabold text-slate-900 tracking-tight">{currency === 'usd' ? '$99' : '₹9,263'}</div>
                     <div className="text-xs text-slate-500 font-medium mt-1">+ GST / month</div>
                   </div>
                   <button 
@@ -858,6 +844,23 @@ const PricingSection = ({ onNavigate }) => {
                     className="mt-6 w-full py-2.5 px-4 rounded-xl bg-primary text-white font-extrabold shadow-lg shadow-primary/25 hover:bg-primary-hover hover:-translate-y-0.5 transition-all duration-200 text-sm min-h-[44px] cursor-pointer"
                   >
                     {loadingPlan === 'growth' ? 'Processing...' : 'Choose Growth'}
+                  </button>
+                </div>
+
+                {/* Scale Plan Header */}
+                <div className="p-6 text-center flex flex-col justify-between hover:bg-slate-50/50 transition-colors h-[100%]">
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-1">Scale</h3>
+                    <p className="text-[11px] text-slate-500 font-medium m-0 mb-3">For high-volume outreach</p>
+                    <div className="text-3xl font-extrabold text-slate-900 tracking-tight">{currency === 'usd' ? '$139' : '₹12,980'}</div>
+                    <div className="text-xs text-slate-500 font-medium mt-1">+ GST / month</div>
+                  </div>
+                  <button 
+                    onClick={() => handlePlanAction('scale', 'Scale')}
+                    disabled={loadingPlan === 'scale'}
+                    className="mt-6 w-full py-2.5 px-4 rounded-xl border-2 border-emerald-400 text-emerald-600 font-extrabold hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition-all duration-200 text-sm min-h-[44px] cursor-pointer"
+                  >
+                    {loadingPlan === 'scale' ? 'Processing...' : 'Choose Scale'}
                   </button>
                 </div>
               </div>
@@ -944,24 +947,24 @@ const PricingSection = ({ onNavigate }) => {
                         )}
                       </div>
 
-                      {/* Col 2: Trial 5 */}
+                      {/* Col 2: Trial */}
                       <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-purple-700' : 'text-slate-700'}`}>
-                        <span className="font-semibold">{item.trial5}</span>
+                        <span className="font-semibold">{item.trial}</span>
                       </div>
 
-                      {/* Col 3: Trial 10 */}
-                      <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-purple-700' : 'text-slate-700'}`}>
-                        <span className="font-semibold">{item.trial10}</span>
-                      </div>
-
-                      {/* Col 4: Starter */}
+                      {/* Col 3: Starter */}
                       <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-primary' : 'text-slate-700'}`}>
                         <span className="font-semibold">{item.starter}</span>
                       </div>
 
-                      {/* Col 5: Growth */}
+                      {/* Col 4: Growth */}
                       <div className={`text-center text-sm bg-primary/[0.03] border-x border-primary/10 py-2 ${item.isHighlight ? 'font-bold text-primary' : 'text-slate-800 font-semibold'}`}>
                         <span className="font-bold text-primary">{item.growth}</span>
+                      </div>
+
+                      {/* Col 5: Scale */}
+                      <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-emerald-600' : 'text-slate-700'}`}>
+                        <span className="font-semibold">{item.scale}</span>
                       </div>
                     </div>
                   ))}
@@ -1014,17 +1017,17 @@ const PricingSection = ({ onNavigate }) => {
                           )}
                         </div>
 
-                        {/* Col 2: Trial 5 */}
+                        {/* Col 2: Trial */}
                         <div className="flex justify-center"><CheckCircle /></div>
 
-                        {/* Col 3: Trial 10 */}
+                        {/* Col 3: Starter */}
                         <div className="flex justify-center"><CheckCircle /></div>
 
-                        {/* Col 4: Starter */}
-                        <div className="flex justify-center"><CheckCircle /></div>
-
-                        {/* Col 5: Growth */}
+                        {/* Col 4: Growth */}
                         <div className="flex justify-center bg-primary/[0.03] border-x border-primary/10 py-2"><GrowthCheckCircle /></div>
+
+                        {/* Col 5: Scale */}
+                        <div className="flex justify-center"><CheckCircle /></div>
                       </div>
                     ))}
                 </div>
@@ -1052,7 +1055,7 @@ const PricingSection = ({ onNavigate }) => {
                       {/* Feature Rows */}
                       <div className="divide-y divide-slate-100">
                         {cat.features.map((item, itemIdx) => {
-                          const isTextValue = typeof item.trial5 === 'string';
+                          const isTextValue = typeof item.trial === 'string';
 
                           return (
                             <div 
@@ -1085,29 +1088,18 @@ const PricingSection = ({ onNavigate }) => {
                                 )}
                               </div>
 
-                              {/* Col 2: Trial 5 Column */}
+                              {/* Col 2: Trial Column */}
                               <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-purple-700' : 'text-slate-700'}`}>
                                 {isTextValue ? (
-                                  <span className="font-semibold">{item.trial5}</span>
-                                ) : item.trial5 ? (
+                                  <span className="font-semibold">{item.trial}</span>
+                                ) : item.trial ? (
                                   <div className="flex justify-center"><CheckCircle /></div>
                                 ) : (
                                   <span className="text-slate-300 font-bold">—</span>
                                 )}
                               </div>
 
-                              {/* Col 3: Trial 10 Column */}
-                              <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-purple-700' : 'text-slate-700'}`}>
-                                {isTextValue ? (
-                                  <span className="font-semibold">{item.trial10}</span>
-                                ) : item.trial10 ? (
-                                  <div className="flex justify-center"><CheckCircle /></div>
-                                ) : (
-                                  <span className="text-slate-300 font-bold">—</span>
-                                )}
-                              </div>
-
-                              {/* Col 4: Starter Column */}
+                              {/* Col 3: Starter Column */}
                               <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-primary' : 'text-slate-700'}`}>
                                 {isTextValue ? (
                                   <span className="font-semibold">{item.starter}</span>
@@ -1118,12 +1110,23 @@ const PricingSection = ({ onNavigate }) => {
                                 )}
                               </div>
 
-                              {/* Col 5: Growth Column */}
+                              {/* Col 4: Growth Column */}
                               <div className={`text-center text-sm bg-primary/[0.03] border-x border-primary/10 py-2 ${item.isHighlight ? 'font-bold text-primary' : 'text-slate-800 font-semibold'}`}>
                                 {isTextValue ? (
                                   <span className="font-bold text-primary">{item.growth}</span>
                                 ) : item.growth ? (
                                   <div className="flex justify-center"><GrowthCheckCircle /></div>
+                                ) : (
+                                  <span className="text-slate-300 font-bold">—</span>
+                                )}
+                              </div>
+
+                              {/* Col 5: Scale Column */}
+                              <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-emerald-600' : 'text-slate-700'}`}>
+                                {isTextValue ? (
+                                  <span className="font-semibold">{item.scale}</span>
+                                ) : item.scale ? (
+                                  <div className="flex justify-center"><CheckCircle /></div>
                                 ) : (
                                   <span className="text-slate-300 font-bold">—</span>
                                 )}
