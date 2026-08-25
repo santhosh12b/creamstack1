@@ -9,7 +9,7 @@ const HeroSection = ({ onNavigate }) => {
         <div className="flex flex-col items-center gap-5 sm:gap-6 max-w-5xl mx-auto">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider text-primary uppercase shadow-2xs">
-            100% DONE-FOR-YOU OUTBOUND
+            AI POWER AUTOMATE OUTBOUND
           </div>
 
           {/* Heading */}
@@ -66,7 +66,7 @@ const HeroSection = ({ onNavigate }) => {
                 </div>
                 <span className="font-bold text-sm text-secondary">4.9/5</span>
               </div>
-              <p className="text-xs sm:text-sm text-text-light m-0">Loved by 500+ Teams</p>
+              <p className="text-xs sm:text-sm text-text-light m-0">Loved by 200+ Teams</p>
             </div>
           </div>
         </div>

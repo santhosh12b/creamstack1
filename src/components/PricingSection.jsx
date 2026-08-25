@@ -293,12 +293,22 @@ const featureCategories = [
 
 const PricingSection = ({ onNavigate }) => {
   const [currency, setCurrency] = useState('inr'); // 'inr' | 'usd'
+  const [creditCount, setCreditCount] = useState(80);
+  const [emailAccounts, setEmailAccounts] = useState(1);
+  const [emailYears, setEmailYears] = useState(1);
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeCategoryFilter, setActiveCategoryFilter] = useState('all');
   const [selectedMobilePlan, setSelectedMobilePlan] = useState('starter'); // 'trial' | 'starter' | 'growth' | 'scale'
   const [mobileExpandedCat, setMobileExpandedCat] = useState('core-limits');
   const [loadingPlan, setLoadingPlan] = useState(null);
   const [actionNotice, setActionNotice] = useState(null);
+
+  const formatFeatureValue = (val) => {
+    if (val === '₹1,000 / $12 each') {
+      return currency === 'usd' ? '$12 each' : '₹1,000 each';
+    }
+    return val;
+  };
 
   // Calculate total feature count
   const totalFeatures = featureCategories.reduce((acc, cat) => acc + cat.features.length, 0);
@@ -958,22 +968,22 @@ const PricingSection = ({ onNavigate }) => {
 
                       {/* Col 2: Trial */}
                       <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-purple-700' : 'text-slate-700'}`}>
-                        <span className="font-semibold">{item.trial}</span>
+                        <span className="font-semibold">{formatFeatureValue(item.trial)}</span>
                       </div>
 
                       {/* Col 3: Starter */}
                       <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-primary' : 'text-slate-700'}`}>
-                        <span className="font-semibold">{item.starter}</span>
+                        <span className="font-semibold">{formatFeatureValue(item.starter)}</span>
                       </div>
 
                       {/* Col 4: Growth */}
                       <div className={`text-center text-sm bg-primary/[0.03] border-x border-primary/10 py-2 ${item.isHighlight ? 'font-bold text-primary' : 'text-slate-800 font-semibold'}`}>
-                        <span className="font-semibold">{item.growth}</span>
+                        <span className="font-semibold">{formatFeatureValue(item.growth)}</span>
                       </div>
 
                       {/* Col 5: Scale */}
                       <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-emerald-600' : 'text-slate-700'}`}>
-                        <span className="font-semibold">{item.scale}</span>
+                        <span className="font-semibold">{formatFeatureValue(item.scale)}</span>
                       </div>
                     </div>
                   ))}
@@ -1100,7 +1110,7 @@ const PricingSection = ({ onNavigate }) => {
                               {/* Col 2: Trial Column */}
                               <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-purple-700' : 'text-slate-700'}`}>
                                 {isTextValue ? (
-                                  <span className="font-semibold">{item.trial}</span>
+                                  <span className="font-semibold">{formatFeatureValue(item.trial)}</span>
                                 ) : item.trial ? (
                                   <div className="flex justify-center"><CheckCircle /></div>
                                 ) : (
@@ -1111,7 +1121,7 @@ const PricingSection = ({ onNavigate }) => {
                               {/* Col 3: Starter Column */}
                               <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-primary' : 'text-slate-700'}`}>
                                 {isTextValue ? (
-                                  <span className="font-semibold">{item.starter}</span>
+                                  <span className="font-semibold">{formatFeatureValue(item.starter)}</span>
                                 ) : item.starter ? (
                                   <div className="flex justify-center"><CheckCircle /></div>
                                 ) : (
@@ -1122,7 +1132,7 @@ const PricingSection = ({ onNavigate }) => {
                               {/* Col 4: Growth Column */}
                               <div className={`text-center text-sm bg-primary/[0.03] border-x border-primary/10 py-2 ${item.isHighlight ? 'font-bold text-primary' : 'text-slate-800 font-semibold'}`}>
                                 {isTextValue ? (
-                                  <span className="font-semibold">{item.growth}</span>
+                                  <span className="font-semibold">{formatFeatureValue(item.growth)}</span>
                                 ) : item.growth ? (
                                   <div className="flex justify-center"><GrowthCheckCircle /></div>
                                 ) : (
@@ -1133,7 +1143,7 @@ const PricingSection = ({ onNavigate }) => {
                               {/* Col 5: Scale Column */}
                               <div className={`text-center text-sm ${item.isHighlight ? 'font-bold text-emerald-600' : 'text-slate-700'}`}>
                                 {isTextValue ? (
-                                  <span className="font-semibold">{item.scale}</span>
+                                  <span className="font-semibold">{formatFeatureValue(item.scale)}</span>
                                 ) : item.scale ? (
                                   <div className="flex justify-center"><CheckCircle /></div>
                                 ) : (
@@ -1214,175 +1224,131 @@ const PricingSection = ({ onNavigate }) => {
         </div>
 
         {/* ========================================================================= */}
-        {/* ================= ADD-ON BANNER: HERO 80 CREDITS TOP-UP ================= */}
-        {/* ========================================================================= */}
-        <div className="max-w-[1140px] mx-auto mt-12 sm:mt-16">
-          <div className="relative rounded-[28px] sm:rounded-[36px] bg-gradient-to-br from-white via-indigo-50/30 to-purple-50/40 border border-slate-200/90 shadow-2xl overflow-hidden p-6 sm:p-10 lg:p-12">
+        <div className="max-w-[1000px] mx-auto mt-12 sm:mt-16 bg-slate-50/50 rounded-3xl p-6 sm:p-10 border border-slate-100 shadow-sm">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             
-            {/* Ambient background glow */}
-            <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-gradient-to-bl from-primary/10 via-purple-500/10 to-transparent rounded-full blur-3xl pointer-events-none -z-0"></div>
+            {/* Left Column - Slider Area */}
+            <div className="flex flex-col h-full">
+              <div className="flex-1">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 m-0">Select Credits</h3>
+                </div>
+                
+                <p className="text-sm text-slate-500 mb-6">
+                  Start with a minimum of {currency === 'usd' ? '$10' : '₹800'} and add credits as needed.
+                </p>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
-              
-              {/* Left / Main Content Area (7 cols) */}
-              <div className="lg:col-span-7 flex flex-col gap-6">
-                <div>
-                  <div className="inline-flex items-center gap-1.5 bg-primary/10 border border-primary/20 px-3.5 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider text-primary shadow-2xs mb-3">
-                    <span>⚡ INSTANT CREDIT TOP-UP</span>
+                <div className="mb-6">
+                  <div className="inline-flex items-baseline gap-1 bg-blue-600 text-white px-3 py-1 mb-3 rounded shadow-xs">
+                    <span className="text-sm font-semibold">Amount:</span>
+                    <span className="font-bold">
+                      {currency === 'usd' ? `$${(creditCount / 10).toLocaleString()}` : `₹${(creditCount * 10).toLocaleString()}`}
+                    </span>
                   </div>
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight m-0">
-                    Buy credits when you need them.
-                  </h3>
-                  <p className="text-xs sm:text-base text-slate-600 m-0 mt-2 font-medium leading-relaxed">
-                    Top up instantly and keep your outreach campaigns running without upgrading your monthly plan.
+                  
+                  <input 
+                    type="range" 
+                    min="80" 
+                    max="10000" 
+                    step="10"
+                    value={creditCount}
+                    onChange={(e) => setCreditCount(parseInt(e.target.value))}
+                    className="w-full h-2 bg-blue-100 rounded-lg appearance-none cursor-pointer accent-blue-500"
+                  />
+                  
+                  <div className="flex justify-between text-[10px] sm:text-xs text-slate-400 mt-2 font-medium">
+                    <span>{currency === 'usd' ? '$10' : '₹800'}</span>
+                    <span>{currency === 'usd' ? '$1,000' : '₹100,000'}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-auto">
+
+                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 text-center mb-6 transition-all hover:shadow-md">
+                  <p className="text-xs sm:text-sm text-slate-500 font-medium mb-2">Credits You'll Receive</p>
+                  <div className="text-3xl sm:text-4xl font-bold text-blue-500 tracking-tight mb-2">
+                    {creditCount.toLocaleString()} Credits
+                  </div>
+                  <p className="text-[11px] text-slate-400 font-medium">
+                    {currency === 'usd' ? '1 USD = 10 Credits' : '10 INR = 1 Credit'}
                   </p>
                 </div>
 
-                {/* HERO FEATURED CARD: 80 CREDITS FOR ₹800 */}
-                <div className="relative rounded-3xl bg-white border-2 border-primary/40 shadow-xl p-6 sm:p-7 transition-all duration-300 hover:shadow-2xl hover:border-primary">
-                  
-                  {/* Top Badge */}
-                  <div className="flex items-center justify-between gap-2 mb-4">
-                    <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-primary to-purple-600 text-white text-[10px] sm:text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full shadow-xs">
-                      ★ BEST VALUE TOP-UP PACK
-                    </span>
-                    <span className="text-[11px] font-bold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-lg border border-slate-200">
-                      One-Time Payment
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-4 border-b border-slate-100">
-                    <div>
-                      <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-                        80 Credits
-                      </div>
-                      <div className="text-xs text-slate-500 font-medium mt-0.5">
-                        Full lead enrichment & contact verification
-                      </div>
-                    </div>
-
-                    <div className="text-left sm:text-right">
-                      <div className="flex items-baseline gap-1 sm:justify-end">
-                        <span className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">₹800</span>
-                        <span className="text-xs font-bold text-slate-400">/ pack</span>
-                      </div>
-                      <span className="text-[10px] font-extrabold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200 inline-block mt-0.5">
-                        ₹10 per credit • 30 Days Expiry
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Micro Value Proposition Checklist */}
-                  <div className="flex flex-wrap gap-x-5 gap-y-3 my-6">
-                    <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                      <CheckCircle />
-                      <span>Instant credit deposit</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                      <CheckCircle />
-                      <span>Email & phone verified</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                      <CheckCircle />
-                      <span>30 days expiration limit</span>
-                    </div>
-                  </div>
-
-                  {/* Primary Action CTA Button (48px height) */}
-                  <button
-                    onClick={() => handlePlanAction('credits-80', '80 Credits Pack')}
-                    disabled={loadingPlan === 'credits-80'}
-                    className="w-full py-3.5 px-6 rounded-2xl bg-primary hover:bg-primary-hover text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-200 min-h-[48px] cursor-pointer active:scale-[0.98]"
-                  >
-                    {loadingPlan === 'credits-80' ? (
-                      <span>Processing Order...</span>
-                    ) : (
-                      <>
-                        <span>Buy 80 Credits Now (₹800)</span>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                          <line x1="5" y1="12" x2="19" y2="12"></line>
-                          <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                      </>
-                    )}
-                  </button>
-                </div>
-
-
+                <button
+                  onClick={() => handlePlanAction('buy-credits', `${creditCount} Credits Pack`)}
+                  disabled={loadingPlan === 'buy-credits'}
+                  className="w-full py-3.5 px-6 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-bold text-sm sm:text-base flex items-center justify-center transition-all duration-200 cursor-pointer active:scale-[0.98] shadow-md shadow-blue-500/25"
+                >
+                  {loadingPlan === 'buy-credits' ? 'Processing...' : 'Get Started'}
+                </button>
               </div>
-
-              {/* Right Column / Showcase Graphic (5 cols) */}
-              <div className="lg:col-span-5 flex items-center justify-center relative py-6 sm:py-8 lg:py-0">
-                
-                {/* Ambient background glow behind card stack */}
-                <div className="absolute w-[280px] h-[280px] bg-gradient-to-tr from-primary/20 via-purple-500/20 to-pink-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-                {/* Top-Right Radiating Sparkle Rays */}
-                <div className="absolute -top-1 -right-1 text-primary pointer-events-none z-20">
-                  <svg width="42" height="42" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                    <line x1="20" y1="4" x2="20" y2="10" />
-                    <line x1="32" y1="9" x2="27" y2="14" />
-                    <line x1="36" y1="20" x2="30" y2="20" />
-                  </svg>
-                </div>
-
-                {/* Bottom-Left Floating Micro Badge */}
-                <div className="hidden sm:flex absolute -bottom-3 -left-4 z-30 items-center gap-1.5 bg-white border border-slate-200/90 shadow-lg px-3 py-1.5 rounded-2xl text-[10px] font-extrabold text-slate-800 -rotate-3 transition-transform hover:scale-105">
-                  <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
-                  <span>Scale Faster</span>
-                </div>
-
-                {/* Stacked 3D Showcase Cards Container */}
-                <div className="relative w-[250px] h-[270px] flex items-center justify-center group">
-                  {/* Back Card 1 (Soft Indigo/Purple Gradient) */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-purple-200 to-indigo-200 rounded-[36px] transform -rotate-6 scale-[0.98] opacity-75 shadow-lg border border-purple-200/60 transition-transform duration-300 group-hover:-rotate-8"></div>
-                  
-                  {/* Middle Card 2 (Soft Blue/Pink Gradient) */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-pink-200 to-rose-200 rounded-[36px] transform rotate-6 scale-[0.99] opacity-85 shadow-md border border-pink-200/60 transition-transform duration-300 group-hover:rotate-8"></div>
-                  
-                  {/* Front Hero Card */}
-                  <div className="relative bg-white rounded-[32px] p-6 sm:p-7 shadow-2xl border border-slate-200/90 text-center flex flex-col items-center justify-between w-full h-full transform -rotate-1 group-hover:rotate-0 transition-all duration-300 z-10">
-                    
-                    {/* Pill Badge */}
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200/80 text-purple-700 text-[10px] font-extrabold tracking-widest uppercase shadow-2xs">
-                      <span className="w-1.5 h-1.5 rounded-full bg-purple-600 animate-pulse"></span>
-                      <span>ADD-ON</span>
-                    </div>
-
-                    {/* Envelope Icon Box */}
-                    <div className="w-16 h-16 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center shadow-inner my-2 group-hover:scale-105 group-hover:-rotate-3 transition-transform duration-300 text-purple-600">
-                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                      </svg>
-                    </div>
-
-                    {/* Text Title */}
-                    <div className="flex flex-col items-center gap-1.5 mb-2">
-                      <h4 className="text-lg font-black text-slate-900 tracking-tight leading-tight m-0">
-                        1 Email Account
-                      </h4>
-                      <div className="flex items-baseline justify-center gap-1">
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600 font-extrabold text-2xl">
-                          ₹1000
-                        </span>
-                        <span className="text-xs font-bold text-slate-500">/ yr</span>
-                      </div>
-                    </div>
-
-                    {/* Micro Stat Footer Tag */}
-                    <div className="inline-flex items-center gap-1 text-[10px] font-extrabold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-200/80">
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                      <span>Increase Sending Limits</span>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
             </div>
+
+            {/* Right Column - Email Accounts Area */}
+            <div className="lg:pl-8 flex flex-col h-full">
+              <div className="flex-1">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6">Extra Email Accounts</h3>
+                
+                <p className="text-sm text-slate-500 mb-6">
+                  Scale your outreach volume by adding more sending accounts.
+                </p>
+
+                <div className="mb-5">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm font-semibold text-slate-700">Number of Accounts</span>
+                    <span className="font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded-md text-sm">{emailAccounts}</span>
+                  </div>
+                  <input 
+                    type="range" 
+                    min="1" 
+                    max="50" 
+                    step="1"
+                    value={emailAccounts}
+                    onChange={(e) => setEmailAccounts(parseInt(e.target.value))}
+                    className="w-full h-2 bg-purple-100 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                  />
+                </div>
+
+                <div className="mb-6">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm font-semibold text-slate-700">Duration (Years)</span>
+                    <span className="font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded-md text-sm">{emailYears} {emailYears === 1 ? 'Year' : 'Years'}</span>
+                  </div>
+                  <input 
+                    type="range" 
+                    min="1" 
+                    max="5" 
+                    step="1"
+                    value={emailYears}
+                    onChange={(e) => setEmailYears(parseInt(e.target.value))}
+                    className="w-full h-2 bg-purple-100 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                  />
+                </div>
+              </div>
+
+              <div className="mt-auto">
+
+                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 text-center mb-6 transition-all hover:shadow-md">
+                  <p className="text-xs sm:text-sm text-slate-500 font-medium mb-2">Total Cost</p>
+                  <div className="text-3xl sm:text-4xl font-bold text-purple-600 tracking-tight mb-2">
+                    {currency === 'usd' ? '$' + (emailAccounts * emailYears * 12).toLocaleString() : '₹' + (emailAccounts * emailYears * 1000).toLocaleString()}
+                  </div>
+                  <p className="text-[11px] text-slate-400 font-medium">
+                    {currency === 'usd' ? '$12 per account / year' : '₹1000 per account / year'}
+                  </p>
+                </div>
+
+                <button
+                  onClick={() => handlePlanAction('buy-emails', `${emailAccounts} Email Accounts for ${emailYears} Years`)}
+                  disabled={loadingPlan === 'buy-emails'}
+                  className="w-full py-3.5 px-6 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm sm:text-base flex items-center justify-center transition-all duration-200 cursor-pointer active:scale-[0.98] shadow-md shadow-purple-600/25"
+                >
+                  {loadingPlan === 'buy-emails' ? 'Processing...' : 'Add Accounts'}
+                </button>
+              </div>
+            </div>
+
           </div>
         </div>
 

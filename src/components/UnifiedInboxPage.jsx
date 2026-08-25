@@ -97,10 +97,12 @@ const UnifiedInboxPage = ({ onNavigate }) => {
 
             {/* Headline strictly in 2 lines */}
             <h1 className="font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-[3.8rem] text-secondary tracking-tight leading-[1.12] m-0">
-              <span className="inline md:whitespace-nowrap">Manage All</span>
+              <span className="inline md:whitespace-nowrap">
+                Manage All <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-[#a855f7]">Channel</span>
+              </span>
               <br />
               <span className="inline md:whitespace-nowrap">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-[#f472b6]">Channel Conversations</span> From One Inbox
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#a855f7] to-[#f472b6]">Conversations</span> From One Inbox
               </span>
             </h1>
 
