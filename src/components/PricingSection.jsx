@@ -199,16 +199,6 @@ const featureCategories = [
     ),
     features: [
       {
-        name: 'Unified Multi-Channel Inbox',
-        desc: 'Centralize replies across LinkedIn and all email inboxes with 1-click reply',
-        starter: true,
-        growth: true,
-        trial: true,
-        scale: true,
-        isKey: true,
-        tag: 'Crucial'
-      },
-      {
         name: 'Lead Management & Tags',
         desc: 'Status pipelines, custom variables, prospect notes & qualification stages',
         starter: true,
@@ -242,15 +232,6 @@ const featureCategories = [
     ),
     features: [
       {
-        name: 'Analytics & Live Conversion Reports',
-        desc: 'Granular open, click, reply and lead booking conversion metrics',
-        starter: true,
-        growth: true,
-        trial: true,
-        scale: true,
-        isKey: true
-      },
-      {
         name: 'Email Tracking & Pixel Health',
         desc: 'Spam trigger detection, domain health scores and bounce shield',
         starter: true,
@@ -280,9 +261,9 @@ const featureCategories = [
       {
         name: 'Priority Support',
         desc: 'Dedicated fast-response assistance & live onboarding guidance',
-        starter: true,
+        starter: false,
         growth: true,
-        trial: true,
+        trial: false,
         scale: true,
         isKey: true,
         tag: '24/7'

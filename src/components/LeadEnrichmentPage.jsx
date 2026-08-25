@@ -112,7 +112,7 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
   return (
     <div className="bg-bg-light text-text-main">
       {/* HERO SECTION */}
-      <section className="pt-10 sm:pt-16 md:pt-20 pb-12 sm:pb-16 md:pb-24 bg-gradient-to-b from-[#f472b6]/10 via-[#3b82f6]/5 to-transparent relative overflow-hidden">
+      <section className="pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 md:pb-24 bg-gradient-to-b from-[#f472b6]/10 via-[#3b82f6]/5 to-transparent relative overflow-hidden">
         {/* Ambient Glows */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gradient-to-tr from-primary/15 via-[#f472b6]/10 to-transparent rounded-full blur-3xl pointer-events-none -z-10"></div>
 
@@ -131,16 +131,15 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
 
             {/* Description */}
             <p className="text-sm sm:text-base md:text-lg text-text-light leading-relaxed max-w-3xl mx-auto m-0 font-medium">
-              Enrich high-quality prospects from LinkedIn, company websites, search filters, or even people engaging with posts. Every lead comes enriched with verified contact data, AI-generated outreach ideas, and buying signals.
+              Enrich high-quality prospects from LinkedIn, company websites, search filters, or even people engaging with posts. Every lead comes enriched with verified contact data, AI-generated outreach ideas, and social signals.
             </p>
 
-
-
+            {/* Buttons (If added later, they go here) */}
 
           </div>
 
           {/* Centered Leads Table UI Mockup (Underneath) */}
-          <div className="relative mt-10 sm:mt-16 max-w-5xl mx-auto text-left">
+          <div className="relative mt-16 sm:mt-24 max-w-5xl mx-auto text-left">
             {/* Ambient Glow */}
             <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-pink-500/20 via-purple-500/20 to-blue-500/20 rounded-3xl blur-2xl -z-10 opacity-70"></div>
 

@@ -286,7 +286,7 @@ const FeaturesSection = () => {
                 </div>
 
                 <h4 className="text-lg font-bold text-secondary mb-1.5">
-                  Lead Management & Live Analytics
+                  Live Analytics
                 </h4>
                 <p className="text-xs text-text-light leading-relaxed mb-5 font-medium">
                   Score buyer intent automatically, organize prospect pipelines, and monitor open, reply, and booking rates.
