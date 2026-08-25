@@ -352,7 +352,7 @@ const PricingSection = ({ onNavigate }) => {
       name: 'Starter',
       tab: 'monthly',
       subtitle: 'For solopreneurs & founders',
-      price: currency === 'usd' ? '$59' : '₹5,664',
+      price: currency === 'usd' ? '$59' : '₹4,800',
       period: '+ GST / month',
       badge: 'Solopreneur',
       badgeStyle: 'bg-slate-100 text-slate-700 border-slate-200',
@@ -377,7 +377,7 @@ const PricingSection = ({ onNavigate }) => {
       name: 'Growth',
       tab: 'monthly',
       subtitle: 'For scaling teams & agencies',
-      price: currency === 'usd' ? '$99' : '₹9,263',
+      price: currency === 'usd' ? '$99' : '₹7,850',
       period: '+ GST / month',
       badge: '★ Most Popular',
       badgeStyle: 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-xs',
@@ -402,7 +402,7 @@ const PricingSection = ({ onNavigate }) => {
       name: 'Scale',
       tab: 'monthly',
       subtitle: 'For high-volume outreach',
-      price: currency === 'usd' ? '$139' : '₹12,980',
+      price: currency === 'usd' ? '$139' : '₹11,000',
       period: '+ GST / month',
       badge: 'Maximum Power',
       badgeStyle: 'bg-emerald-100 text-emerald-700 border-emerald-200',
@@ -427,7 +427,8 @@ const PricingSection = ({ onNavigate }) => {
   const currentMobilePlan = mobilePlans[selectedMobilePlan];
 
   return (
-    <section id="pricing" className="py-10 sm:py-16 md:py-24 bg-gradient-to-b from-white via-slate-50/60 to-white relative overflow-hidden text-slate-800">
+    <>
+      <section id="pricing" className="py-10 sm:py-16 md:py-24 bg-gradient-to-b from-white via-slate-50/60 to-white relative overflow-hidden text-slate-800">
       {/* Ambient background glow - soft light indigo */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-gradient-to-tr from-primary/10 via-purple-500/5 to-transparent rounded-full blur-3xl pointer-events-none -z-10"></div>
 
@@ -754,8 +755,8 @@ const PricingSection = ({ onNavigate }) => {
         {/* ========================================================================= */}
         {/* ================= DESKTOP EXPERIENCE (md+): ELEGANT COMPARISON GRID ==== */}
         {/* ========================================================================= */}
-        <div className="hidden md:block max-w-[1140px] mx-auto overflow-x-auto pb-4 [scrollbar-width:thin]">
-          <div className="min-w-[880px] bg-white rounded-3xl border border-slate-200/90 shadow-2xl overflow-hidden transition-all duration-300">
+        <div className="hidden md:block max-w-[1140px] mx-auto overflow-x-auto px-4 pb-12 [scrollbar-width:thin] -mx-4">
+          <div className="min-w-[880px] bg-white rounded-3xl border border-slate-200/90 overflow-hidden transition-all duration-300">
             
             {/* Master Grid Table Header (Trials FIRST in Col 2 & 3, Monthly SECOND in Col 4 & 5) */}
             <div className="grid grid-cols-5 border-b border-slate-200 bg-white sticky top-0 z-20">
@@ -787,20 +788,22 @@ const PricingSection = ({ onNavigate }) => {
                   <span>RISK-FREE TRIAL</span>
                 </div>
 
-                <div className="p-6 text-center flex flex-col justify-between hover:bg-slate-50/50 transition-colors flex-1">
+                <div className="px-6 pb-6 pt-10 text-center flex flex-col hover:bg-slate-50/50 transition-colors h-full">
                   <div>
                     <h3 className="text-xl font-bold text-slate-900 mb-1">Trial</h3>
                     <p className="text-[11px] text-slate-500 font-medium m-0 mb-3">5 inboxes for 5 days</p>
                     <div className="text-3xl font-extrabold text-slate-900 tracking-tight">{currency === 'usd' ? '$5' : '₹500'}</div>
                     <div className="text-xs text-slate-500 font-medium mt-1">One-time payment</div>
                   </div>
-                  <button 
-                    onClick={() => handlePlanAction('trial', 'Trial')}
-                    disabled={loadingPlan === 'trial'}
-                    className="mt-6 w-full py-2.5 px-4 rounded-xl border-2 border-purple-200 text-purple-700 font-extrabold hover:bg-purple-600 hover:text-white hover:border-purple-600 transition-all duration-200 text-sm min-h-[44px] cursor-pointer"
-                  >
-                    {loadingPlan === 'trial' ? 'Processing...' : 'Start Trial'}
-                  </button>
+                  <div className="mt-auto pt-6">
+                    <button 
+                      onClick={() => handlePlanAction('trial', 'Trial')}
+                      disabled={loadingPlan === 'trial'}
+                      className="w-full py-2.5 px-4 rounded-xl border-2 border-purple-200 text-purple-700 font-extrabold hover:bg-purple-600 hover:text-white hover:border-purple-600 transition-all duration-200 text-sm min-h-[44px] cursor-pointer"
+                    >
+                      {loadingPlan === 'trial' ? 'Processing...' : 'Start Trial'}
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -811,57 +814,63 @@ const PricingSection = ({ onNavigate }) => {
                 </div>
 
                 {/* Starter Plan Header */}
-                <div className="p-6 text-center border-r border-slate-200 flex flex-col justify-between hover:bg-slate-50/50 transition-colors h-[100%]">
+                <div className="px-6 pb-6 pt-10 text-center border-r border-slate-200 flex flex-col hover:bg-slate-50/50 transition-colors h-full">
                   <div>
                     <h3 className="text-xl font-bold text-slate-900 mb-1">Starter</h3>
                     <p className="text-[11px] text-slate-500 font-medium m-0 mb-3">For solopreneurs & founders</p>
-                    <div className="text-3xl font-extrabold text-slate-900 tracking-tight">{currency === 'usd' ? '$59' : '₹5,664'}</div>
+                    <div className="text-3xl font-extrabold text-slate-900 tracking-tight">{currency === 'usd' ? '$59' : '₹4,800'}</div>
                     <div className="text-xs text-slate-500 font-medium mt-1">+ GST / month</div>
                   </div>
-                  <button 
-                    onClick={() => handlePlanAction('starter', 'Starter')}
-                    disabled={loadingPlan === 'starter'}
-                    className="mt-6 w-full py-2.5 px-4 rounded-xl border-2 border-primary/40 text-primary font-extrabold hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 text-sm min-h-[44px] cursor-pointer"
-                  >
-                    {loadingPlan === 'starter' ? 'Processing...' : 'Choose Starter'}
-                  </button>
+                  <div className="mt-auto pt-6">
+                    <button 
+                      onClick={() => handlePlanAction('starter', 'Starter')}
+                      disabled={loadingPlan === 'starter'}
+                      className="w-full py-2.5 px-4 rounded-xl border-2 border-primary/40 text-primary font-extrabold hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 text-sm min-h-[44px] cursor-pointer"
+                    >
+                      {loadingPlan === 'starter' ? 'Processing...' : 'Choose Starter'}
+                    </button>
+                  </div>
                 </div>
 
                 {/* Growth Plan Header */}
-                <div className="p-6 text-center relative bg-gradient-to-b from-primary/[0.04] to-transparent flex flex-col justify-between border-r border-slate-200 shadow-inner h-[100%]">
+                <div className="px-6 pb-6 pt-10 text-center relative bg-gradient-to-b from-primary/[0.04] to-transparent flex flex-col border-r border-slate-200 shadow-inner h-full">
                   <div>
-                    <span className="inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-[10px] font-extrabold tracking-wider uppercase px-3 py-0.5 rounded-full shadow-xs mb-2">
+                    <span className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-[10px] font-extrabold tracking-wider uppercase px-3 py-0.5 rounded-full shadow-xs whitespace-nowrap z-10">
                       ★ Most Popular
                     </span>
                     <h3 className="text-xl font-bold text-slate-900 mb-1">Growth</h3>
-                    <p className="text-[11px] text-primary font-semibold m-0 mb-3">For scaling teams & agencies</p>
-                    <div className="text-3xl font-extrabold text-slate-900 tracking-tight">{currency === 'usd' ? '$99' : '₹9,263'}</div>
+                    <p className="text-[11px] text-slate-500 font-medium m-0 mb-3">For scaling teams & agencies</p>
+                    <div className="text-3xl font-extrabold text-slate-900 tracking-tight">{currency === 'usd' ? '$99' : '₹7,850'}</div>
                     <div className="text-xs text-slate-500 font-medium mt-1">+ GST / month</div>
                   </div>
-                  <button 
-                    onClick={() => handlePlanAction('growth', 'Growth')}
-                    disabled={loadingPlan === 'growth'}
-                    className="mt-6 w-full py-2.5 px-4 rounded-xl bg-primary text-white font-extrabold shadow-lg shadow-primary/25 hover:bg-primary-hover hover:-translate-y-0.5 transition-all duration-200 text-sm min-h-[44px] cursor-pointer"
-                  >
-                    {loadingPlan === 'growth' ? 'Processing...' : 'Choose Growth'}
-                  </button>
+                  <div className="mt-auto pt-6">
+                    <button 
+                      onClick={() => handlePlanAction('growth', 'Growth')}
+                      disabled={loadingPlan === 'growth'}
+                      className="w-full py-2.5 px-4 rounded-xl bg-primary text-white font-extrabold shadow-lg shadow-primary/25 hover:bg-primary-hover hover:-translate-y-0.5 transition-all duration-200 text-sm min-h-[44px] cursor-pointer"
+                    >
+                      {loadingPlan === 'growth' ? 'Processing...' : 'Choose Growth'}
+                    </button>
+                  </div>
                 </div>
 
                 {/* Scale Plan Header */}
-                <div className="p-6 text-center flex flex-col justify-between hover:bg-slate-50/50 transition-colors h-[100%]">
+                <div className="px-6 pb-6 pt-10 text-center flex flex-col hover:bg-slate-50/50 transition-colors h-full">
                   <div>
                     <h3 className="text-xl font-bold text-slate-900 mb-1">Scale</h3>
                     <p className="text-[11px] text-slate-500 font-medium m-0 mb-3">For high-volume outreach</p>
-                    <div className="text-3xl font-extrabold text-slate-900 tracking-tight">{currency === 'usd' ? '$139' : '₹12,980'}</div>
+                    <div className="text-3xl font-extrabold text-slate-900 tracking-tight">{currency === 'usd' ? '$139' : '₹11,000'}</div>
                     <div className="text-xs text-slate-500 font-medium mt-1">+ GST / month</div>
                   </div>
-                  <button 
-                    onClick={() => handlePlanAction('scale', 'Scale')}
-                    disabled={loadingPlan === 'scale'}
-                    className="mt-6 w-full py-2.5 px-4 rounded-xl border-2 border-emerald-400 text-emerald-600 font-extrabold hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition-all duration-200 text-sm min-h-[44px] cursor-pointer"
-                  >
-                    {loadingPlan === 'scale' ? 'Processing...' : 'Choose Scale'}
-                  </button>
+                  <div className="mt-auto pt-6">
+                    <button 
+                      onClick={() => handlePlanAction('scale', 'Scale')}
+                      disabled={loadingPlan === 'scale'}
+                      className="w-full py-2.5 px-4 rounded-xl border-2 border-emerald-500/40 text-emerald-600 font-extrabold hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition-all duration-200 text-sm min-h-[44px] cursor-pointer"
+                    >
+                      {loadingPlan === 'scale' ? 'Processing...' : 'Choose Scale'}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -959,7 +968,7 @@ const PricingSection = ({ onNavigate }) => {
 
                       {/* Col 4: Growth */}
                       <div className={`text-center text-sm bg-primary/[0.03] border-x border-primary/10 py-2 ${item.isHighlight ? 'font-bold text-primary' : 'text-slate-800 font-semibold'}`}>
-                        <span className="font-bold text-primary">{item.growth}</span>
+                        <span className="font-semibold">{item.growth}</span>
                       </div>
 
                       {/* Col 5: Scale */}
@@ -1113,7 +1122,7 @@ const PricingSection = ({ onNavigate }) => {
                               {/* Col 4: Growth Column */}
                               <div className={`text-center text-sm bg-primary/[0.03] border-x border-primary/10 py-2 ${item.isHighlight ? 'font-bold text-primary' : 'text-slate-800 font-semibold'}`}>
                                 {isTextValue ? (
-                                  <span className="font-bold text-primary">{item.growth}</span>
+                                  <span className="font-semibold">{item.growth}</span>
                                 ) : item.growth ? (
                                   <div className="flex justify-center"><GrowthCheckCircle /></div>
                                 ) : (
@@ -1200,49 +1209,7 @@ const PricingSection = ({ onNavigate }) => {
               )}
             </div>
 
-            {/* Bottom Sticky Action Bar (Trials FIRST) */}
-            <div className="grid grid-cols-5 items-center bg-slate-50 p-6 border-t border-slate-200">
-              <div className="text-xs text-slate-600">
-                <span className="font-extrabold text-slate-900 block mb-0.5">Need a custom plan?</span>
-                Talk to our team for high-volume enterprise limits.
-              </div>
-              <div className="px-2">
-                <button 
-                  onClick={() => handlePlanAction('trial5', 'Trial 5')}
-                  disabled={loadingPlan === 'trial5'}
-                  className="w-full py-2.5 px-3 rounded-xl border border-purple-300 text-purple-700 hover:bg-purple-600 hover:text-white font-extrabold text-xs transition-colors min-h-[40px] cursor-pointer"
-                >
-                  Get Trial 5
-                </button>
-              </div>
-              <div className="px-2">
-                <button 
-                  onClick={() => handlePlanAction('trial10', 'Trial 10')}
-                  disabled={loadingPlan === 'trial10'}
-                  className="w-full py-2.5 px-3 rounded-xl border border-purple-300 text-purple-700 hover:bg-purple-600 hover:text-white font-extrabold text-xs transition-colors min-h-[40px] cursor-pointer"
-                >
-                  Get Trial 10
-                </button>
-              </div>
-              <div className="px-2">
-                <button 
-                  onClick={() => handlePlanAction('starter', 'Starter')}
-                  disabled={loadingPlan === 'starter'}
-                  className="w-full py-2.5 px-3 rounded-xl border border-primary/40 text-primary hover:bg-primary hover:text-white font-extrabold text-xs transition-colors min-h-[40px] cursor-pointer"
-                >
-                  Get Starter
-                </button>
-              </div>
-              <div className="px-2">
-                <button 
-                  onClick={() => handlePlanAction('growth', 'Growth')}
-                  disabled={loadingPlan === 'growth'}
-                  className="w-full py-2.5 px-3 rounded-xl bg-primary text-white font-extrabold text-xs shadow-md shadow-primary/20 hover:bg-primary-hover transition-colors min-h-[40px] cursor-pointer"
-                >
-                  Get Growth
-                </button>
-              </div>
-            </div>
+
           </div>
         </div>
 
@@ -1300,13 +1267,13 @@ const PricingSection = ({ onNavigate }) => {
                         <span className="text-xs font-bold text-slate-400">/ pack</span>
                       </div>
                       <span className="text-[10px] font-extrabold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200 inline-block mt-0.5">
-                        ₹10 per credit • Never Expires
+                        ₹10 per credit • 30 Days Expiry
                       </span>
                     </div>
                   </div>
 
                   {/* Micro Value Proposition Checklist */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 my-5">
+                  <div className="flex flex-wrap gap-x-5 gap-y-3 my-6">
                     <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
                       <CheckCircle />
                       <span>Instant credit deposit</span>
@@ -1317,7 +1284,7 @@ const PricingSection = ({ onNavigate }) => {
                     </div>
                     <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
                       <CheckCircle />
-                      <span>Zero expiration limit</span>
+                      <span>30 days expiration limit</span>
                     </div>
                   </div>
 
@@ -1341,28 +1308,6 @@ const PricingSection = ({ onNavigate }) => {
                   </button>
                 </div>
 
-                {/* Secondary Bulk Volume Option: Request a Discount */}
-                <div className="rounded-2xl bg-white/80 border border-slate-200/80 p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs hover:bg-white transition-colors">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-extrabold text-base shrink-0 border border-purple-200">
-                      %
-                    </div>
-                    <div>
-                      <span className="font-extrabold text-slate-900 text-xs sm:text-sm block">Need high-volume credits (500+)?</span>
-                      <span className="text-slate-500 text-[11px] sm:text-xs">Request up to <strong className="text-purple-700 font-extrabold">35% bulk discount</strong> for custom volumes.</span>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => onNavigate && onNavigate('contact')}
-                    className="px-4 py-2.5 rounded-xl border border-purple-200 text-purple-700 hover:bg-purple-600 hover:text-white font-extrabold text-xs flex items-center gap-1.5 transition-all shrink-0 cursor-pointer min-h-[40px]"
-                  >
-                    <span>Request Bulk Discount</span>
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                      <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                  </button>
-                </div>
 
               </div>
 
@@ -1383,8 +1328,8 @@ const PricingSection = ({ onNavigate }) => {
 
                 {/* Bottom-Left Floating Micro Badge */}
                 <div className="hidden sm:flex absolute -bottom-3 -left-4 z-30 items-center gap-1.5 bg-white border border-slate-200/90 shadow-lg px-3 py-1.5 rounded-2xl text-[10px] font-extrabold text-slate-800 -rotate-3 transition-transform hover:scale-105">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                  <span>Instant Delivery</span>
+                  <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
+                  <span>Scale Faster</span>
                 </div>
 
                 {/* Stacked 3D Showcase Cards Container */}
@@ -1393,40 +1338,44 @@ const PricingSection = ({ onNavigate }) => {
                   <div className="absolute inset-0 bg-gradient-to-tr from-purple-200 to-indigo-200 rounded-[36px] transform -rotate-6 scale-[0.98] opacity-75 shadow-lg border border-purple-200/60 transition-transform duration-300 group-hover:-rotate-8"></div>
                   
                   {/* Middle Card 2 (Soft Blue/Pink Gradient) */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-200 to-pink-200 rounded-[36px] transform rotate-6 scale-[0.99] opacity-85 shadow-md border border-blue-200/60 transition-transform duration-300 group-hover:rotate-8"></div>
+                  <div className="absolute inset-0 bg-gradient-to-tr from-pink-200 to-rose-200 rounded-[36px] transform rotate-6 scale-[0.99] opacity-85 shadow-md border border-pink-200/60 transition-transform duration-300 group-hover:rotate-8"></div>
                   
                   {/* Front Hero Card */}
                   <div className="relative bg-white rounded-[32px] p-6 sm:p-7 shadow-2xl border border-slate-200/90 text-center flex flex-col items-center justify-between w-full h-full transform -rotate-1 group-hover:rotate-0 transition-all duration-300 z-10">
                     
                     {/* Pill Badge */}
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/80 text-primary text-[10px] font-extrabold tracking-widest uppercase shadow-2xs">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-                      <span>⚡ 80 CREDITS</span>
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200/80 text-purple-700 text-[10px] font-extrabold tracking-widest uppercase shadow-2xs">
+                      <span className="w-1.5 h-1.5 rounded-full bg-purple-600 animate-pulse"></span>
+                      <span>ADD-ON</span>
                     </div>
 
-                    {/* Logo Box */}
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-b from-slate-50 to-slate-100/90 border border-slate-200/80 flex items-center justify-center shadow-md shadow-slate-200/50 my-1 group-hover:scale-105 transition-transform duration-300">
-                      <img 
-                        src="/33.png" 
-                        alt="CreamStack Logo" 
-                        className="w-10 h-10 object-contain drop-shadow-xs" 
-                      />
+                    {/* Envelope Icon Box */}
+                    <div className="w-16 h-16 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center shadow-inner my-2 group-hover:scale-105 group-hover:-rotate-3 transition-transform duration-300 text-purple-600">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                      </svg>
                     </div>
 
                     {/* Text Title */}
-                    <div>
-                      <h4 className="text-base sm:text-lg font-black text-slate-900 tracking-tight leading-tight m-0">
-                        Instant Top-Up.<br />
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-indigo-600 to-purple-600">80 Leads Ready.</span>
+                    <div className="flex flex-col items-center gap-1.5 mb-2">
+                      <h4 className="text-lg font-black text-slate-900 tracking-tight leading-tight m-0">
+                        1 Email Account
                       </h4>
+                      <div className="flex items-baseline justify-center gap-1">
+                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600 font-extrabold text-2xl">
+                          ₹1000
+                        </span>
+                        <span className="text-xs font-bold text-slate-500">/ yr</span>
+                      </div>
                     </div>
 
                     {/* Micro Stat Footer Tag */}
-                    <div className="inline-flex items-center gap-1 text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80">
+                    <div className="inline-flex items-center gap-1 text-[10px] font-extrabold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-200/80">
                       <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
                         <polyline points="20 6 9 17 4 12"></polyline>
                       </svg>
-                      <span>100% Verified Data</span>
+                      <span>Increase Sending Limits</span>
                     </div>
                   </div>
                 </div>
@@ -1439,9 +1388,11 @@ const PricingSection = ({ onNavigate }) => {
 
       </div>
 
+      </section>
+
       {/* CTA Section */}
       <CTASection onNavigate={onNavigate} />
-    </section>
+    </>
   );
 };
 
