@@ -94,7 +94,7 @@ const featureCategories = [
     ),
     features: [
       {
-        name: 'AI Message Personalization',
+        name: 'Autopilot Personalization',
         desc: '1:1 tailored icebreakers and hyper-personalized message hooks',
         starter: true,
         growth: true,
@@ -366,7 +366,7 @@ const PricingSection = ({ onNavigate }) => {
       ],
       highlights: [
         'Visual multi-channel campaign builder',
-        'AI message personalization & rewriting',
+        'Autopilot personalization & rewriting',
         'Unified multi-channel inbox',
         'Human-like sending cadence & safety',
         'Analytics & live conversion reports'

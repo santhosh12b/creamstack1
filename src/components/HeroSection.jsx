@@ -43,7 +43,7 @@ const HeroSection = ({ onNavigate }) => {
               onClick={() => onNavigate ? onNavigate('pricing') : window.location.hash = 'pricing'}
               className="btn btn-outline bg-white hover:bg-slate-50 cursor-pointer w-full sm:w-auto text-sm sm:text-base"
             >
-              Get Invite Code
+              Get Pricing
             </button>
           </div>
 
@@ -66,7 +66,7 @@ const HeroSection = ({ onNavigate }) => {
                 </div>
                 <span className="font-bold text-sm text-secondary">4.9/5</span>
               </div>
-              <p className="text-xs sm:text-sm text-text-light m-0">Loved by 1,000+ growth & agency teams</p>
+              <p className="text-xs sm:text-sm text-text-light m-0">Loved by 500+ Teams</p>
             </div>
           </div>
         </div>
@@ -126,7 +126,7 @@ const HeroSection = ({ onNavigate }) => {
               <div className="bg-slate-50 border border-slate-200/70 rounded-2xl p-3 mb-3">
                 <div className="flex items-center justify-between text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
                   <span className="text-primary font-extrabold flex items-center gap-1">
-                    <span>✨</span> AI Hyper-Personalized Hook
+                    <span>✨</span> Autopilot Hyper-Personalized Hook
                   </span>
                   <span>LinkedIn + Email</span>
                 </div>

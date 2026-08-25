@@ -28,7 +28,7 @@ const testimonials = [
 ];
 
 const stats = [
-  { value: "500+", label: "Active Teams and growing", icon: <TeamIcon />, color: "#3b82f6" },
+  { value: "500+", label: "Loved by Active Teams and growing", icon: <TeamIcon />, color: "#3b82f6" },
   { value: "3X+", label: "Faster Lead Research", icon: <UserSearchIcon />, color: "#8b5cf6" },
   { value: "95%+", label: "Verified Emails guaranteed", icon: <ShieldIcon />, color: "#10b981" },
   { value: "4-8X", label: "Average Reply Rate Increase", icon: <TrendingUpIcon />, color: "#f97316" }
@@ -46,7 +46,7 @@ const TestimonialSection = () => {
             Loved by teams that <span className="text-primary">live and breathe</span> outbound.
           </h2>
           <p className="text-white/80 text-sm sm:text-lg mt-2 sm:mt-4 mb-8 sm:mb-12 font-medium">
-            Join 500+ teams who are scaling their outreach with Creamstack.
+            Loved by 500+ teams who are scaling their outreach with Creamstack.
           </p>
         </div>
 

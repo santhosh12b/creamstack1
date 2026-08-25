@@ -486,7 +486,7 @@ const LeadManagementPage = ({ onNavigate }) => {
                         {/* AI Ideas Box */}
                         <div className="bg-purple-50/70 rounded-xl p-2.5 border border-purple-100 text-[11px]">
                           <div className="flex items-center justify-between mb-1">
-                            <span className="font-extrabold text-purple-900 text-[10px] uppercase">AI Message Ideas</span>
+                            <span className="font-extrabold text-purple-900 text-[10px] uppercase">Autopilot Ideas</span>
                             <span className="text-[9px] text-primary font-bold cursor-pointer">See all</span>
                           </div>
                           <p className="text-slate-700 italic m-0 mb-2">

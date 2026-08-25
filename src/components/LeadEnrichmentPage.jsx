@@ -80,7 +80,7 @@ const signalContent = {
 
 const builtFeatures = [
   {
-    title: 'AI Message Ideas',
+    title: 'Autopilot Ideas',
     desc: 'Personalized opening lines generated for every lead.',
     icon: <PencilIcon />,
     color: 'from-purple-500/10 to-pink-500/10 text-primary'
@@ -306,8 +306,8 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
                       <span className="font-extrabold text-emerald-600">Valid</span>
                     </div>
                     <div className="flex items-center justify-between py-2 border-b border-slate-200/60">
-                      <span className="text-slate-500 font-medium">Intent Hiring</span>
-                      <span className="font-extrabold text-secondary">Data Point</span>
+                      <span className="text-slate-500 font-medium">Intent </span>
+                      <span className="font-extrabold text-secondary">Hiring</span>
                     </div>
                     <div className="flex items-center justify-between py-2 border-b border-slate-200/60">
                       <span className="text-slate-500 font-medium">Enriched On</span>

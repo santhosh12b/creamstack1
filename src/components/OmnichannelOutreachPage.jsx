@@ -25,7 +25,7 @@ const OmnichannelOutreachPage = ({ onNavigate }) => {
     { label: 'Last Name', code: '{{lastName}}' },
     { label: 'Company', code: '{{company}}' },
     { label: 'Designation', code: '{{designation}}' },
-    { label: 'AI Message', code: '{{aiMessage}}' },
+    { label: 'Autopilot', code: '{{aiMessage}}' },
     { label: 'AI Follow-up', code: '{{aiFollowUp}}' }
   ];
 
