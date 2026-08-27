@@ -20,7 +20,7 @@ const LogoCloud = () => {
           {logos.map((logo, idx) => (
             <div 
               key={idx} 
-              className={`group flex items-center gap-2 sm:gap-3 px-3 py-1.5 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl bg-slate-50/70 border border-slate-200/60 shadow-2xs hover:shadow-md hover:bg-white transition-all duration-300 cursor-pointer ${logo.badgeColor}`}
+              className={`group flex items-center justify-center gap-2 sm:gap-3 px-3 py-2 min-h-[44px] sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl bg-slate-50/70 border border-slate-200/60 shadow-2xs hover:shadow-md hover:bg-white transition-all duration-300 cursor-pointer ${logo.badgeColor}`}
             >
               {logo.icon}
               <span className="text-xs sm:text-base lg:text-lg font-bold tracking-tight text-slate-700 group-hover:text-slate-950 transition-colors">

@@ -46,7 +46,7 @@ const TestimonialSection = () => {
             Loved by teams that <span className="text-primary">live and breathe</span> outbound.
           </h2>
           <p className="text-white/80 text-sm sm:text-lg mt-2 sm:mt-4 mb-8 sm:mb-12 font-medium">
-            Join 100+ businesses exploring smarter outreach with Creamstack.
+            Join 200+ businesses exploring smarter outreach with Creamstack.
           </p>
         </div>
 

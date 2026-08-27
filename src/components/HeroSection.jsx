@@ -31,7 +31,7 @@ const HeroSection = ({ onNavigate }) => {
             <a 
               href="#demo" 
               onClick={(e) => { if (onNavigate) { e.preventDefault(); onNavigate('demo'); } }}
-              className="btn btn-primary shadow-lg shadow-primary/25 w-full sm:w-auto text-sm sm:text-base"
+              className="btn btn-primary shadow-lg shadow-primary/25 w-full sm:w-auto text-[15px] sm:text-base py-3 min-h-[48px] flex items-center justify-center gap-2"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -40,7 +40,7 @@ const HeroSection = ({ onNavigate }) => {
             </a>
             <button 
               onClick={() => onNavigate ? onNavigate('pricing') : window.location.hash = 'pricing'}
-              className="btn btn-outline bg-white hover:bg-slate-50 cursor-pointer w-full sm:w-auto text-sm sm:text-base"
+              className="btn btn-outline bg-white hover:bg-slate-50 cursor-pointer w-full sm:w-auto text-[15px] sm:text-base py-3 min-h-[48px]"
             >
               Get Pricing
             </button>
@@ -138,7 +138,7 @@ const HeroSection = ({ onNavigate }) => {
               <div className="flex items-center gap-2 pt-1">
                 <button 
                   onClick={() => onNavigate ? onNavigate('pricing') : window.location.hash = 'pricing'}
-                  className="flex-1 py-2.5 px-3 bg-primary text-white rounded-xl font-bold text-xs shadow-md shadow-primary/25 flex items-center justify-center gap-1.5"
+                  className="flex-1 py-3 px-3 min-h-[44px] bg-primary text-white rounded-xl font-bold text-[13px] shadow-md shadow-primary/25 flex items-center justify-center gap-1.5"
                 >
                   <span>Launch Sequence</span>
                   <span>➔</span>
@@ -146,7 +146,7 @@ const HeroSection = ({ onNavigate }) => {
                 <a 
                   href="#demo" 
                   onClick={(e) => { if (onNavigate) { e.preventDefault(); onNavigate('demo'); } }}
-                  className="py-2.5 px-3 bg-slate-100 text-slate-700 rounded-xl font-bold text-xs border border-slate-200 flex items-center justify-center gap-1"
+                  className="py-3 px-3 min-h-[44px] bg-slate-100 text-slate-700 rounded-xl font-bold text-[13px] border border-slate-200 flex items-center justify-center gap-1"
                 >
                   <span>Interactive Demo</span>
                 </a>

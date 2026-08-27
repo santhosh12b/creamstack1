@@ -189,7 +189,7 @@ const UnifiedInboxPage = ({ onNavigate }) => {
                   <div className="flex items-center gap-2 mb-2">
                     <button 
                       onClick={() => setActiveTabComposer('reply')}
-                      className={`px-2.5 py-1 rounded-lg text-[10px] font-bold transition-all ${
+                      className={`px-3 py-2 min-h-[44px] rounded-lg text-xs font-bold transition-all ${
                         activeTabComposer === 'reply' ? 'bg-primary text-white shadow-xs' : 'text-slate-500'
                       }`}
                     >
@@ -197,7 +197,7 @@ const UnifiedInboxPage = ({ onNavigate }) => {
                     </button>
                     <button 
                       onClick={() => setActiveTabComposer('note')}
-                      className={`px-2.5 py-1 rounded-lg text-[10px] font-bold transition-all ${
+                      className={`px-3 py-2 min-h-[44px] rounded-lg text-xs font-bold transition-all ${
                         activeTabComposer === 'note' ? 'bg-primary text-white shadow-xs' : 'text-slate-500'
                       }`}
                     >
@@ -218,9 +218,9 @@ const UnifiedInboxPage = ({ onNavigate }) => {
                       <span className="p-1 hover:text-secondary cursor-pointer">📎</span>
                       <span className="p-1 hover:text-secondary cursor-pointer">😊</span>
                     </div>
-                    <button className="px-3.5 py-1.5 rounded-xl bg-primary text-white text-[11px] font-bold shadow-xs hover:bg-primary-hover flex items-center gap-1">
+                    <button className="px-4 py-2 min-h-[44px] rounded-xl bg-primary text-white text-xs font-bold shadow-xs hover:bg-primary-hover flex items-center gap-1">
                       <span>Send</span>
-                      <span className="text-[9px]">▼</span>
+                      <span className="text-[10px]">▼</span>
                     </button>
                   </div>
                 </div>
@@ -302,7 +302,7 @@ const UnifiedInboxPage = ({ onNavigate }) => {
                     <div 
                       key={idx}
                       onClick={() => setSelectedTag(cat.label)}
-                      className={`p-3 rounded-2xl border flex items-center justify-between text-xs font-bold transition-all cursor-pointer ${cat.color} ${
+                      className={`p-3 min-h-[44px] rounded-2xl border flex items-center justify-between text-xs font-bold transition-all cursor-pointer ${cat.color} ${
                         selectedTag === cat.label ? 'ring-2 ring-primary ring-offset-1 scale-[1.01]' : 'hover:opacity-90'
                       }`}
                     >
@@ -321,7 +321,7 @@ const UnifiedInboxPage = ({ onNavigate }) => {
                 <p className="text-slate-500 m-0 mb-3 text-[11px] leading-relaxed">
                   LinkedIn conversations can also be tagged manually for easy team organization.
                 </p>
-                <button className="w-full py-2 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold text-xs hover:bg-slate-100 transition-colors shadow-2xs">
+                <button className="w-full py-3 min-h-[44px] rounded-xl bg-white border border-slate-200 text-slate-700 font-bold text-xs hover:bg-slate-100 transition-colors shadow-2xs">
                   Add / Edit Tags
                 </button>
               </div>

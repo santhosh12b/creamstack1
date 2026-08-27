@@ -371,7 +371,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation menu"
-            className="w-9 h-9 rounded-xl border border-slate-200 bg-white flex items-center justify-center text-secondary hover:bg-slate-50 transition-colors cursor-pointer shadow-2xs"
+            className="w-11 h-11 min-h-[44px] min-w-[44px] rounded-xl border border-slate-200 bg-white flex items-center justify-center text-secondary hover:bg-slate-50 transition-colors cursor-pointer shadow-2xs"
           >
             {mobileMenuOpen ? (
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -399,7 +399,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
               <a 
                 href="#home"
                 onClick={(e) => handleNavClick(e, 'home', 'home')}
-                className={`px-3 py-2 rounded-xl text-sm font-bold transition-colors ${
+                className={`px-4 py-3 min-h-[44px] flex items-center rounded-xl text-[15px] font-bold transition-colors ${
                   currentPage === 'home' ? 'bg-primary/10 text-primary' : 'text-secondary hover:bg-slate-50'
                 }`}
               >
@@ -410,7 +410,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
               <div>
                 <button
                   onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                  className="w-full px-3 py-2 rounded-xl text-sm font-bold text-secondary flex items-center justify-between hover:bg-slate-50 transition-colors"
+                  className="w-full px-4 py-3 min-h-[44px] rounded-xl text-[15px] font-bold text-secondary flex items-center justify-between hover:bg-slate-50 transition-colors"
                 >
                   <span className="flex items-center gap-2">
                     <span>Products</span>
@@ -437,7 +437,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
                       <div
                         key={item.id}
                         onClick={(e) => handleNavClick(e, item.id)}
-                        className={`p-2.5 rounded-xl flex items-start gap-3 border transition-all cursor-pointer ${
+                        className={`p-3 min-h-[44px] rounded-xl flex items-start gap-3 border transition-all cursor-pointer ${
                           currentPage === item.id 
                             ? 'bg-blue-50/80 border-blue-200 text-primary' 
                             : 'bg-slate-50/60 border-slate-100 text-secondary hover:bg-slate-100'
@@ -467,7 +467,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
               <div>
                 <button
                   onClick={() => setMobileCompanyOpen(!mobileCompanyOpen)}
-                  className="w-full px-3 py-2 rounded-xl text-sm font-bold text-secondary flex items-center justify-between hover:bg-slate-50 transition-colors cursor-pointer"
+                  className="w-full px-4 py-3 min-h-[44px] rounded-xl text-[15px] font-bold text-secondary flex items-center justify-between hover:bg-slate-50 transition-colors cursor-pointer"
                 >
                   <span className="flex items-center gap-2">
                     <span>Company</span>
@@ -491,7 +491,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
                   <div className="pl-2 pr-1 pt-1.5 pb-2 flex flex-col gap-1.5">
                     <div
                       onClick={(e) => handleNavClick(e, 'about')}
-                      className={`p-2.5 rounded-xl flex items-start gap-3 border transition-all cursor-pointer ${
+                      className={`p-3 min-h-[44px] rounded-xl flex items-start gap-3 border transition-all cursor-pointer ${
                         currentPage === 'about' 
                           ? 'bg-blue-50/80 border-blue-200 text-primary font-bold shadow-2xs' 
                           : 'bg-slate-50/60 border-slate-100 text-secondary hover:bg-slate-100'
@@ -520,7 +520,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
 
                     <div
                       onClick={(e) => handleNavClick(e, 'contact')}
-                      className={`p-2.5 rounded-xl flex items-start gap-3 border transition-all cursor-pointer ${
+                      className={`p-3 min-h-[44px] rounded-xl flex items-start gap-3 border transition-all cursor-pointer ${
                         currentPage === 'contact' 
                           ? 'bg-blue-50/80 border-blue-200 text-primary font-bold shadow-2xs' 
                           : 'bg-slate-50/60 border-slate-100 text-secondary hover:bg-slate-100'
@@ -543,7 +543,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
               <a 
                 href="#pricing"
                 onClick={(e) => handleNavClick(e, 'pricing')}
-                className={`px-3 py-2 rounded-xl text-sm font-bold transition-colors ${
+                className={`px-4 py-3 min-h-[44px] flex items-center rounded-xl text-[15px] font-bold transition-colors ${
                   currentPage === 'pricing' ? 'bg-primary/10 text-primary' : 'text-secondary hover:bg-slate-50'
                 }`}
               >
@@ -553,10 +553,10 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
               <a
                 href="#demo"
                 onClick={(e) => handleNavClick(e, 'demo')}
-                className="px-3 py-2 rounded-xl text-sm font-bold text-secondary hover:bg-slate-50 transition-colors flex items-center justify-between"
+                className="px-4 py-3 min-h-[44px] rounded-xl text-[15px] font-bold text-secondary hover:bg-slate-50 transition-colors flex items-center justify-between"
               >
                 <span>Interactive Demo</span>
-                <span className="text-xs text-primary font-bold">Live ➔</span>
+                <span className="text-sm text-primary font-bold">Live ➔</span>
               </a>
             </div>
 
@@ -566,7 +566,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
                 href="https://app.creamstack.io/signup"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 rounded-2xl bg-primary hover:bg-primary-hover text-white font-extrabold text-sm shadow-md shadow-primary/20 transition-all text-center active:scale-98 inline-block"
+                className="w-full py-3 min-h-[48px] rounded-2xl bg-primary hover:bg-primary-hover text-white font-extrabold text-[15px] shadow-md shadow-primary/20 transition-all flex items-center justify-center active:scale-98"
               >
                 Sign Up
               </a>
@@ -574,7 +574,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
                 href="https://app.creamstack.io/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-2.5 rounded-2xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-xs transition-all text-center inline-block"
+                className="w-full py-3 min-h-[48px] rounded-2xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-sm transition-all flex items-center justify-center"
               >
                 Sign In to Platform
               </a>
