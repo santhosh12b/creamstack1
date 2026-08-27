@@ -14,13 +14,30 @@ const DemoGate = ({ onClose, onUnlock }) => {
   // ⚠️ PASTE YOUR GOOGLE SCRIPT WEB APP URL HERE ⚠️
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyMvqP2W-1vHw7JyQ403eCfAB72wCeSh3XsM25kxWAafmV4D3eqT1DaL2h1cH-5c-_DcA/exec";
 
-  const handlePhoneSubmit = async (e) => {
-    e.preventDefault();
-    if (!phone.trim()) {
-      setError('Please enter a valid WhatsApp number');
+  useEffect(() => {
+    // 1. Check if already verified in cookies/cache (localStorage)
+    if (localStorage.getItem('demo_verified') === 'true') {
+      onUnlock();
       return;
     }
+
+    // 2. Pre-fill phone number if passed in URL (e.g. ?phonenumber=1234 or #demo?phonenumber=1234)
+    const searchParams = new URLSearchParams(window.location.search);
+    let urlPhone = searchParams.get('phonenumber') || searchParams.get('phone');
     
+    if (!urlPhone && window.location.hash.includes('?')) {
+      const hashParams = new URLSearchParams(window.location.hash.split('?')[1]);
+      urlPhone = hashParams.get('phonenumber') || hashParams.get('phone');
+    }
+
+    if (urlPhone) {
+      setPhone(urlPhone);
+      verifyPhone(urlPhone);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [onUnlock]);
+
+  const verifyPhone = async (phoneNumber) => {
     setError('');
     setIsLoading(true);
 
@@ -29,7 +46,7 @@ const DemoGate = ({ onClose, onUnlock }) => {
         // Fallback to mock API if URL not set
         setTimeout(() => {
           setIsLoading(false);
-          if (phone === '5555555555') unlockDemo();
+          if (phoneNumber === '5555555555') unlockDemo();
           else setStep(2);
         }, 1000);
         return;
@@ -39,7 +56,7 @@ const DemoGate = ({ onClose, onUnlock }) => {
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ action: 'check', phone })
+        body: JSON.stringify({ action: 'check', phone: phoneNumber })
       });
       
       const result = await response.json();
@@ -56,7 +73,7 @@ const DemoGate = ({ onClose, onUnlock }) => {
         const sendResponse = await fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({ action: 'send_otp', phone, otp: generatedOtp })
+          body: JSON.stringify({ action: 'send_otp', phone: phoneNumber, otp: generatedOtp })
         });
         
         const sendResult = await sendResponse.json();
@@ -72,6 +89,15 @@ const DemoGate = ({ onClose, onUnlock }) => {
       setError('Connection error. Please try again.');
       setIsLoading(false);
     }
+  };
+
+  const handlePhoneSubmit = async (e) => {
+    e.preventDefault();
+    if (!phone.trim()) {
+      setError('Please enter a valid WhatsApp number');
+      return;
+    }
+    verifyPhone(phone);
   };
 
   const handleOtpSubmit = (e) => {

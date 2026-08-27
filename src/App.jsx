@@ -22,8 +22,8 @@ import DemoPage from './components/DemoPage';
 import DemoGate from './components/DemoGate';
 import Footer from './components/Footer';
 
-// Use a temporary variable instead of localStorage so it resets on page refresh
-let isSessionVerified = false;
+// Use localStorage so the verification persists across page reloads
+const checkIsVerified = () => localStorage.getItem('demo_verified') === 'true';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -32,12 +32,12 @@ function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.toLowerCase();
-      if (hash === '#demo' || hash === '#/demo') {
-        if (isSessionVerified) {
+      if (hash.startsWith('#demo') || hash.startsWith('#/demo')) {
+        if (checkIsVerified()) {
           setCurrentPage('demo');
           window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
-          window.location.hash = ''; // Clear hash so it doesn't stay on demo
+          setCurrentPage('home');
           setShowDemoGate(true); // Open global popup
         }
         return;
@@ -92,7 +92,7 @@ function App() {
 
   const navigateTo = (page, sectionId = null) => {
     if (page === 'demo' || sectionId === 'demo') {
-      if (isSessionVerified) {
+      if (checkIsVerified()) {
         setCurrentPage('demo');
         window.location.hash = 'demo';
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -210,7 +210,7 @@ function App() {
         <DemoGate 
           onClose={() => setShowDemoGate(false)} 
           onUnlock={() => {
-            isSessionVerified = true;
+            localStorage.setItem('demo_verified', 'true');
             setShowDemoGate(false);
             // After successful unlock, actually navigate to the demo page
             setCurrentPage('demo');
