@@ -68,9 +68,8 @@ const CTASection = ({ onNavigate }) => {
                 </button>
 
                 <a 
-                  href="https://demo.creamstack.io/"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#demo"
+                  onClick={(e) => { if (onNavigate) { e.preventDefault(); onNavigate('demo'); } }}
                   className="w-full sm:w-auto px-6 py-3.5 sm:px-7 sm:py-4 rounded-xl sm:rounded-2xl border border-white/20 bg-white/10 hover:bg-white/20 text-white font-bold text-sm sm:text-base shadow-sm backdrop-blur-md transition-all duration-200 flex items-center justify-center gap-2.5 hover:border-white/40 cursor-pointer group"
                 >
                   <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white/20 flex items-center justify-center text-white group-hover:scale-110 transition-transform">

@@ -208,8 +208,8 @@ const featureCategories = [
         isKey: false
       },
       {
-        name: 'Export & Import (CSV / Webhooks)',
-        desc: 'Fast bulk import and instant CSV / webhook sync with your systems',
+        name: 'Export & Import (CSV)',
+        desc: 'Fast bulk import and instant CSV sync with your systems',
         starter: true,
         growth: true,
         trial: true,
@@ -232,7 +232,7 @@ const featureCategories = [
     ),
     features: [
       {
-        name: 'Email Tracking & Pixel Health',
+        name: 'Email Tracking',
         desc: 'Spam trigger detection, domain health scores and bounce shield',
         starter: true,
         growth: true,
@@ -241,7 +241,7 @@ const featureCategories = [
         isKey: false
       },
       {
-        name: 'Campaign Reports Export',
+        name: 'Campaign Analysis',
         desc: 'Shareable executive summary reports for clients & team leads',
         starter: true,
         growth: true,
@@ -276,7 +276,6 @@ const PricingSection = ({ onNavigate }) => {
   const [currency, setCurrency] = useState('inr'); // 'inr' | 'usd'
   const [creditCount, setCreditCount] = useState(80);
   const [emailAccounts, setEmailAccounts] = useState(1);
-  const [emailYears, setEmailYears] = useState(1);
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeCategoryFilter, setActiveCategoryFilter] = useState('all');
   const [selectedMobilePlan, setSelectedMobilePlan] = useState('starter'); // 'trial' | 'starter' | 'growth' | 'scale'
@@ -1205,28 +1204,26 @@ const PricingSection = ({ onNavigate }) => {
         </div>
 
         {/* ========================================================================= */}
-        <div className="max-w-[1000px] mx-auto mt-12 sm:mt-16 bg-slate-50/50 rounded-3xl p-6 sm:p-10 border border-slate-100 shadow-sm">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="max-w-[1000px] mx-auto mt-12 sm:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
             
             {/* Left Column - Slider Area */}
-            <div className="flex flex-col h-full">
+            <div className="flex flex-col h-full bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 m-0">Select Credits</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 m-0">Topup Credits</h3>
                 </div>
                 
                 <p className="text-sm text-slate-500 mb-6">
                   Start with a minimum of {currency === 'usd' ? '$10' : '₹800'} and add credits as needed.
                 </p>
 
-                <div className="mb-6">
-                  <div className="inline-flex items-baseline gap-1 bg-blue-600 text-white px-3 py-1 mb-3 rounded shadow-xs">
-                    <span className="text-sm font-semibold">Amount:</span>
-                    <span className="font-bold">
+                <div className="mb-5">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm font-semibold text-slate-700">Purchase Amount</span>
+                    <span className="font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-md text-sm">
                       {currency === 'usd' ? `$${(creditCount / 10).toLocaleString()}` : `₹${(creditCount * 10).toLocaleString()}`}
                     </span>
                   </div>
-                  
                   <input 
                     type="range" 
                     min="80" 
@@ -1236,11 +1233,6 @@ const PricingSection = ({ onNavigate }) => {
                     onChange={(e) => setCreditCount(parseInt(e.target.value))}
                     className="w-full h-2 bg-blue-100 rounded-lg appearance-none cursor-pointer accent-blue-500"
                   />
-                  
-                  <div className="flex justify-between text-[10px] sm:text-xs text-slate-400 mt-2 font-medium">
-                    <span>{currency === 'usd' ? '$10' : '₹800'}</span>
-                    <span>{currency === 'usd' ? '$1,000' : '₹100,000'}</span>
-                  </div>
                 </div>
               </div>
 
@@ -1256,20 +1248,14 @@ const PricingSection = ({ onNavigate }) => {
                   </p>
                 </div>
 
-                <button
-                  onClick={() => handlePlanAction('buy-credits', `${creditCount} Credits Pack`)}
-                  disabled={loadingPlan === 'buy-credits'}
-                  className="w-full py-3.5 px-6 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-bold text-sm sm:text-base flex items-center justify-center transition-all duration-200 cursor-pointer active:scale-[0.98] shadow-md shadow-blue-500/25"
-                >
-                  {loadingPlan === 'buy-credits' ? 'Processing...' : 'Get Started'}
-                </button>
+
               </div>
             </div>
 
             {/* Right Column - Email Accounts Area */}
-            <div className="lg:pl-8 flex flex-col h-full">
+            <div className="flex flex-col h-full bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex-1">
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6">Extra Email Accounts</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6">Add On</h3>
                 
                 <p className="text-sm text-slate-500 mb-6">
                   Scale your outreach volume by adding more sending accounts.
@@ -1290,22 +1276,6 @@ const PricingSection = ({ onNavigate }) => {
                     className="w-full h-2 bg-purple-100 rounded-lg appearance-none cursor-pointer accent-purple-600"
                   />
                 </div>
-
-                <div className="mb-6">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-semibold text-slate-700">Duration (Years)</span>
-                    <span className="font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded-md text-sm">{emailYears} {emailYears === 1 ? 'Year' : 'Years'}</span>
-                  </div>
-                  <input 
-                    type="range" 
-                    min="1" 
-                    max="5" 
-                    step="1"
-                    value={emailYears}
-                    onChange={(e) => setEmailYears(parseInt(e.target.value))}
-                    className="w-full h-2 bg-purple-100 rounded-lg appearance-none cursor-pointer accent-purple-600"
-                  />
-                </div>
               </div>
 
               <div className="mt-auto">
@@ -1313,26 +1283,17 @@ const PricingSection = ({ onNavigate }) => {
                 <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 text-center mb-6 transition-all hover:shadow-md">
                   <p className="text-xs sm:text-sm text-slate-500 font-medium mb-2">Total Cost</p>
                   <div className="text-3xl sm:text-4xl font-bold text-purple-600 tracking-tight mb-2">
-                    {currency === 'usd' ? '$' + (emailAccounts * emailYears * 12).toLocaleString() : '₹' + (emailAccounts * emailYears * 1000).toLocaleString()}
+                    {currency === 'usd' ? '$' + (emailAccounts * 12).toLocaleString() : '₹' + (emailAccounts * 1000).toLocaleString()}
                   </div>
                   <p className="text-[11px] text-slate-400 font-medium">
-                    {currency === 'usd' ? '$12 per account / year' : '₹1000 per account / year'}
+                    {currency === 'usd' ? '$12 per account' : '₹1000 per account'}
                   </p>
                 </div>
 
-                <button
-                  onClick={() => handlePlanAction('buy-emails', `${emailAccounts} Email Accounts for ${emailYears} Years`)}
-                  disabled={loadingPlan === 'buy-emails'}
-                  className="w-full py-3.5 px-6 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm sm:text-base flex items-center justify-center transition-all duration-200 cursor-pointer active:scale-[0.98] shadow-md shadow-purple-600/25"
-                >
-                  {loadingPlan === 'buy-emails' ? 'Processing...' : 'Add Accounts'}
-                </button>
+
               </div>
             </div>
-
           </div>
-        </div>
-
       </div>
 
       </section>

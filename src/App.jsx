@@ -18,6 +18,7 @@ import PrivacyPolicyPage from './components/PrivacyPolicyPage';
 import TermsOfServicePage from './components/TermsOfServicePage';
 import CookiePolicyPage from './components/CookiePolicyPage';
 import SecurityPage from './components/SecurityPage';
+import DemoPage from './components/DemoPage';
 import Footer from './components/Footer';
 
 function App() {
@@ -27,7 +28,8 @@ function App() {
     const handleHashChange = () => {
       const hash = window.location.hash.toLowerCase();
       if (hash === '#demo' || hash === '#/demo') {
-        window.location.href = 'https://demo.creamstack.io/';
+        setCurrentPage('demo');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
       if (hash === '#pricing' || hash === '#/pricing') {
@@ -80,7 +82,9 @@ function App() {
 
   const navigateTo = (page, sectionId = null) => {
     if (page === 'demo' || sectionId === 'demo') {
-      window.location.href = 'https://demo.creamstack.io/';
+      setCurrentPage('demo');
+      window.location.hash = 'demo';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
     setCurrentPage(page);
@@ -169,6 +173,9 @@ function App() {
         ) : currentPage === 'unified-inbox' ? (
           /* PRODUCT 4: UNIFIED INBOX SINGLE PAGE */
           <UnifiedInboxPage onNavigate={navigateTo} />
+        ) : currentPage === 'demo' ? (
+          /* DEMO PAGE */
+          <DemoPage />
         ) : (
           /* HOME PAGE: Shows full Landing Page */
           <>

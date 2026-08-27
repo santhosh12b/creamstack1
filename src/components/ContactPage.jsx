@@ -66,9 +66,8 @@ const ContactPage = ({ onNavigate }) => {
                   <h4 className="text-base font-bold text-slate-900 mb-0.5">Schedule a Call</h4>
                   <p className="text-sm text-slate-500 m-0 mb-1.5">Book a demo or consultation</p>
                   <a 
-                    href="https://demo.creamstack.io/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
+                    href="#demo" 
+                    onClick={(e) => { if (onNavigate) { e.preventDefault(); onNavigate('demo'); } }}
                     className="text-sm font-semibold text-blue-600 hover:underline transition-colors"
                   >
                     Book a Demo Call

@@ -188,9 +188,8 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
                 {/* Footer link to demo */}
                 <div className="mt-2 pt-2 border-t border-slate-100 px-2">
                   <a
-                    href="https://demo.creamstack.io/"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="#demo"
+                    onClick={(e) => handleNavClick(e, 'demo')}
                     className="flex items-center justify-between p-2 rounded-xl bg-slate-50 hover:bg-blue-50/80 text-[11px] font-bold text-slate-700 hover:text-primary transition-all group"
                   >
                     <span className="flex items-center gap-1.5">
@@ -337,10 +336,11 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
             Pricing
           </a>
           <a 
-            href="https://demo.creamstack.io/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="flex items-center gap-1 text-[0.95rem] font-medium text-text-main hover:text-primary transition-colors"
+            href="#demo" 
+            onClick={(e) => handleNavClick(e, 'demo')}
+            className={`flex items-center gap-1 text-[0.95rem] font-medium transition-colors ${
+              currentPage === 'demo' ? 'text-primary font-bold' : 'text-text-main hover:text-primary'
+            }`}
           >
             Demo
           </a>
@@ -348,15 +348,22 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
 
         {/* Right Desktop CTA */}
         <div className="hidden md:flex items-center gap-3">
-          <button className="bg-transparent text-secondary hover:text-primary border border-gray-300 px-5 py-2 rounded-lg hover:bg-gray-50 transition-colors font-semibold text-sm">
+          <a 
+            href="https://app.creamstack.io/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-transparent text-secondary hover:text-primary border border-gray-300 px-5 py-2 rounded-lg hover:bg-gray-50 transition-colors font-semibold text-sm inline-block"
+          >
             Log In
-          </button>
-          <button 
-            onClick={(e) => handleNavClick(e, 'pricing')}
-            className="bg-primary hover:bg-primary-hover text-white px-5 py-2 rounded-lg transition-colors font-semibold text-sm shadow-sm"
+          </a>
+          <a 
+            href="https://app.creamstack.io/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-primary hover:bg-primary-hover text-white px-5 py-2 rounded-lg transition-colors font-semibold text-sm shadow-sm inline-block"
           >
             Sign Up
-          </button>
+          </a>
         </div>
 
         {/* Mobile Hamburger Toggle Button */}
@@ -543,10 +550,9 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
                 Pricing
               </a>
 
-              <a 
-                href="https://demo.creamstack.io/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <a
+                href="#demo"
+                onClick={(e) => handleNavClick(e, 'demo')}
                 className="px-3 py-2 rounded-xl text-sm font-bold text-secondary hover:bg-slate-50 transition-colors flex items-center justify-between"
               >
                 <span>Interactive Demo</span>
@@ -556,15 +562,22 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
 
             {/* Bottom Mobile Action Buttons: Sign Up & Log In */}
             <div className="flex flex-col gap-2 pt-1">
-              <button 
-                onClick={(e) => handleNavClick(e, 'pricing')}
-                className="w-full py-3 rounded-2xl bg-primary hover:bg-primary-hover text-white font-extrabold text-sm shadow-md shadow-primary/20 transition-all text-center active:scale-98"
+              <a 
+                href="https://app.creamstack.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 rounded-2xl bg-primary hover:bg-primary-hover text-white font-extrabold text-sm shadow-md shadow-primary/20 transition-all text-center active:scale-98 inline-block"
               >
-                Get Invite Code
-              </button>
-              <button className="w-full py-2.5 rounded-2xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-xs transition-all text-center">
+                Sign Up
+              </a>
+              <a 
+                href="https://app.creamstack.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-2.5 rounded-2xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-xs transition-all text-center inline-block"
+              >
                 Sign In to Platform
-              </button>
+              </a>
             </div>
 
           </div>

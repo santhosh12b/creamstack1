@@ -29,9 +29,8 @@ const HeroSection = ({ onNavigate }) => {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-2 w-full sm:w-auto">
             <a 
-              href="https://demo.creamstack.io/" 
-              target="_blank" 
-              rel="noopener noreferrer"
+              href="#demo" 
+              onClick={(e) => { if (onNavigate) { e.preventDefault(); onNavigate('demo'); } }}
               className="btn btn-primary shadow-lg shadow-primary/25 w-full sm:w-auto text-sm sm:text-base"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -145,9 +144,8 @@ const HeroSection = ({ onNavigate }) => {
                   <span>➔</span>
                 </button>
                 <a 
-                  href="https://demo.creamstack.io/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+                  href="#demo" 
+                  onClick={(e) => { if (onNavigate) { e.preventDefault(); onNavigate('demo'); } }}
                   className="py-2.5 px-3 bg-slate-100 text-slate-700 rounded-xl font-bold text-xs border border-slate-200 flex items-center justify-center gap-1"
                 >
                   <span>Interactive Demo</span>
