@@ -80,7 +80,7 @@ const DemoPage = () => {
         </p>
 
         {/* Video Player Container */}
-        <div className="w-full max-w-[960px] aspect-video bg-slate-900 rounded-[2rem] sm:rounded-[2.5rem] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.25)] overflow-hidden relative border border-slate-200/20">
+        <div className="w-full max-w-[960px] aspect-video relative">
           <iframe 
             className="absolute inset-0 w-full h-full"
             src="https://www.youtube.com/embed/X_0iGzu-E3M?rel=0&modestbranding=1" 
