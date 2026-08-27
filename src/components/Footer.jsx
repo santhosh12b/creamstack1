@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Footer = ({ currentPage = 'home', onNavigate }) => {
   const handleNavClick = (e, page, sectionId) => {
@@ -7,6 +7,36 @@ const Footer = ({ currentPage = 'home', onNavigate }) => {
       onNavigate(page, sectionId);
     } else {
       window.location.hash = sectionId || page;
+    }
+  };
+
+  const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    if (!email) return;
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          type: "newsletter",
+          email: email,
+          subject: "New Newsletter Subscriber"
+        }),
+      });
+      if (response.ok) {
+        setSubmitted(true);
+        setEmail('');
+        setTimeout(() => setSubmitted(false), 3000);
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Error subscribing.");
     }
   };
 
@@ -59,10 +89,25 @@ const Footer = ({ currentPage = 'home', onNavigate }) => {
           <div className="md:col-span-2 lg:col-span-1">
             <h5 className="text-[0.95rem] m-0 mb-4 text-secondary font-bold">Stay in the loop</h5>
             <p className="text-sm text-text-light mb-4">Get product updates, launches & more.</p>
-            <form className="flex gap-2 mb-6" onSubmit={(e) => e.preventDefault()}>
-              <input type="email" placeholder="Enter your email" className="flex-1 px-4 py-2 border border-border rounded-lg text-sm outline-none focus:border-primary transition-colors" />
-              <button type="submit" className="bg-primary hover:bg-primary-hover text-white w-10 h-10 rounded-lg flex items-center justify-center transition-colors shrink-0">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            <form className="flex gap-2 mb-6" onSubmit={handleSubscribe}>
+              <input 
+                type="email" 
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                placeholder={submitted ? "Subscribed Successfully!" : "Enter your email"} 
+                className={`flex-1 px-4 py-2 border rounded-lg text-sm outline-none transition-colors ${submitted ? 'border-emerald-500 bg-emerald-50 text-emerald-700 placeholder:text-emerald-600' : 'border-border focus:border-primary'}`} 
+                disabled={submitted}
+              />
+              <button 
+                type="submit" 
+                className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors shrink-0 ${submitted ? 'bg-emerald-500 text-white cursor-default' : 'bg-primary hover:bg-primary-hover text-white'}`}
+                disabled={submitted}
+              >
+                {submitted ? (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                ) : (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                )}
               </button>
             </form>
             <div className="flex gap-4">

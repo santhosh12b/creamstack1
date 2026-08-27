@@ -11,9 +11,38 @@ const ContactPage = ({ onNavigate }) => {
     message: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    
+    // Payload for our custom Vercel SMTP Serverless Function
+    const payload = {
+      type: "contact",
+      subject: `New Message from ${formData.name} - ${formData.subject}`,
+      ...formData
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json();
+      
+      if (result.success) {
+        setSubmitted(true);
+        // Clear form for next time
+        setFormData({ name: '', email: '', company: '', subject: '', message: '' });
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("There was an error submitting the form.");
+    }
   };
 
   return (

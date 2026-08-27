@@ -357,7 +357,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
             Log In
           </a>
           <a 
-            href="https://app.creamstack.io/"
+            href="https://app.creamstack.io/signup"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-primary hover:bg-primary-hover text-white px-5 py-2 rounded-lg transition-colors font-semibold text-sm shadow-sm inline-block"
@@ -563,7 +563,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
             {/* Bottom Mobile Action Buttons: Sign Up & Log In */}
             <div className="flex flex-col gap-2 pt-1">
               <a 
-                href="https://app.creamstack.io/"
+                href="https://app.creamstack.io/signup"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-3 rounded-2xl bg-primary hover:bg-primary-hover text-white font-extrabold text-sm shadow-md shadow-primary/20 transition-all text-center active:scale-98 inline-block"
