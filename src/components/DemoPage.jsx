@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 const faqs = [
   {
     q: "Do I need to connect my LinkedIn account to enrich leads?",
@@ -71,7 +70,7 @@ const DemoPage = () => {
 
         {/* Heading */}
         <h1 className="text-4xl sm:text-5xl md:text-[56px] font-black text-slate-900 tracking-tight text-center max-w-4xl leading-[1.1] mb-6">
-          The All-in-One Tool to <span className="text-blue-600">Find Leads, Research,</span> Personalize, and <span className="text-blue-600">Automate LinkedIn & Email Outreach.</span>
+          Watch how one tool simplifies your entire <span className="text-blue-600">LinkedIn and email outreach.</span>
         </h1>
 
         {/* Subtitle */}
@@ -80,13 +79,12 @@ const DemoPage = () => {
         </p>
 
         {/* Video Player Container */}
-        <div className="w-full max-w-[960px] aspect-video relative">
+        <div className="w-full max-w-[960px] aspect-video relative bg-slate-900 rounded-2xl overflow-hidden shadow-2xl shadow-slate-900/20 border border-slate-200">
           <iframe 
             className="absolute inset-0 w-full h-full"
-            src="https://www.youtube.com/embed/X_0iGzu-E3M?rel=0&modestbranding=1" 
-            title="Creamstack Interactive Demo"
+            src="https://player.vimeo.com/video/YOUR_VIMEO_ID?title=0&byline=0&portrait=0&dnt=1" 
             frameBorder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allow="autoplay; fullscreen; picture-in-picture" 
             allowFullScreen
           ></iframe>
         </div>

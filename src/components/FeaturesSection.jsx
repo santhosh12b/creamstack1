@@ -53,7 +53,7 @@ const FeaturesSection = () => {
           </div>
           
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-secondary tracking-tight mb-3 sm:mb-4 leading-tight">
-            Built for serious, <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-[#f472b6]">high-conversion</span><br />
+            Built for serious, <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-[#f472b6] whitespace-nowrap">high-conversion</span><br />
             outreach.
           </h2>
 

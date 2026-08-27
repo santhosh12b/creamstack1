@@ -125,7 +125,7 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
 
             {/* Headline */}
             <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-secondary tracking-tight leading-[1.15] m-0">
-              Find your next customer from <br className="hidden sm:block" />
+              Find your next customer from <br />
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-[#f472b6]">4 discovery points.</span>
             </h1>
 
@@ -348,7 +348,7 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
               {/* Right Column: Interactive Buying Signal Showcase (7 cols) */}
               <div className="lg:col-span-7 flex flex-col gap-4">
                 {/* Signal Tabs */}
-                <div className="flex overflow-x-auto gap-2 pb-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                <div className="flex flex-wrap justify-center sm:justify-start gap-2 pb-2">
                   {signalTabs.map((tab) => (
                     <button
                       key={tab.id}
@@ -367,14 +367,14 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
 
                 {/* Live Buying Signal Card */}
                 <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-md flex flex-col gap-4">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-start justify-between gap-2">
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                       <span className="text-xs font-bold text-secondary uppercase tracking-wider">
                         {signalContent[activeSignal].title}
                       </span>
                     </div>
-                    <span className="bg-primary/10 text-primary px-3 py-0.5 rounded-full text-xs font-extrabold">
+                    <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-extrabold whitespace-nowrap mt-1 sm:mt-0">
                       {signalContent[activeSignal].tag}
                     </span>
                   </div>
@@ -391,7 +391,7 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
                     <p className="text-xs sm:text-sm text-slate-700 italic leading-relaxed m-0">
                       "{signalContent[activeSignal].suggestion}"
                     </p>
-                    <div className="flex justify-end pt-1">
+                    <div className="flex justify-center sm:justify-end pt-2">
                       <button className="px-4 py-2.5 min-h-[44px] rounded-lg bg-primary hover:bg-primary-hover text-white text-xs font-bold shadow-sm flex items-center gap-1.5 transition-all">
                         <span>Use in Campaign</span>
                         <SparkleIcon />

@@ -88,12 +88,10 @@ const OmnichannelOutreachPage = ({ onNavigate }) => {
             </div>
 
             {/* Headline in strictly 2 lines */}
-            <h1 className="font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.5rem] text-secondary tracking-tight leading-[1.15] m-0">
-              <span className="inline md:whitespace-nowrap">Reach prospects across LinkedIn and</span>
-              <br />
-              <span className="inline md:whitespace-nowrap">
-                Email from <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-[#f472b6]">one workflow.</span>
-              </span>
+            <h1 className="font-extrabold text-[28px] sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.5rem] text-secondary tracking-tight leading-[1.25] sm:leading-[1.15] m-0 max-w-[350px] sm:max-w-none mx-auto">
+              Reach prospects across LinkedIn and
+              <br className="hidden sm:block" />{' '}
+              Email from <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-[#f472b6]">one workflow.</span>
             </h1>
 
             {/* Subtitle */}
@@ -141,7 +139,7 @@ const OmnichannelOutreachPage = ({ onNavigate }) => {
 
             {/* Right Column: 5 Process Steps Container (7 cols) */}
             <div className="lg:col-span-7 bg-[#fcfaff] rounded-3xl p-6 sm:p-8 border-2 border-dashed border-purple-200/90 shadow-sm">
-              <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
+              <div className="flex flex-wrap items-center justify-center sm:justify-between gap-4 gap-y-6">
                 {/* Step 1 */}
                 <div className="flex flex-col items-center gap-2 group">
                   <div className="w-13 h-13 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center text-secondary text-lg font-bold group-hover:scale-105 transition-transform">
@@ -381,34 +379,34 @@ const OmnichannelOutreachPage = ({ onNavigate }) => {
                 </p>
 
                 {/* Sequence Timing Visual */}
-                <div className="bg-slate-50/90 rounded-2xl p-4 border border-slate-200/80 flex items-center justify-between gap-2 mb-6 text-xs font-bold">
-                  <div className="bg-white px-3 py-2 rounded-xl border border-slate-200 shadow-xs text-secondary">
+                <div className="bg-slate-50/90 rounded-2xl p-4 border border-slate-200/80 flex flex-wrap items-center justify-center sm:justify-between gap-2 mb-6 text-xs font-bold">
+                  <div className="bg-white px-3 py-2 rounded-xl border border-slate-200 shadow-xs text-secondary whitespace-nowrap">
                     Action
                   </div>
                   <span className="text-[11px] text-slate-400">➔</span>
-                  <div className="bg-purple-50 text-primary border border-purple-200 px-3 py-1.5 rounded-xl text-[11px] text-center">
+                  <div className="bg-purple-50 text-primary border border-purple-200 px-3 py-1.5 rounded-xl text-[11px] text-center whitespace-nowrap">
                     ⏱️ 18h - 24h
                   </div>
                   <span className="text-[11px] text-slate-400">➔</span>
-                  <div className="bg-white px-3 py-2 rounded-xl border border-slate-200 shadow-xs text-secondary">
+                  <div className="bg-white px-3 py-2 rounded-xl border border-slate-200 shadow-xs text-secondary whitespace-nowrap">
                     Action
                   </div>
                   <span className="text-[11px] text-slate-400">➔</span>
-                  <div className="bg-purple-50 text-primary border border-purple-200 px-3 py-1.5 rounded-xl text-[11px] text-center">
+                  <div className="bg-purple-50 text-primary border border-purple-200 px-3 py-1.5 rounded-xl text-[11px] text-center whitespace-nowrap">
                     ⏱️ 1d - 2d
                   </div>
                 </div>
               </div>
 
               {/* Safety Badges */}
-              <div className="flex flex-wrap items-center gap-2 text-xs font-bold text-slate-700">
-                <span className="px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1.5">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 text-xs font-bold text-slate-700">
+                <span className="px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1.5 whitespace-nowrap">
                   ✓ Account safe
                 </span>
-                <span className="px-3 py-1.5 rounded-lg bg-blue-50 text-blue-700 border border-blue-200 flex items-center gap-1.5">
+                <span className="px-3 py-1.5 rounded-lg bg-blue-50 text-blue-700 border border-blue-200 flex items-center gap-1.5 whitespace-nowrap">
                   ✓ Smart delays
                 </span>
-                <span className="px-3 py-1.5 rounded-lg bg-purple-50 text-purple-700 border border-purple-200 flex items-center gap-1.5">
+                <span className="px-3 py-1.5 rounded-lg bg-purple-50 text-purple-700 border border-purple-200 flex items-center gap-1.5 whitespace-nowrap">
                   ✓ Natural interactions
                 </span>
               </div>
@@ -471,8 +469,8 @@ const OmnichannelOutreachPage = ({ onNavigate }) => {
                   <span className="text-xs font-bold text-primary cursor-pointer hover:underline">View All Leads →</span>
                 </div>
 
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left text-xs">
+                <div className="overflow-x-auto pb-2">
+                  <table className="w-full min-w-max text-left text-xs whitespace-nowrap">
                     <thead>
                       <tr className="border-b border-slate-100 text-slate-400 font-bold uppercase tracking-wider text-[10px]">
                         <th className="pb-3 font-semibold">Lead</th>

@@ -1200,10 +1200,12 @@ const PricingSection = ({ onNavigate }) => {
         <div className="max-w-[1000px] mx-auto mt-12 sm:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
             
             {/* Left Column - Slider Area */}
-            <div className="flex flex-col h-full bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex-1">
+            <div className="flex flex-col h-full bg-gradient-to-b from-white to-blue-50/40 rounded-[2rem] p-6 sm:p-8 border border-blue-100 shadow-[0_8px_30px_rgb(59,130,246,0.06)] hover:shadow-[0_8px_30px_rgb(59,130,246,0.12)] transition-all duration-300 relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-blue-500/10 transition-all duration-500 pointer-events-none"></div>
+              
+              <div className="relative z-10 flex-1">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 m-0">Topup Credits</h3>
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 m-0">Topup Credits</h3>
                 </div>
                 
                 <p className="text-sm text-slate-500 mb-6">
@@ -1229,9 +1231,9 @@ const PricingSection = ({ onNavigate }) => {
                 </div>
               </div>
 
-              <div className="mt-auto">
+              <div className="relative z-10 mt-auto">
 
-                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 text-center mb-6 transition-all hover:shadow-md">
+                <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-blue-200/60 shadow-[0_8px_20px_rgb(59,130,246,0.06)] p-6 sm:p-8 text-center mb-6 transition-all hover:shadow-[0_8px_20px_rgb(59,130,246,0.1)]">
                   <p className="text-xs sm:text-sm text-slate-500 font-medium mb-2">Credits You'll Receive</p>
                   <div className="text-3xl sm:text-4xl font-bold text-blue-500 tracking-tight mb-2">
                     {creditCount.toLocaleString()} Credits
@@ -1246,9 +1248,11 @@ const PricingSection = ({ onNavigate }) => {
             </div>
 
             {/* Right Column - Email Accounts Area */}
-            <div className="flex flex-col h-full bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex-1">
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6">Add On</h3>
+            <div className="flex flex-col h-full bg-gradient-to-b from-white to-purple-50/40 rounded-[2rem] p-6 sm:p-8 border border-purple-100 shadow-[0_8px_30px_rgb(168,85,247,0.06)] hover:shadow-[0_8px_30px_rgb(168,85,247,0.12)] transition-all duration-300 relative overflow-hidden group">
+              <div className="absolute top-0 left-0 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl -ml-20 -mt-20 group-hover:bg-purple-500/10 transition-all duration-500 pointer-events-none"></div>
+              
+              <div className="relative z-10 flex-1">
+                <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-6">Add On</h3>
                 
                 <p className="text-sm text-slate-500 mb-6">
                   Scale your outreach volume by adding more sending accounts.
@@ -1271,9 +1275,9 @@ const PricingSection = ({ onNavigate }) => {
                 </div>
               </div>
 
-              <div className="mt-auto">
+              <div className="relative z-10 mt-auto">
 
-                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 text-center mb-6 transition-all hover:shadow-md">
+                <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-purple-200/60 shadow-[0_8px_20px_rgb(168,85,247,0.06)] p-6 sm:p-8 text-center mb-6 transition-all hover:shadow-[0_8px_20px_rgb(168,85,247,0.1)]">
                   <p className="text-xs sm:text-sm text-slate-500 font-medium mb-2">Total Cost</p>
                   <div className="text-3xl sm:text-4xl font-bold text-purple-600 tracking-tight mb-2">
                     {currency === 'usd' ? '$' + (emailAccounts * 12).toLocaleString() : '₹' + (emailAccounts * 1000).toLocaleString()}

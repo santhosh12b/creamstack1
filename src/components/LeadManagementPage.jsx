@@ -433,7 +433,6 @@ const LeadManagementPage = ({ onNavigate }) => {
                       <div className="space-y-2 text-xs text-slate-600 pt-2 border-t border-slate-200/70">
                         <div className="flex items-center justify-between">
                           <span className="truncate">✉️ sarah@notion.so</span>
-                          <span className="text-[9px] bg-emerald-50 text-emerald-700 font-bold px-1.5 py-0.5 rounded border border-emerald-200">Verified</span>
                         </div>
                         <div className="text-slate-500 text-[11px]">📍 San Francisco, CA, US</div>
                         <div className="text-blue-600 font-medium text-[11px] truncate">🔗 linkedin.com/in/sarah-johnson</div>
@@ -451,12 +450,12 @@ const LeadManagementPage = ({ onNavigate }) => {
                     {/* Right Tabbed Details (7 cols) */}
                     <div className="md:col-span-7 flex flex-col gap-3">
                       {/* Tabs */}
-                      <div className="flex items-center gap-1.5 border-b border-slate-200 pb-2 overflow-x-auto text-[11px] font-bold">
+                      <div className="flex flex-wrap items-center gap-1.5 border-b border-slate-200 pb-2 text-[11px] font-bold">
                         {['Overview', 'Company', 'AI Ideas', 'Buying Intent', 'Activity'].map((tab) => (
                           <button
                             key={tab}
                             onClick={() => setActiveTabDetail(tab)}
-                            className={`px-2 py-1 rounded-md transition-colors cursor-pointer ${
+                            className={`px-2 py-1 rounded-md transition-colors cursor-pointer whitespace-nowrap ${
                               activeTabDetail === tab
                                 ? 'bg-primary text-white shadow-xs'
                                 : 'text-slate-500 hover:text-secondary'
@@ -476,7 +475,7 @@ const LeadManagementPage = ({ onNavigate }) => {
                           </p>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-2 text-[11px] bg-white p-2.5 rounded-xl border border-slate-200/80">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] bg-white p-2.5 rounded-xl border border-slate-200/80">
                           <div><span className="text-slate-400 font-medium">Industry:</span> <span className="font-bold text-secondary">Software</span></div>
                           <div><span className="text-slate-400 font-medium">Team Size:</span> <span className="font-bold text-secondary">201–500</span></div>
                           <div><span className="text-slate-400 font-medium">Company Size:</span> <span className="font-bold text-secondary">Series C</span></div>
@@ -504,7 +503,7 @@ const LeadManagementPage = ({ onNavigate }) => {
                             <span className="text-slate-600">Actively hiring for growth roles</span>
                           </div>
                           <span className="text-xs font-extrabold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-md">
-                            High 📈
+                            High 
                           </span>
                         </div>
                       </div>
@@ -614,8 +613,36 @@ const LeadManagementPage = ({ onNavigate }) => {
                   <span className="text-xs font-bold text-primary cursor-pointer hover:underline">Manage All Tags →</span>
                 </div>
 
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left text-xs">
+                {/* Mobile View: Stacked List */}
+                <div className="block lg:hidden divide-y divide-slate-100">
+                  {taggedLeads.map((lead, idx) => (
+                    <div key={idx} className="py-4 flex flex-col gap-3">
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="flex items-center gap-3">
+                          <img src={lead.avatar} alt={lead.name} className="w-9 h-9 rounded-full object-cover shadow-sm" />
+                          <div className="flex flex-col">
+                            <span className="font-bold text-secondary text-sm">{lead.name}</span>
+                            <span className="text-xs text-slate-500 font-medium">{lead.company}</span>
+                          </div>
+                        </div>
+                        <span className={`px-2.5 py-1 rounded-full text-[10px] font-extrabold border whitespace-nowrap ${lead.statusColor}`}>
+                          {lead.status}
+                        </span>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5 pl-[48px]">
+                        {lead.tags.map((t, tIdx) => (
+                          <span key={tIdx} className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Desktop View: Table */}
+                <div className="hidden lg:block overflow-x-auto pb-2">
+                  <table className="w-full min-w-max text-left text-xs whitespace-nowrap">
                     <thead>
                       <tr className="border-b border-slate-100 text-slate-400 font-bold uppercase tracking-wider text-[10px]">
                         <th className="pb-3 font-semibold">Name</th>

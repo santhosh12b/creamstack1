@@ -19,17 +19,27 @@ import TermsOfServicePage from './components/TermsOfServicePage';
 import CookiePolicyPage from './components/CookiePolicyPage';
 import SecurityPage from './components/SecurityPage';
 import DemoPage from './components/DemoPage';
+import DemoGate from './components/DemoGate';
 import Footer from './components/Footer';
+
+// Use a temporary variable instead of localStorage so it resets on page refresh
+let isSessionVerified = false;
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
+  const [showDemoGate, setShowDemoGate] = useState(false);
 
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.toLowerCase();
       if (hash === '#demo' || hash === '#/demo') {
-        setCurrentPage('demo');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (isSessionVerified) {
+          setCurrentPage('demo');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          window.location.hash = ''; // Clear hash so it doesn't stay on demo
+          setShowDemoGate(true); // Open global popup
+        }
         return;
       }
       if (hash === '#pricing' || hash === '#/pricing') {
@@ -82,9 +92,13 @@ function App() {
 
   const navigateTo = (page, sectionId = null) => {
     if (page === 'demo' || sectionId === 'demo') {
-      setCurrentPage('demo');
-      window.location.hash = 'demo';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (isSessionVerified) {
+        setCurrentPage('demo');
+        window.location.hash = 'demo';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        setShowDemoGate(true); // Intercept and show global popup
+      }
       return;
     }
     setCurrentPage(page);
@@ -190,6 +204,21 @@ function App() {
         )}
       </main>
       <Footer currentPage={currentPage} onNavigate={navigateTo} />
+      
+      {/* Global Demo Gate Popup */}
+      {showDemoGate && (
+        <DemoGate 
+          onClose={() => setShowDemoGate(false)} 
+          onUnlock={() => {
+            isSessionVerified = true;
+            setShowDemoGate(false);
+            // After successful unlock, actually navigate to the demo page
+            setCurrentPage('demo');
+            window.location.hash = 'demo';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }} 
+        />
+      )}
     </div>
   );
 }

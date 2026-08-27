@@ -95,8 +95,9 @@ const ContactPage = ({ onNavigate }) => {
                   <h4 className="text-base font-bold text-slate-900 mb-0.5">Schedule a Call</h4>
                   <p className="text-sm text-slate-500 m-0 mb-1.5">Book a demo or consultation</p>
                   <a 
-                    href="#demo" 
-                    onClick={(e) => { if (onNavigate) { e.preventDefault(); onNavigate('demo'); } }}
+                    href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0yXiaeX8LEWXUKXoUyhXyBeg1Uz3Y7PlTVIKK1o1jo8QB6X6Qdbo7lUH_rdKaOavwIU9wGIYbJ" 
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-sm font-semibold text-blue-600 hover:underline transition-colors"
                   >
                     Book a Demo Call

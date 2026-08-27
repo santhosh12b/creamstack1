@@ -72,21 +72,23 @@ const TestimonialSection = () => {
           ))}
         </div>
 
-        <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-8 sm:gap-12 md:gap-16 lg:gap-24 bg-white/5 border border-white/5 rounded-2xl p-5 sm:p-7 md:p-8">
-          {stats.map((stat, idx) => (
-            <div key={idx} className="flex items-center gap-4">
-              <div 
-                className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" 
-                style={{ backgroundColor: `${stat.color}20`, color: stat.color }}
-              >
-                {stat.icon}
+        <div className="bg-white/5 border border-white/5 rounded-2xl p-6 sm:p-7 md:p-8 flex justify-center">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center items-start sm:items-center gap-8 sm:gap-12 md:gap-16 lg:gap-24">
+            {stats.map((stat, idx) => (
+              <div key={idx} className="flex items-center gap-4">
+                <div 
+                  className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" 
+                  style={{ backgroundColor: `${stat.color}20`, color: stat.color }}
+                >
+                  {stat.icon}
+                </div>
+                <div className="flex flex-col">
+                  <h3 className="text-2xl m-0 text-white font-bold">{stat.value}</h3>
+                  <p className="text-xs text-white/50 m-0 leading-tight">{stat.label}</p>
+                </div>
               </div>
-              <div className="flex flex-col">
-                <h3 className="text-2xl m-0 text-white font-bold">{stat.value}</h3>
-                <p className="text-xs text-white/50 m-0 leading-tight">{stat.label}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

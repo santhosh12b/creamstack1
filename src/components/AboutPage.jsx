@@ -66,54 +66,26 @@ const AboutPage = ({ onNavigate }) => {
           {/* Subtle background glow for the master frame */}
           <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-primary via-purple-500 to-emerald-400"></div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          <div className="flex flex-col gap-12 lg:gap-16 max-w-4xl mx-auto">
             
-            {/* Left Column (Key Narrative) */}
-            <div className="lg:col-span-5 lg:sticky lg:top-12">
-              <div className="text-xs font-extrabold uppercase tracking-wider text-primary mb-4 flex items-center gap-2">
+            {/* Top Narrative */}
+            <div className="flex flex-col items-center text-center px-4">
+              <div className="text-xs font-extrabold uppercase tracking-wider text-primary mb-4 flex items-center justify-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-primary animate-ping"></span>
                 <span>The Origin & Observation</span>
               </div>
 
-              <p className="text-lg sm:text-xl text-slate-800 font-semibold leading-relaxed m-0 mb-8">
+              <p className="text-lg sm:text-2xl text-slate-800 font-semibold leading-relaxed m-0">
                 Creamstack was born from a simple observation: traditional outreach methods were becoming less effective, while social signals were becoming more important than ever. We recognized the gap between the wealth of social data available and the tools to effectively leverage it.
               </p>
-
-              {/* Live Metric Chips */}
-              <div className="pt-8 border-t border-slate-100 grid grid-cols-2 gap-4 mb-8">
-                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100">
-                  <div className="text-2xl sm:text-3xl font-black text-slate-900">3.8x</div>
-                  <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mt-1">Reply Rate Boost</div>
-                </div>
-                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100">
-                  <div className="text-2xl sm:text-3xl font-black text-slate-900">100%</div>
-                  <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mt-1">Social Signal Driven</div>
-                </div>
-              </div>
-
-              {/* Pixoda Inner Pill */}
-              <div className="p-4 rounded-2xl bg-blue-50/60 border border-blue-100 text-slate-800 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-blue-200 text-primary flex items-center justify-center font-black text-base shadow-sm">
-                    P
-                  </div>
-                  <div>
-                    <div className="text-sm font-extrabold text-slate-900">Built & Owned by Pixoda</div>
-                    <div className="text-xs text-slate-500 font-medium mt-0.5">Outreach Marketing Agency</div>
-                  </div>
-                </div>
-                <span className="text-[10px] font-extrabold px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/80">
-                  Verified
-                </span>
-              </div>
             </div>
 
-            {/* Right Column (Chronological Journey & Pixoda Heritage) */}
-            <div className="lg:col-span-7 flex flex-col gap-6">
+            {/* Chronological Journey & Pixoda Heritage (Unified Box) */}
+            <div className="bg-slate-50 rounded-3xl p-7 sm:p-10 border border-slate-100 flex flex-col">
               
               {/* Step 1: Building the Solution */}
-              <div className="bg-slate-50 rounded-3xl p-7 sm:p-9 border border-slate-100">
-                <div className="flex items-center gap-3 mb-4">
+              <div className="pb-8 sm:pb-10 border-b border-slate-200/80">
+                <div className="flex flex-wrap items-center gap-3 mb-4">
                   <span className="text-xs font-black text-primary bg-blue-50/50 border border-blue-100/50 px-3 py-1 rounded-full uppercase tracking-wider">
                     01 / Evolution
                   </span>
@@ -128,8 +100,8 @@ const AboutPage = ({ onNavigate }) => {
               </div>
 
               {/* Step 2: Featured Pixoda Agency Heritage Light Card */}
-              <div className="bg-gradient-to-br from-blue-50/40 via-white to-purple-50/30 rounded-3xl p-7 sm:p-9 border border-blue-100/80">
-                <div className="flex items-center justify-between gap-2 mb-4">
+              <div className="py-8 sm:py-10 border-b border-slate-200/80">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
                   <span className="text-xs font-black text-blue-700 bg-blue-50 border border-blue-100/50 px-3 py-1 rounded-full uppercase tracking-wider">
                     02 / Foundation
                   </span>
@@ -149,8 +121,8 @@ const AboutPage = ({ onNavigate }) => {
               </div>
 
               {/* Step 3: Our Commitment */}
-              <div className="bg-slate-50 rounded-3xl p-7 sm:p-9 border border-slate-100">
-                <div className="flex items-center gap-3 mb-4">
+              <div className="pt-8 sm:pt-10">
+                <div className="flex flex-wrap items-center gap-3 mb-4">
                   <span className="text-xs font-black text-emerald-600 bg-emerald-50/50 border border-emerald-100/50 px-3 py-1 rounded-full uppercase tracking-wider">
                     03 / Commitment
                   </span>

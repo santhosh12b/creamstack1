@@ -18,6 +18,12 @@
 
   --animate-float: float 5s ease-in-out infinite reverse;
   --animate-float-chip: float-chip 6s ease-in-out infinite;
+  --animate-marquee: marquee 50s linear infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 
   @keyframes float {
     0%, 100% { transform: translateY(0px) rotate(45deg); }

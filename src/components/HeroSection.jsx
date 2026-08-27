@@ -13,12 +13,12 @@ const HeroSection = ({ onNavigate }) => {
           </div>
 
           {/* Heading */}
-          <h1 className="font-extrabold text-2xl sm:text-4xl md:text-5xl lg:text-[3.1rem] xl:text-[3.4rem] text-secondary tracking-tight leading-[1.2] sm:leading-[1.15] m-0">
-            <span>The All-in-One Tool to Find Leads,</span>
+          <h1 className="font-extrabold text-[22px] sm:text-4xl md:text-5xl lg:text-[3.1rem] xl:text-[3.4rem] text-secondary tracking-tight leading-[1.3] sm:leading-[1.15] m-0">
+            <span className="whitespace-nowrap sm:whitespace-normal">The All-in-One Tool to Find Leads,</span>
             <br />
-            <span>Research, Personalize, and Automate</span>
+            <span className="whitespace-nowrap sm:whitespace-normal">Research, Personalize, and Automate</span>
             <br />
-            <span className="text-gradient">LinkedIn & Email Outreach.</span>
+            <span className="text-gradient whitespace-nowrap sm:whitespace-normal">LinkedIn & Email Outreach.</span>
           </h1>
 
           {/* Description */}
@@ -49,10 +49,10 @@ const HeroSection = ({ onNavigate }) => {
           {/* Social Proof & Rating */}
           <div className="flex flex-wrap items-center justify-center gap-4 mt-4">
             <div className="relative flex">
-              <div className="w-10 h-10 rounded-full border-2 border-white bg-slate-300 bg-[url('https://i.pravatar.cc/100?img=1')] bg-cover"></div>
-              <div className="w-10 h-10 rounded-full border-2 border-white bg-slate-300 bg-[url('https://i.pravatar.cc/100?img=2')] bg-cover -ml-3"></div>
-              <div className="w-10 h-10 rounded-full border-2 border-white bg-slate-300 bg-[url('https://i.pravatar.cc/100?img=3')] bg-cover -ml-3"></div>
-              <div className="w-10 h-10 rounded-full border-2 border-white bg-slate-300 bg-[url('https://i.pravatar.cc/100?img=4')] bg-cover -ml-3"></div>
+              <div className="w-10 h-10 rounded-full border-2 border-white bg-blue-500 text-white flex items-center justify-center font-bold text-sm shadow-sm">M</div>
+              <div className="w-10 h-10 rounded-full border-2 border-white bg-emerald-500 text-white flex items-center justify-center font-bold text-sm shadow-sm -ml-3">S</div>
+              <div className="w-10 h-10 rounded-full border-2 border-white bg-purple-500 text-white flex items-center justify-center font-bold text-sm shadow-sm -ml-3">J</div>
+              <div className="w-10 h-10 rounded-full border-2 border-white bg-pink-500 text-white flex items-center justify-center font-bold text-sm shadow-sm -ml-3">A</div>
             </div>
             <div className="flex flex-col gap-0.5 text-left">
               <div className="flex items-center gap-2">
@@ -65,7 +65,7 @@ const HeroSection = ({ onNavigate }) => {
                 </div>
                 <span className="font-bold text-sm text-secondary">4.9/5</span>
               </div>
-              <p className="text-xs sm:text-sm text-text-light m-0">Loved by 200+ Teams</p>
+              <p className="text-xs sm:text-sm text-text-light m-0">Loved by 200+ Exploring Teams</p>
             </div>
           </div>
         </div>
