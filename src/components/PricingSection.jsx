@@ -318,6 +318,7 @@ const PricingSection = ({ onNavigate }) => {
       tab: 'trial',
       subtitle: '5 inboxes for 5 days',
       price: currency === 'usd' ? '$5' : '₹500',
+      originalPrice: currency === 'usd' ? '$10' : '₹1,000',
       period: 'One-time payment',
       badge: 'Risk-Free',
       badgeStyle: 'bg-purple-100 text-purple-700 border-purple-200',
@@ -343,6 +344,7 @@ const PricingSection = ({ onNavigate }) => {
       tab: 'monthly',
       subtitle: 'For solopreneurs & founders',
       price: currency === 'usd' ? '$59' : '₹4,800',
+      originalPrice: currency === 'usd' ? '$79' : '₹6,000',
       period: '+ GST / month',
       badge: 'Solopreneur',
       badgeStyle: 'bg-slate-100 text-slate-700 border-slate-200',
@@ -368,6 +370,7 @@ const PricingSection = ({ onNavigate }) => {
       tab: 'monthly',
       subtitle: 'For scaling teams & agencies',
       price: currency === 'usd' ? '$99' : '₹7,850',
+      originalPrice: currency === 'usd' ? '$129' : '₹10,000',
       period: '+ GST / month',
       badge: '★ Most Popular',
       badgeStyle: 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-xs',
@@ -393,6 +396,7 @@ const PricingSection = ({ onNavigate }) => {
       tab: 'monthly',
       subtitle: 'For high-volume outreach',
       price: currency === 'usd' ? '$139' : '₹11,000',
+      originalPrice: currency === 'usd' ? '$189' : '₹15,000',
       period: '+ GST / month',
       badge: 'Maximum Power',
       badgeStyle: 'bg-emerald-100 text-emerald-700 border-emerald-200',
@@ -577,6 +581,9 @@ const PricingSection = ({ onNavigate }) => {
               <div className="text-right shrink-0">
                 <div className="text-2xl font-black text-slate-900 tracking-tight leading-none">
                   {currentMobilePlan.price}
+                </div>
+                <div className="text-xs text-slate-400 line-through font-semibold mt-1">
+                  {currentMobilePlan.originalPrice}
                 </div>
                 <div className="text-[10px] text-slate-500 font-medium mt-1">
                   {currentMobilePlan.period}
@@ -772,6 +779,7 @@ const PricingSection = ({ onNavigate }) => {
                     <h3 className="text-xl font-bold text-slate-900 mb-1">Trial</h3>
                     <p className="text-[11px] text-slate-500 font-medium m-0 mb-3">5 inboxes for 5 days</p>
                     <div className="text-3xl font-extrabold text-slate-900 tracking-tight">{currency === 'usd' ? '$5' : '₹500'}</div>
+                    <div className="text-sm text-slate-400 line-through font-semibold mt-1">{currency === 'usd' ? '$10' : '₹1,000'}</div>
                     <div className="text-xs text-slate-500 font-medium mt-1">One-time payment</div>
                   </div>
                   <div className="mt-auto pt-6">
@@ -799,6 +807,7 @@ const PricingSection = ({ onNavigate }) => {
                     <h3 className="text-xl font-bold text-slate-900 mb-1">Starter</h3>
                     <p className="text-[11px] text-slate-500 font-medium m-0 mb-3">For solopreneurs & founders</p>
                     <div className="text-3xl font-extrabold text-slate-900 tracking-tight">{currency === 'usd' ? '$59' : '₹4,800'}</div>
+                    <div className="text-sm text-slate-400 line-through font-semibold mt-1">{currency === 'usd' ? '$79' : '₹6,000'}</div>
                     <div className="text-xs text-slate-500 font-medium mt-1">+ GST / month</div>
                   </div>
                   <div className="mt-auto pt-6">
@@ -822,6 +831,7 @@ const PricingSection = ({ onNavigate }) => {
                     <h3 className="text-xl font-bold text-slate-900 mb-1">Growth</h3>
                     <p className="text-[11px] text-slate-500 font-medium m-0 mb-3">For scaling teams & agencies</p>
                     <div className="text-3xl font-extrabold text-slate-900 tracking-tight">{currency === 'usd' ? '$99' : '₹7,850'}</div>
+                    <div className="text-sm text-slate-400 line-through font-semibold mt-1">{currency === 'usd' ? '$129' : '₹10,000'}</div>
                     <div className="text-xs text-slate-500 font-medium mt-1">+ GST / month</div>
                   </div>
                   <div className="mt-auto pt-6">
@@ -842,6 +852,7 @@ const PricingSection = ({ onNavigate }) => {
                     <h3 className="text-xl font-bold text-slate-900 mb-1">Scale</h3>
                     <p className="text-[11px] text-slate-500 font-medium m-0 mb-3">For high-volume outreach</p>
                     <div className="text-3xl font-extrabold text-slate-900 tracking-tight">{currency === 'usd' ? '$139' : '₹11,000'}</div>
+                    <div className="text-sm text-slate-400 line-through font-semibold mt-1">{currency === 'usd' ? '$189' : '₹15,000'}</div>
                     <div className="text-xs text-slate-500 font-medium mt-1">+ GST / month</div>
                   </div>
                   <div className="mt-auto pt-6">
