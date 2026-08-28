@@ -25,21 +25,21 @@ export default async function handler(req, res) {
   });
 
   try {
+    // 1. Prepare Email Promise
+    let emailPromise;
     if (type === 'newsletter') {
-      // Send Newsletter Subscription Notification
-      await transporter.sendMail({
+      emailPromise = transporter.sendMail({
         from: `"Creamstack Website" <${process.env.SMTP_USER}>`,
-        to: process.env.NOTIFICATION_EMAIL || process.env.SMTP_USER, // The inbox that receives notifications
+        to: process.env.NOTIFICATION_EMAIL || process.env.SMTP_USER,
         subject: 'New Newsletter Subscriber!',
         text: `You have a new newsletter subscriber: ${email}`,
         html: `<p>You have a new newsletter subscriber: <strong>${email}</strong></p>`
       });
     } else {
-      // Send Contact Form Submission Notification
-      await transporter.sendMail({
+      emailPromise = transporter.sendMail({
         from: `"Creamstack Website" <${process.env.SMTP_USER}>`,
-        to: process.env.NOTIFICATION_EMAIL || process.env.SMTP_USER, // The inbox that receives notifications
-        replyTo: email, // So you can hit "Reply" and email the user directly
+        to: process.env.NOTIFICATION_EMAIL || process.env.SMTP_USER,
+        replyTo: email,
         subject: `New Contact Form Submission: ${subject || 'General'}`,
         text: `Name: ${name}\nEmail: ${email}\nCompany: ${company || 'N/A'}\n\nMessage:\n${message}`,
         html: `
@@ -55,29 +55,28 @@ export default async function handler(req, res) {
       });
     }
 
-    // Google Sheets Webhook Integration
+    // 2. Prepare Google Sheets Webhook Promise
+    let sheetPromise = Promise.resolve();
     if (process.env.GOOGLE_SHEET_WEBHOOK_URL) {
-      try {
-        await fetch(process.env.GOOGLE_SHEET_WEBHOOK_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            action: 'contact_form',
-            type: type || 'contact',
-            name: name || '',
-            email: email || '',
-            company: company || '',
-            subject: subject || '',
-            message: message || ''
-          }),
-        });
-      } catch (sheetError) {
+      sheetPromise = fetch(process.env.GOOGLE_SHEET_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'contact_form',
+          type: type || 'contact',
+          name: name || '',
+          email: email || '',
+          company: company || '',
+          subject: subject || '',
+          message: message || ''
+        }),
+      }).catch(sheetError => {
         console.error("Error saving to Google Sheets:", sheetError);
-        // We do not throw the error here so the user still gets a success response for the email
-      }
+      });
     }
+
+    // 3. Execute both concurrently to save time
+    await Promise.all([emailPromise, sheetPromise]);
 
     // Success response
     res.status(200).json({ success: true, message: 'Email sent successfully!' });
