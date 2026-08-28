@@ -18,7 +18,7 @@ import PrivacyPolicyPage from './components/PrivacyPolicyPage';
 import TermsOfServicePage from './components/TermsOfServicePage';
 import CookiePolicyPage from './components/CookiePolicyPage';
 import SecurityPage from './components/SecurityPage';
-import DemoPage from './components/DemoPage';
+import DemoPage from './components/DemoPage';    
 import DemoGate from './components/DemoGate';
 import Footer from './components/Footer';
 
@@ -38,7 +38,7 @@ function App() {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
           setCurrentPage('home');
-          setShowDemoGate(true); // Open global popup
+          setShowDemoGate(true); 
         }
         return;
       }

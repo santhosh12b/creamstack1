@@ -55,6 +55,30 @@ export default async function handler(req, res) {
       });
     }
 
+    // Google Sheets Webhook Integration
+    if (process.env.GOOGLE_SHEET_WEBHOOK_URL) {
+      try {
+        await fetch(process.env.GOOGLE_SHEET_WEBHOOK_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            action: 'contact_form',
+            type: type || 'contact',
+            name: name || '',
+            email: email || '',
+            company: company || '',
+            subject: subject || '',
+            message: message || ''
+          }),
+        });
+      } catch (sheetError) {
+        console.error("Error saving to Google Sheets:", sheetError);
+        // We do not throw the error here so the user still gets a success response for the email
+      }
+    }
+
     // Success response
     res.status(200).json({ success: true, message: 'Email sent successfully!' });
   } catch (error) {
