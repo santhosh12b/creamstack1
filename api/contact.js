@@ -13,46 +13,49 @@ export default async function handler(req, res) {
     return res.status(400).json({ success: false, message: 'Email is required' });
   }
 
-  // Set up Nodemailer transporter using Vercel Environment Variables
-  const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT || '587', 10),
-    secure: process.env.SMTP_SECURE === 'true', // true for 465, false for 587
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  });
-
   try {
     // 1. Prepare Email Promise
-    let emailPromise;
-    if (type === 'newsletter') {
-      emailPromise = transporter.sendMail({
-        from: `"Creamstack Website" <${process.env.SMTP_USER}>`,
-        to: process.env.NOTIFICATION_EMAIL || process.env.SMTP_USER,
-        subject: 'New Newsletter Subscriber!',
-        text: `You have a new newsletter subscriber: ${email}`,
-        html: `<p>You have a new newsletter subscriber: <strong>${email}</strong></p>`
+    let emailPromise = Promise.resolve();
+    
+    // Only attempt to create transporter and send email if SMTP is configured
+    if (process.env.SMTP_HOST && process.env.SMTP_USER) {
+      const transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST,
+        port: parseInt(process.env.SMTP_PORT || '587', 10),
+        secure: process.env.SMTP_SECURE === 'true',
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
+        },
       });
-    } else {
-      emailPromise = transporter.sendMail({
-        from: `"Creamstack Website" <${process.env.SMTP_USER}>`,
-        to: process.env.NOTIFICATION_EMAIL || process.env.SMTP_USER,
-        replyTo: email,
-        subject: `New Contact Form Submission: ${subject || 'General'}`,
-        text: `Name: ${name}\nEmail: ${email}\nCompany: ${company || 'N/A'}\n\nMessage:\n${message}`,
-        html: `
-          <h3>New Contact Form Submission</h3>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Company:</strong> ${company || 'N/A'}</p>
-          <p><strong>Subject:</strong> ${subject}</p>
-          <br />
-          <p><strong>Message:</strong></p>
-          <p>${message.replace(/\n/g, '<br/>')}</p>
-        `
-      });
+
+      if (type === 'newsletter') {
+        emailPromise = transporter.sendMail({
+          from: `"Creamstack Website" <${process.env.SMTP_USER}>`,
+          to: process.env.NOTIFICATION_EMAIL || process.env.SMTP_USER,
+          subject: 'New Newsletter Subscriber!',
+          text: `You have a new newsletter subscriber: ${email}`,
+          html: `<p>You have a new newsletter subscriber: <strong>${email}</strong></p>`
+        });
+      } else {
+        emailPromise = transporter.sendMail({
+          from: `"Creamstack Website" <${process.env.SMTP_USER}>`,
+          to: process.env.NOTIFICATION_EMAIL || process.env.SMTP_USER,
+          replyTo: email,
+          subject: `New Contact Form Submission: ${subject || 'General'}`,
+          text: `Name: ${name}\nEmail: ${email}\nCompany: ${company || 'N/A'}\n\nMessage:\n${message}`,
+          html: `
+            <h3>New Contact Form Submission</h3>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Company:</strong> ${company || 'N/A'}</p>
+            <p><strong>Subject:</strong> ${subject}</p>
+            <br />
+            <p><strong>Message:</strong></p>
+            <p>${message.replace(/\n/g, '<br/>')}</p>
+          `
+        });
+      }
     }
 
     // 2. Prepare Google Sheets Webhook Promise

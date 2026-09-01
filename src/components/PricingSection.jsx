@@ -1210,8 +1210,8 @@ const PricingSection = ({ onNavigate }) => {
         {/* ========================================================================= */}
         {/* ================= HOW CREDITS ARE SPENT ================================ */}
         {/* ========================================================================= */}
-        <div className="max-w-[1000px] mx-auto mt-12 sm:mt-16 bg-[#F8FAFC] rounded-[2.5rem] p-8 sm:p-12 border border-slate-100/80 shadow-[0_4px_30px_-5px_rgba(0,0,0,0.03)]">
-          <div className="mb-10 flex flex-col items-start">
+        <div className="max-w-[1000px] mx-auto mt-12 sm:mt-16">
+          <div className="mb-10 flex flex-col items-center text-center">
             <span className="inline-flex px-3.5 py-1 bg-[#EFF6FF] text-[#3B82F6] text-[10px] font-bold tracking-[0.1em] uppercase rounded-full mb-4">
               How credits are spent
             </span>
