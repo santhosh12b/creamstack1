@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import leadMockup from '../assets/lead.jpg';
+import leadMockup from '../assets/lead.webp';
 import CTASection from './CTASection';
 
 const findMethods = [

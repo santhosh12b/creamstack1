@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import leadsMockup13 from '../assets/13.png';
+import leadsMockup13 from '../assets/13.webp';
 import CTASection from './CTASection';
 
 const LeadManagementPage = ({ onNavigate }) => {

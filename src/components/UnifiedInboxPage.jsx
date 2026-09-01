@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import uniboxMockup from '../assets/unibox.png';
+import uniboxMockup from '../assets/unibox.webp';
 import CTASection from './CTASection';
 
 const UnifiedInboxPage = ({ onNavigate }) => {

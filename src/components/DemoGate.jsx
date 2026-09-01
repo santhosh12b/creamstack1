@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 const DemoGate = ({ onClose, onUnlock }) => {
-  const [step, setStep] = useState(1);
-  const [phone, setPhone] = useState('');
-  const [otp, setOtp] = useState('');
-  const [expectedOtp, setExpectedOtp] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -18,109 +15,12 @@ const DemoGate = ({ onClose, onUnlock }) => {
     // 1. Check if already verified in cookies/cache (localStorage)
     if (localStorage.getItem('demo_verified') === 'true') {
       onUnlock();
-      return;
     }
-
-    // 2. Pre-fill phone number if passed in URL (e.g. ?phonenumber=1234 or #demo?phonenumber=1234)
-    const searchParams = new URLSearchParams(window.location.search);
-    let urlPhone = searchParams.get('phonenumber') || searchParams.get('phone');
-    
-    if (!urlPhone && window.location.hash.includes('?')) {
-      const hashParams = new URLSearchParams(window.location.hash.split('?')[1]);
-      urlPhone = hashParams.get('phonenumber') || hashParams.get('phone');
-    }
-
-    if (urlPhone) {
-      setPhone(urlPhone);
-      verifyPhone(urlPhone);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onUnlock]);
 
-  const verifyPhone = async (phoneNumber) => {
-    setError('');
-    setIsLoading(true);
-
-    try {
-      if (GOOGLE_SCRIPT_URL === "YOUR_WEB_APP_URL_HERE") {
-        // Fallback to mock API if URL not set
-        setTimeout(() => {
-          setIsLoading(false);
-          if (phoneNumber === '5555555555') unlockDemo();
-          else setStep(2);
-        }, 1000);
-        return;
-      }
-
-      // API: Check if phone exists in Google Sheet
-      const response = await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ action: 'check', phone: phoneNumber })
-      });
-      
-      const result = await response.json();
-      setIsLoading(false);
-      
-      if (result.exists) {
-        unlockDemo();
-      } else {
-        // Generate random 4-digit OTP
-        const generatedOtp = Math.floor(1000 + Math.random() * 9000).toString();
-        setExpectedOtp(generatedOtp);
-
-        // Send OTP via WhatsApp (through Google Apps Script)
-        const sendResponse = await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({ action: 'send_otp', phone: phoneNumber, otp: generatedOtp })
-        });
-        
-        const sendResult = await sendResponse.json();
-        
-        if (sendResult.success) {
-          setStep(2);
-        } else {
-          setError('WhatsApp Error: ' + (sendResult.error || 'Could not send message.'));
-        }
-      }
-    } catch (err) {
-      console.error(err);
-      setError('Connection error. Please try again.');
-      setIsLoading(false);
-    }
-  };
-
-  const handlePhoneSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!phone.trim()) {
-      setError('Please enter a valid WhatsApp number');
-      return;
-    }
-    verifyPhone(phone);
-  };
-
-  const handleOtpSubmit = (e) => {
-    e.preventDefault();
-    
-    // Strictly verify against the real generated OTP
-    if (otp !== expectedOtp) {
-      setError('Invalid verification code. Please try again.');
-      return;
-    }
-    
-    setError('');
-    setIsLoading(true);
-    
-    setTimeout(() => {
-      setIsLoading(false);
-      setStep(3);
-    }, 800);
-  };
-
-  const handleDetailsSubmit = async (e) => {
-    e.preventDefault();
-    if (!name.trim() || !email.trim()) {
+    if (!name.trim() || !email.trim() || !phone.trim()) {
       setError('Please fill out all fields');
       return;
     }
@@ -129,29 +29,25 @@ const DemoGate = ({ onClose, onUnlock }) => {
     setIsLoading(true);
 
     try {
-      if (GOOGLE_SCRIPT_URL === "YOUR_WEB_APP_URL_HERE") {
-        setTimeout(() => { setIsLoading(false); unlockDemo(); }, 1000);
-        return;
+      if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "YOUR_WEB_APP_URL_HERE") {
+        // API: Save Lead to Google Sheet (Fire and forget)
+        fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: 'save', phone, name, email, otp: 'skipped' })
+        }).catch(console.error);
       }
-
-      // API: Save Lead to Google Sheet
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ action: 'save', phone, name, email, otp })
-      });
       
-      setIsLoading(false);
-      unlockDemo();
+      setTimeout(() => {
+        setIsLoading(false);
+        onUnlock();
+      }, 800);
+
     } catch (err) {
       console.error(err);
       setError('Failed to save details. Try again.');
       setIsLoading(false);
     }
-  };
-
-  const unlockDemo = () => {
-    onUnlock();
   };
 
   return (
@@ -166,135 +62,67 @@ const DemoGate = ({ onClose, onUnlock }) => {
           </svg>
         </button>
         
-        {step === 1 && (
-          <div className="w-full">
-            <div className="flex justify-center mb-6">
-              <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-primary shadow-sm border border-blue-100">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                </svg>
-              </div>
+        <div className="w-full">
+          <div className="flex justify-center mb-6">
+            <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-primary shadow-sm border border-blue-100">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
             </div>
-            <h4 className="text-2xl font-extrabold text-slate-900 mb-2 text-center">Watch the Demo</h4>
-            <p className="text-sm text-slate-500 mb-8 font-medium text-center">Enter your WhatsApp number to get instant access.</p>
-            
-            <form onSubmit={handlePhoneSubmit} className="flex flex-col gap-4">
-              <div>
-                <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5">WhatsApp Number</label>
-                <input 
-                  type="tel" 
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="+1 (555) 000-0000"
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-400"
-                  required
-                />
-              </div>
-              
-              {error && <p className="text-xs font-bold text-red-500 m-0 text-center">{error}</p>}
-              
-              <button 
-                disabled={isLoading}
-                type="submit" 
-                className="w-full mt-2 py-3 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold shadow-sm transition-all disabled:opacity-70 flex items-center justify-center gap-2"
-              >
-                {isLoading ? (
-                  <span className="w-5 h-5 rounded-full border-2 border-white/30 border-t-white animate-spin"></span>
-                ) : (
-                  'Continue →'
-                )}
-              </button>
-            </form>
-            <p className="text-[10px] text-slate-400 text-center mt-6 font-medium">
-              (Use 5555555555 to test an existing user)
-            </p>
           </div>
-        )}
-
-        {step === 2 && (
-          <div className="w-full">
-            <button type="button" onClick={() => setStep(1)} className="text-xs font-bold text-slate-400 hover:text-slate-600 mb-6 flex items-center gap-1">
-              ← Back
+          <h4 className="text-2xl font-extrabold text-slate-900 mb-2 text-center">Watch the Demo</h4>
+          <p className="text-sm text-slate-500 mb-8 font-medium text-center">Please enter your details to access the video.</p>
+          
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <div>
+              <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5">Full Name</label>
+              <input 
+                type="text" 
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="John Doe"
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-400"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5">Work Email</label>
+              <input 
+                type="email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="john@company.com"
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-400"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5">WhatsApp Number</label>
+              <input 
+                type="tel" 
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="+91 xxxxxxxxxx"
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-400"
+                required
+              />
+            </div>
+            
+            {error && <p className="text-xs font-bold text-red-500 m-0 text-center">{error}</p>}
+            
+            <button 
+              disabled={isLoading}
+              type="submit" 
+              className="w-full mt-2 py-3 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold shadow-sm transition-all disabled:opacity-70 flex items-center justify-center gap-2"
+            >
+              {isLoading ? (
+                <span className="w-5 h-5 rounded-full border-2 border-white/30 border-t-white animate-spin"></span>
+              ) : (
+                'Unlock Demo ✨'
+              )}
             </button>
-            <h4 className="text-2xl font-extrabold text-slate-900 mb-2">Check WhatsApp</h4>
-            <p className="text-sm text-slate-500 mb-8 font-medium">We've sent a 4-digit code to <span className="font-bold text-slate-700">{phone}</span>.</p>
-            
-            <form onSubmit={handleOtpSubmit} className="flex flex-col gap-4">
-              <div>
-                <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5">Verification Code</label>
-                <input 
-                  type="text" 
-                  maxLength={4}
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
-                  placeholder="----"
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-bold text-xl text-slate-900 placeholder:text-slate-300 text-center tracking-[0.5em]"
-                  required
-                />
-              </div>
-              
-              {error && <p className="text-xs font-bold text-red-500 m-0 text-center">{error}</p>}
-              
-              <button 
-                disabled={isLoading || otp.length < 4}
-                type="submit" 
-                className="w-full mt-2 py-3 rounded-xl bg-slate-900 hover:bg-black text-white font-bold shadow-sm transition-all disabled:opacity-70 flex items-center justify-center gap-2"
-              >
-                {isLoading ? (
-                  <span className="w-5 h-5 rounded-full border-2 border-white/30 border-t-white animate-spin"></span>
-                ) : (
-                  'Verify Code'
-                )}
-              </button>
-            </form>
-          </div>
-        )}
-
-        {step === 3 && (
-          <div className="w-full">
-            <h4 className="text-2xl font-extrabold text-slate-900 mb-2">Almost there!</h4>
-            <p className="text-sm text-slate-500 mb-8 font-medium">Please enter your details to access the demo.</p>
-            
-            <form onSubmit={handleDetailsSubmit} className="flex flex-col gap-4">
-              <div>
-                <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5">Full Name</label>
-                <input 
-                  type="text" 
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="John Doe"
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-400"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5">Work Email</label>
-                <input 
-                  type="email" 
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="john@company.com"
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-400"
-                  required
-                />
-              </div>
-              
-              {error && <p className="text-xs font-bold text-red-500 m-0 text-center">{error}</p>}
-              
-              <button 
-                disabled={isLoading}
-                type="submit" 
-                className="w-full mt-2 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow-sm transition-all disabled:opacity-70 flex items-center justify-center gap-2"
-              >
-                {isLoading ? (
-                  <span className="w-5 h-5 rounded-full border-2 border-white/30 border-t-white animate-spin"></span>
-                ) : (
-                  'Unlock Demo ✨'
-                )}
-              </button>
-            </form>
-          </div>
-        )}
+          </form>
+        </div>
 
       </div>
     </div>

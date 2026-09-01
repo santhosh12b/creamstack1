@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import campaignMockup from '../assets/cam.png';
+import campaignMockup from '../assets/cam.webp';
 import CTASection from './CTASection';
 
 const OmnichannelOutreachPage = ({ onNavigate }) => {

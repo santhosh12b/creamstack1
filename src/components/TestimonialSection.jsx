@@ -2,22 +2,22 @@ import React from 'react';
 
 const testimonials = [
   {
-    text: "Creamstack replaced 5 tools in our stack. Our reply rate increased by 3X!",
-    name: "Arjun Mehta",
-    role: "Growth Agency Founder",
-    avatar: "https://i.pravatar.cc/100?img=11"
+    text: "You’ve already got something that’s working. I think that’s fantastic.",
+    name: "Tracy DuRandt",
+    role: "Senior Talent Partner",
+    avatar: "/tracy.png"
   },
   {
-    text: "Finally, a platform that understands the full outbound journey.",
-    name: "Priya Sharma",
-    role: "Demand Gen Manager",
-    avatar: "https://i.pravatar.cc/100?img=12"
+    text: "We tried your idea, and LinkedIn post comment enrichment is working for us!",
+    name: "Porter Bertanyi",
+    role: "Senior Account Executive",
+    avatar: "/porter.png"
   },
   {
-    text: "We save 10+ hours every week and focus on what actually matters - closing.",
-    name: "Rohan Das",
-    role: "B2B SaaS Founder",
-    avatar: "https://i.pravatar.cc/100?img=13"
+    text: "Creamstack finds contacts, personalizes outreach, and automates replies. For the price, it’s hard to find something this complete.",
+    name: "Hari Krishnan",
+    role: "Business Development Manager",
+    avatar: "/hari.png"
   },
   {
     text: "The unified inbox is a game changer. No more missing replies.",

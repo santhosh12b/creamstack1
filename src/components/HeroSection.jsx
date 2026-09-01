@@ -1,5 +1,5 @@
 import React from 'react';
-import dashboardImg from '../assets/12.png';
+import dashboardImg from '../assets/12.webp';
 
 const HeroSection = ({ onNavigate }) => {
   return (
@@ -49,10 +49,19 @@ const HeroSection = ({ onNavigate }) => {
           {/* Social Proof & Rating */}
           <div className="flex flex-wrap items-center justify-center gap-4 mt-4">
             <div className="relative flex">
-              <div className="w-10 h-10 rounded-full border-2 border-white bg-blue-500 text-white flex items-center justify-center font-bold text-sm shadow-sm">M</div>
-              <div className="w-10 h-10 rounded-full border-2 border-white bg-emerald-500 text-white flex items-center justify-center font-bold text-sm shadow-sm -ml-3">S</div>
-              <div className="w-10 h-10 rounded-full border-2 border-white bg-purple-500 text-white flex items-center justify-center font-bold text-sm shadow-sm -ml-3">J</div>
-              <div className="w-10 h-10 rounded-full border-2 border-white bg-pink-500 text-white flex items-center justify-center font-bold text-sm shadow-sm -ml-3">A</div>
+              <div 
+                className="w-10 h-10 rounded-full border-2 border-white bg-slate-800 bg-cover bg-center shadow-sm shrink-0 relative z-[4]"
+                style={{ backgroundImage: "url('/porter.png')" }}
+              ></div>
+              <div 
+                className="w-10 h-10 rounded-full border-2 border-white bg-slate-800 bg-cover bg-center shadow-sm shrink-0 -ml-3 relative z-[3]"
+                style={{ backgroundImage: "url('/tracy.png')" }}
+              ></div>
+              <div 
+                className="w-10 h-10 rounded-full border-2 border-white bg-slate-800 bg-cover bg-center shadow-sm shrink-0 -ml-3 relative z-[2]"
+                style={{ backgroundImage: "url('/hari.png')" }}
+              ></div>
+              <div className="w-10 h-10 rounded-full border-2 border-white bg-pink-500 text-white flex items-center justify-center font-bold text-sm shadow-sm -ml-3 relative z-[1]">A</div>
             </div>
             <div className="flex flex-col gap-0.5 text-left">
               <div className="flex items-center gap-2">
@@ -81,6 +90,8 @@ const HeroSection = ({ onNavigate }) => {
               src={dashboardImg} 
               alt="Creamstack Dashboard Interface" 
               className="w-full h-auto rounded-xl sm:rounded-2xl block" 
+              fetchpriority="high"
+              decoding="sync"
             />
           </div>
         </div>
