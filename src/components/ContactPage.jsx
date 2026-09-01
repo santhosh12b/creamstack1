@@ -14,19 +14,17 @@ const ContactPage = ({ onNavigate }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Payload for our custom Vercel SMTP Serverless Function
+    // Payload for Google Apps Script
     const payload = {
-      type: "contact",
-      subject: `New Message from ${formData.name} - ${formData.subject}`,
+      action: "contact_form",
       ...formData
     };
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbz6zi3dcghNBmsYOquGqYurHumaUuSx_lHG-ilQS33F764-jgE9W-uyPvIm-rW4BvGNCw/exec", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
+          "Content-Type": "text/plain;charset=utf-8",
         },
         body: JSON.stringify(payload),
       });

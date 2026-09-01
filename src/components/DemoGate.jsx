@@ -9,7 +9,7 @@ const DemoGate = ({ onClose, onUnlock }) => {
   const [error, setError] = useState('');
 
   // ⚠️ PASTE YOUR GOOGLE SCRIPT WEB APP URL HERE ⚠️
-  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyMvqP2W-1vHw7JyQ403eCfAB72wCeSh3XsM25kxWAafmV4D3eqT1DaL2h1cH-5c-_DcA/exec";
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz6zi3dcghNBmsYOquGqYurHumaUuSx_lHG-ilQS33F764-jgE9W-uyPvIm-rW4BvGNCw/exec";
 
   useEffect(() => {
     // 1. Check if already verified in cookies/cache (localStorage)
