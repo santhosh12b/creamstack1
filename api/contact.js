@@ -75,13 +75,16 @@ export default async function handler(req, res) {
       });
     }
 
-    // 3. Execute both concurrently to save time
-    await Promise.all([emailPromise, sheetPromise]);
+    // 3. Execute both concurrently, catching errors individually so one failure doesn't break the other
+    await Promise.all([
+      emailPromise ? emailPromise.catch(e => console.error("SMTP Error:", e)) : Promise.resolve(),
+      sheetPromise ? sheetPromise.catch(e => console.error("Sheet Error:", e)) : Promise.resolve()
+    ]);
 
     // Success response
-    res.status(200).json({ success: true, message: 'Email sent successfully!' });
+    res.status(200).json({ success: true, message: 'Request processed successfully!' });
   } catch (error) {
-    console.error("SMTP Error sending email:", error);
-    res.status(500).json({ success: false, message: 'Failed to send email. Please check SMTP settings.', error: error.message });
+    console.error("General API Error:", error);
+    res.status(500).json({ success: false, message: 'An unexpected error occurred.', error: error.message });
   }
 }
