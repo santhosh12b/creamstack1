@@ -8,22 +8,22 @@ const testimonials = [
     avatar: "/tracy.png"
   },
   {
-    text: "We tried your idea, and LinkedIn post comment enrichment is working for us!",
+    text: "We tried your idea, & post comment enrichment is working for us!",
     name: "Porter Bertanyi",
     role: "Senior Account Executive",
     avatar: "/porter.png"
   },
   {
-    text: "Creamstack finds contacts, personalizes outreach, and automates replies. For the price, it’s hard to find something this complete.",
+    text: "For the price, it’s hard to find something this complete.",
     name: "Hari Krishnan",
     role: "Business Development Manager",
     avatar: "/hari.png"
   },
   {
-    text: "The unified inbox is a game changer. No more missing replies.",
-    name: "Neha Verma",
-    role: "Recruitment Lead",
-    avatar: "https://i.pravatar.cc/100?img=14"
+    text: "The Autopilot Replies feature is pretty handy. It just takes care of it.",
+    name: "Rahavendran",
+    role: "3D Animation Artist",
+    avatar: "/Rahavendran.png"
   }
 ];
 

@@ -37,7 +37,6 @@
 
 @layer base {
   html, body, #root {
-    overflow-x: hidden;
     max-width: 100%;
     width: 100%;
   }

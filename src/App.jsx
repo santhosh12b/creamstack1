@@ -153,7 +153,7 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar currentPage={currentPage} onNavigate={navigateTo} />
-      <main className="flex-1">
+      <main className="flex-1 overflow-x-hidden">
         {currentPage === 'pricing' ? (
           /* PRICING PAGE ONLY: Shows PricingSection */
           <PricingSection onNavigate={navigateTo} />

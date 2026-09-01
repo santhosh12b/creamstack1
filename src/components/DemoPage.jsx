@@ -82,7 +82,7 @@ const DemoPage = () => {
         <div className="w-full max-w-[960px] aspect-video relative bg-slate-900 rounded-2xl overflow-hidden shadow-2xl shadow-slate-900/20 border border-slate-200">
           <iframe 
             className="absolute inset-0 w-full h-full"
-            src="https://player.vimeo.com/video/1222981316?title=0&byline=0&portrait=0&dnt=1&color=2563eb" 
+            src="https://drive.google.com/file/d/15ZGxIEhPRHVhBfJ-1EiDAjDmlbZ_gh3m/preview" 
             frameBorder="0" 
             allow="autoplay; fullscreen; picture-in-picture" 
             allowFullScreen
