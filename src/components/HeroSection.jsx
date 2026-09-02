@@ -51,19 +51,19 @@ const HeroSection = ({ onNavigate }) => {
             <div className="relative flex">
               <div 
                 className="w-10 h-10 rounded-full border-2 border-white bg-slate-800 bg-cover bg-center shadow-sm shrink-0 relative z-[4]"
-                style={{ backgroundImage: "url('/porter.png')" }}
+                style={{ backgroundImage: "url('porter.png')" }}
               ></div>
               <div 
                 className="w-10 h-10 rounded-full border-2 border-white bg-slate-800 bg-cover bg-center shadow-sm shrink-0 -ml-3 relative z-[3]"
-                style={{ backgroundImage: "url('/tracy.png')" }}
+                style={{ backgroundImage: "url('tracy.png')" }}
               ></div>
               <div 
                 className="w-10 h-10 rounded-full border-2 border-white bg-slate-800 bg-cover bg-center shadow-sm shrink-0 -ml-3 relative z-[2]"
-                style={{ backgroundImage: "url('/hari.png')" }}
+                style={{ backgroundImage: "url('hari.png')" }}
               ></div>
               <div 
                 className="w-10 h-10 rounded-full border-2 border-white bg-slate-800 bg-cover bg-center shadow-sm shrink-0 -ml-3 relative z-[1]"
-                style={{ backgroundImage: "url('/Rahavendran.png')" }}
+                style={{ backgroundImage: "url('Rahavendran.png')" }}
               ></div>
             </div>
             <div className="flex flex-col gap-0.5 text-left">

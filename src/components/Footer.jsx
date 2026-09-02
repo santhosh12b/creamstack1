@@ -18,22 +18,21 @@ const Footer = ({ currentPage = 'home', onNavigate }) => {
     if (!email) return;
 
     try {
-      const response = await fetch("/api/contact", {
+      await fetch("https://script.google.com/macros/s/AKfycbyMvqP2W-1vHw7JyQ403eCfAB72wCeSh3XsM25kxWAafmV4D3eqT1DaL2h1cH-5c-_DcA/exec", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({
+          action: 'contact_form',
           type: "newsletter",
           email: email,
           subject: "New Newsletter Subscriber"
         }),
+        mode: "no-cors",
       });
-      if (response.ok) {
-        setSubmitted(true);
-        setEmail('');
-        setTimeout(() => setSubmitted(false), 3000);
-      } else {
-        alert("Something went wrong. Please try again.");
-      }
+      
+      setSubmitted(true);
+      setEmail('');
+      setTimeout(() => setSubmitted(false), 3000);
     } catch (error) {
       console.error(error);
       alert("Error subscribing.");
@@ -49,7 +48,7 @@ const Footer = ({ currentPage = 'home', onNavigate }) => {
               onClick={(e) => handleNavClick(e, 'home', 'home')}
               className="flex items-center gap-2 font-bold text-xl text-secondary cursor-pointer select-none"
             >
-              <img src="/12.png" alt="CreamStack Logo" className="h-6 w-auto object-contain" />
+              <img src="12.png" alt="CreamStack Logo" className="h-6 w-auto object-contain" />
             </div>
             <p className="text-sm text-text-main m-0 max-w-[250px] font-medium">
               All-in-one outreach platform for agencies, founders & growth teams.
@@ -58,31 +57,30 @@ const Footer = ({ currentPage = 'home', onNavigate }) => {
 
           <div>
             <h5 className="text-[0.95rem] m-0 mb-3 sm:mb-4 text-secondary font-bold">Product</h5>
-            <ul className="flex flex-col gap-2.5 sm:gap-3 list-none p-0 m-0">
-              <li><a href="#lead-enrichment" onClick={(e) => handleNavClick(e, 'lead-enrichment')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1.5 min-h-[44px]">Lead Enrichment</a></li>
-              <li><a href="#omnichannel-outreach" onClick={(e) => handleNavClick(e, 'omnichannel-outreach')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1.5 min-h-[44px]">Omnichannel Outreach</a></li>
-              <li><a href="#lead-management" onClick={(e) => handleNavClick(e, 'lead-management')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1.5 min-h-[44px]">Lead Management</a></li>
-              <li><a href="#unified-inbox" onClick={(e) => handleNavClick(e, 'unified-inbox')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1.5 min-h-[44px]">Unified Inbox</a></li>
-              
+            <ul className="flex flex-col gap-2 list-none p-0 m-0">
+              <li><a href="#lead-enrichment" onClick={(e) => handleNavClick(e, 'lead-enrichment')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">Lead Enrichment</a></li>
+              <li><a href="#omnichannel-outreach" onClick={(e) => handleNavClick(e, 'omnichannel-outreach')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">Omnichannel Outreach</a></li>
+              <li><a href="#lead-management" onClick={(e) => handleNavClick(e, 'lead-management')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">Lead Management</a></li>
+              <li><a href="#unified-inbox" onClick={(e) => handleNavClick(e, 'unified-inbox')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">Unified Inbox</a></li>
             </ul>
           </div>
 
           <div>
             <h5 className="text-[0.95rem] m-0 mb-4 text-secondary font-bold">Quick Links</h5>
-            <ul className="flex flex-col gap-3 list-none p-0 m-0">
-              <li><a href="#about" onClick={(e) => handleNavClick(e, 'about')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1.5 min-h-[44px]">About Us</a></li>
-              <li><a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1.5 min-h-[44px]">Contact</a></li>
-              <li><a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1.5 min-h-[44px]">Pricing</a></li>
+            <ul className="flex flex-col gap-2 list-none p-0 m-0">
+              <li><a href="#about" onClick={(e) => handleNavClick(e, 'about')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">About Us</a></li>
+              <li><a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">Contact</a></li>
+              <li><a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">Pricing</a></li>
             </ul>
           </div>
 
           <div>
             <h5 className="text-[0.95rem] m-0 mb-4 text-secondary font-bold">Legal</h5>
-            <ul className="flex flex-col gap-3 list-none p-0 m-0">
-              <li><a href="#privacy" onClick={(e) => handleNavClick(e, 'privacy')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1.5 min-h-[44px]">Privacy Policy</a></li>
-              <li><a href="#terms" onClick={(e) => handleNavClick(e, 'terms')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1.5 min-h-[44px]">Terms of Service</a></li>
-              <li><a href="#cookie" onClick={(e) => handleNavClick(e, 'cookie')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1.5 min-h-[44px]">Cookie Policy</a></li>
-              <li><a href="#security" onClick={(e) => handleNavClick(e, 'security')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1.5 min-h-[44px]">Security</a></li>
+            <ul className="flex flex-col gap-2 list-none p-0 m-0">
+              <li><a href="#privacy" onClick={(e) => handleNavClick(e, 'privacy')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">Privacy Policy</a></li>
+              <li><a href="#terms" onClick={(e) => handleNavClick(e, 'terms')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">Terms of Service</a></li>
+              <li><a href="#cookie" onClick={(e) => handleNavClick(e, 'cookie')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">Cookie Policy</a></li>
+              <li><a href="#security" onClick={(e) => handleNavClick(e, 'security')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">Security</a></li>
             </ul>
           </div>
 

@@ -87,7 +87,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
           className="flex items-center gap-2 font-bold text-secondary cursor-pointer select-none"
         >
           <img 
-            src="/12.png" 
+            src="12.png" 
             alt="CreamStack Logo" 
             className="h-6 sm:h-7 md:h-8 w-auto object-contain" 
           />

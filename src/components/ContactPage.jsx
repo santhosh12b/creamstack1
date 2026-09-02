@@ -14,31 +14,30 @@ const ContactPage = ({ onNavigate }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Payload for our custom Vercel SMTP Serverless Function
     const payload = {
+      action: 'contact_form',
       type: "contact",
-      subject: `New Message from ${formData.name} - ${formData.subject}`,
-      ...formData
+      name: formData.name,
+      email: formData.email,
+      company: formData.company,
+      subject: formData.subject,
+      message: formData.message
     };
 
     try {
-      const response = await fetch("/api/contact", {
+      await fetch("https://script.google.com/macros/s/AKfycbyMvqP2W-1vHw7JyQ403eCfAB72wCeSh3XsM25kxWAafmV4D3eqT1DaL2h1cH-5c-_DcA/exec", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
+          "Content-Type": "text/plain;charset=utf-8",
         },
         body: JSON.stringify(payload),
+        mode: "no-cors",
       });
-      const result = await response.json();
       
-      if (result.success) {
-        setSubmitted(true);
-        // Clear form for next time
-        setFormData({ name: '', email: '', company: '', subject: '', message: '' });
-      } else {
-        alert("Something went wrong. Please try again.");
-      }
+      // Google script with no-cors returns an opaque response, we assume success if it doesn't throw
+      setSubmitted(true);
+      setFormData({ name: '', email: '', company: '', subject: '', message: '' });
+
     } catch (error) {
       console.error(error);
       alert("There was an error submitting the form.");

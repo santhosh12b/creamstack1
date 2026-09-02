@@ -1,13 +1,13 @@
 import React from 'react';
 
 const logos = [
-  { src: '/stream.png', alt: 'StreamQ', badgeColor: 'hover:border-slate-300 hover:shadow-slate-500/10' },
-  { src: '/xacc.png', alt: 'Xacco', badgeColor: 'hover:border-slate-300 hover:shadow-slate-500/10' },
-  { src: '/digi.png', alt: 'Digiholic', badgeColor: 'hover:border-slate-300 hover:shadow-slate-500/10' },
-  { src: '/zitrino.png', alt: 'Zitrino', badgeColor: 'hover:border-slate-300 hover:shadow-slate-500/10' },
-  { src: '/Audit.png', alt: 'Auditcare', badgeColor: 'hover:border-slate-300 hover:shadow-slate-500/10' },
-  { src: '/why.png', alt: 'WNY Holidays', badgeColor: 'hover:border-slate-300 hover:shadow-slate-500/10' },
-  { src: '/mom.png', alt: 'Mommente', badgeColor: 'hover:border-slate-300 hover:shadow-slate-500/10' },
+  { src: 'stream.png', alt: 'StreamQ', badgeColor: 'hover:border-slate-300 hover:shadow-slate-500/10' },
+  { src: 'xacc.png', alt: 'Xacco', badgeColor: 'hover:border-slate-300 hover:shadow-slate-500/10' },
+  { src: 'digi.png', alt: 'Digiholic', badgeColor: 'hover:border-slate-300 hover:shadow-slate-500/10' },
+  { src: 'zitrino.png', alt: 'Zitrino', badgeColor: 'hover:border-slate-300 hover:shadow-slate-500/10' },
+  { src: 'Audit.png', alt: 'Auditcare', badgeColor: 'hover:border-slate-300 hover:shadow-slate-500/10' },
+  { src: 'why.png', alt: 'WNY Holidays', badgeColor: 'hover:border-slate-300 hover:shadow-slate-500/10' },
+  { src: 'mom.png', alt: 'Mommente', badgeColor: 'hover:border-slate-300 hover:shadow-slate-500/10' },
 ];
 
 const LogoCloud = () => {
