@@ -33,7 +33,7 @@ const AboutPage = ({ onNavigate }) => {
         </div>
 
         {/* Master Editorial Header */}
-        <div className="max-w-4xl mb-12 sm:mb-16">
+        <div className="max-w-4xl mx-auto flex flex-col items-center text-center mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-extrabold uppercase tracking-wider mb-4">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
@@ -55,16 +55,13 @@ const AboutPage = ({ onNavigate }) => {
             Learn about our mission to revolutionize outreach and prospecting
           </h1>
 
-          <p className="text-lg sm:text-2xl text-slate-600 font-medium leading-relaxed max-w-3xl m-0">
+          <p className="text-lg sm:text-2xl text-slate-600 font-medium leading-relaxed max-w-3xl mx-auto m-0">
             From specialized outreach marketing agency to building the next generation of social-signal-driven AI prospecting.
           </p>
         </div>
 
         {/* Unified Storytelling Frame */}
-        <div className="bg-white rounded-[2rem] sm:rounded-[2.5rem] border border-slate-200/80 p-8 sm:p-12 shadow-2xl shadow-slate-900/5 relative overflow-hidden mb-16 sm:mb-24">
-          
-          {/* Subtle background glow for the master frame */}
-          <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-primary via-purple-500 to-emerald-400"></div>
+        <div className="mb-16 sm:mb-24">
           
           <div className="flex flex-col gap-12 lg:gap-16 max-w-4xl mx-auto">
             

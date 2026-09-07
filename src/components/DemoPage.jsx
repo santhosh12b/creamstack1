@@ -69,7 +69,7 @@ const DemoPage = () => {
         </div>
 
         {/* Heading */}
-        <h1 className="text-4xl sm:text-5xl md:text-[56px] font-black text-slate-900 tracking-tight text-center w-full leading-[1.1] mb-12 sm:mb-16">
+        <h1 className="text-3xl sm:text-4xl md:text-[44px] font-black text-slate-900 tracking-tight text-center w-full leading-[1.15] mb-12 sm:mb-16">
           Watch how one tool simplifies your <br className="hidden md:block" /> entire <span className="text-blue-600 whitespace-nowrap">LinkedIn and email</span> outreach.
         </h1>
 
@@ -78,13 +78,32 @@ const DemoPage = () => {
           className="w-full max-w-[960px] relative bg-slate-900 rounded-2xl overflow-hidden shadow-2xl shadow-slate-900/20 border border-slate-200"
           style={{ paddingBottom: 'calc(56.25% + 90px)' }}
         >
+          {/* 
+            GOOGLE DRIVE EMBED (Current)
+            Warning: Google Drive embeds often fail on production sites with a "frame-ancestors" CSP error. 
+            This happens when a user's browser blocks third-party cookies, causing Google to redirect the iframe to a login page.
+          */}
           <iframe 
             className="absolute inset-0 w-full h-full"
             src="https://drive.google.com/file/d/15ZGxIEhPRHVhBfJ-1EiDAjDmlbZ_gh3m/preview" 
             frameBorder="0" 
-            allow="autoplay; fullscreen; picture-in-picture" 
-            allowFullScreen
+            allow="autoplay; fullscreen; picture-in-picture"
           ></iframe>
+
+          {/* 
+            RECOMMENDED: YOUTUBE EMBED 
+            For a reliable VSL, upload your video to YouTube as "Unlisted" and uncomment this player.
+            Replace "YOUR_YOUTUBE_VIDEO_ID" with the actual ID of your video.
+          */}
+          {/*
+          <iframe 
+            className="absolute inset-0 w-full h-full"
+            src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID?rel=0&modestbranding=1" 
+            title="Product Demo"
+            frameBorder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" 
+          ></iframe>
+          */}
         </div>
 
         {/* FAQ Section */}
