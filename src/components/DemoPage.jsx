@@ -54,7 +54,7 @@ const DemoPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50/50 pt-24 sm:pt-32 pb-24 relative overflow-hidden flex flex-col">
+    <div className="min-h-screen bg-slate-50/50 pt-8 sm:pt-12 pb-24 relative overflow-hidden flex flex-col">
       {/* Background Decor (Optional subtlety) */}
       <div className="absolute top-0 inset-x-0 h-96 bg-gradient-to-b from-blue-50/50 to-transparent pointer-events-none"></div>
 
@@ -69,14 +69,9 @@ const DemoPage = () => {
         </div>
 
         {/* Heading */}
-        <h1 className="text-4xl sm:text-5xl md:text-[56px] font-black text-slate-900 tracking-tight text-center max-w-4xl leading-[1.1] mb-6">
-          Watch how one tool simplifies your entire <span className="text-blue-600">LinkedIn and email outreach.</span>
+        <h1 className="text-4xl sm:text-5xl md:text-[56px] font-black text-slate-900 tracking-tight text-center w-full leading-[1.1] mb-12 sm:mb-16">
+          Watch how one tool simplifies your <br className="hidden md:block" /> entire <span className="text-blue-600 whitespace-nowrap">LinkedIn and email</span> outreach.
         </h1>
-
-        {/* Subtitle */}
-        <p className="text-base sm:text-lg text-slate-500 font-medium text-center max-w-2xl mb-12 sm:mb-16 leading-relaxed">
-          Save time and money by replacing multiple tools with a single platform so that you can focus on closing deals instead of repetitive tasks.
-        </p>
 
         {/* Video Player Container */}
         <div 

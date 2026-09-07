@@ -4,13 +4,13 @@ const testimonials = [
   {
     text: "You’ve already got something that’s working. I think that’s fantastic.",
     name: "Tracy DuRandt",
-    role: "Founder, Mommente",
+    role: "Senior Talent Partner",
     avatar: "tracy.png"
   },
   {
     text: "We tried your idea, & post comment enrichment is working for us!",
     name: "Porter Bertanyi",
-    role: "Director, Xacco",
+    role: "Senior Account Executive",
     avatar: "porter.png"
   },
   {
@@ -22,7 +22,7 @@ const testimonials = [
   {
     text: "The Autopilot Replies feature is pretty handy. It just takes care of it.",
     name: "Rahavendran",
-    role: "Founder, Auditcare",
+    role: "3D Animation Artist",
     avatar: "Rahavendran.png"
   }
 ];

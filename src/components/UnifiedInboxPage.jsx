@@ -124,6 +124,9 @@ const UnifiedInboxPage = ({ onNavigate }) => {
                 src={uniboxMockup} 
                 alt="CreamStack Unified Smart Inbox Mockup" 
                 className="w-full h-auto object-contain block"
+                fetchPriority="high"
+                loading="eager"
+                decoding="sync"
               />
             </div>
           </div>

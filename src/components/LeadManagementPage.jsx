@@ -179,6 +179,9 @@ const LeadManagementPage = ({ onNavigate }) => {
                 src={leadsMockup13} 
                 alt="CreamStack Unified Leads Management Table" 
                 className="w-full h-auto object-contain block"
+                fetchPriority="high"
+                loading="eager"
+                decoding="sync"
               />
             </div>
           </div>

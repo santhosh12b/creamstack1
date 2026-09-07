@@ -148,6 +148,9 @@ const LeadEnrichmentPage = ({ onNavigate }) => {
                 src={leadMockup} 
                 alt="CreamStack Leads Dashboard" 
                 className="w-full h-auto object-contain block"
+                fetchPriority="high"
+                loading="eager"
+                decoding="sync"
               />
             </div>
           </div>

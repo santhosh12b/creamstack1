@@ -113,6 +113,9 @@ const OmnichannelOutreachPage = ({ onNavigate }) => {
                 src={campaignMockup} 
                 alt="CreamStack Omnichannel Campaign Builder" 
                 className="w-full h-auto object-contain block"
+                fetchPriority="high"
+                loading="eager"
+                decoding="sync"
               />
             </div>
           </div>
