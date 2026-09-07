@@ -8,16 +8,16 @@ const testimonials = [
     avatar: "tracy.png"
   },
   {
-    text: "We tried your idea, & post comment enrichment is working for us!",
-    name: "Porter Bertanyi",
-    role: "Senior Account Executive",
-    avatar: "porter.png"
-  },
-  {
     text: "For the price, it’s hard to find something this complete.",
     name: "Hari Krishnan",
     role: "Business Development Manager",
     avatar: "hari.png"
+  },
+  {
+    text: "We tried your idea, & post comment enrichment is working for us!",
+    name: "Porter Bertanyi",
+    role: "Senior Account Executive",
+    avatar: "porter.png"
   },
   {
     text: "The Autopilot Replies feature is pretty handy. It just takes care of it.",
