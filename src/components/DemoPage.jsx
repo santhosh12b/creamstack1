@@ -106,6 +106,30 @@ const DemoPage = () => {
           */}
         </div>
 
+        {/* Action Button Below Video */}
+        <div className="flex justify-center mt-8 sm:mt-10 w-full">
+          <button 
+            onClick={() => window.location.hash = 'pricing'}
+            className="w-full sm:w-auto px-8 py-4 rounded-xl sm:rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-base sm:text-lg shadow-xl shadow-blue-600/30 hover:shadow-blue-600/50 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer group"
+          >
+            <span>Get started now</span>
+            <svg 
+              width="20" 
+              height="20" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+              className="group-hover:translate-x-1 transition-transform"
+            >
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+
         {/* FAQ Section */}
         <div className="w-full max-w-3xl mt-24 sm:mt-32">
           <div className="text-center mb-10 sm:mb-12">

@@ -50,7 +50,7 @@ const CTASection = ({ onNavigate }) => {
                   onClick={() => onNavigate ? onNavigate('pricing') : window.location.hash = 'pricing'}
                   className="w-full sm:w-auto px-7 py-3.5 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-primary via-[#7c3aed] to-[#9333ea] text-white font-extrabold text-sm sm:text-base shadow-xl shadow-primary/40 hover:shadow-primary/60 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer group"
                 >
-                  <span>Get Invite Code</span>
+                  <span>Get started now</span>
                   <svg 
                     width="18" 
                     height="18" 

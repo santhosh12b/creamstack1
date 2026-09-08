@@ -40,6 +40,9 @@ const DemoGate = ({ onClose, onUnlock }) => {
       
       setTimeout(() => {
         setIsLoading(false);
+        if (window.fbq) {
+          window.fbq('track', 'Lead');
+        }
         onUnlock();
       }, 800);
 
