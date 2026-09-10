@@ -47,7 +47,6 @@ const faqs = [
 
 const DemoPage = () => {
   const [openFaq, setOpenFaq] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -75,32 +74,8 @@ const DemoPage = () => {
 
         {/* Video Player Container */}
         <div 
-          className="w-full max-w-[960px] aspect-[16/10] md:aspect-[16/10] relative bg-slate-900 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-slate-900/20 border border-slate-200 group"
+          className="w-full max-w-[960px] aspect-[16/10] md:aspect-[16/10] relative bg-slate-900 sm:rounded-xl shadow-2xl shadow-slate-900/20 border border-slate-200 group"
         >
-          {/* Bright Thumbnail Cover before playing */}
-          {!isPlaying && (
-            <div 
-              onClick={() => setIsPlaying(true)}
-              className="absolute inset-0 z-20 bg-gradient-to-tr from-slate-900 via-slate-800 to-blue-950 flex flex-col items-center justify-center p-6 text-center transition-all group-hover:scale-[1.01] cursor-pointer"
-            >
-              {/* Background ambient glow */}
-              <div className="absolute inset-0 bg-blue-600/10 backdrop-blur-xs pointer-events-none"></div>
-
-              {/* Glowing Play Button */}
-              <div className="relative z-10 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center shadow-2xl shadow-blue-500/50 group-hover:scale-110 group-hover:shadow-blue-500/70 transition-all duration-300 border-2 border-white/20">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="white" stroke="white" strokeWidth="1.5" className="ml-1.5 drop-shadow-md">
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-              </div>
-
-              <span className="relative z-10 mt-4 text-white font-extrabold text-base sm:text-lg tracking-wide drop-shadow-sm">
-                Watch 20 Min Demo ▶
-              </span>
-              <span className="relative z-10 mt-1 text-xs text-blue-200/80 font-medium">
-                Tap to play video
-              </span>
-            </div>
-          )}
 
           {/* GOOGLE DRIVE EMBED */}
           <iframe 
