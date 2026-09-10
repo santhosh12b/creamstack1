@@ -75,7 +75,7 @@ const DemoPage = () => {
 
         {/* Video Player Container */}
         <div 
-          className="w-full max-w-[960px] aspect-[4/3] sm:aspect-[16/10] md:aspect-video relative bg-slate-900 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-slate-900/20 border border-slate-200 group"
+          className="w-full max-w-[960px] aspect-[16/10] md:aspect-[16/10] relative bg-slate-900 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-slate-900/20 border border-slate-200 group"
         >
           {/* Bright Thumbnail Cover before playing */}
           {!isPlaying && (
