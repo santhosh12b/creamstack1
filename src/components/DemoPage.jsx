@@ -73,11 +73,9 @@ const DemoPage = () => {
         </h1>
 
         {/* Video Player Container */}
-        <div className="w-full max-w-[640px] mx-auto aspect-[4/3] relative bg-slate-900 rounded-xl overflow-hidden shadow-2xl shadow-slate-900/20 border border-slate-200">
+        <div className="w-full max-w-[960px] mx-auto aspect-[16/10] sm:aspect-video relative bg-slate-900 rounded-xl overflow-hidden shadow-2xl shadow-slate-900/20 border border-slate-200">
           <iframe 
             src="https://drive.google.com/file/d/15ZGxIEhPRHVhBfJ-1EiDAjDmlbZ_gh3m/preview" 
-            width="640" 
-            height="480"
             className="absolute inset-0 w-full h-full border-0"
             allow="autoplay; fullscreen; picture-in-picture"
             title="CreamStack Product Demo Video"
