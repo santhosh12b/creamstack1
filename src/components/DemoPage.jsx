@@ -119,13 +119,10 @@ const DemoPage = () => {
 
           {/* GOOGLE DRIVE EMBED */}
           <iframe 
-            className="absolute inset-0 w-full h-full border-0"
+            className="absolute -top-[10%] left-0 w-full h-[120%] border-0 pointer-events-auto"
             src="https://drive.google.com/file/d/15ZGxIEhPRHVhBfJ-1EiDAjDmlbZ_gh3m/preview" 
-            frameBorder="0" 
             allow="autoplay; fullscreen; picture-in-picture"
-            allowFullScreen
-            webkitallowfullscreen="true"
-            mozallowfullscreen="true"
+            title="CreamStack Product Demo Video"
           ></iframe>
           {/*
           <iframe 
