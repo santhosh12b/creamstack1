@@ -92,28 +92,15 @@ const DemoPage = () => {
         {/* Video Player Container */}
         <div 
           ref={videoContainerRef}
-          className="w-full max-w-[960px] aspect-video relative bg-slate-900 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-slate-900/20 border border-slate-200 group"
+          className="w-full max-w-[960px] aspect-video relative bg-slate-900 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-slate-900/20 border border-slate-200"
         >
-          {isOverlayVisible && (
-            <div 
-              className="absolute inset-0 z-10 cursor-pointer flex items-center justify-center bg-transparent"
-              onClick={handleVideoClick}
-              title="Click to view full screen"
-            >
-              <div className="w-20 h-20 bg-blue-600/80 hover:bg-blue-600 rounded-full flex items-center justify-center backdrop-blur-sm transition-all shadow-xl shadow-blue-900/50 scale-90 group-hover:scale-100">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="white" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1">
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-              </div>
-            </div>
-          )}
           {/* 
             GOOGLE DRIVE EMBED (Current)
             Warning: Google Drive embeds often fail on production sites with a "frame-ancestors" CSP error. 
             This happens when a user's browser blocks third-party cookies, causing Google to redirect the iframe to a login page.
           */}
           <iframe 
-            className="absolute inset-0 w-full h-full scale-[1.3] sm:scale-[1.25] origin-center border-0"
+            className="absolute inset-0 w-full h-full border-0"
             src="https://drive.google.com/file/d/15ZGxIEhPRHVhBfJ-1EiDAjDmlbZ_gh3m/preview" 
             frameBorder="0" 
             allow="autoplay; fullscreen; picture-in-picture"
