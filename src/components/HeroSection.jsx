@@ -39,7 +39,7 @@ const HeroSection = ({ onNavigate }) => {
               <span>Watch 20 Min Demo</span>
             </a>
             <button 
-              onClick={() => onNavigate ? onNavigate('pricing') : window.location.hash = 'pricing'}
+              onClick={() => window.location.href = 'https://app.creamstack.io/signup'}
               className="btn btn-outline bg-white hover:bg-slate-50 cursor-pointer w-full sm:w-auto text-[15px] sm:text-base py-3 min-h-[48px]"
             >
               Get started now

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 const faqs = [
   {
     q: "Do I need to connect my LinkedIn account to enrich leads?",
@@ -48,6 +48,22 @@ const faqs = [
 const DemoPage = () => {
   const [openFaq, setOpenFaq] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const videoContainerRef = useRef(null);
+  const [isOverlayVisible, setIsOverlayVisible] = useState(true);
+
+  const handleVideoClick = () => {
+    if (videoContainerRef.current) {
+      const el = videoContainerRef.current;
+      if (el.requestFullscreen) {
+        el.requestFullscreen();
+      } else if (el.webkitRequestFullscreen) {
+        el.webkitRequestFullscreen();
+      } else if (el.msRequestFullscreen) {
+        el.msRequestFullscreen();
+      }
+    }
+    setIsOverlayVisible(false);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -75,9 +91,23 @@ const DemoPage = () => {
 
         {/* Video Player Container */}
         <div 
-          className="w-full max-w-[960px] relative bg-slate-900 rounded-2xl overflow-hidden shadow-2xl shadow-slate-900/20 border border-slate-200"
+          ref={videoContainerRef}
+          className="w-full max-w-[960px] relative bg-slate-900 rounded-2xl overflow-hidden shadow-2xl shadow-slate-900/20 border border-slate-200 group"
           style={{ paddingBottom: 'calc(56.25% + 90px)' }}
         >
+          {isOverlayVisible && (
+            <div 
+              className="absolute inset-0 z-10 cursor-pointer flex items-center justify-center bg-transparent"
+              onClick={handleVideoClick}
+              title="Click to view full screen"
+            >
+              <div className="w-20 h-20 bg-blue-600/80 hover:bg-blue-600 rounded-full flex items-center justify-center backdrop-blur-sm transition-all shadow-xl shadow-blue-900/50 scale-90 group-hover:scale-100">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="white" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+              </div>
+            </div>
+          )}
           {/* 
             GOOGLE DRIVE EMBED (Current)
             Warning: Google Drive embeds often fail on production sites with a "frame-ancestors" CSP error. 
@@ -88,6 +118,9 @@ const DemoPage = () => {
             src="https://drive.google.com/file/d/15ZGxIEhPRHVhBfJ-1EiDAjDmlbZ_gh3m/preview" 
             frameBorder="0" 
             allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            webkitallowfullscreen="true"
+            mozallowfullscreen="true"
           ></iframe>
 
           {/* 
@@ -109,7 +142,7 @@ const DemoPage = () => {
         {/* Action Button Below Video */}
         <div className="flex justify-center mt-8 sm:mt-10 w-full">
           <button 
-            onClick={() => window.location.hash = 'pricing'}
+            onClick={() => window.location.href = 'https://app.creamstack.io/signup'}
             className="w-full sm:w-auto px-8 py-4 rounded-xl sm:rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-base sm:text-lg shadow-xl shadow-blue-600/30 hover:shadow-blue-600/50 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer group"
           >
             <span>Get started now</span>

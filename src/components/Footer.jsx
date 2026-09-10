@@ -18,7 +18,7 @@ const Footer = ({ currentPage = 'home', onNavigate }) => {
     if (!email) return;
 
     try {
-      await fetch("https://script.google.com/macros/s/AKfycbyMvqP2W-1vHw7JyQ403eCfAB72wCeSh3XsM25kxWAafmV4D3eqT1DaL2h1cH-5c-_DcA/exec", {
+      await fetch("https://script.google.com/macros/s/AKfycbwnFdB2G_qWUsoxSnfKZIBPUs5FjnKWnFtJ-Ih9L04JM3fHy4mC2cI5fub7yy47gQ6ZIg/exec", {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({

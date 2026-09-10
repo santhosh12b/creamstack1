@@ -47,7 +47,7 @@ const CTASection = ({ onNavigate }) => {
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-6 sm:mb-8 w-full sm:w-auto">
                 <button 
-                  onClick={() => onNavigate ? onNavigate('pricing') : window.location.hash = 'pricing'}
+                  onClick={() => window.location.href = 'https://app.creamstack.io/signup'}
                   className="w-full sm:w-auto px-7 py-3.5 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-primary via-[#7c3aed] to-[#9333ea] text-white font-extrabold text-sm sm:text-base shadow-xl shadow-primary/40 hover:shadow-primary/60 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer group"
                 >
                   <span>Get started now</span>
