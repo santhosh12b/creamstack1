@@ -113,7 +113,7 @@ const DemoPage = () => {
             This happens when a user's browser blocks third-party cookies, causing Google to redirect the iframe to a login page.
           */}
           <iframe 
-            className="absolute inset-0 w-full h-full"
+            className="absolute -top-[11%] sm:-top-[10%] left-0 w-full h-[122%] sm:h-[120%] border-0"
             src="https://drive.google.com/file/d/15ZGxIEhPRHVhBfJ-1EiDAjDmlbZ_gh3m/preview" 
             frameBorder="0" 
             allow="autoplay; fullscreen; picture-in-picture"
