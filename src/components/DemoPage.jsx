@@ -48,22 +48,6 @@ const faqs = [
 const DemoPage = () => {
   const [openFaq, setOpenFaq] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const videoContainerRef = useRef(null);
-  const [isOverlayVisible, setIsOverlayVisible] = useState(true);
-
-  const handlePlayClick = () => {
-    setIsPlaying(true);
-    if (videoContainerRef.current) {
-      const el = videoContainerRef.current;
-      if (el.requestFullscreen) {
-        el.requestFullscreen();
-      } else if (el.webkitRequestFullscreen) {
-        el.webkitRequestFullscreen();
-      } else if (el.msRequestFullscreen) {
-        el.msRequestFullscreen();
-      }
-    }
-  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -91,13 +75,14 @@ const DemoPage = () => {
 
         {/* Video Player Container */}
         <div 
-          ref={videoContainerRef}
-          onClick={handlePlayClick}
-          className="w-full max-w-[960px] aspect-video relative bg-slate-900 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-slate-900/20 border border-slate-200 group cursor-pointer"
+          className="w-full max-w-[960px] aspect-video relative bg-slate-900 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-slate-900/20 border border-slate-200 group"
         >
           {/* Bright Thumbnail Cover before playing */}
           {!isPlaying && (
-            <div className="absolute inset-0 z-20 bg-gradient-to-tr from-slate-900 via-slate-800 to-blue-950 flex flex-col items-center justify-center p-6 text-center transition-all group-hover:scale-[1.01]">
+            <div 
+              onClick={() => setIsPlaying(true)}
+              className="absolute inset-0 z-20 bg-gradient-to-tr from-slate-900 via-slate-800 to-blue-950 flex flex-col items-center justify-center p-6 text-center transition-all group-hover:scale-[1.01] cursor-pointer"
+            >
               {/* Background ambient glow */}
               <div className="absolute inset-0 bg-blue-600/10 backdrop-blur-xs pointer-events-none"></div>
 
@@ -109,30 +94,21 @@ const DemoPage = () => {
               </div>
 
               <span className="relative z-10 mt-4 text-white font-extrabold text-base sm:text-lg tracking-wide drop-shadow-sm">
-                Watch 20 Min Fullscreen Demo ▶
+                Watch 20 Min Demo ▶
               </span>
               <span className="relative z-10 mt-1 text-xs text-blue-200/80 font-medium">
-                Tap to open in full brightness video mode
+                Tap to play video
               </span>
             </div>
           )}
 
           {/* GOOGLE DRIVE EMBED */}
           <iframe 
-            className="absolute -top-[10%] left-0 w-full h-[120%] border-0 pointer-events-auto"
+            className="absolute inset-0 w-full h-full border-0"
             src="https://drive.google.com/file/d/15ZGxIEhPRHVhBfJ-1EiDAjDmlbZ_gh3m/preview" 
             allow="autoplay; fullscreen; picture-in-picture"
             title="CreamStack Product Demo Video"
           ></iframe>
-          {/*
-          <iframe 
-            className="absolute inset-0 w-full h-full"
-            src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID?rel=0&modestbranding=1" 
-            title="Product Demo"
-            frameBorder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" 
-          ></iframe>
-          */}
         </div>
 
         {/* Action Button Below Video */}
