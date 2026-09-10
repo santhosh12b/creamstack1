@@ -51,7 +51,8 @@ const DemoPage = () => {
   const videoContainerRef = useRef(null);
   const [isOverlayVisible, setIsOverlayVisible] = useState(true);
 
-  const handleVideoClick = () => {
+  const handlePlayClick = () => {
+    setIsPlaying(true);
     if (videoContainerRef.current) {
       const el = videoContainerRef.current;
       if (el.requestFullscreen) {
