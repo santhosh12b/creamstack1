@@ -92,8 +92,7 @@ const DemoPage = () => {
         {/* Video Player Container */}
         <div 
           ref={videoContainerRef}
-          className="w-full max-w-[960px] relative bg-slate-900 rounded-2xl overflow-hidden shadow-2xl shadow-slate-900/20 border border-slate-200 group"
-          style={{ paddingBottom: 'calc(56.25% + 90px)' }}
+          className="w-full max-w-[960px] aspect-video relative bg-slate-900 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-slate-900/20 border border-slate-200 group"
         >
           {isOverlayVisible && (
             <div 
