@@ -62,7 +62,6 @@ const DemoPage = () => {
         el.msRequestFullscreen();
       }
     }
-    setIsOverlayVisible(false);
   };
 
   useEffect(() => {
@@ -92,13 +91,32 @@ const DemoPage = () => {
         {/* Video Player Container */}
         <div 
           ref={videoContainerRef}
-          className="w-full max-w-[960px] aspect-video relative bg-slate-900 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-slate-900/20 border border-slate-200"
+          onClick={handlePlayClick}
+          className="w-full max-w-[960px] aspect-video relative bg-slate-900 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-slate-900/20 border border-slate-200 group cursor-pointer"
         >
-          {/* 
-            GOOGLE DRIVE EMBED (Current)
-            Warning: Google Drive embeds often fail on production sites with a "frame-ancestors" CSP error. 
-            This happens when a user's browser blocks third-party cookies, causing Google to redirect the iframe to a login page.
-          */}
+          {/* Bright Thumbnail Cover before playing */}
+          {!isPlaying && (
+            <div className="absolute inset-0 z-20 bg-gradient-to-tr from-slate-900 via-slate-800 to-blue-950 flex flex-col items-center justify-center p-6 text-center transition-all group-hover:scale-[1.01]">
+              {/* Background ambient glow */}
+              <div className="absolute inset-0 bg-blue-600/10 backdrop-blur-xs pointer-events-none"></div>
+
+              {/* Glowing Play Button */}
+              <div className="relative z-10 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center shadow-2xl shadow-blue-500/50 group-hover:scale-110 group-hover:shadow-blue-500/70 transition-all duration-300 border-2 border-white/20">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="white" stroke="white" strokeWidth="1.5" className="ml-1.5 drop-shadow-md">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+              </div>
+
+              <span className="relative z-10 mt-4 text-white font-extrabold text-base sm:text-lg tracking-wide drop-shadow-sm">
+                Watch 20 Min Fullscreen Demo ▶
+              </span>
+              <span className="relative z-10 mt-1 text-xs text-blue-200/80 font-medium">
+                Tap to open in full brightness video mode
+              </span>
+            </div>
+          )}
+
+          {/* GOOGLE DRIVE EMBED */}
           <iframe 
             className="absolute inset-0 w-full h-full border-0"
             src="https://drive.google.com/file/d/15ZGxIEhPRHVhBfJ-1EiDAjDmlbZ_gh3m/preview" 
@@ -108,12 +126,6 @@ const DemoPage = () => {
             webkitallowfullscreen="true"
             mozallowfullscreen="true"
           ></iframe>
-
-          {/* 
-            RECOMMENDED: YOUTUBE EMBED 
-            For a reliable VSL, upload your video to YouTube as "Unlisted" and uncomment this player.
-            Replace "YOUR_YOUTUBE_VIDEO_ID" with the actual ID of your video.
-          */}
           {/*
           <iframe 
             className="absolute inset-0 w-full h-full"
