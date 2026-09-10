@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => {
   Object.assign(process.env, env);
 
   return {
-    base: './',
+    base: '/',
     plugins: [
       react(),
       {
