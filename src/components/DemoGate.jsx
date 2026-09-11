@@ -65,9 +65,15 @@ const DemoGate = ({ onClose, onUnlock }) => {
   
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  
+  // OTP State
+  const [otpStep, setOtpStep] = useState(false);
+  const [generatedOtp, setGeneratedOtp] = useState('');
+  const [enteredOtp, setEnteredOtp] = useState('');
+  const [resendTimer, setResendTimer] = useState(0);
 
   // ⚠️ PASTE YOUR GOOGLE SCRIPT WEB APP URL HERE ⚠️
-  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwnFdB2G_qWUsoxSnfKZIBPUs5FjnKWnFtJ-Ih9L04JM3fHy4mC2cI5fub7yy47gQ6ZIg/exec";
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxAIl4hCq_kT83ZdF3_j3cxv_eyvh6Vftw99BSgNVjf1gGuXCTTCmyrLPTmOYysSLdnxQ/exec";
 
   useEffect(() => {
     // 1. Check if already verified in cookies/cache (localStorage)
@@ -94,6 +100,22 @@ const DemoGate = ({ onClose, onUnlock }) => {
     setWebsite(val);
   };
 
+  const handleDesignationChange = (e) => {
+    // Restrict designation to letters and spaces only
+    const val = e.target.value.replace(/[^a-zA-Z\s]/g, '');
+    setDesignation(val);
+  };
+
+  useEffect(() => {
+    let interval;
+    if (otpStep && resendTimer > 0) {
+      interval = setInterval(() => {
+        setResendTimer((prev) => prev - 1);
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [otpStep, resendTimer]);
+
   const filteredCountries = countries.filter(c => 
     c.name.toLowerCase().includes(countrySearch.toLowerCase()) ||
     c.dial.includes(countrySearch) ||
@@ -104,6 +126,100 @@ const DemoGate = ({ onClose, onUnlock }) => {
     e.preventDefault();
     if (!name.trim() || !email.trim() || !phone.trim() || !designation.trim() || !website.trim()) {
       setError('Please fill out all fields');
+      return;
+    }
+
+    if (selectedCountry.code === 'IN' && phone.trim().length !== 10) {
+      setError('Indian phone numbers must be exactly 10 digits.');
+      return;
+    } else if (phone.trim().length < 6) {
+      setError('Please enter a valid phone number.');
+      return;
+    }
+
+    setError('');
+    setIsLoading(true);
+
+    const fullPhone = `${selectedCountry.dial} ${phone.trim()}`;
+
+    try {
+      // 1. Save lead immediately as "Unverified" in Google Sheets
+      const fullWebsite = website.trim() ? `https://${website.trim()}` : '';
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          action: 'save', 
+          phone: fullPhone, 
+          name: name.trim(), 
+          email: email.trim(), 
+          designation: designation.trim(), 
+          website: fullWebsite, 
+          otp: false // Triggers "Unverified" in Apps Script
+        })
+      }).catch(err => console.error("Initial lead save failed:", err));
+
+      // 2. Generate 4-digit OTP
+      const otp = Math.floor(1000 + Math.random() * 9000).toString();
+      setGeneratedOtp(otp);
+
+      const res = await fetch('/api/send-whatsapp-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone: fullPhone, otp })
+      });
+      
+      const data = await res.json();
+      
+      if (!res.ok) {
+        throw new Error(data.message || 'Failed to send OTP');
+      }
+
+      setOtpStep(true);
+      setResendTimer(30); // Start 30 second timer
+      setIsLoading(false);
+
+    } catch (err) {
+      console.error(err);
+      setError('Failed to send WhatsApp OTP. Please check your number.');
+      setIsLoading(false);
+    }
+  };
+
+  const handleResendOtp = async () => {
+    if (resendTimer > 0) return;
+    setError('');
+    setIsLoading(true);
+    
+    const newOtp = Math.floor(1000 + Math.random() * 9000).toString();
+    setGeneratedOtp(newOtp);
+    const fullPhone = `${selectedCountry.dial} ${phone.trim()}`;
+
+    try {
+      const res = await fetch('/api/send-whatsapp-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone: fullPhone, otp: newOtp })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Failed to resend');
+      
+      setResendTimer(30);
+    } catch(err) {
+      console.error(err);
+      setError('Failed to resend OTP.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleOtpSubmit = async (e) => {
+    e.preventDefault();
+    if (enteredOtp !== generatedOtp) {
+      setError('Incorrect OTP. Please try again.');
       return;
     }
 
@@ -126,7 +242,7 @@ const DemoGate = ({ onClose, onUnlock }) => {
             email: email.trim(), 
             designation: designation.trim(), 
             website: fullWebsite, 
-            otp: 'skipped' 
+            otp: true 
           })
         }).catch(console.error);
       }
@@ -159,178 +275,236 @@ const DemoGate = ({ onClose, onUnlock }) => {
         </button>
         
         <div className="w-full">
-          <div className="flex justify-center mb-4">
-            <div className="w-11 h-11 bg-blue-50 rounded-xl flex items-center justify-center text-primary shadow-sm border border-blue-100">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-              </svg>
-            </div>
-          </div>
-          <h4 className="text-2xl font-extrabold text-slate-900 mb-1.5 text-center">Watch the Demo</h4>
-          <p className="text-sm text-slate-500 mb-6 font-medium text-center">Please enter your details to access the video.</p>
-          
-          <form onSubmit={handleSubmit} className="flex flex-col gap-3.5">
-            {/* Full Name */}
-            <div>
-              <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Full Name</label>
-              <input 
-                type="text" 
-                value={name}
-                onChange={handleNameChange}
-                placeholder="John Doe"
-                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-400 text-sm"
-                required
-              />
-            </div>
-
-            {/* Work Email */}
-            <div>
-              <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Work Email</label>
-              <input 
-                type="email" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="john@company.com"
-                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-400 text-sm"
-                required
-              />
-            </div>
-
-            {/* WhatsApp Number with Custom Searchable Country Selector */}
-            <div>
-              <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">WhatsApp Number</label>
-              <div className="flex gap-2 relative">
-                
-                {/* Searchable Country Picker Dropdown */}
-                <div className="relative">
-                  <button
-                    type="button"
-                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className="flex items-center gap-1.5 px-3 py-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs outline-none focus:border-primary transition-all cursor-pointer h-full shrink-0"
-                  >
-                    <span className="text-base leading-none">{selectedCountry.flag}</span>
-                    <span>{selectedCountry.dial}</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}>
-                      <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                  </button>
-
-                  {isDropdownOpen && (
-                    <>
-                      {/* Overlay to close on outside click */}
-                      <div 
-                        className="fixed inset-0 z-40" 
-                        onClick={() => setIsDropdownOpen(false)}
-                      />
-                      
-                      {/* Dropdown Menu */}
-                      <div className="absolute left-0 top-full mt-1.5 w-64 bg-white rounded-xl shadow-xl border border-slate-200 z-50 overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-150">
-                        {/* Search Input Box */}
-                        <div className="p-2 border-b border-slate-100 bg-slate-50">
-                          <div className="relative flex items-center">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="absolute left-2.5 text-slate-400">
-                              <circle cx="11" cy="11" r="8"></circle>
-                              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                            </svg>
-                            <input
-                              type="text"
-                              value={countrySearch}
-                              onChange={(e) => setCountrySearch(e.target.value)}
-                              placeholder="Search country or code..."
-                              className="w-full pl-8 pr-3 py-1.5 text-xs bg-white border border-slate-200 rounded-lg outline-none focus:border-primary font-medium"
-                              autoFocus
-                            />
-                          </div>
-                        </div>
-
-                        {/* Country List (Scrollable) */}
-                        <div className="max-h-48 overflow-y-auto custom-scrollbar p-1 flex flex-col gap-0.5">
-                          {filteredCountries.length > 0 ? (
-                            filteredCountries.map((c) => (
-                              <button
-                                key={c.code}
-                                type="button"
-                                onClick={() => {
-                                  setSelectedCountry(c);
-                                  setIsDropdownOpen(false);
-                                  setCountrySearch('');
-                                }}
-                                className={`flex items-center justify-between px-2.5 py-2 rounded-lg text-xs transition-colors text-left w-full cursor-pointer ${
-                                  selectedCountry.code === c.code ? 'bg-blue-50 text-primary font-bold' : 'hover:bg-slate-50 text-slate-700 font-medium'
-                                }`}
-                              >
-                                <div className="flex items-center gap-2 overflow-hidden mr-2">
-                                  <span className="text-base leading-none">{c.flag}</span>
-                                  <span className="truncate">{c.name}</span>
-                                </div>
-                                <span className="font-mono text-[11px] text-slate-400 shrink-0">{c.dial}</span>
-                              </button>
-                            ))
-                          ) : (
-                            <div className="p-3 text-center text-xs text-slate-400 font-medium">No countries found</div>
-                          )}
-                        </div>
-                      </div>
-                    </>
-                  )}
+          {!otpStep ? (
+            <>
+              <div className="flex justify-center mb-4">
+                <div className="w-11 h-11 bg-blue-50 rounded-xl flex items-center justify-center text-primary shadow-sm border border-blue-100">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </div>
+              </div>
+              <h4 className="text-2xl font-extrabold text-slate-900 mb-1.5 text-center">Watch the Demo</h4>
+              <p className="text-sm text-slate-500 mb-6 font-medium text-center">Please enter your details to access the video.</p>
+              
+              <form onSubmit={handleSubmit} className="flex flex-col gap-3.5">
+                {/* Full Name */}
+                <div>
+                  <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Full Name</label>
+                  <input 
+                    type="text" 
+                    value={name}
+                    onChange={handleNameChange}
+                    placeholder="John Doe"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-400 text-sm"
+                    required
+                  />
                 </div>
 
-                <input 
-                  type="tel" 
-                  value={phone}
-                  onChange={handlePhoneChange}
-                  placeholder=""
-                  className="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-400 text-sm"
-                  required
-                />
-              </div>
-            </div>
+                {/* Work Email */}
+                <div>
+                  <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Work Email</label>
+                  <input 
+                    type="email" 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="john@company.com"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-400 text-sm"
+                    required
+                  />
+                </div>
 
-            {/* Designation */}
-            <div>
-              <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Designation</label>
-              <input 
-                type="text" 
-                value={designation}
-                onChange={(e) => setDesignation(e.target.value)}
-                placeholder="e.g. CEO, Marketing Director"
-                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-400 text-sm"
-                required
-              />
-            </div>
+                {/* WhatsApp Number with Custom Searchable Country Selector */}
+                <div>
+                  <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">WhatsApp Number</label>
+                  <div className="flex gap-2 relative">
+                    
+                    {/* Searchable Country Picker Dropdown */}
+                    <div className="relative">
+                      <button
+                        type="button"
+                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                        className="flex items-center gap-1.5 px-3 py-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs outline-none focus:border-primary transition-all cursor-pointer h-full shrink-0"
+                      >
+                        <span className="text-base leading-none">{selectedCountry.flag}</span>
+                        <span>{selectedCountry.dial}</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}>
+                          <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                      </button>
 
-            {/* Website with Prefix Addon */}
-            <div>
-              <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Company Website</label>
-              <div className="flex rounded-xl border border-slate-200 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 overflow-hidden transition-all">
-                <span className="bg-slate-50 text-slate-500 font-semibold text-xs px-3 flex items-center border-r border-slate-200 select-none shrink-0">
-                  https://
-                </span>
-                <input 
-                  type="text" 
-                  value={website}
-                  onChange={handleWebsiteChange}
-                  placeholder="example.com"
-                  className="w-full px-3.5 py-2.5 outline-none font-medium text-slate-900 placeholder:text-slate-400 text-sm"
-                  required
-                />
+                      {isDropdownOpen && (
+                        <>
+                          {/* Overlay to close on outside click */}
+                          <div 
+                            className="fixed inset-0 z-40" 
+                            onClick={() => setIsDropdownOpen(false)}
+                          />
+                          
+                          {/* Dropdown Menu */}
+                          <div className="absolute left-0 top-full mt-1.5 w-64 bg-white rounded-xl shadow-xl border border-slate-200 z-50 overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-150">
+                            {/* Search Input Box */}
+                            <div className="p-2 border-b border-slate-100 bg-slate-50">
+                              <div className="relative flex items-center">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="absolute left-2.5 text-slate-400">
+                                  <circle cx="11" cy="11" r="8"></circle>
+                                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                <input
+                                  type="text"
+                                  value={countrySearch}
+                                  onChange={(e) => setCountrySearch(e.target.value)}
+                                  placeholder="Search country or code..."
+                                  className="w-full pl-8 pr-3 py-1.5 text-xs bg-white border border-slate-200 rounded-lg outline-none focus:border-primary font-medium"
+                                  autoFocus
+                                />
+                              </div>
+                            </div>
+
+                            {/* Country List (Scrollable) */}
+                            <div className="max-h-48 overflow-y-auto custom-scrollbar p-1 flex flex-col gap-0.5">
+                              {filteredCountries.length > 0 ? (
+                                filteredCountries.map((c) => (
+                                  <button
+                                    key={c.code}
+                                    type="button"
+                                    onClick={() => {
+                                      setSelectedCountry(c);
+                                      setIsDropdownOpen(false);
+                                      setCountrySearch('');
+                                    }}
+                                    className={`flex items-center justify-between px-2.5 py-2 rounded-lg text-xs transition-colors text-left w-full cursor-pointer ${
+                                      selectedCountry.code === c.code ? 'bg-blue-50 text-primary font-bold' : 'hover:bg-slate-50 text-slate-700 font-medium'
+                                    }`}
+                                  >
+                                    <div className="flex items-center gap-2 overflow-hidden mr-2">
+                                      <span className="text-base leading-none">{c.flag}</span>
+                                      <span className="truncate">{c.name}</span>
+                                    </div>
+                                    <span className="font-mono text-[11px] text-slate-400 shrink-0">{c.dial}</span>
+                                  </button>
+                                ))
+                              ) : (
+                                <div className="p-3 text-center text-xs text-slate-400 font-medium">No countries found</div>
+                              )}
+                            </div>
+                          </div>
+                        </>
+                      )}
+                    </div>
+
+                    <input 
+                      type="tel" 
+                      value={phone}
+                      onChange={handlePhoneChange}
+                      placeholder=""
+                      className="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-400 text-sm"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Designation */}
+                <div>
+                  <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Designation</label>
+                  <input 
+                    type="text" 
+                    value={designation}
+                    onChange={handleDesignationChange}
+                    placeholder="e.g. CEO, Marketing Director"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-400 text-sm"
+                    required
+                  />
+                </div>
+
+                {/* Website with Prefix Addon */}
+                <div>
+                  <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Company Website</label>
+                  <div className="flex rounded-xl border border-slate-200 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 overflow-hidden transition-all">
+                    <span className="bg-slate-50 text-slate-500 font-semibold text-xs px-3 flex items-center border-r border-slate-200 select-none shrink-0">
+                      https://
+                    </span>
+                    <input 
+                      type="text" 
+                      value={website}
+                      onChange={handleWebsiteChange}
+                      placeholder="example.com"
+                      className="w-full px-3.5 py-2.5 outline-none font-medium text-slate-900 placeholder:text-slate-400 text-sm"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                {error && <p className="text-xs font-bold text-red-500 m-0 text-center">{error}</p>}
+                
+                <button 
+                  disabled={isLoading}
+                  type="submit" 
+                  className="w-full mt-1 py-3 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold shadow-sm transition-all disabled:opacity-70 flex items-center justify-center gap-2 text-sm cursor-pointer"
+                >
+                  {isLoading ? (
+                    <span className="w-5 h-5 rounded-full border-2 border-white/30 border-t-white animate-spin"></span>
+                  ) : (
+                    'Verify WhatsApp Number ✨'
+                  )}
+                </button>
+              </form>
+            </>
+          ) : (
+            <>
+              <div className="flex justify-center mb-4">
+                <div className="w-11 h-11 bg-green-50 rounded-xl flex items-center justify-center text-green-500 shadow-sm border border-green-100">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
               </div>
-            </div>
-            
-            {error && <p className="text-xs font-bold text-red-500 m-0 text-center">{error}</p>}
-            
-            <button 
-              disabled={isLoading}
-              type="submit" 
-              className="w-full mt-1 py-3 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold shadow-sm transition-all disabled:opacity-70 flex items-center justify-center gap-2 text-sm cursor-pointer"
-            >
-              {isLoading ? (
-                <span className="w-5 h-5 rounded-full border-2 border-white/30 border-t-white animate-spin"></span>
-              ) : (
-                'Unlock Demo ✨'
-              )}
-            </button>
-          </form>
+              <h4 className="text-2xl font-extrabold text-slate-900 mb-1.5 text-center">Enter Verification Code</h4>
+              <p className="text-sm text-slate-500 mb-6 font-medium text-center">We've sent a 4-digit code to your WhatsApp.<br/> ({selectedCountry.dial} {phone})</p>
+              
+              <form onSubmit={handleOtpSubmit} className="flex flex-col gap-4">
+                <div>
+                  <input 
+                    type="text" 
+                    value={enteredOtp}
+                    onChange={(e) => setEnteredOtp(e.target.value.replace(/\D/g, '').slice(0, 4))}
+                    placeholder="1234"
+                    maxLength={4}
+                    className="w-full text-center tracking-widest text-2xl px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-bold text-slate-900 placeholder:text-slate-300"
+                    required
+                  />
+                </div>
+                
+                {error && <p className="text-xs font-bold text-red-500 m-0 text-center">{error}</p>}
+                
+                <button 
+                  disabled={isLoading}
+                  type="submit" 
+                  className="w-full mt-2 py-3 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold shadow-sm transition-all disabled:opacity-70 flex items-center justify-center gap-2 text-sm cursor-pointer"
+                >
+                  {isLoading ? (
+                    <span className="w-5 h-5 rounded-full border-2 border-white/30 border-t-white animate-spin"></span>
+                  ) : (
+                    'Confirm & Unlock Demo'
+                  )}
+                </button>
+                <div className="flex flex-col items-center gap-2 mt-2">
+                  <button 
+                    type="button" 
+                    onClick={handleResendOtp}
+                    disabled={resendTimer > 0 || isLoading}
+                    className={`text-xs font-bold transition-all ${resendTimer > 0 ? 'text-slate-400 cursor-not-allowed' : 'text-slate-600 hover:text-primary cursor-pointer underline-offset-2 hover:underline'}`}
+                  >
+                    {resendTimer > 0 ? `Resend Code in ${resendTimer}s` : 'Didn\'t receive the code? Resend'}
+                  </button>
+                  <button type="button" onClick={() => { setOtpStep(false); setError(''); }} className="text-xs text-slate-500 hover:text-primary font-medium underline-offset-2 hover:underline">
+                    Change Phone Number
+                  </button>
+                </div>
+              </form>
+            </>
+          )}
         </div>
 
       </div>
