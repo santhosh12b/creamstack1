@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import LogoCloud from './components/LogoCloud';
@@ -26,126 +27,51 @@ import Footer from './components/Footer';
 const checkIsVerified = () => localStorage.getItem('demo_verified') === 'true';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('home');
+  const navigate = useNavigate();
+  const location = useLocation();
   const [showDemoGate, setShowDemoGate] = useState(false);
 
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.toLowerCase();
-      if (hash.startsWith('#demo') || hash.startsWith('#/demo')) {
-        if (checkIsVerified()) {
-          setCurrentPage('demo');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-          setCurrentPage('home');
-          setShowDemoGate(true); 
-        }
-        return;
-      }
-      if (hash === '#pricing' || hash === '#/pricing') {
-        setCurrentPage('pricing');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (hash === '#about' || hash === '#/about') {
-        setCurrentPage('about');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (hash === '#contact' || hash === '#/contact') {
-        setCurrentPage('contact');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (hash === '#privacy' || hash === '#/privacy' || hash === '#privacy-policy' || hash === '#/privacy-policy') {
-        setCurrentPage('privacy');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (hash === '#terms' || hash === '#/terms' || hash === '#terms-of-service' || hash === '#/terms-of-service') {
-        setCurrentPage('terms');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (hash === '#cookie' || hash === '#/cookie' || hash === '#cookie-policy' || hash === '#/cookie-policy') {
-        setCurrentPage('cookie');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (hash === '#security' || hash === '#/security' || hash === '#security-policy' || hash === '#/security-policy') {
-        setCurrentPage('security');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (hash === '#lead-enrichment' || hash === '#/lead-enrichment') {
-        setCurrentPage('lead-enrichment');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (
-        hash === '#omnichannel-outreach' || 
-        hash === '#/omnichannel-outreach' || 
-        hash === '#outreach-automation' || 
-        hash === '#/outreach-automation'
-      ) {
-        setCurrentPage('omnichannel-outreach');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (hash === '#lead-management' || hash === '#/lead-management') {
-        setCurrentPage('lead-management');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (hash === '#unified-inbox' || hash === '#/unified-inbox') {
-        setCurrentPage('unified-inbox');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        setCurrentPage('home');
-      }
-    };
+  // Derive currentPage based on pathname to pass down to Navbar/Footer
+  const currentPage = location.pathname === '/' ? 'home' : location.pathname.slice(1);
 
-    handleHashChange();
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]);
 
   const navigateTo = (page, sectionId = null) => {
     if (page === 'demo' || sectionId === 'demo') {
       if (checkIsVerified()) {
-        setCurrentPage('demo');
-        window.location.hash = 'demo';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        navigate('/demo');
       } else {
         setShowDemoGate(true); // Intercept and show global popup
       }
       return;
     }
-    setCurrentPage(page);
-    if (page === 'pricing') {
-      window.location.hash = 'pricing';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (page === 'about') {
-      window.location.hash = 'about';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (page === 'contact') {
-      window.location.hash = 'contact';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (page === 'privacy' || page === 'privacy-policy') {
-      window.location.hash = 'privacy';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (page === 'terms' || page === 'terms-of-service') {
-      window.location.hash = 'terms';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (page === 'cookie' || page === 'cookie-policy') {
-      window.location.hash = 'cookie';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (page === 'security' || page === 'security-policy') {
-      window.location.hash = 'security';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (page === 'lead-enrichment') {
-      window.location.hash = 'lead-enrichment';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (page === 'omnichannel-outreach' || page === 'outreach-automation') {
-      window.location.hash = 'omnichannel-outreach';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (page === 'lead-management') {
-      window.location.hash = 'lead-management';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (page === 'unified-inbox') {
-      window.location.hash = 'unified-inbox';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      window.location.hash = sectionId || 'home';
+    
+    if (page === 'pricing') navigate('/pricing');
+    else if (page === 'about') navigate('/about');
+    else if (page === 'contact') navigate('/contact');
+    else if (page === 'privacy' || page === 'privacy-policy') navigate('/privacy');
+    else if (page === 'terms' || page === 'terms-of-service') navigate('/terms');
+    else if (page === 'cookie' || page === 'cookie-policy') navigate('/cookie');
+    else if (page === 'security' || page === 'security-policy') navigate('/security');
+    else if (page === 'lead-enrichment') navigate('/lead-enrichment');
+    else if (page === 'omnichannel-outreach' || page === 'outreach-automation') navigate('/omnichannel-outreach');
+    else if (page === 'lead-management') navigate('/lead-management');
+    else if (page === 'unified-inbox') navigate('/unified-inbox');
+    else {
+      // If we are navigating to home or a section on the home page
+      if (location.pathname !== '/') {
+        navigate('/');
+      }
       if (sectionId) {
         setTimeout(() => {
           const el = document.getElementById(sectionId);
           if (el) {
             el.scrollIntoView({ behavior: 'smooth' });
           }
-        }, 50);
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 100);
       }
     }
   };
@@ -154,54 +80,31 @@ function App() {
     <div className="flex flex-col min-h-screen">
       <Navbar currentPage={currentPage} onNavigate={navigateTo} />
       <main className="flex-1 overflow-x-hidden">
-        {currentPage === 'pricing' ? (
-          /* PRICING PAGE ONLY: Shows PricingSection */
-          <PricingSection onNavigate={navigateTo} />
-        ) : currentPage === 'about' ? (
-          /* ABOUT PAGE */
-          <AboutPage onNavigate={navigateTo} />
-        ) : currentPage === 'contact' ? (
-          /* CONTACT PAGE */
-          <ContactPage onNavigate={navigateTo} />
-        ) : currentPage === 'privacy' ? (
-          /* PRIVACY POLICY PAGE */
-          <PrivacyPolicyPage onNavigate={navigateTo} />
-        ) : currentPage === 'terms' ? (
-          /* TERMS OF SERVICE PAGE */
-          <TermsOfServicePage onNavigate={navigateTo} />
-        ) : currentPage === 'cookie' ? (
-          /* COOKIE POLICY PAGE */
-          <CookiePolicyPage onNavigate={navigateTo} />
-        ) : currentPage === 'security' ? (
-          /* SECURITY PAGE */
-          <SecurityPage onNavigate={navigateTo} />
-        ) : currentPage === 'lead-enrichment' ? (
-          /* PRODUCT 1: LEAD ENRICHMENT SINGLE PAGE */
-          <LeadEnrichmentPage onNavigate={navigateTo} />
-        ) : currentPage === 'omnichannel-outreach' ? (
-          /* PRODUCT 2: OMNICHANNEL OUTREACH SINGLE PAGE */
-          <OmnichannelOutreachPage onNavigate={navigateTo} />
-        ) : currentPage === 'lead-management' ? (
-          /* PRODUCT 3: LEAD MANAGEMENT SINGLE PAGE */
-          <LeadManagementPage onNavigate={navigateTo} />
-        ) : currentPage === 'unified-inbox' ? (
-          /* PRODUCT 4: UNIFIED INBOX SINGLE PAGE */
-          <UnifiedInboxPage onNavigate={navigateTo} />
-        ) : currentPage === 'demo' ? (
-          /* DEMO PAGE */
-          <DemoPage />
-        ) : (
-          /* HOME PAGE: Shows full Landing Page */
-          <>
-            <HeroSection onNavigate={navigateTo} />
-            <LogoCloud />
-            <WorkflowSection />
-            <FeaturesSection />
-            <BenefitsSection />
-            <TestimonialSection />
-            <CTASection onNavigate={navigateTo} />
-          </>
-        )}
+        <Routes>
+          <Route path="/" element={
+            <>
+              <HeroSection onNavigate={navigateTo} />
+              <LogoCloud />
+              <WorkflowSection />
+              <FeaturesSection />
+              <BenefitsSection />
+              <TestimonialSection />
+              <CTASection onNavigate={navigateTo} />
+            </>
+          } />
+          <Route path="/pricing" element={<PricingSection onNavigate={navigateTo} />} />
+          <Route path="/about" element={<AboutPage onNavigate={navigateTo} />} />
+          <Route path="/contact" element={<ContactPage onNavigate={navigateTo} />} />
+          <Route path="/privacy" element={<PrivacyPolicyPage onNavigate={navigateTo} />} />
+          <Route path="/terms" element={<TermsOfServicePage onNavigate={navigateTo} />} />
+          <Route path="/cookie" element={<CookiePolicyPage onNavigate={navigateTo} />} />
+          <Route path="/security" element={<SecurityPage onNavigate={navigateTo} />} />
+          <Route path="/lead-enrichment" element={<LeadEnrichmentPage onNavigate={navigateTo} />} />
+          <Route path="/omnichannel-outreach" element={<OmnichannelOutreachPage onNavigate={navigateTo} />} />
+          <Route path="/lead-management" element={<LeadManagementPage onNavigate={navigateTo} />} />
+          <Route path="/unified-inbox" element={<UnifiedInboxPage onNavigate={navigateTo} />} />
+          <Route path="/demo" element={<DemoPage />} />
+        </Routes>
       </main>
       <Footer currentPage={currentPage} onNavigate={navigateTo} />
       
@@ -212,10 +115,7 @@ function App() {
           onUnlock={() => {
             localStorage.setItem('demo_verified', 'true');
             setShowDemoGate(false);
-            // After successful unlock, actually navigate to the demo page
-            setCurrentPage('demo');
-            window.location.hash = 'demo';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            navigate('/demo');
           }} 
         />
       )}

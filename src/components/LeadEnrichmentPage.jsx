@@ -20,8 +20,8 @@ const findMethods = [
     badgeColor: 'border-indigo-200 bg-indigo-50/50 text-indigo-600'
   },
   {
-    id: 'prompt-search',
-    name: 'Prompt Search',
+    id: 'filter-search',
+    name: 'Filter Search',
     desc: 'Describe your ideal customer using filters like designation, industry, company size, location, and more. Creamstack builds your prospect list in seconds.',
     example: 'Marketing Managers in SaaS companies with 50–500 employees in the US.',
     icon: <SearchSparkleIcon />,
