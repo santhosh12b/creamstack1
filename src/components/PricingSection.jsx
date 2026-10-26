@@ -611,8 +611,6 @@ const PricingSection = ({ onNavigate }) => {
             {/* Main Action Button */}
             <a
               href="https://app.creamstack.io/signup"
-              target="_blank"
-              rel="noopener noreferrer"
               className={`w-full py-3.5 px-5 rounded-2xl font-extrabold text-sm transition-all duration-200 min-h-[48px] flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-[0.98] ${currentMobilePlan.btnStyle}`}
             >
               <span>{currentMobilePlan.btnText}</span>
@@ -785,8 +783,6 @@ const PricingSection = ({ onNavigate }) => {
                   <div className="mt-auto pt-6">
                     <a 
                       href="https://app.creamstack.io/signup"
-                      target="_blank"
-                      rel="noopener noreferrer"
                       className="w-full py-2.5 px-4 rounded-xl border-2 border-purple-200 text-purple-700 font-extrabold hover:bg-purple-600 hover:text-white hover:border-purple-600 transition-all duration-200 text-sm min-h-[44px] cursor-pointer flex items-center justify-center text-center inline-block"
                     >
                       Start Trial
@@ -813,8 +809,6 @@ const PricingSection = ({ onNavigate }) => {
                   <div className="mt-auto pt-6">
                     <a 
                       href="https://app.creamstack.io/signup"
-                      target="_blank"
-                      rel="noopener noreferrer"
                       className="w-full py-2.5 px-4 rounded-xl border-2 border-primary/40 text-primary font-extrabold hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 text-sm min-h-[44px] cursor-pointer flex items-center justify-center text-center inline-block"
                     >
                       Choose Starter
@@ -837,8 +831,6 @@ const PricingSection = ({ onNavigate }) => {
                   <div className="mt-auto pt-6">
                     <a 
                       href="https://app.creamstack.io/signup"
-                      target="_blank"
-                      rel="noopener noreferrer"
                       className="w-full py-2.5 px-4 rounded-xl bg-primary text-white font-extrabold shadow-lg shadow-primary/25 hover:bg-primary-hover hover:-translate-y-0.5 transition-all duration-200 text-sm min-h-[44px] cursor-pointer flex items-center justify-center text-center inline-block"
                     >
                       Choose Growth
@@ -858,8 +850,6 @@ const PricingSection = ({ onNavigate }) => {
                   <div className="mt-auto pt-6">
                     <a 
                       href="https://app.creamstack.io/signup"
-                      target="_blank"
-                      rel="noopener noreferrer"
                       className="w-full py-2.5 px-4 rounded-xl border-2 border-emerald-500/40 text-emerald-600 font-extrabold hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition-all duration-200 text-sm min-h-[44px] cursor-pointer flex items-center justify-center text-center inline-block"
                     >
                       Choose Scale

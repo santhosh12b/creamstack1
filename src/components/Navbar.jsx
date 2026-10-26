@@ -350,16 +350,12 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
         <div className="hidden md:flex items-center gap-3">
           <a 
             href="https://app.creamstack.io/"
-            target="_blank"
-            rel="noopener noreferrer"
             className="bg-transparent text-secondary hover:text-primary border border-gray-300 px-5 py-2 rounded-lg hover:bg-gray-50 transition-colors font-semibold text-sm inline-block"
           >
             Log In
           </a>
           <a 
             href="https://app.creamstack.io/signup"
-            target="_blank"
-            rel="noopener noreferrer"
             className="bg-primary hover:bg-primary-hover text-white px-5 py-2 rounded-lg transition-colors font-semibold text-sm shadow-sm inline-block"
           >
             Sign Up
@@ -564,16 +560,12 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
             <div className="flex flex-col gap-2 pt-1">
               <a 
                 href="https://app.creamstack.io/signup"
-                target="_blank"
-                rel="noopener noreferrer"
                 className="w-full py-3 min-h-[48px] rounded-2xl bg-primary hover:bg-primary-hover text-white font-extrabold text-[15px] shadow-md shadow-primary/20 transition-all flex items-center justify-center active:scale-98"
               >
                 Sign Up
               </a>
               <a 
                 href="https://app.creamstack.io/"
-                target="_blank"
-                rel="noopener noreferrer"
                 className="w-full py-3 min-h-[48px] rounded-2xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-sm transition-all flex items-center justify-center"
               >
                 Sign In to Platform
