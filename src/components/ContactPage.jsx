@@ -30,7 +30,7 @@ const ContactPage = ({ onNavigate }) => {
     };
 
     try {
-      await fetch("https://script.google.com/macros/s/AKfycbwnFdB2G_qWUsoxSnfKZIBPUs5FjnKWnFtJ-Ih9L04JM3fHy4mC2cI5fub7yy47gQ6ZIg/exec", {
+      await fetch("https://script.google.com/macros/s/AKfycbxag1gdlugmKq1x9F89KRvsL8juknMuViQUKfSZFA_ATSAbTI48h2hGxpgsmm8_Bsf0Ow/exec", {
         method: "POST",
         headers: {
           "Content-Type": "text/plain;charset=utf-8",

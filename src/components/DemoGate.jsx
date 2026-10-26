@@ -73,7 +73,7 @@ const DemoGate = ({ onClose, onUnlock }) => {
   const [resendTimer, setResendTimer] = useState(0);
 
   // ⚠️ PASTE YOUR GOOGLE SCRIPT WEB APP URL HERE ⚠️
-  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxAIl4hCq_kT83ZdF3_j3cxv_eyvh6Vftw99BSgNVjf1gGuXCTTCmyrLPTmOYysSLdnxQ/exec";
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxag1gdlugmKq1x9F89KRvsL8juknMuViQUKfSZFA_ATSAbTI48h2hGxpgsmm8_Bsf0Ow/exec";
 
   useEffect(() => {
     // 1. Check if already verified in cookies/cache (localStorage)

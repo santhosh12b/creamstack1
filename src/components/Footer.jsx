@@ -11,26 +11,53 @@ const Footer = ({ currentPage = 'home', onNavigate }) => {
   };
 
   const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState('idle'); // 'idle' | 'success' | 'already_subscribed'
   const isSubmittingRef = useRef(false);
+
+  // Retrieve list of already submitted emails from localStorage
+  const getSubscribedEmails = () => {
+    try {
+      const stored = localStorage.getItem('creamstack_subscribed_emails');
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      return [];
+    }
+  };
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
-    const cleanEmail = email.trim();
+    const cleanEmail = email.trim().toLowerCase();
     if (!cleanEmail) return;
 
-    // Prevent double clicking / concurrent submission
-    if (isSubmittingRef.current || submitted) return;
-    isSubmittingRef.current = true;
-    setIsSubmitting(true);
+    // Prevent concurrent submission
+    if (isSubmittingRef.current || status !== 'idle') return;
 
-    // Instant optimistic response so user immediately sees success and cannot double-click
-    setSubmitted(true);
+    // 1. Check if email was ALREADY stored previously
+    const existingEmails = getSubscribedEmails();
+    if (existingEmails.includes(cleanEmail)) {
+      // Do NOT send another request to Google Sheets!
+      setStatus('already_subscribed');
+      setEmail('');
+      setTimeout(() => {
+        setStatus('idle');
+      }, 4000);
+      return;
+    }
+
+    // 2. New Unique Email: Save immediately to prevent any re-submission
+    isSubmittingRef.current = true;
+    setStatus('success');
     setEmail('');
 
     try {
-      fetch("https://script.google.com/macros/s/AKfycbwnFdB2G_qWUsoxSnfKZIBPUs5FjnKWnFtJ-Ih9L04JM3fHy4mC2cI5fub7yy47gQ6ZIg/exec", {
+      localStorage.setItem('creamstack_subscribed_emails', JSON.stringify([...existingEmails, cleanEmail]));
+    } catch (err) {
+      console.error("Storage error:", err);
+    }
+
+    // 3. Send single non-duplicate request to Google Sheets
+    try {
+      fetch("https://script.google.com/macros/s/AKfycbxag1gdlugmKq1x9F89KRvsL8juknMuViQUKfSZFA_ATSAbTI48h2hGxpgsmm8_Bsf0Ow/exec", {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({
@@ -47,13 +74,12 @@ const Footer = ({ currentPage = 'home', onNavigate }) => {
 
       // Reset after 4 seconds
       setTimeout(() => {
-        setSubmitted(false);
-        setIsSubmitting(false);
+        setStatus('idle');
         isSubmittingRef.current = false;
       }, 4000);
     } catch (error) {
       console.error(error);
-      setIsSubmitting(false);
+      setStatus('idle');
       isSubmittingRef.current = false;
     }
   };
@@ -111,29 +137,39 @@ const Footer = ({ currentPage = 'home', onNavigate }) => {
                 type="email" 
                 value={email}
                 onChange={e => setEmail(e.target.value)}
-                placeholder={submitted ? "Subscribed Successfully!" : "Enter your email"} 
+                placeholder={
+                  status === 'success' 
+                    ? "Subscribed Successfully!" 
+                    : status === 'already_subscribed' 
+                    ? "You're already subscribed!" 
+                    : "Enter your email"
+                } 
                 className={`flex-1 px-4 py-2 border rounded-lg text-sm outline-none transition-all duration-200 ${
-                  submitted 
+                  status === 'success' 
                     ? 'border-emerald-500 bg-emerald-50 text-emerald-700 placeholder:text-emerald-600 font-semibold shadow-xs' 
+                    : status === 'already_subscribed'
+                    ? 'border-blue-400 bg-blue-50 text-blue-700 placeholder:text-blue-600 font-semibold shadow-xs'
                     : 'border-border focus:border-primary'
                 }`} 
-                disabled={submitted || isSubmitting}
+                disabled={status !== 'idle'}
                 required
               />
               <button 
                 type="submit" 
                 className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-200 shrink-0 ${
-                  submitted 
+                  status === 'success' 
                     ? 'bg-emerald-500 text-white cursor-default scale-105 pointer-events-none' 
-                    : isSubmitting
-                    ? 'bg-primary/70 text-white cursor-not-allowed pointer-events-none'
+                    : status === 'already_subscribed'
+                    ? 'bg-blue-500 text-white cursor-default scale-105 pointer-events-none'
                     : 'bg-primary hover:bg-primary-hover text-white active:scale-95 cursor-pointer'
                 }`}
-                disabled={submitted || isSubmitting}
-                title={submitted ? "Subscribed!" : "Subscribe"}
+                disabled={status !== 'idle'}
+                title={status === 'success' ? "Subscribed!" : status === 'already_subscribed' ? "Already on list" : "Subscribe"}
               >
-                {submitted ? (
+                {status === 'success' ? (
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                ) : status === 'already_subscribed' ? (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
                 ) : (
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                 )}
