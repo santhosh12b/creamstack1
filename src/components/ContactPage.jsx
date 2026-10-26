@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import CTASection from './CTASection';
 
 const ContactPage = ({ onNavigate }) => {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const isSubmittingRef = useRef(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,6 +15,9 @@ const ContactPage = ({ onNavigate }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmittingRef.current || submitted) return;
+    isSubmittingRef.current = true;
+    setIsSubmitting(true);
     
     const payload = {
       action: 'contact_form',
@@ -41,6 +46,9 @@ const ContactPage = ({ onNavigate }) => {
     } catch (error) {
       console.error(error);
       alert("There was an error submitting the form.");
+    } finally {
+      setIsSubmitting(false);
+      isSubmittingRef.current = false;
     }
   };
 
@@ -256,13 +264,18 @@ const ContactPage = ({ onNavigate }) => {
                   {/* Submit Button */}
                   <button 
                     type="submit" 
-                    className="mt-4 w-full py-3.5 px-6 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-bold text-base shadow-md shadow-blue-500/20 active:scale-[0.99] transition-all cursor-pointer flex items-center justify-center gap-2"
+                    disabled={isSubmitting}
+                    className={`mt-4 w-full py-3.5 px-6 rounded-xl font-bold text-base shadow-md transition-all flex items-center justify-center gap-2 ${
+                      isSubmitting 
+                        ? 'bg-blue-400 text-white cursor-not-allowed pointer-events-none' 
+                        : 'bg-blue-500 hover:bg-blue-600 text-white shadow-blue-500/20 active:scale-[0.99] cursor-pointer'
+                    }`}
                   >
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <line x1="22" y1="2" x2="11" y2="13"></line>
                       <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                     </svg>
-                    <span>Send Message</span>
+                    <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
                   </button>
 
                 </form>

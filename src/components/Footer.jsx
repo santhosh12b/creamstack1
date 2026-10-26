@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 const Footer = ({ currentPage = 'home', onNavigate }) => {
   const handleNavClick = (e, page, sectionId) => {
@@ -12,30 +12,49 @@ const Footer = ({ currentPage = 'home', onNavigate }) => {
 
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const isSubmittingRef = useRef(false);
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
-    if (!email) return;
+    const cleanEmail = email.trim();
+    if (!cleanEmail) return;
+
+    // Prevent double clicking / concurrent submission
+    if (isSubmittingRef.current || submitted) return;
+    isSubmittingRef.current = true;
+    setIsSubmitting(true);
+
+    // Instant optimistic response so user immediately sees success and cannot double-click
+    setSubmitted(true);
+    setEmail('');
 
     try {
-      await fetch("https://script.google.com/macros/s/AKfycbwnFdB2G_qWUsoxSnfKZIBPUs5FjnKWnFtJ-Ih9L04JM3fHy4mC2cI5fub7yy47gQ6ZIg/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbwnFdB2G_qWUsoxSnfKZIBPUs5FjnKWnFtJ-Ih9L04JM3fHy4mC2cI5fub7yy47gQ6ZIg/exec", {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({
           action: 'contact_form',
           type: "newsletter",
-          email: email,
+          email: cleanEmail,
           subject: "New Newsletter Subscriber"
         }),
         mode: "no-cors",
+        keepalive: true,
+      }).catch(err => {
+        console.error("Subscription background sync error:", err);
       });
-      
-      setSubmitted(true);
-      setEmail('');
-      setTimeout(() => setSubmitted(false), 3000);
+
+      // Reset after 4 seconds
+      setTimeout(() => {
+        setSubmitted(false);
+        setIsSubmitting(false);
+        isSubmittingRef.current = false;
+      }, 4000);
     } catch (error) {
       console.error(error);
-      alert("Error subscribing.");
+      setIsSubmitting(false);
+      isSubmittingRef.current = false;
     }
   };
 
@@ -93,16 +112,28 @@ const Footer = ({ currentPage = 'home', onNavigate }) => {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 placeholder={submitted ? "Subscribed Successfully!" : "Enter your email"} 
-                className={`flex-1 px-4 py-2 border rounded-lg text-sm outline-none transition-colors ${submitted ? 'border-emerald-500 bg-emerald-50 text-emerald-700 placeholder:text-emerald-600' : 'border-border focus:border-primary'}`} 
-                disabled={submitted}
+                className={`flex-1 px-4 py-2 border rounded-lg text-sm outline-none transition-all duration-200 ${
+                  submitted 
+                    ? 'border-emerald-500 bg-emerald-50 text-emerald-700 placeholder:text-emerald-600 font-semibold shadow-xs' 
+                    : 'border-border focus:border-primary'
+                }`} 
+                disabled={submitted || isSubmitting}
+                required
               />
               <button 
                 type="submit" 
-                className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors shrink-0 ${submitted ? 'bg-emerald-500 text-white cursor-default' : 'bg-primary hover:bg-primary-hover text-white'}`}
-                disabled={submitted}
+                className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-200 shrink-0 ${
+                  submitted 
+                    ? 'bg-emerald-500 text-white cursor-default scale-105 pointer-events-none' 
+                    : isSubmitting
+                    ? 'bg-primary/70 text-white cursor-not-allowed pointer-events-none'
+                    : 'bg-primary hover:bg-primary-hover text-white active:scale-95 cursor-pointer'
+                }`}
+                disabled={submitted || isSubmitting}
+                title={submitted ? "Subscribed!" : "Subscribe"}
               >
                 {submitted ? (
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 ) : (
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                 )}
