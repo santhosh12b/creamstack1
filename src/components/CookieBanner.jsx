@@ -91,11 +91,11 @@ const CookieBanner = ({ onNavigate }) => {
         {/* Top Header: CreamStack Brand Logo + Privacy Badge + Close */}
         <div className="px-4 sm:px-7 pt-4 sm:pt-5 pb-3 sm:pb-4 flex items-center justify-between border-b border-white/[0.07]">
           <div className="flex items-center gap-2.5 sm:gap-3">
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-600/10 border border-blue-400/30 flex items-center justify-center p-1.5 shadow-inner shrink-0">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center p-1.5 shadow-sm shrink-0">
               <img 
-                src="/33.png" 
+                src="/creamstack-icon.png" 
                 alt="CreamStack Brand" 
-                className="w-full h-full object-contain drop-shadow"
+                className="w-full h-full object-contain"
               />
             </div>
             <div className="flex flex-col">
@@ -131,7 +131,7 @@ const CookieBanner = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* Modern Segmented Navigation Tabs (Touch-friendly & responsive) */}
+        {/* Modern Segmented Navigation Tabs */}
         <div className="flex items-center gap-1 px-3 sm:px-7 pt-2.5 sm:pt-3.5 pb-2 border-b border-white/[0.07] bg-[#101216]/60 overflow-x-auto no-scrollbar">
           <button
             type="button"
@@ -180,7 +180,7 @@ const CookieBanner = ({ onNavigate }) => {
                 This website uses cookies
               </h3>
               <p className="text-[11px] sm:text-[13px] text-slate-300 leading-relaxed font-normal mb-3.5 sm:mb-5">
-                We use cookies to personalize content and ads, provide social media features, and analyze our website traffic. We also share information about your use of our site with our social media, advertising, and analytics partners. These partners may combine it with other information you&apos;ve provided to them or that they&apos;ve collected from your use of their services.
+                We use cookies to personalize content and ads, analyze traffic, and enhance user experience. We also share information about your use of our site with analytics partners (including <strong className="text-white">Microsoft Clarity</strong> & Google) and advertising partners (<strong className="text-white">Meta Pixel</strong>).
               </p>
 
               {/* Selection Category Cards with Smooth Switches */}
@@ -243,7 +243,7 @@ const CookieBanner = ({ onNavigate }) => {
                   </div>
                 </div>
 
-                {/* 3. Statistics (Analytics & Clarity) */}
+                {/* 3. Statistics (Microsoft Clarity & Google Analytics) */}
                 <div 
                   onClick={() => setStatistics(!statistics)}
                   className={`flex items-center justify-between p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl border transition-all cursor-pointer select-none ${
@@ -254,7 +254,7 @@ const CookieBanner = ({ onNavigate }) => {
                 >
                   <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
                     <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0 transition-colors ${
-                      statistics ? 'bg-blue-500/20 text-blue-400' : 'bg-white/5 text-slate-400'
+                      statistics ? 'bg-sky-500/20 text-sky-400' : 'bg-white/5 text-slate-400'
                     }`}>
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                         <line x1="18" y1="20" x2="18" y2="10"></line>
@@ -264,7 +264,7 @@ const CookieBanner = ({ onNavigate }) => {
                     </div>
                     <div className="flex flex-col min-w-0">
                       <span className="text-xs font-bold text-slate-200">Statistics</span>
-                      <span className="text-[10px] text-slate-400 font-medium truncate">Google & Clarity</span>
+                      <span className="text-[10px] text-sky-400 font-semibold truncate">Microsoft Clarity & Google</span>
                     </div>
                   </div>
                   {/* Modern Toggle Switch */}
@@ -323,10 +323,19 @@ const CookieBanner = ({ onNavigate }) => {
 
               <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/[0.03] border border-white/[0.08]">
                 <h4 className="text-xs sm:text-sm font-bold text-white mb-1 flex items-center gap-1.5">
+                  <span>📊</span> Microsoft Clarity & Analytics
+                </h4>
+                <p className="text-slate-400 text-[11px] sm:text-xs leading-relaxed m-0">
+                  We use <strong className="text-white">Microsoft Clarity</strong> to capture how you interact with our website through behavioral metrics, heatmaps, and session replay to improve user experience. If turned off, Clarity cookies (<code className="text-sky-300">_clck</code>, <code className="text-sky-300">_clsk</code>) and session tracking are completely disabled.
+                </p>
+              </div>
+
+              <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/[0.03] border border-white/[0.08]">
+                <h4 className="text-xs sm:text-sm font-bold text-white mb-1 flex items-center gap-1.5">
                   <span>⚖️</span> Legal & Privacy Compliance
                 </h4>
                 <p className="text-slate-400 text-[11px] sm:text-xs leading-relaxed m-0">
-                  Strictly necessary cookies ensure uninterrupted operation and security. For marketing trackers (such as the Meta Pixel) and analytical cookies (such as Google Analytics), your consent is required before cookies can be stored or shared.
+                  Strictly necessary cookies ensure uninterrupted operation and security. For marketing trackers (such as the Meta Pixel) and analytical cookies (such as Microsoft Clarity & Google Analytics), your consent is required before cookies can be stored or shared.
                 </p>
               </div>
 
@@ -366,24 +375,42 @@ const CookieBanner = ({ onNavigate }) => {
                 </div>
               </div>
 
-              {/* Statistics Details */}
+              {/* Dedicated Microsoft Clarity Card */}
               <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/[0.03] border border-white/[0.08]">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="font-bold text-white text-xs">Statistics & Analytics (2)</span>
-                  <span className="text-[10px] text-slate-400 font-semibold">Google LLC & Microsoft</span>
+                  <span className="font-bold text-white text-xs flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-sky-400"></span>
+                    <span>Microsoft Clarity</span>
+                  </span>
+                  <span className="text-[9px] sm:text-[10px] text-sky-400 font-bold uppercase tracking-wider bg-sky-500/10 px-2 py-0.5 rounded">Heatmaps & Sessions</span>
+                </div>
+                <p className="text-slate-400 text-[11px] mb-2">
+                  Operated by Microsoft Corporation. Captures user interaction, scroll depth, and click heatmaps to improve user experience.
+                </p>
+                <div className="flex flex-col gap-1 text-[10px] sm:text-[11px] text-slate-300">
+                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                    <span className="bg-black/40 px-2 py-0.5 rounded-lg border border-white/5 font-mono text-sky-300">_clck</span>
+                    <span className="text-slate-400">Persists Clarity User ID across page views (1 year)</span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                    <span className="bg-black/40 px-2 py-0.5 rounded-lg border border-white/5 font-mono text-sky-300">_clsk</span>
+                    <span className="text-slate-400">Connects multiple page views into a single session recording (24 hours)</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Google Analytics Details */}
+              <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/[0.03] border border-white/[0.08]">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-bold text-white text-xs">Google Analytics (1)</span>
+                  <span className="text-[10px] text-slate-400 font-semibold">Google LLC</span>
                 </div>
                 <p className="text-slate-400 text-[11px] mb-2">
                   Helps our engineering team measure traffic, page load performance, and optimize UI interactions.
                 </p>
-                <div className="flex flex-col gap-1 text-[10px] sm:text-[11px] text-slate-300">
-                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-                    <span className="bg-black/40 px-2 py-0.5 rounded-lg border border-white/5 font-mono text-blue-300">_ga, _ga_*</span>
-                    <span className="text-slate-400">Google Analytics 4 metrics (2 years)</span>
-                  </div>
-                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-                    <span className="bg-black/40 px-2 py-0.5 rounded-lg border border-white/5 font-mono text-blue-300">_clck, _clsk</span>
-                    <span className="text-slate-400">Microsoft Clarity session recordings (1 year)</span>
-                  </div>
+                <div className="flex items-center gap-2 text-[10px] sm:text-[11px] text-slate-300">
+                  <span className="bg-black/40 px-2 py-0.5 rounded-lg border border-white/5 font-mono text-blue-300">_ga, _ga_*</span>
+                  <span className="text-slate-400">Google Analytics 4 session metrics (2 years)</span>
                 </div>
               </div>
 
