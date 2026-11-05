@@ -22,6 +22,14 @@
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
+      // Initial Meta Pixel consent check
+      try {
+        var rawConsent = localStorage.getItem('creamstack_cookie_consent');
+        if (!rawConsent || !JSON.parse(rawConsent).marketing) {
+          fbq('consent', 'revoke');
+        }
+      } catch(e) {}
+
       fbq('init', '1393120212780336');
       fbq('track', 'PageView');
     </script>
@@ -34,6 +42,14 @@
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window, document, "clarity", "script", "yf0w166z8z");
+
+        // Clarity initial consent check
+        try {
+          var rawC = localStorage.getItem('creamstack_cookie_consent');
+          if (!rawC || !JSON.parse(rawC).statistics) {
+            clarity('consent', false);
+          }
+        } catch(e) {}
     </script>
     <!-- End Microsoft Clarity -->
 
@@ -42,6 +58,26 @@
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      (function() {
+        var adGranted = 'denied';
+        var analyticsGranted = 'denied';
+        try {
+          var c = localStorage.getItem('creamstack_cookie_consent');
+          if (c) {
+            var parsed = JSON.parse(c);
+            if (parsed.marketing) adGranted = 'granted';
+            if (parsed.statistics) analyticsGranted = 'granted';
+          }
+        } catch(e) {}
+
+        gtag('consent', 'default', {
+          'ad_storage': adGranted,
+          'ad_user_data': adGranted,
+          'ad_personalization': adGranted,
+          'analytics_storage': analyticsGranted
+        });
+      })();
+
       gtag('js', new Date());
 
       gtag('config', 'AW-18437392650');

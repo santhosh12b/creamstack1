@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { getInitialCurrency, detectVisitorCurrency } from '../utils/geoCurrency';
 import CTASection from './CTASection';
 
 const featureCategories = [
@@ -273,7 +274,19 @@ const featureCategories = [
 ];
 
 const PricingSection = ({ onNavigate }) => {
-  const [currency, setCurrency] = useState('inr'); // 'inr' | 'usd'
+  const [currency, setCurrency] = useState(getInitialCurrency); // Auto-detected: 'inr' for India, 'usd' for international
+
+  useEffect(() => {
+    let isMounted = true;
+    detectVisitorCurrency().then((detected) => {
+      if (isMounted && detected) {
+        setCurrency(detected);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
   const [creditCount, setCreditCount] = useState(80);
   const [emailAccounts, setEmailAccounts] = useState(1);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -295,6 +308,7 @@ const PricingSection = ({ onNavigate }) => {
 
   const handleCurrencyChange = (curr) => {
     setCurrency(curr);
+
   };
 
   const handlePlanAction = (planId, planName) => {

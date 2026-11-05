@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import LogoCloud from './components/LogoCloud';
@@ -21,6 +21,7 @@ import CookiePolicyPage from './components/CookiePolicyPage';
 import SecurityPage from './components/SecurityPage';
 import DemoPage from './components/DemoPage';    
 import DemoGate from './components/DemoGate';
+import CookieBanner from './components/CookieBanner';
 import Footer from './components/Footer';
 
 // Use localStorage so the verification persists across page reloads
@@ -50,11 +51,11 @@ function App() {
     }
     
     if (page === 'pricing') navigate('/pricing');
-    else if (page === 'about') navigate('/about');
+    else if (page === 'about' || page === 'about-us') navigate('/about-us');
     else if (page === 'contact') navigate('/contact');
-    else if (page === 'privacy' || page === 'privacy-policy') navigate('/privacy');
-    else if (page === 'terms' || page === 'terms-of-service') navigate('/terms');
-    else if (page === 'cookie' || page === 'cookie-policy') navigate('/cookie');
+    else if (page === 'privacy' || page === 'privacy-policy') navigate('/privacy-policy');
+    else if (page === 'terms' || page === 'terms-of-service') navigate('/terms-of-service');
+    else if (page === 'cookie' || page === 'cookie-policy') navigate('/cookie-policy');
     else if (page === 'security' || page === 'security-policy') navigate('/security');
     else if (page === 'lead-enrichment') navigate('/lead-enrichment');
     else if (page === 'omnichannel-outreach' || page === 'outreach-automation') navigate('/omnichannel-outreach');
@@ -93,12 +94,17 @@ function App() {
             </>
           } />
           <Route path="/pricing" element={<PricingSection onNavigate={navigateTo} />} />
-          <Route path="/about" element={<AboutPage onNavigate={navigateTo} />} />
+          <Route path="/about-us" element={<AboutPage onNavigate={navigateTo} />} />
+          <Route path="/about" element={<Navigate to="/about-us" replace />} />
           <Route path="/contact" element={<ContactPage onNavigate={navigateTo} />} />
-          <Route path="/privacy" element={<PrivacyPolicyPage onNavigate={navigateTo} />} />
-          <Route path="/terms" element={<TermsOfServicePage onNavigate={navigateTo} />} />
-          <Route path="/cookie" element={<CookiePolicyPage onNavigate={navigateTo} />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage onNavigate={navigateTo} />} />
+          <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
+          <Route path="/terms-of-service" element={<TermsOfServicePage onNavigate={navigateTo} />} />
+          <Route path="/terms" element={<Navigate to="/terms-of-service" replace />} />
+          <Route path="/cookie-policy" element={<CookiePolicyPage onNavigate={navigateTo} />} />
+          <Route path="/cookie" element={<Navigate to="/cookie-policy" replace />} />
           <Route path="/security" element={<SecurityPage onNavigate={navigateTo} />} />
+          <Route path="/security-policy" element={<Navigate to="/security" replace />} />
           <Route path="/lead-enrichment" element={<LeadEnrichmentPage onNavigate={navigateTo} />} />
           <Route path="/omnichannel-outreach" element={<OmnichannelOutreachPage onNavigate={navigateTo} />} />
           <Route path="/lead-management" element={<LeadManagementPage onNavigate={navigateTo} />} />
@@ -119,6 +125,9 @@ function App() {
           }} 
         />
       )}
+
+      {/* Cookie Consent Banner */}
+      <CookieBanner onNavigate={navigateTo} />
     </div>
   );
 }

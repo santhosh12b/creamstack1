@@ -113,7 +113,7 @@ const Footer = ({ currentPage = 'home', onNavigate }) => {
           <div>
             <h5 className="text-[0.95rem] m-0 mb-4 text-secondary font-bold">Quick Links</h5>
             <ul className="flex flex-col gap-2 list-none p-0 m-0">
-              <li><a href="#about" onClick={(e) => handleNavClick(e, 'about')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">About Us</a></li>
+              <li><a href="#about-us" onClick={(e) => handleNavClick(e, 'about-us')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">About Us</a></li>
               <li><a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">Contact</a></li>
               <li><a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">Pricing</a></li>
             </ul>
@@ -122,9 +122,18 @@ const Footer = ({ currentPage = 'home', onNavigate }) => {
           <div>
             <h5 className="text-[0.95rem] m-0 mb-4 text-secondary font-bold">Legal</h5>
             <ul className="flex flex-col gap-2 list-none p-0 m-0">
-              <li><a href="#privacy" onClick={(e) => handleNavClick(e, 'privacy')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">Privacy Policy</a></li>
-              <li><a href="#terms" onClick={(e) => handleNavClick(e, 'terms')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">Terms of Service</a></li>
-              <li><a href="#cookie" onClick={(e) => handleNavClick(e, 'cookie')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">Cookie Policy</a></li>
+              <li><a href="#privacy-policy" onClick={(e) => handleNavClick(e, 'privacy-policy')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">Privacy Policy</a></li>
+              <li><a href="#terms-of-service" onClick={(e) => handleNavClick(e, 'terms-of-service')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">Terms of Service</a></li>
+              <li><a href="#cookie-policy" onClick={(e) => handleNavClick(e, 'cookie-policy')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">Cookie Policy</a></li>
+              <li>
+                <button 
+                  type="button" 
+                  onClick={() => window.dispatchEvent(new CustomEvent('creamstack_open_cookie_preferences'))}
+                  className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1 cursor-pointer text-left bg-transparent border-0 p-0 font-normal"
+                >
+                  Cookie Preferences
+                </button>
+              </li>
               <li><a href="#security" onClick={(e) => handleNavClick(e, 'security')} className="text-sm text-text-light hover:text-primary transition-colors flex items-center py-1">Security</a></li>
             </ul>
           </div>

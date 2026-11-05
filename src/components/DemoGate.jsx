@@ -250,7 +250,14 @@ const DemoGate = ({ onClose, onUnlock }) => {
       setTimeout(() => {
         setIsLoading(false);
         if (window.fbq) {
-          window.fbq('track', 'Lead');
+          try {
+            const consent = JSON.parse(localStorage.getItem('creamstack_cookie_consent') || '{}');
+            if (consent.marketing !== false) {
+              window.fbq('track', 'Lead');
+            }
+          } catch {
+            window.fbq('track', 'Lead');
+          }
         }
         onUnlock();
       }, 800);

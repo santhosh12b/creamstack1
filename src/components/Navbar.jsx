@@ -213,7 +213,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
             <button 
               onClick={() => setCompanyOpen(!companyOpen)}
               className={`flex items-center gap-1.5 text-[0.95rem] font-medium transition-colors py-2 outline-none cursor-pointer ${
-                companyOpen || currentPage === 'about' || currentPage === 'contact' ? 'text-primary font-bold' : 'text-text-main hover:text-primary'
+                companyOpen || currentPage === 'about' || currentPage === 'about-us' || currentPage === 'contact' ? 'text-primary font-bold' : 'text-text-main hover:text-primary'
               }`}
             >
               <span>Company</span>
@@ -247,15 +247,15 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
                 <div className="flex flex-col gap-1">
                   {/* About Item */}
                   <div
-                    onClick={(e) => handleNavClick(e, 'about')}
+                    onClick={(e) => handleNavClick(e, 'about-us')}
                     className={`p-2.5 rounded-xl flex items-start gap-3 transition-all cursor-pointer group border ${
-                      currentPage === 'about' 
+                      (currentPage === 'about' || currentPage === 'about-us') 
                         ? 'bg-blue-50/70 border-blue-200/90 shadow-2xs' 
                         : 'border-transparent hover:bg-slate-50 hover:border-slate-200/80'
                     }`}
                   >
                     <div className={`w-9 h-9 rounded-xl border flex items-center justify-center shrink-0 transition-all duration-200 shadow-2xs ${
-                      currentPage === 'about' 
+                      (currentPage === 'about' || currentPage === 'about-us') 
                         ? 'bg-blue-600 text-white border-blue-600' 
                         : 'bg-blue-50/80 text-blue-600 border-blue-100 group-hover:bg-blue-600 group-hover:text-white'
                     }`}>
@@ -277,7 +277,7 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-2">
                         <span className={`font-bold text-xs transition-colors ${
-                          currentPage === 'about' ? 'text-primary' : 'text-slate-800 group-hover:text-primary'
+                          (currentPage === 'about' || currentPage === 'about-us') ? 'text-primary' : 'text-slate-800 group-hover:text-primary'
                         }`}>
                           About
                         </span>
@@ -486,9 +486,9 @@ const Navbar = ({ currentPage = 'home', onNavigate }) => {
                 {mobileCompanyOpen && (
                   <div className="pl-2 pr-1 pt-1.5 pb-2 flex flex-col gap-1.5">
                     <div
-                      onClick={(e) => handleNavClick(e, 'about')}
+                      onClick={(e) => handleNavClick(e, 'about-us')}
                       className={`p-3 min-h-[44px] rounded-xl flex items-start gap-3 border transition-all cursor-pointer ${
-                        currentPage === 'about' 
+                        (currentPage === 'about' || currentPage === 'about-us') 
                           ? 'bg-blue-50/80 border-blue-200 text-primary font-bold shadow-2xs' 
                           : 'bg-slate-50/60 border-slate-100 text-secondary hover:bg-slate-100'
                       }`}
