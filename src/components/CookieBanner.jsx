@@ -94,31 +94,33 @@ const CookieBanner = ({ onNavigate }) => {
 
   return (
     <>
-      {/* 1. Sleek Floating Bottom Pill Banner (Default View) */}
+      {/* 1. Sleek Floating Bottom Pill Banner (Default View) in CreamStack Theme */}
       {!isModalOpen && (
         <aside
           aria-label="Cookie consent banner"
-          className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-[999] w-[calc(100%-1.5rem)] sm:w-[94%] max-w-4xl bg-white text-slate-800 rounded-2xl sm:rounded-full shadow-[0_12px_40px_-6px_rgba(0,0,0,0.18)] border border-slate-200/90 px-4 py-3 sm:px-6 sm:py-2.5 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-6 animate-in slide-in-from-bottom-5 duration-300 transition-all"
+          className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-[999] w-[calc(100%-1.5rem)] sm:w-[94%] max-w-4xl bg-white/95 backdrop-blur-md text-secondary rounded-2xl sm:rounded-full shadow-[0_12px_40px_-6px_rgba(15,23,42,0.14)] border border-slate-200/90 px-4 py-3 sm:px-6 sm:py-2.5 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-6 animate-in slide-in-from-bottom-5 duration-300 transition-all"
         >
-          {/* Left Side: Cookie Icon + Copy */}
-          <div className="flex items-center gap-2.5 sm:gap-3 text-slate-800 text-center sm:text-left">
-            <svg 
-              className="w-5 h-5 text-slate-800 shrink-0" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5" />
-              <path d="M8.5 8.5v.01" />
-              <path d="M16 15.5v.01" />
-              <path d="M12 12v.01" />
-              <path d="M11 17v.01" />
-              <path d="M7 13v.01" />
-            </svg>
+          {/* Left Side: CreamStack Brand-Themed Cookie Icon Badge + Copy */}
+          <div className="flex items-center gap-2.5 sm:gap-3 text-secondary text-center sm:text-left">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center text-primary shrink-0 shadow-2xs">
+              <svg 
+                className="w-4 h-4 text-primary shrink-0" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5" />
+                <path d="M8.5 8.5v.01" />
+                <path d="M16 15.5v.01" />
+                <path d="M12 12v.01" />
+                <path d="M11 17v.01" />
+                <path d="M7 13v.01" />
+              </svg>
+            </div>
             <span className="text-xs sm:text-sm font-medium text-slate-700 tracking-tight">
               We use cookies to enhance your experience.
             </span>
@@ -129,7 +131,7 @@ const CookieBanner = ({ onNavigate }) => {
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="text-xs sm:text-sm font-semibold text-slate-900 underline underline-offset-4 hover:text-slate-600 transition-colors cursor-pointer py-1 px-1 whitespace-nowrap"
+              className="text-xs sm:text-sm font-semibold text-secondary hover:text-primary underline underline-offset-4 transition-colors cursor-pointer py-1 px-1 whitespace-nowrap"
             >
               Cookie settings
             </button>
@@ -137,7 +139,7 @@ const CookieBanner = ({ onNavigate }) => {
             <button
               type="button"
               onClick={handleRejectAll}
-              className="px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 active:scale-95 transition-all cursor-pointer whitespace-nowrap shadow-xs"
+              className="px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200/80 active:scale-95 transition-all cursor-pointer whitespace-nowrap shadow-xs"
             >
               Reject all
             </button>
@@ -145,7 +147,7 @@ const CookieBanner = ({ onNavigate }) => {
             <button
               type="button"
               onClick={handleAcceptAll}
-              className="px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold text-white bg-[#f95721] hover:bg-[#ea4a15] active:scale-95 shadow-sm transition-all cursor-pointer whitespace-nowrap"
+              className="px-5 sm:px-6 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold text-white bg-primary hover:bg-primary-hover active:scale-95 shadow-md shadow-primary/25 transition-all cursor-pointer whitespace-nowrap"
             >
               Accept all
             </button>
@@ -543,7 +545,7 @@ const CookieBanner = ({ onNavigate }) => {
                 <button
                   type="button"
                   onClick={handleAcceptAll}
-                  className="w-full sm:flex-1 py-2.5 sm:py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-extrabold transition-all text-center shadow-lg shadow-blue-600/30 cursor-pointer active:scale-[0.98]"
+                  className="w-full sm:flex-1 py-2.5 sm:py-3 px-4 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs sm:text-sm font-extrabold transition-all text-center shadow-lg shadow-primary/30 cursor-pointer active:scale-[0.98]"
                 >
                   Accept all
                 </button>
